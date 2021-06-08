@@ -1,0 +1,142 @@
+\part{Theory: Reduced-Cost QC}
+
+While computational chemistry has manifested itself as a popular and widely used tool, its inherently steep scaling limits its applicibality to cheaper methods like DFT, orto small or middle sized molecules for post-Hartree Fock methods. Even Hartree Fock with O(N$^3$) expensive when comparing to the rest of the world of computer science (examples?). Very early on, with the development of CI methods, (Pulay) effort has been put into reducing the prefactor and computational complexity for QC methods. Example: One of the most time-consuming steps in Post-Hartree Fock is the formation of the molecular orbitals, e.g. formation of the OVOV block of the MO integral tensor as encountered in CC and MP2:
+\begin{equation}
+\cn{ia}{jb} = \sum^{vir}_b C_{\sigma b} \sum^{vir}_a C_{\nu a} \sum^{occ}_j C_{\lambda j} \sum^{occ}_i C_{\mu i} \cn{\mu\nu}{\lambda\sigma}
+\end{equation}
+By efficiently refactoring the sums, the MO-AO integral transformation scales as O(N$^4$). There are two reasons for the large cost: first, and quite obviously, a rank-4 tensor scales very fast, hence O(N4), also becomes a bottle neck for tensor contractions as many indices. Secondly, for large basis sets with triple-zeta quality or higher, or basis sets with diffuse functions, the virtual orbital space is very large, and can be multiple times the size of the occupied space. 
+Attempts to reduce scaling can be grouped into two groups: screening-based methods and domain-based methods. Screening-based methods recast existing equations into the AO basis and use the sparsity and fast decay between AOs to establish highly efficient screening algorithms to lower the scaling of integral transformation. Domain-based methods stay in the MO basis, but a localized one, and attempt to assign domains of virtual molecular orbitals to a single LMO or a pair of LMOs, to obtain a more compact representation. 
+Other attempts at mitigating the cost of MO-AO transformation is to exploit the rank sparsity of the AO ERI tensor. Density fitting and Cholesky decompositions can refactor the ERI tensor into a product of two 3-dim tensors. Tensor Hypercontraction goes even further and decomposes into 4 2-dim tensor. Density does not inherently lower scaling of methods, but rather reduces the prefactor associated with integral transformation. In special cases, decomposition techniques allow a refactoring of the working equations into lower scaling. Examples include the coulomb part of the Fock-build (O3 to O2) and SOS-MP2, SOS-CC2 or SOS-ADC(2) (O5 to O4).  
+Density fitting and local approximations can be combined, to yield the best of both world in what is known as local density fitting.
+All of the above methods have their fair share of problems, some more than others. We will first address principles of density fitting, before looking at possible orbital representations, and how they can be used for reduced scaling. Also go to local density fitting, and finally how the methods are implemented for ground state (HF,MP2,CCSD) and excited state computations (CI, CCLR, ADC).
+
+\section{Density Fitting}
+About density fitting. Principles
+
+\section{The ABCs of LMOs and CMOs: Orbital Representations}
+
+%\url{https://link.springer.com/article/10.1007/s00894-018-3880-8}
+
+Occupied and virtual molcular orbitals can generally be represented in two ways: canonical molecular orbitals (CMOs) and local molecular orbitals (LMOs). CMOs are the eigenvectors of the Fock matrix obtained by solving the eigenvalue problem
+
+\begin{equation}
+\mathbf{F}\mathbf{C} = \mathbf{S}\mathbf{C} \eps
+\end{equation}
+
+where the eigevalues $\epsilon$ are known as the molecular orbital energies of the associated CMOs. However, CMOs are not unique in the sense that there are multiple molecular representations possible which yield the same electron density $\mathbf{P}$. Observables such as the electron density, or the total energy, are said to be invariant under unitary transformations (Fock V (1930) Z Phys 61:26–148). The CMOs $\mathbf{C}$ relate to other representations $\mathbf{L}$ as
+
+\begin{equation}
+L_{\mu \uli} = U_{\uli i} C_{\mu i}
+\end{equation}
+
+\noindent where $\mathbf{U}$ is a unitary transformation matrix with $\mathbf{U}^{\dagger} \mathbf{U}$ = $\mathbb{1}$. Typically, $\mathbf{U}$ is chosen to generate a set of molecular orbitals which are localized on as few atoms as possible, hence local molecular orbitals. While CMOs and LMOs agree on observables, they show differences for non-obervables, such as molecular orbital energy or orbital shape.
+
+There are several reasons for choosing an LMO representation. First, as mentioned above, LMOs are used in local correlation methods, because CMOs are too delocalized, and electron correlation between LMO centres decay more rapidly. Secondly, they offer a more intuitive picture for chemists and help to interpret chemical phenomena (cite), e.g. invloving lone pairs or $\pi$ bonds. Different representations can be used to interpret different phenomena, e.g. Boys LMOs vs NTOs.
+
+Over the years, a myriad of different schemes has been proposed on how to find appropriate tranformation matrices $\mathbf{U}$. We will now go over some examples.
+
+\subsection{LMOs by Reducing a Functional}
+% (0) https://aip.scitation.org/doi/full/10.1063/1.2360264
+% (1) https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.32.296
+% (2) https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.35.457
+% (3) https://aip.scitation.org/doi/10.1063/1.456588
+% (4) J. E. Subotnik, Y. Shao, W. Z. Liang, and M. Head-Gordon, J. Chem. Phys. https://doi.org/10.1063/1.1790971 121, 9220 (2004).
+% (5) https://aip.scitation.org/doi/10.1063/1.2033687
+
+One of the most popular methods for finding LMOs consists in maximizing a localization function $\eta(\phi)$ by successive rotation of the orbital space. The most prominent examples are Foster-Boys (FB)(1), Edmiston-Ruedenberg (ER) (2) and Pipek-Mezey (PM) (3). Their functionals can be written as
+
+\begin{eqnarray}
+\zeta_{FB}(\chi) = \sum_i \bra{\chi_i} \mathbf{r} \ket{\chi i}^2 \\
+\zeta_{ER}(\chi) = \sum_i \cn{\chi_i \chi_i}{\chi_i \chi_i} \\
+\zeta_{FB}(\chi) = \sum_i \sum_A \bra{\chi_i} \mathbf{P}_A \ket{\chi i}^2 
+\end{eqnarray}
+
+The problem is generally solved using an iterative procedure consisting in consecutive pair-wise rotations, known as Jacobi sweeps (ALGO). These sweeps are rotated until convergence is reached, which may be slow. The methods differ within the procedure by how the rotational angle is computed, and scale diiferently with system size, with $\ccpx{3}$ for FB, $\ccpx{5}$ for ER and $\ccpx{4}$ for PM. A faster alternative to Jacobi sweeps does also exist (4). 
+
+Over the years, PM has been the more popular choice of the three: like ER and unlike FB, it conserves $\sigma$-$\pi$ separation (0),  but it scales more favorably than ER.
+
+Functional localization methods are most often used for rotating occupied MOs. Virtual MOs are often plagued by convergence issues and have a steep computational cost simply due to being much more numerous than occupied MOs (5). It is crucial that molecular localization should not take longer than the methods they are used for, and hence VMOs are often localized using separate methods.
+
+\subsection{Projected Atomic Orbitals}
+% (0) https://www.annualreviews.org/doi/10.1146/annurev.pc.44.100193.001241
+% (1) https://aip.scitation.org/doi/full/10.1063/1.2173249
+
+A set of highly localized molecular orbitals can be obtained by projecting the CMOs onto the atomic orbital basis, known as projected atomic orbitals (PAO) (0). For a set of orthonormal occupied/virtual molecular orbitals $\{\Psi_i\}$ and $\{\Psi_a\}$, the projection operators are defined as (1)
+
+\begin{eqnarray}
+\hat{P} &= \ket{\Psi_i} \bra{\Psi_i} &= \ket{\chi_{\mu}} C_{\mu i} C_{\nu i} \bra{\chi_{\nu}} \\
+\hat{Q} &= \ket{\Psi_a} \bra{\Psi_a} &= \ket{\chi_{\mu}} C_{\mu a} C_{\nu a} \bra{\chi_{\nu}}
+\end{eqnarray}
+
+The projection operators are idempotent and mutually orthogonal with $\hat{P}\hat{Q} = \mathbb{1}$. Applying the projection operators to the set of AOs 
+
+\begin{eqnarray}
+\hat{P} \ket{\chi_{\mu'}} &= \sum_{\mu} \ket{\chi_{\mu}} P_{\mu\nu} S_{\nu\mu'} &= L_{\mu I} \ket{\chi_{\mu}} \\
+\hat{Q} \ket{\chi_{\mu'}} &= \sum_{\mu} \ket{\chi_{\mu}} Q_{\mu\nu} S_{\nu\mu'} &= L_{\mu A} \ket{\chi_{\mu}}
+\end{eqnarray} 
+
+\noindent yields the set of occipied and virtual PAOs $\{\chi_I\},\{\chi_A\}$. Both sets span a space of $n_{AO}$ functions each, as opposed to $n_{occ}$ and $n_{vir}$. As such, just like the AO basis, the PAO basis is redundant. CMOs are transformed to PAOs by the relationship
+
+\begin{eqnarray}
+\ket{\chi_I} = (\mathbf{SC})_{Ii} \ket{\Psi_i} \\
+\ket{\chi_A} = (\mathbf{SC})_{Aa} \ket{\Psi_a}
+\end{eqnarray}
+
+PAOs are centred on the atom on which their corresponding AO is localized. However, PAOs can still span multiple atoms. Methods which are entirely formulated in PAOs are rare (1).
+
+PAOs also arise in the context of AO-MP2 or AO-CCSD, when rearranging the canoncial equations into an AO basis, as will be shown later.
+
+\subsection{Cholesky Molecular Orbitals}
+
+Sparsity of the atomic density matrix is crucial for achieving low-scaling electronic structure methods. Aquilante et al. proposed (0) to define a set of occupied molecular orbitals by Cholesky decomposition of the density matrix. Analysis of the resulting Cholesky molecular orbitals (CholMOs) showed their localized character inherited from the sparsity of the density matrix.
+
+\begin{equation}
+\mathbf{P} = \mathbf{LL^T}
+\end{equation}
+
+Figure ... shows the sparsity of the occupied density matrix and the occupied cholesky molecular coefficient matrix of the linear alkane H$_{322}$C$_{160}$. The number of CholMOs is equal to the rank of the density matrix, which is equal to the number of occupied orbitals. The CholMOs are computed by an incomplete Cholesky decomposition with full row and column pivoting  (ALGO). The unitary transformation matrix is given by
+
+\begin{equation}
+U_{i\uli} = C_{\mu i} S_{\mu \nu} L_{\nu \uli}
+\end{equation}
+
+The decomposition algorithm scales with $\ccpx{3}$ but can be made linearly scaling by using sparse matrix algebra. CholMOs have several advantages: the Cholesky decomposition is fast and non-iterative, and an initial guess for molecular orbitals is not needed. 
+
+The scheme can be extended to virtual orbitals as well, by CD of the virtual atomic density matrix $\mathbf{Q}$. The rank of $\mathbf{Q}$ is equal to the number of virtual orbitals $n_vir$, therefore the prefactor of the incomplete CD increases with basis set size. Especially in the presence of diffuse functions, the rank reduction might not offer much of an advantage compared to simpler localization methods such as PAOs.  
+
+Moreover, orbitals obtained by CD are less localized than FB or ER LMOs, especially for small molecules. Low scaling is still possible using CholMOs in the context of LMO correlation methods, albeit with a larger prefactor.
+
+CD is also used in the context of AO-MP2 to reduce the prefactor of inetgral transformation by using the rank sparsity of the pseudo-density matrices, as will be shown further below.
+
+CholMOs can also used as an initial guess for iterative localization schemes to achive faster convergence.  
+
+\subsection{Natural Orbitals?}
+
+\subsection{Pair Natural Orbitals}
+
+\subsection{OSVs}
+
+\subsection{Embedding}
+
+\subsection{Natural Transition Orbitals}
+
+Virtual SPace: PAOs (Pulay), PNOs (..), OSVs, SPADEs
+
+
+\section{Local Density Fitting}
+
+NAFs: \url{https://aip.scitation.org/doi/full/10.1063/1.4905005}
+
+\section{Ground State Local}
+
+\subsection{Hartree Fock}
+
+\subsection{MP}
+
+\subsection{Coupled Cluster}
+
+\section{Excited state local}
+
+\subsection{CCLR}
+
+\subsection{ADC}
