@@ -1,37 +1,39 @@
-\contentsline {section}{\numberline {1}Introduction}{6}{}%
-\contentsline {part}{I\hspace {1em}Theory: The Basics}{7}{}%
-\contentsline {section}{\numberline {2}Ground Work}{7}{}%
-\contentsline {subsection}{\numberline {2.1}The Schrödinger Equation}{7}{}%
-\contentsline {subsection}{\numberline {2.2}Basis Sets}{7}{}%
-\contentsline {subsection}{\numberline {2.3}Electron Integrals}{7}{}%
-\contentsline {section}{\numberline {3}Hartree Fock}{7}{}%
-\contentsline {section}{\numberline {4}Post-Hartree Fock Ground State}{7}{}%
-\contentsline {subsection}{\numberline {4.1}Configuration Interaction}{7}{}%
-\contentsline {subsection}{\numberline {4.2}Perturbation Theory}{7}{}%
-\contentsline {subsection}{\numberline {4.3}Coupled Cluster}{7}{}%
-\contentsline {section}{\numberline {5}Post-Hartree Fock Excited State}{7}{}%
-\contentsline {subsection}{\numberline {5.1}Configuration Interaction}{7}{}%
-\contentsline {subsection}{\numberline {5.2}Coupled Cluster Linear Repsonse}{7}{}%
-\contentsline {subsection}{\numberline {5.3}Equation-of-Motion Coupled Cluster}{7}{}%
-\contentsline {subsection}{\numberline {5.4}Algebraic Diagrammatic Construction}{7}{}%
-\contentsline {section}{\numberline {6}Density Fitting}{7}{}%
-\contentsline {part}{II\hspace {1em}Theory: Reduced-Cost QC}{8}{}%
-\contentsline {section}{\numberline {7}Density Fitting}{9}{}%
-\contentsline {section}{\numberline {8}The ABCs of LMOs and CMOs: Orbital Representations}{9}{}%
-\contentsline {subsection}{\numberline {8.1}LMOs by Reducing a Functional}{9}{}%
-\contentsline {subsection}{\numberline {8.2}Projected Atomic Orbitals}{10}{}%
-\contentsline {subsection}{\numberline {8.3}Cholesky Molecular Orbitals}{11}{}%
-\contentsline {subsection}{\numberline {8.4}Natural Orbitals?}{12}{}%
-\contentsline {subsection}{\numberline {8.5}Pair Natural Orbitals}{12}{}%
-\contentsline {subsection}{\numberline {8.6}OSVs}{12}{}%
-\contentsline {subsection}{\numberline {8.7}Embedding}{12}{}%
-\contentsline {subsection}{\numberline {8.8}Natural Transition Orbitals}{12}{}%
-\contentsline {section}{\numberline {9}Local Density Fitting}{12}{}%
-\contentsline {section}{\numberline {10}Ground State Local}{12}{}%
-\contentsline {subsection}{\numberline {10.1}Hartree Fock}{12}{}%
-\contentsline {subsection}{\numberline {10.2}MP}{12}{}%
-\contentsline {subsection}{\numberline {10.3}Coupled Cluster}{12}{}%
-\contentsline {section}{\numberline {11}Excited state local}{12}{}%
-\contentsline {subsection}{\numberline {11.1}CCLR}{12}{}%
-\contentsline {subsection}{\numberline {11.2}ADC}{12}{}%
-\contentsline {part}{III\hspace {1em}Benchmarking: Timings and }{13}{}%
+\contentsline {section}{\numberline {1}Introduction}{7}{}%
+\contentsline {part}{I\hspace {1em}Theory: The Basics}{8}{}%
+\contentsline {section}{\numberline {2}Ground Work}{8}{}%
+\contentsline {subsection}{\numberline {2.1}The Schrödinger Equation}{8}{}%
+\contentsline {subsection}{\numberline {2.2}Basis Sets}{8}{}%
+\contentsline {subsection}{\numberline {2.3}Electron Integrals}{8}{}%
+\contentsline {section}{\numberline {3}Hartree Fock}{8}{}%
+\contentsline {section}{\numberline {4}Post-Hartree Fock Ground State}{8}{}%
+\contentsline {subsection}{\numberline {4.1}Configuration Interaction}{8}{}%
+\contentsline {subsection}{\numberline {4.2}Perturbation Theory}{8}{}%
+\contentsline {subsection}{\numberline {4.3}Coupled Cluster}{8}{}%
+\contentsline {section}{\numberline {5}Post-Hartree Fock Excited State}{8}{}%
+\contentsline {subsection}{\numberline {5.1}Configuration Interaction}{8}{}%
+\contentsline {subsection}{\numberline {5.2}Coupled Cluster Linear Repsonse}{8}{}%
+\contentsline {subsection}{\numberline {5.3}Equation-of-Motion Coupled Cluster}{8}{}%
+\contentsline {subsection}{\numberline {5.4}Algebraic Diagrammatic Construction}{8}{}%
+\contentsline {section}{\numberline {6}Density Fitting}{8}{}%
+\contentsline {part}{II\hspace {1em}Theory: Reduced-Cost QC}{9}{}%
+\contentsline {section}{\numberline {7}Density Fitting}{10}{}%
+\contentsline {section}{\numberline {8}Spasrity Patterns in Elctronic Structure Theory}{10}{}%
+\contentsline {section}{\numberline {9}The ABCs of LMOs: Orbital Representations}{10}{}%
+\contentsline {subsection}{\numberline {9.1}Local Molecular Orbitals}{10}{}%
+\contentsline {subsection}{\numberline {9.2}LMOs by Reducing a Functional}{11}{}%
+\contentsline {subsection}{\numberline {9.3}Projected Atomic Orbitals}{11}{}%
+\contentsline {subsection}{\numberline {9.4}Subspace Projected Atomic Orbitals}{12}{}%
+\contentsline {subsection}{\numberline {9.5}Cholesky Molecular Orbitals}{12}{}%
+\contentsline {subsection}{\numberline {9.6}Natural Orbitals}{13}{}%
+\contentsline {subsection}{\numberline {9.7}Specific Virtual Orbitals}{15}{}%
+\contentsline {section}{\numberline {10}Local Density Fitting}{18}{}%
+\contentsline {section}{\numberline {11}Low-Scaling Hartree Fock Methods}{18}{}%
+\contentsline {subsection}{\numberline {11.1}Density Purification}{18}{}%
+\contentsline {section}{\numberline {12}Local Correlation Methods I: AO Basis}{18}{}%
+\contentsline {section}{\numberline {13}Local Correlation Methods I: LMO Basis}{18}{}%
+\contentsline {subsection}{\numberline {13.1}SVO-MP2 flavours}{18}{}%
+\contentsline {subsection}{\numberline {13.2}NTO-MP2 ?}{18}{}%
+\contentsline {section}{\numberline {14}Low-Scaling Correlated Excited State Methods}{18}{}%
+\contentsline {subsection}{\numberline {14.1}CC2}{18}{}%
+\contentsline {subsection}{\numberline {14.2}ADC}{18}{}%
+\contentsline {part}{III\hspace {1em}Benchmarking: Timings and }{19}{}%

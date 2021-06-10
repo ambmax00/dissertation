@@ -13,7 +13,13 @@ All of the above methods have their fair share of problems, some more than other
 \section{Density Fitting}
 About density fitting. Principles
 
-\section{The ABCs of LMOs and CMOs: Orbital Representations}
+\section{Spasrity Patterns in Elctronic Structure Theory}
+
+% Good explanation for "linked indices rule" https://aip.scitation.org/doi/pdf/10.1063/1.4926879
+
+\section{The ABCs of LMOs: Orbital Representations}
+
+A small intro
 
 %\url{https://link.springer.com/article/10.1007/s00894-018-3880-8}
 
@@ -34,6 +40,10 @@ L_{\mu \uli} = U_{\uli i} C_{\mu i}
 There are several reasons for choosing an LMO representation. First, as mentioned above, LMOs are used in local correlation methods, because CMOs are too delocalized, and electron correlation between LMO centres decay more rapidly. Secondly, they offer a more intuitive picture for chemists and help to interpret chemical phenomena (cite), e.g. invloving lone pairs or $\pi$ bonds. Different representations can be used to interpret different phenomena, e.g. Boys LMOs vs NTOs.
 
 Over the years, a myriad of different schemes has been proposed on how to find appropriate tranformation matrices $\mathbf{U}$. We will now go over some examples.
+
+\subsection{Local Molecular Orbitals}
+
+Some words about it
 
 \subsection{LMOs by Reducing a Functional}
 % (0) https://aip.scitation.org/doi/full/10.1063/1.2360264
@@ -56,6 +66,8 @@ The problem is generally solved using an iterative procedure consisting in conse
 Over the years, PM has been the more popular choice of the three: like ER and unlike FB, it conserves $\sigma$-$\pi$ separation (0),  but it scales more favorably than ER.
 
 Functional localization methods are most often used for rotating occupied MOs. Virtual MOs are often plagued by convergence issues and have a steep computational cost simply due to being much more numerous than occupied MOs (5). It is crucial that molecular localization should not take longer than the methods they are used for, and hence VMOs are often localized using separate methods.
+
+EXAMPLES!! Ethylene
 
 \subsection{Projected Atomic Orbitals}
 % (0) https://www.annualreviews.org/doi/10.1146/annurev.pc.44.100193.001241
@@ -84,7 +96,17 @@ The projection operators are idempotent and mutually orthogonal with $\hat{P}\ha
 
 PAOs are centred on the atom on which their corresponding AO is localized. However, PAOs can still span multiple atoms. Methods which are entirely formulated in PAOs are rare (1).
 
-PAOs also arise in the context of AO-MP2 or AO-CCSD, when rearranging the canoncial equations into an AO basis, as will be shown later.
+PAOs also arise in the context of AO-MP2, when rearranging the canoncial equations into an AO basis, as will be shown later.
+
+\subsection{Subspace Projected Atomic Orbitals}
+
+Some applications need localized molecular orbitals that only span a certain region of a molecule, e.g. density matrix embedding theory (DMET) (refs) or local ADC (ref). The molecule is split into two subunits, and atoms are grouped into an active region $A$ and an inactive region $B$ according to specific selection criteria. Region $A$ contains the molecular subunit of interest. 
+
+Most implementations use the Mulliken gross charges to find
+... ? Not used for virtuals? Put it into AO-ADC Part?
+
+% SPADES: Cla https://www.osti.gov/pages/servlets/purl/1631165
+% SPADES: Cla2019 https://pubs.acs.org/doi/10.1021/acs.jctc.8b01112
 
 \subsection{Cholesky Molecular Orbitals}
 
@@ -110,33 +132,249 @@ CD is also used in the context of AO-MP2 to reduce the prefactor of inetgral tra
 
 CholMOs can also used as an initial guess for iterative localization schemes to achive faster convergence.  
 
-\subsection{Natural Orbitals?}
+\subsection{Natural Orbitals}
 
-\subsection{Pair Natural Orbitals}
+While the schemes described above try to generate a set of occupied and/or virtual molecular orbitals localized in space, natural orbital (NOs) methods try to generate a set of "compact" orbitals, i.e. a minimal set of orbitals that can describe the problem at hand. The concept of natural orbitals was first introduced by Löwdin (A). The natural orbitals $\Theta_i$ of a wave function $\Psi$ are defined as the eigenfunctions of the one-particle density operator $\hat{n}$
 
-\subsection{OSVs}
+\begin{equation}
+\hat{n}\ket{\Theta_i} = n_i \ket{\Theta_i} 
+\end{equation}
 
-\subsection{Embedding}
+\noindent where $n_i$ are the occupation numbers of the associated orbital $\Theta_i$. One can then choose a reduced orbital space $\{\tilde{\Psi}_i\}$ by only taking into account those orbitals with an occupation number above a certain threshold $\tau$. The orbitals are "natural" in the sense that they are determined purely using $\Psi$, and are intrinsic to the system. NOs are computed by diagonalizing the one-particle density matrix at the desired level of theory (Hartree-Fock, MP, CIS, CC). 
 
-\subsection{Natural Transition Orbitals}
+NOs are state-specific (Pok2019), meaning that NOs computed from the ground state densities may not be well suited to describe excited states, and NOs of different excited states might also greatly differ. As such, as will be later shown for local flavours of ADC, NOs need to be recomputed for each state.
 
-Virtual SPace: PAOs (Pulay), PNOs (..), OSVs, SPADEs
+% CIS(D) density matrices https://aip.scitation.org/doi/pdf/10.1063/1.4983277
 
+\subsubsection*{Natural Orbitals in Hartree Fock Theory}
+
+In Hartree Fock theory, natural orbitals are mostly reserved for qualitative population and bond order analysis. 
+
+Natural atomic orbitals (NAOs) are computed by diagonalizing the blocks $P_{\mu_A\nu_A}$ of the atomic density matrix, where ${\mu_A}$, ${\nu_A}$ are basis functions centred on atom $A$. NAOs are optimal for describing the electron density around individual atom centres (IUPAC). NAOs are also useful for obtaining a set of guess orbitals from densitiy matrices formed from the superposition of atomic densities (SAD) guess. 
+
+NHOs obtained from NAOs + off-diag NAOs 
+% (ref: https://pubs.acs.org/doi/pdf/10.1021/ja00544a007)
+
+NBOs obtained from NHOs
+
+% NBOs https://aip.scitation.org/doi/pdf/10.1063/1.445134
+
+% NAOs, NBOs https://pubs.rsc.org/en/content/articlepdf/2001/rp/b1rp90011k
+
+% (Recent) NBOs https://onlinelibrary.wiley.com/doi/epdf/10.1002/wcms.51
+
+% https://goldbook.iupac.org/terms/view/NT07076
+
+\subsubsection*{Frozen Natural Orbitals}
+
+For large basis sets, CMOs are much more compact than the virtual orbital span, and the number of occupied NOs is not significantly lower than that of occupied CMOs. It is therefore sufficient to only compute the eigenfunctions of the virtual-virtual block of the one-particle density matrix, which are known as frozen natural orbitals (FNOs) (Bar1970). FNOs need information of the correlated wave function, and are therefore typically computed at a lower level of theory. For example, the easiest way to obtain a set of FNOs for CCSD or CCSD(T) computation is to diagonalize the virtual-virtual block  of the MP2 density matrix (Sos1989, Tau2005, Tau2008)
+\begin{equation}
+D_{ab} = \frac{1}{2} sum_{cij} \frac{K_{ij}^{cb} K_{ij}^{ca}}{\eps_{ij}^{ab} \eps_{ij}^{ca}}
+\end{equation}
+\noindent with
+\begin{equation}
+K_{ij}^{ab} = 2 \cn{ia}{jb} - \cn{ib}{ja}
+\end{equation}
+\begin{equation}
+\eps_{ij}^{ab} = \eps_i + \eps_j - \eps_a - \eps_b 
+\end{equation}
+The FNOs are then canonicalized (see ...). The combined set of occupied CMOs and virtual FNOs forms a very compact representation suitable for CC ground state and excited state calculations.
+
+% MP2 NOs:
+% Jor1988 J. Chem. Phys. 88, 3834 (1988); https://doi.org/10.1063/1.453884
+% D. M. Silver and R. J. Bartlett,Phys. Rev. A13,1 1976.
+% D. M. Silver, S. Wilson, and R. J. Bartlett,Phys. Rev. A16,477 1977.
+
+% FNOs: 
+% Bar1970 Phys. Rev. A 1, 644 – Published 1 March 1970
+
+% FNO CC: 
+% Sos1989 https://doi.org/10.1016/0009-2614(89)87399-3
+% Tau2005 Taube, Andrew G.; Bartlett, Rodney J. (2005). Frozen Natural Orbitals: Systematic Basis Set Truncation for Coupled-Cluster Theory. Collection of Czechoslovak Chemical Communications, 70(6), 837–850. doi:10.1135/cccc20050837  
+% A. G. Taube and R. J. Bartlett,  Frozen natural orbital coupled-cluster theory:  Forces andapplication to decomposition of nitroethane,  J. Chem. Phys.128, 164101 (2008)
+% CCLR NO  A. Kumar and T. D. Crawford,   Frozen virtual natural orbitals for coupled-cluster linear-response theory,  J. Phys. Chem. A121, 708 (2017).
+
+% Have a look at Pok2019 https://chemrxiv.org/articles/preprint/Extension_of_Frozen_Natural_Orbital_Approximation_to_Open-Shell_References_Theory_Implementation_and_Application_to_Single-Molecule_Magnets/10308053/1
+
+\subsubsection*{Natural Transition Orbitals}
+
+Consider the CIS eigenvalue problem for finding the excitation energies $\omega_n$ and their associated transition density matrices $R_n$
+
+\begin{equation}
+\mathbf{A_{CIS}} R_n = \omega_n R_n 
+\end{equation}
+
+The matrices $\mathbf{R}_n$ contain $n_{occ}n_{vir}$ expansion coefficients $c_{ia}$ which show how much an orbital-virtual MO pair $ia$ contributes to the excitation $n$. The numer of non-negligebale coefficients can be far from zero, making interpretations of the computed results difficult for some systems.
+
+Natural transition orbitals (NTOs) were introduced to facilitate the qualititative description of an excited state and finding connections to experimental spectra (Luz1976, Mar2003, Mar2008). NTOs are typically obtained by computing the singular value decomposition (SVD) of the state densities $\mathbf{R}_n$
+
+\begin{equation}
+\mathbf{R} = \mathbf{U} \mathbf{\Sigma} \mathbf{V}^{\dagger}  
+\end{equation} 
+
+\noindent where $\mathbf{U}$ and $\mathbf{V}$ are unitary matrices with dimension $n_{occ} n_{NTO}$ and $n_{vir}n_{NTO}$, and $\Sigma$ is a $n_{NTO}$ by $n_{NTO}$ matrix containg the singular values $s$ on its diagonal. The CMOs $\{\Psi^{occ}_i,\Psi^{vir}_a\}$ are transformed to the NTO basis $\{\overline{\Psi}^{occ}_k,\overline{\Psi}^{vir}_k\}$ using
+
+\begin{equation}
+\ket{\overline{\Psi}^{occ}_k} = U_{ki} \ket{\Psi^{occ}_i}
+\end{equation}
+\begin{equation}
+\ket{\overline{\Psi}^{vir}_k} = V_{ka} \ket{\Psi^{vir}_a}
+\end{equation}
+
+\noindent The singular value $s_k$ show the contribution of an NTO pair $k$ to the excited state. In most cases, the number of significant NTO pairs is significantly lower than $n_{occ}n_{vir}$ and at most equal to $n_{occ}$. NTOs are not limited to CIS, but can also be obtained by SVD decomposition of the singles-singles block of excited state densities from higher order methods such as ADC or CCLR. 
+
+Natural transition orbitals have also found use in local excited  state correlation methods (Bau2017,Hof2017), where CIS NTOs are combined with MP2 NOs to obtain a compact orbital representation for ground and excited state coupled cluster calculations.
+
+EXAMPLE!!! phenylalanine
+
+% Luz1976 https://link.springer.com/article/10.1007%2FBF00526670
+
+% Mar2003 https://aip.scitation.org/doi/pdf/10.1063/1.1558471
+
+% https://www.sciencedirect.com/science/article/pii/S0009261407002072?via%3Dihub
+
+% CornFlex: Bau2017 https://aip.scitation.org/doi/pdf/10.1063/1.4984820
+
+% Hof2017 Natural transition orbitals for the calculation of correlation andexcitation energies
+
+
+\subsection{Specific Virtual Orbitals}
+
+In most cases, using LMOs instead of CMOs does not offer any a priori advantage in terms of the computational complexity asscociated with correlated methods, and additional apprximations are necessary. In LMO correlation methods, this is often done by truncating the VMO space. TRuncation of the VMOs has been an active field of research for "a long time", and several schemes have emerged over the years. A naive approach to truncate the virtual space would be to eliminate VMOs with orbital energies above a certain threshold; however, this proved to be unusable in most contexts (ref). More successful methods for VMO truncation use the concept of what we will refer to as \emph{specific virtual orbitals} (SVOs). SVOs are specific in the sense that each individual LMO $i$ or each pair of LMOs $ij$ has their own set of SVOs $a_i$ (orbital specific virtual orbitals) or a$_{ij}$ (pair specific virtual orbitals) associated to it.
+The concept of SVOs naturally arises in the context of correlated methods such as the coupled electron pair approximation (CEPA) where the total energy is computed is computed as the sum of electron pair energies $e$
+\begin{equation}
+E_{CEPA} = \sum_{ij} e_{ij}
+\end{equation}
+The electron pair energy decays rapidly as a function of the distance $r$ between MO centres in an LMO basis. Distant virtual orbitals contribute less to the elctron pair energy as virtual orbitals close to ${ij}$. It has been shown early on that instead of using the whole virtual orbital span, one can correlate only a subset or reduced set of virtual orbitals with each electron pair (0,1,2,3) and still recover most of the correlation energy. In the limit of large molecules, the number of signiciant virtual orbitals for an electron pair becomes independent of system size (4). There are different ways to choose how to define the VMO subsets.
+
+Include this: Pair apprximations Electron pairs are first grouped by distance $r$ between occuied LMOs: strong pairs ($1 < r \leq 8 a_0$), weak pairs ($8 < r \leq 15 a_0$) and very distant pairs ($15 < r$).
+Very distant: lower level of theory, or neglected Talk about how they are transformed? (4)
+
+% 0 BASIS FOR LMO-PAO S. Saebø and P. Pulay , Chem. Phys. Lett., 1985, 113 , 13
+% 1 BASIS FOR PNOs Edmiston, C.; Krauss, M. Configuration-interaction calculation of H3 and H2. J. Chem. Phys. 1965, 42, 1119– 1120,  DOI: 10.1063/1.1696050 
+% 2 OTHER Meyer, W. Ionization energies of water from PNO-CI calculations. Int. J. Quantum Chem. 1971, 5, 341– 348,  DOI: 10.1002/qua.560050839 
+% 3 ALSO Meyer, W. PNO-CI Studies of electron correlation effects. I. Configuration expansion by means of nonorthogonal orbitals, and application to the ground state and ionized states of methane. J. Chem. Phys. 1973, 58, 1017– 1035,  DOI: 10.1063/1.1679283
+% 4 https://pubs.rsc.org/am/content/articlehtml/2012/cp/c2cp40231a#cit51
+
+\subsubsection*{Domain Specific Virtual Orbitals}
+
+We call domain specific virtual orbitals (DSVOs) any type of virtual orbitals where the subsets are formed \emph{a priori} by distance criteria. Examples include the local MP2 and local CCSD implementations by Schütz et al.(AA,AB,AC)
+
+First, occupied CMOs are localized by one of the methods described above. The method of choice in Ref [AA-AC] was the Foster-Boys scheme. Virtual CMOs are recast into the PAO basis. Each individual occuied LMO $\ket{\Psi_i}$ is then assigned a subset $[i]$ of PAOs, chosen by a Boughton-Pulay (BP) criterium (AD) or by population analysis (AE). 
+
+For a given electron pair $ij$, the pair domain is then formed by taking the union $[ij]$ = $[i] \bigcup [j]$. The set of all virtual pair domains $[ij]$ forms the DSVOs.
+
+Alongside AOs, DSVOs were among the first orbital representations in which linear scaling correlated methods were formulated. Their dependency on distance criteria for selecting the pair domains makes them less rigorous than other methods. 
+
+% Local LMO-PAO
+% AA M. Schütz , G. Hetzer and H.-J. Werner , J. Chem. Phys., 1999, 111 , 5691
+% AB M. Schütz and H.-J. Werner , J. Chem. Phys., 2001, 114 , 661
+% AC M. Schütz and H.-J. Werner , Chem. Phys. Lett., 2000, 318 , 370 
+% AD https://onlinelibrary.wiley.com/doi/abs/10.1002/jcc.540140615
+% AE R. A. Mata, H.-J. Werner, S. Thiel and W. Thiel, J. Chem. Phys., 2008, 128, 025104
+
+\subsubsection*{Pair Natural Orbitals}
+% Review: https://pubs.rsc.org/am/content/articlehtml/2012/cp/c2cp40231a
+First introduced under the guise of "pseudo-natural orbitals" (Edmiston), then rediscovered by Neese (CA,CB,CC), projected natural orbitals (PNOs) have risen in popularity in the recent years (refs). Similarly to DSVMOs, each electron pair has a set of PNOs associated to it. PNOs are formed by diagonalizing the MP2 pair density matrix for each LMO pair $ij$
+
+\begin{equation}
+\mathbf{D}^{ij} = \frac{1}{1+\delta_{ij}} \left(\tilde{\mathbf{t}}^{ij} \mathbf{t}^{ij} + tilde{\mathbf{t}}^{ij} \mathbf{t}^{ij\dagger} \right)
+\end{equation}
+
+\noindent with 
+
+\begin{equation}
+\mathbf{\tilde{t}}^{ij}_{ab} = 2 \mathbf{t}^{ij}_{ab} - \mathbf{t}^{ji}_{ab} 
+\end{equation}
+
+\noindent The eigevalue decomposition of $\mathbf{D}$ then gives
+
+\begin{equation}
+\mathbf{D}^{ij} \mathbf{Q}^{ij} = n^{ij} \mathbf{Q}^{ij} 
+\end{equation}
+
+\noindent where $\mathbf{Q^{ij}}$ are the pair specific transformation matrices, and $n^{ij}$ their occupation numbers. The Fock matrix in the LMO representation is not diagonal, and the MP2 amplitudes are approximated by
+
+\begin{equation}
+t_{ij}^{ab} = \frac{\cn{ia}{jb}}{\eps_a + \eps_b - f_{ii} - f_{jj}}
+\end{equation}
+
+\noindent where $f_{ii}$ are the diagonal entries of the Fock matrix in the LMO basis. The pair domains $[ij]$ are chosen by keeping the PNOs with an occupation number larger than a threshold $\tau_{PAO}$. Therefore, accuracy is controlled by a single, distance-independent parameter, which is an advantage over other methods like DSVOs. 
+
+However, computing the PNOs requires a full MP2 calculation, and with density fitting scales with $\ccpx{5}$. Moreover, even if the PNO basis is compact, the fact that each LMO pair has its own virtual orbital basis may lead to a prohibitively large number of PNOs for large molecules 
+
+% CA F. Neese, F. Wennmohs and A. Hansen, J. Chem. Phys., 2009, 130, 114108 CrossRef .
+% CB F. Neese, A. Hansen and D. G. Liakos, J. Chem. Phys., 2009, 131, 064103 CrossRef .
+% CC A. Hansen, D. G. Liakos and F. Neese, 2011, 135, 214102.
+
+\subsubsection*{Orbital Specific Virtuals}
+
+Closely related to PNOs are the orbital specific virtual orbitals (OSVs) (Yan2011). The OSVs for an LMO $\ket{\Psi_i}$ are obatined by taking the diagonal PNOs for the domain $[ii]$. The MP2 density matrix reduces to
+
+\begin{equation}
+\mathbf{D}^{ii} = 4 \mathbf{t}^{ii} \mathbf{t_{ii}}
+\end{equation}
+
+Instead of reducing the density matrix, one can just diagonalize $\mathbf{t}^{ij}$ instead. 
+
+\begin{equation}
+\mathbf{t}^{ii} \mathbf{Q}^{ii} = t^{ii} \mathbf{Q}^{ii}
+\end{equation}
+
+\noindent where $t^{ii}$ are the eigenvalues, which are used to compute the compute the occupation numbers $n^{ii} = \left( t^{ii} \right)^2$. OSVs for which $n^{ii} > \tau_{OSV}$ are included into the orbital specific domain $[i]$. Pair domains $[ij]$ are then formed as the union of $[i]$ and $[j]$ simalar to DSVOs. 
+
+OSVs have the advantage that the can be constructed with $\ccpx{3}$ scaling provided that density fitting is used. However, OSVs are less compact than PNOs.
+
+OSVs can be used to lower the computational complexity to construct PNOs. Several hybrid OSV-PNO schemes have been proposed whith a computaional complexity of $\ccpx{4}$ (Kra2012, Hat2012), $\ccpx{3}$ (Sch2013) and finally $\mathcal{O}(N)$ (Rip2013).
+
+% Rip2013 https://aip.scitation.org/doi/pdf/10.1063/1.4773581
 
 \section{Local Density Fitting}
 
-NAFs: \url{https://aip.scitation.org/doi/full/10.1063/1.4905005}
+%NAFs: \url{https://aip.scitation.org/doi/full/10.1063/1.4905005}
+% DLPNO: relationship between i and X https://aip.scitation.org/doi/pdf/10.1063/1.4926879
 
-\section{Ground State Local}
+\section{Low-Scaling Hartree Fock Methods}
 
-\subsection{Hartree Fock}
+Talk about bottle necks
+DF, CFMM, LinK, CADF, PARI, ...
 
-\subsection{MP}
+\subsection{Density Purification}
 
-\subsection{Coupled Cluster}
+\section{Local Correlation Methods I: AO Basis}
 
-\section{Excited state local}
+We will now present how the concepts above are used 
 
-\subsection{CCLR}
+\section{Local Correlation Methods I: LMO Basis}
+
+
+\subsection{SVO-MP2 flavours}
+
+Among the eraliest
+
+Use a different approach than Laplace: Hylleraas Functional
+
+Sparsity relation ship [ij] <-> [ab]
+
+\subsection{NTO-MP2 ?}
+
+% Hylleraas functional: 
+% Hyl1930 https://link.springer.com/article/10.1007/BF01397032
+
+% First use of LMO+PNOs with Hylleraas 
+% Pul1986 https://link.springer.com/article/10.1007%2FBF00526697
+
+% LInear scaling of the functional
+% Linear scaling of electron inetgrals
+% linear scaling of MO-AO transformation -> or density fitting
+
+\section{Low-Scaling Correlated Excited State Methods}
+Local CC2, PNO-ADC, Mester-ADC, Mester-CC2, NTO-CC2, CornFlex
+
+% PAO CCLR not good! Look at Gunnar review article perhaps
+
+\subsection{CC2}
+
 
 \subsection{ADC}
+

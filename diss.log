@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  8 JUN 2021 12:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  10 JUN 2021 14:39
 entering extended mode
 **./diss.tex
 (diss.tex
@@ -228,98 +228,137 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 (/home/simea/.miktex/texmfs/install/tex/latex/00miktex/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 9.
-
-(/home/simea/.miktex/texmfs/install/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 9.
-
-(/home/simea/.miktex/texmfs/install/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+[1
 
 
 
 \providecommand \oddpage@label [2]{}
 
 
-{/home/simea/.miktex/texmfs/data/pdftex/config/pdftex.map}] [2] [3] (diss.toc)
+{/home/simea/.miktex/texmfs/data/pdftex/config/pdftex.map}]
+LaTeX Font Info:    Trying to load font information for U+msa on input line 13.
+
+
+(/home/simea/.miktex/texmfs/install/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 13.
+
+
+(/home/simea/.miktex/texmfs/install/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [2] [3]
+[4] (diss.toc [5])
 \tf@toc=\write3
 \openout3 = `diss.toc'.
 
-
-[4] [5]
-<Pics/fock.pdf, id=22, 4893.28125pt x 4893.28125pt>
+ [6]
+<Pics/fock.pdf, id=25, 4893.28125pt x 4893.28125pt>
 File: Pics/fock.pdf Graphic file (type pdf)
 <use Pics/fock.pdf>
-Package pdftex.def Info: Pics/fock.pdf  used on input line 34.
+Package pdftex.def Info: Pics/fock.pdf  used on input line 38.
 (pdftex.def)             Requested size: 244.67839pt x 244.67839pt.
- [6 <./Pics/fock.pdf>] [7]
+ [7 <./Pics/fock.pdf>] [8]
 \openout2 = `PARTLOCAL.aux'.
 
- (PARTLOCAL.tex [8
+ (PARTLOCAL.tex [9
 
 ]
-Overfull \hbox (73.64131pt too wide) in paragraph at lines 16--16
-[]\OT1/cmr/bx/n/14.4 The ABCs of LMOs and CMOs: Orbital Representations 
+Overfull \hbox (11.4713pt too wide) in paragraph at lines 16--16
+[]\OT1/cmr/bx/n/14.4 Spasrity Patterns in Elctronic Structure Theory 
  []
 
 
-Overfull \hbox (5.71365pt too wide) in paragraph at lines 20--21
-\OT1/cmr/m/n/10 canonical molecular orbitals (CMOs) and local molecular orbital
-s (LMOs). CMOs
+Overfull \hbox (1.084pt too wide) in paragraph at lines 26--27
+\OT1/cmr/m/n/10 ways: canonical molecular orbitals (CMOs) and local molecular o
+rbitals (LMOs).
  []
 
-[9]
-Overfull \hbox (2.57626pt too wide) in paragraph at lines 71--72
+[10]
+Overfull \hbox (2.57626pt too wide) in paragraph at lines 83--84
 []\OT1/cmr/m/n/10 The projection operators are idempotent and mutually orthogon
 al with $[][] =
  []
 
-[10]
-Overfull \hbox (4.25061pt too wide) in paragraph at lines 91--92
+[11]
+Overfull \hbox (4.25061pt too wide) in paragraph at lines 113--114
 \OT1/cmr/m/n/10 Sparsity of the atomic density matrix is crucial for achieving 
 low-scaling electronic
  []
 
 
-Overfull \hbox (1.20906pt too wide) in paragraph at lines 97--98
+Overfull \hbox (1.20906pt too wide) in paragraph at lines 119--120
 \OT1/cmr/m/n/10 Cholesky decomposition with full row and column pivoting (ALGO)
 . The unitary
  []
 
-[11]) [12] [13
+[12] [13]
+Overfull \hbox (13.36177pt too wide) in paragraph at lines 209--210
+[]\OT1/cmr/m/n/10 Natural transition orbitals (NTOs) were introduced to facilit
+ate the qualititative
+ []
+
+[14]
+Overfull \hbox (5.69507pt too wide) in paragraph at lines 226--227
+[]\OT1/cmr/m/n/10 Natural transition orbitals have also found use in local exci
+ted state correlation
+ []
+
+[15]
+Overfull \hbox (2.18578pt too wide) in paragraph at lines 267--268
+\OT1/cmr/m/n/10 linear scaling correlated methods were formulated. Their depend
+ency on distance
+ []
+
+
+Overfull \hbox (5.63025pt too wide) in paragraph at lines 278--279
+\OT1/cmr/m/n/10 electron pair has a set of PNOs associated to it. PNOs are form
+ed by diagonalizing
+ []
+
+[16]
+Overfull \hbox (5.83398pt too wide) in paragraph at lines 312--313
+\OT1/cmr/m/n/10 Closely related to PNOs are the orbital specific virtual orbita
+ls (OSVs) (Yan2011).
+ []
+
+[17]
+Overfull \hbox (14.38959pt too wide) in paragraph at lines 371--371
+[]\OT1/cmr/bx/n/14.4 Low-Scaling Correlated Excited State Methods 
+ []
+
+) [18] [19
 
 
 ] (diss.aux (PARTLOCAL.aux)) ) 
 Here is how much of TeX's memory you used:
  3737 strings out of 481257
- 51989 string characters out of 2908375
- 358705 words of memory out of 3000000
+ 51988 string characters out of 2908375
+ 357705 words of memory out of 3000000
  20909 multiletter control sequences out of 15000+600000
- 412387 words of font info for 62 fonts, out of 8000000 for 9000
+ 412565 words of font info for 62 fonts, out of 8000000 for 9000
  0 hyphenation exceptions out of 8191
- 88i,9n,94p,742b,217s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 88i,9n,94p,986b,217s stack positions out of 5000i,500n,10000p,200000b,80000s
 </home/simea/.miktex/texmfs/install/fonts/type1/p
 ublic/amsfonts/cm/cmbx10.pfb></home/simea/.miktex/texmfs/install/fonts/type1/pu
 blic/amsfonts/cm/cmbx12.pfb></home/simea/.miktex/texmfs/install/fonts/type1/pub
 lic/amsfonts/cm/cmbx7.pfb></home/simea/.miktex/texmfs/install/fonts/type1/publi
 c/amsfonts/cm/cmex10.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public
 /amsfonts/cm/cmmi10.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/
-amsfonts/cm/cmmi7.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/am
-sfonts/cm/cmr10.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsf
-onts/cm/cmr12.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfon
-ts/cm/cmr17.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts
-/cm/cmr7.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm
-/cmsy10.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/
-cmsy5.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cm
-sy7.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmtt
-10.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/symbols/
-msbm10.pfb>
-Output written on diss.pdf (13 pages, 11361648 bytes).
+amsfonts/cm/cmmi5.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/am
+sfonts/cm/cmmi7.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsf
+onts/cm/cmr10.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfon
+ts/cm/cmr12.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts
+/cm/cmr17.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/c
+m/cmr7.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/c
+msy10.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cm
+sy5.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy
+7.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmti10
+.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/symbols/ms
+bm10.pfb>
+Output written on diss.pdf (19 pages, 11399515 bytes).
 PDF statistics:
- 113 PDF objects out of 1000 (max. 8388607)
+ 136 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
