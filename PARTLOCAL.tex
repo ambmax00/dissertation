@@ -341,11 +341,134 @@ DF, CFMM, LinK, CADF, PARI, ...
 
 \subsection{Density Purification}
 
-\section{Local Correlation Methods I: AO Basis}
+\section{Local Correlation Methods I: MP2}
 
-We will now present how the concepts above are used 
+\subsection{Local Formulation of MP2}
 
-\section{Local Correlation Methods I: LMO Basis}
+\subsection{Orbital Invariant MP2}
+
+\subsection{AO-MP2}
+
+\subsection{Scaling: Contraction}
+
+\subsection{Scaling: MO Transformation}
+
+We will now present how the concepts above are used. Merge them?
+
+Orbital invariant MP2: Hylleraas functional
+General Local MP2: Laplace transform
+AO-MP2
+
+scaling cons 
+
+\newpage
+
+\section{Local Ground State Correlation Methods: MP2}
+
+Second-Order M{\o}ller Plesset is one of the simplest post-Hartree Fock methods available, but still scales as $\ccpx{5}$. Since the seminal work of Saebo and Pulay (Pul1983,Sae1985), several different methods have been proposed which drastically reduce the computational complexity. Attempts can generally be grouped into two categories: AO-MP2 and LMO-MP2. While both schemes do have their differences, they share some of the problems assciated with computing the MP2 energy in a local basis.
+
+First, the energy denominator in the MP2-amplitudes $t$ make it difficult to reformulate the MP2 energy expressions in a different basis. AO-MP2 and LMO-MP2 take different approaches: AO-MP2 solves the problem using the Laplace quadrature, while LMO-MP2 methods usually use an orbital-invariant formulation of MP2 using the Hylleraas functional.
+
+Second, steps involving the transformation of the AO 2-electron integrals to the Pseudo-AO or LMO basis still remain a major bottle-neck, even with sparsity involved. Both AO- and LMO-MP2 use screening criteria, additional domain restrictions, density fitting or similar methods to lower the cost of integral transformation. These additional procedures are crucial if one wishes to achieve a truly linear scaling MP2 method with a reduced overhead.
+
+We will now address each point in detail in the next sections.
+
+\subsection{Atomic Orbital MP2}
+
+MP2 was first formulated in the AO basis in 1993 by Häser , and a linear scaling algorithm was presented by Scuseria and Ayala in 1999 (ref). AO-MP2 has since then been extended to DF-MP2 (ref) and SOS-MP2 (ref). 
+
+\subsubsection{The Laplace Transform}
+
+In 1991, Almlöf showed (Alm1991) that the energy denominator in the MP2 amplitudes can be removed using an integral transform called the \emph{Laplace Transform}
+
+\begin{equation}
+\frac{1}{\eps_a + \eps_b - \eps_i - \eps_j} = \int_0^{\infty} e^{-\left(\eps_a + \eps_b - \eps i - \eps_j\right)t} dt
+\end{equation}
+
+The t-integration can be replaced (Has1993) by a finite summation using a functional approximation:
+
+\begin{equation}
+\frac{1}{\eps_a + \eps_b - \eps_i - \eps_j} \approx \sum_{\alpha}^{n} w\pa e^{-\left(\eps_a + \eps_b - \eps i - \eps_j\right)t\pa}
+\end{equation} 
+
+\noindent where $w\pa$ and $t\pa$ are the Laplace weights and exponents at the Laplace points $\alpha$. Accuracy can be controlled by the number of Laplace points $n$. An efficient AO-MP2 implementation heavily relies on an accurate quadrature scheme to achive the desired accuracy using as few Laplace points as possible to reduce overhead caused by the repeated AO transformation at each step. In general, 5-8 Laplace points are needed to achieve milli-Hartree accuracy, and 10 to 15 points for $\mu$Hartree accuracy. For more details, the reader is referred to section ... .
+
+\subsubsection{AO MP2 Equations}
+
+Using the Laplace transform, the energy expression for restricted canonical MP2 can be expressed as
+\begin{equation}
+\begin{split}
+E_{MP2} &= - \sum_{iajb} \frac{\cn{ia}{jb} \left[2 \cn{ia}{ib} - \cn{ib}{ja} \right]}{\eps_a + \eps_b - \eps_i - \eps_j} \\
+&\approx - \sum_{\alpha}^n \sum_{iajb} \cn{ia}{jb} \left[2 \cn{ia}{ib} - \cn{ib}{ja} \right] w\pa e^{-\left(\eps_a + \eps_b - \eps i - \eps_j\right)t\pa}
+\end{split}
+\end{equation}
+
+\noindent We can then proceed to factor out the coefficient matrices 
+\begin{equation}
+\begin{split}
+&- \sum_{\alpha}^n \sum_{iajb} \cn{ia}{jb} \left[2 \cn{ia}{ib} - \cn{ib}{ja} \right] w\pa e^{-\left(\eps_a + \eps_b - \eps i - \eps_j\right)t\pa} \\
+= &- \sum_{\alpha}^n \sum_{iajb} \sum_{\substack{\mu\nu\lambda\sigma \\ \mu'\nu'\lambda'\sigma'} } w\pa e^{-\left(\eps_a + \eps_b - \eps i - \eps_j\right)t\pa} C_{\mu' i} C_{\sigma' a} \cn{\mu'\sigma'}{\nu'\lambda'} C_{\nu' j} C_{\lambda' b} \\ 
+ & \qquad \cross \left\lbrace C_{\mu i} C_{\sigma a} \left [ 2\cn{\mu\sigma}{\nu\lambda} -  \cn{\mu\lambda}{\nu\sigma} \right] C_{\nu j} C_{\lambda b} \right\rbrace  \\
+= & - \sum_{\alpha}^n \sum_{\substack{\mu\nu\lambda\sigma \\ \mu'\nu'\lambda'\sigma'}} \unl{P}\pa_{\mu\mu'} \ovl{P}\pa_{\sigma\sigma'} \cn{\mu'\sigma'}{\nu'\lambda'} \unl{P}\pa_{\nu\nu'} \ovl{P}\pa_{\lambda\lambda'} \left [ 2\cn{\mu\sigma}{\nu\lambda} -  \cn{\mu\lambda}{\nu\sigma} \right] 
+\end{split}
+\end{equation}
+
+\noindent with the occupied and virtual \emph{pseudo} or \emph{Laplace} density matrices 
+\begin{equation}
+\begin{split}
+\unl{P}\pa_{\mu\mu'} = \sum_i C_{\mu i} e^{0.25 ln(w\pa) + \eps_i t\pa} C_{\mu' i} \\
+\ovl{P}\pa_{\mu\mu'} = \sum_i C_{\sigma a} e^{0.25 ln(w\pa) - \eps_a t\pa} C_{\sigma' i}
+\end{split}
+\end{equation}
+
+\noindent Introducing the \emph{pseudo-AO} transformed electron integrals
+\begin{equation}
+\cn{\ulgm\olgs}{\ulgn\olgl}\pa = \unl{P}\pa_{\mu\mu'} \ovl{P}\pa_{\sigma\sigma'} \cn{\mu'\sigma'}{\nu'\lambda'} \unl{P}\pa_{\nu\nu'} \ovl{P}\pa_{\lambda\lambda'}
+\end{equation}
+
+\noindent the energy expression for AO-MP2 reads
+\begin{equation}
+E_{AO-MP2} = - \sum_{\alpha}^n \sum_{\mu\nu\lambda\sigma} \cn{\ulgm\olgs}{\ulgn\olgl}\pa \left [ 2\cn{\mu\sigma}{\nu\lambda} -  \cn{\mu\lambda}{\nu\sigma} \right]
+\end{equation}
+
+\noindent For t = 0, $\unl{\mathbf{P}}\pa$ and $\ovl{\mathbf{P}}\pa$ are equal to the Hartree Fock density matrices. The Laplace matrices also fulfill similar relationships
+\begin{equation}
+\unl{\mathbf{P}}\pa \mathbf{S} \ovl{\mathbf{P}}\pa = \mathbf{0}
+\end{equation}
+\begin{equation}
+\unl{\mathbf{P}}\pa \mathbf{S} + \ovl{\mathbf{P}}\pa \mathbf{S} = \mathbf{I}_{exp}
+\end{equation}
+\noindent where $\mathbf{I}_{exp}$ is a diagonal matrix with trace
+\begin{equation}
+Tr[\mathbf{I}_{exp}] = \sum_i e^{0.25 ln(w\pa) + \eps_i t\pa} + \sum_a e^{0.25 ln(w\pa) - \eps_a t\pa}
+\end{equation}
+
+The entries of the pseudo-density also decay exponentially as function of the distance between pseudo-AO centres. 
+
+\subsubsection{Sparse Maps of AO-MP2}
+
+Using the linked index rule, we can easily find the computational complexity of the AO-MP2 method. From the energy expression in Eq. we find that we compute the dot product between two different tensors, the ERIs $\cn{\mu\sigma}{\nu\lambda}$ and the pseudo-ERIs $\cn{\ulgm\olgs}{\ulgn\olgl}\pa$. The scaling is thus determined on the sparsity of those two tensors. We know that the ERIs can be computed with $\ccpx{2}$ effort. The pseudo-AO ERIs are computed by transforming the ERIs with the pseudo-density matrices, whose indices $\mu,\nu$ are connected by a P junction. The diagrammatic expression for the pseudo-AO ERIs in Eq. ... is thus given by
+\begin{equation}
+\begin{split}
+\mu \xlr{P} \mu' \xlr{S} \sigma' \xlr{P} \sigma \\
+\nu \xlr{P} \nu' \xlr{S} \lambda' \xlr{P} \lambda
+\end{split}
+\end{equation}
+
+\noindent Two vertices indicate an $\ccpx{2}$ effort for evaluating Eq. ... . Therefore, the inherent asymptotic scaling of AO-MP2, without any other further approximations, is $\ccpx{2}$ as well. Similarly to the AO ERIs, a quadratic scaling evaluation of the pseudo-AO ERIs can be achived using a Schwarz-slike creening, as first advocated by Almlöf.   
+
+
+Sparse maps inherently O(N2)
+
+Further approximations are necessary
+
+% Pul1983 P. Pulay,Chem. Phys. Lett., 1983,100, 151.27 S. 
+% Sae1985 Saebø and P. Pulay,Chem. Phys. Lett., 1985,113, 13
+% Alm1991 J. Almlo ̈f, Chem. Phys. Lett.181, 319~1991!
+% Has1992 https://aip.scitation.org/doi/abs/10.1063/1.462485
+% Has1993 https://link.springer.com/article/10.1007%2FBF01113535
+
+\subsection{AO-MP2}
 
 
 \subsection{SVO-MP2 flavours}
