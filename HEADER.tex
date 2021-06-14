@@ -3,8 +3,15 @@
 \usepackage{url}
 \usepackage{amsfonts}
 \usepackage{extarrows} 
+\usepackage{tikz}
 \usepackage{physics}
 \usepackage[]{algorithm2e}
+\usetikzlibrary{positioning,calc}
+\newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node (#1) [anchor=base] {};}
+\newcommand{\snode}[3]{\node [] (#1) at (#2) {$\mathstrut #3$}}
+\newcommand{\spath}[2]{\draw[<->] (#1) -- (#2) node [midway, above] () {S}}
+\newcommand{\ppath}[2]{\draw[<->] (#1) -- (#2) node [midway, above] () {P}}
+ 
 %\documentclass[aip,reprint]{revtex4-1}
 
 \newcommand{\ovl}{\overline}
@@ -49,6 +56,7 @@
 \newcommand{\ull}{\underline{l}}
 
 \newcommand{\ulgm}{\underline{\mu}}
+\newcommand{\olgm}{\overline{\mu}}
 \newcommand{\ulgn}{\underline{\nu}}
 \newcommand{\olgn}{\overline{\nu}}
 \newcommand{\ulgk}{\underline{\kappa}}
@@ -74,8 +82,8 @@
 \newcommand{\ptw}{^{(\theta,\omega)}}
 
 \newcommand{\cn}[2]{\left( #1 \mid #2 \right)}
-\newcommand{\cbra}[1]{\left( #1 \mid}
-\newcommand{\cket}[1]{\mid #1 \right)}
+\newcommand{\cbra}[1]{\left( #1 \right\rvert }
+\newcommand{\cket}[1]{\left\lvert #1 \right)}
 \newcommand{\B}[2]{B_{#1}^{#2}}
 \newcommand{\x}[2]{_{#1}^{#2}}
 \newcommand{\xlr}[1]{\xleftrightarrow{#1}}

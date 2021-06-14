@@ -15,6 +15,8 @@ About density fitting. Principles
 
 \section{Spasrity Patterns in Elctronic Structure Theory}
 
+Most of the frustrations stem from N$^2$ AO ERI, but N$^4$ MO ERI
+Show a graph of AO ERI of H2: (mn,mn) vs (mm,nn)
 % Good explanation for "linked indices rule" https://aip.scitation.org/doi/pdf/10.1063/1.4926879
 
 \section{The ABCs of LMOs: Orbital Representations}
@@ -445,9 +447,9 @@ Tr[\mathbf{I}_{exp}] = \sum_i e^{0.25 ln(w\pa) + \eps_i t\pa} + \sum_a e^{0.25 l
 
 The entries of the pseudo-density also decay exponentially as function of the distance between pseudo-AO centres. 
 
-\subsubsection{Sparse Maps of AO-MP2}
+\subsubsection{Quadratic Scaling AO-MP2}
 
-Using the linked index rule, we can easily find the computational complexity of the AO-MP2 method. From the energy expression in Eq. we find that we compute the dot product between two different tensors, the ERIs $\cn{\mu\sigma}{\nu\lambda}$ and the pseudo-ERIs $\cn{\ulgm\olgs}{\ulgn\olgl}\pa$. The scaling is thus determined on the sparsity of those two tensors. We know that the ERIs can be computed with $\ccpx{2}$ effort. The pseudo-AO ERIs are computed by transforming the ERIs with the pseudo-density matrices, whose indices $\mu,\nu$ are connected by a P junction. The diagrammatic expression for the pseudo-AO ERIs in Eq. ... is thus given by
+Using the linked index rule, we can easily find the computational complexity of the AO-MP2 method. From the energy expression in Eq. we find that we compute the dot product between two different tensors, the AO-ERIs $\cn{\mu\sigma}{\nu\lambda}$ and the pseudo-AO-ERIs $\cn{\ulgm\olgs}{\ulgn\olgl}\pa$. The scaling is thus determined by the sparsity of those two tensors. We know from a previous discussion that the ERIs can be computed with $\ccpx{2}$ effort. The pseudo-AO ERIs are computed by transforming the ERIs with the pseudo-density matrices, whose indices $\mu,\nu$ are connected by a P junction. The diagrammatic expression for the pseudo-AO ERIs in Eq. ... is given by
 \begin{equation}
 \begin{split}
 \mu \xlr{P} \mu' \xlr{S} \sigma' \xlr{P} \sigma \\
@@ -455,21 +457,207 @@ Using the linked index rule, we can easily find the computational complexity of 
 \end{split}
 \end{equation}
 
-\noindent Two vertices indicate an $\ccpx{2}$ effort for evaluating Eq. ... . Therefore, the inherent asymptotic scaling of AO-MP2, without any other further approximations, is $\ccpx{2}$ as well. Similarly to the AO ERIs, a quadratic scaling evaluation of the pseudo-AO ERIs can be achived using a Schwarz-slike creening, as first advocated by Almlöf.   
+\noindent Two vertices indicate an $\ccpx{2}$ effort for evaluating Eq. ... . Therefore, the inherent asymptotic scaling of AO-MP2, without any other further approximations, is $\ccpx{2}$ as well. Similarly to the AO ERIs, a quadratic scaling evaluation of the pseudo-AO ERIs can be achived using a Schwarz-like screening, as first advocated by Almlöf. Defining the screening matrices
 
+\begin{equation}
+\begin{split}
+Q_{\mu\nu} &= \mid \cn{\mu\nu}{\mu\nu} \mid ^{1/2} \\
+X_{\mu\nu} &= \mid \cn{\ulgm\nu}{\ulgm\nu} \mid ^{1/2} \\
+Y_{\mu\nu} &= \mid \cn{\mu\olgn}{\mu\olgn} \mid ^{1/2} \\
+Z_{\mu\nu} &= min\left( \sum_{\sigma} A_{\mu\sigma} \mid \ovl{P}_{\sigma\nu} \mid; \sum_{\sigma} B_{\mu \sigma} \mid \unl{P}_{\sigma\nu} \mid \right)
+\end{split}
+\end{equation} 
 
-Sparse maps inherently O(N2)
+\noindent gives an upper-bound for each transformation step in Eq. ..., for example 
 
-Further approximations are necessary
+\begin{equation}
+\cn{\mu'\sigma'}{\nu'\lambda'} \leq Q_{\mu'\sigma'}Q_{\nu'\lambda'}
+\end{equation}
+\begin{equation}
+\cn{\ulgm\sigma'}{\nu'\lambda'} \leq X_{\mu'\sigma'}Q_{\nu'\lambda'}
+\end{equation}
+\begin{equation}
+\cn{\ulgm \olgs}{\ulgn\olgl} \leq Z_{\mu\sigma} Z_{\nu\lambda}
+\end{equation}
+
+\noindent and an eficient screening protocol can be devised (Has1993) to get quadratic scaling AO-MP2.
+
+\subsubsection{Linear Scaling AO-MP2}
+
+For the two-electron repulsion integrals, the $1/R$ decay between the charge densities $\cbra{\mu\sigma}$ and $\cket{\nu\lambda}$ is too slow to be of any use even for large systems. However, it has been shown (Aya1999) that $bra$ and $ket$ in the Laplace integral tensor $e\pa$ decays much faster with $1/R^3$. Here, we follow the discussion in Ref Lam2005a. 
+
+For two non-overlapping charge densities $\cbra{\mu\sigma}$ and $\cket{nu\lambda}$ the following inequality holds
+\begin{equation}
+\cn{\mu\sigma}{\nu\lambda} = \cbra{\mu\sigma}\frac{1}{\mathbf{r}_{12}}\cket{\nu\lambda} \leq \frac{1}{R} \left\lvert \sum_{n=0}^{\infty} \frac{\cbra{\mu\sigma} \left( \mathbf{r}_1 - \mathbf{r}_2 \right)^n \cket{\nu\lambda}}{R^n} \right\rvert
+\end{equation}
+
+\noindent We then introduce the following abbreviation for the $n$th order 1-centre multipole integrals
+\begin{equation}
+M^{(n)}_{\mu\sigma} = \int \chi_{\mu}(r_1) \mathbf{r}_1^n \chi_{\sigma}(r_1) dr
+\end{equation}
+
+\noindent where $M^{0}$ are the overlap integrals, $M^{1}$ are the dipole integrals etc. We can then rewrite equation (...) as a multipole expansion
+\newcommand{\mpole}[2]{M_{#1}^{(#2)}}
+\begin{equation}
+\begin{split}
+\cn{\mu\sigma}{\nu\lambda} &\leq R^{-1} \left\lvert \mpole{\mu\sigma}{0} \mpole{\nu\lambda}{0} \right\rvert + R^{-2} \left\lvert \mpole{\mu\sigma}{1} \mpole{\nu\lambda}{0} - \mpole{\mu\sigma}{0} \mpole{\nu\lambda}{1} \right\rvert \\
+&+ R^{-3} \left\lvert \mpole{\mu\sigma}{2} \mpole{\nu\lambda}{0} - 2 \mpole{\mu\sigma}{1} \mpole{\nu\lambda}{1} + \mpole{\mu\sigma}{0} \mpole{\nu\lambda}{2}\right\rvert \\
+&+ R^{-4} \left\lvert \mpole{\mu\sigma}{3} \mpole{\nu\lambda}{0} - 3\mpole{\mu\sigma}{2} \mpole{\nu\lambda}{1} + 3\mpole{\mu\sigma}{1} \mpole{\nu\lambda}{2} - \mpole{\mu\sigma}{0} \mpole{\nu\lambda}{3}\right\rvert \\
+&+ \mathcal{O}(R^{-5})
+\end{split}
+\end{equation}
+
+From equation ..., we know that $M_{\ulgm\olgs}^{(0)} = S_{\ulgm\olgs} = 0$. The multipole expansion for the pseudo-AO ERIs $e\pa$ is therefore reduced to
+\begin{equation}
+\begin{split}
+\cn{\ulgm\olgs}{\ulgn\olgl} &\leq R^{-3} \left\lvert - 2 \mpole{\ulgm\olgs}{1} \mpole{\ulgn\olgl}{1} \right\rvert \\
+&+ R^{-4} \left\lvert - 3\mpole{\ulgm\olgs}{2} \mpole{\ulgn\olgl}{1} + 3\mpole{\ulgm\olgs}{1} \mpole{\ulgn\olgl}{2} \right\rvert + \mathcal{O} \\
+&+ \mathcal{O}(R^{-5})
+\end{split}
+\end{equation}
+
+\noindent which shows the $1/R^3$ dependence of the tensor $\cn{\ulgm\olgs}{\ulgn\olgl}$. Combined with the $1/R$ decay of the AO ERIs, this leads to an overall $1/R^4$ behaviour for the AO-MP2 energy. This long-range decay can be exploited to introduce a sparsity relationship between the bra and ket quantities, and reduce the scaling of AO-MP2 from $\ccpx{2}$ to $\ccpx{1}$. In the original paper by Ayala and Scuseria, this decay was accounted for by introducing an interaction domain centred on each atomic orbital $\mu$ in the form of a sphere. For the integrals $\cn{\ulgm\olgm}{\ulgn\olgn}$, the domain $\mathcal{D}(\mu)$, comprises all charge distributions $\sigma\lambda$ for which 
+\begin{equation}
+\left( \unl{P}_{\mu\sigma} S_{\sigma\lambda} \ovl{P}_{\lambda\mu} \right) \geq \epsilon 
+\end{equation}
+\noindent The radius $R_{\mu}$ of the interaction sphere is defined by the maximum distance between $\mu$ and the charge density $\sigma\lambda$ in its domain. One can then screen long-range behaviour for the interaction sphere $\mu$ and $\nu$ by the distance criterium
+\begin{equation}
+r_{\mu\nu} - R_{\mu} - R_{\nu} \geq r_0
+\end{equation}
+\noindent The biggest drawback of the scheme above is that the thresholding parameters $r_0$ and $\epsilon$ are system-dependent. 
+A more rigorous screening method has been proposed by Lambrecht et al. known as multipole based integral estimates (MBIE) (Lam2005,Lam2005a). MBIEs offer a tight upper bound for the AO and pseudo-AO electron integrals by using the multipole expansion in Eq. ... and replacing the higher order terms $\mathcal{O}(R^{-5})$ by lower-order ones. 
 
 % Pul1983 P. Pulay,Chem. Phys. Lett., 1983,100, 151.27 S. 
 % Sae1985 Saebø and P. Pulay,Chem. Phys. Lett., 1985,113, 13
 % Alm1991 J. Almlo ̈f, Chem. Phys. Lett.181, 319~1991!
 % Has1992 https://aip.scitation.org/doi/abs/10.1063/1.462485
 % Has1993 https://link.springer.com/article/10.1007%2FBF01113535
+% Aya1999 https://aip.scitation.org/doi/pdf/10.1063/1.478256
+% First MBIE Paper: Lam2005 https://aip.scitation.org/doi/pdf/10.1063/1.2079967
+% Second MBIE Paper: Lam2005a https://aip.scitation.org/doi/pdf/10.1063/1.2079987
+% Improved MBIE Paper: Lam2008 https://pubs.rsc.org/en/content/articlepdf/2008/cp/b804110e
 
-\subsection{AO-MP2}
+\subsubsection{Cholesky Decomposition of Pseudo-Densities}
 
+As with any method formulated entirely in an AO basis, AO-MP2 suffers from $\ccpx{4}$ scaling with increasing basis set $N$. The cost associated with larger basis sets can be mitigated by Cholesky decomposition of the pseudo-density matrices (CDD) (Zie2009). Similar to the orbital localization technique described in Section ..., where the (incomplete) CD of the occupied and virtual Hartree Fock density matrices yields a set of occupied and virtual Cholesky molecular orbitals, the CD of the pseudo-density matrices $\unl{P}\pa$ and $\ovl{P}\pa$ yields a set of Cholesky pseudo-molecular orbitals: 
+\begin{equation}
+\mathbf{\unl{P}}\pa = \mathbf{\unl{L}}\pa \mathbf{\unl{L}}^{(\alpha)T}
+\end{equation}
+\begin{equation}
+\mathbf{\ovl{P}}\pa = \mathbf{\ovl{L}}\pa \mathbf{\ovl{L}}^{(\alpha)T}
+\end{equation} 
+\noindent The pseudo-molecular orbitals show a local behaviour inherited from the sparsity of the pseudo-density matrices. It has been observed however (Lue2017), that the pseudo-MOs $L$ are not always very well localized. A more localized set of MOs can be obtained by using the orthogonalized pseudo-density matrices, for example in the case of $\mathbf{\unl{P}}\pa$:
+\begin{equation}
+\mathbf{\unl{P}}\pa_{orth} = \mathbf{S}^{1/2} \mathbf{\unl{P}}\pa \mathbf{S}^{1/2}
+\end{equation}
+\noindent The pseudo-MO coefficients are then obtained as
+\begin{equation}
+\unl{L}\pa = \mathbf{S}^{-1/2} \mathbf{\unl{L}}\pa_{orth}
+\end{equation}
+\noindent The square root and inverse square root of the overlap matrix $\mathbf{S}$ are most reliably found by cholesky decomposition. The number of occupied and virtual pseudo-MOs is given by the rank of the occupied/virtual pseudo-density matrices, which in turn is equal or less than the number of occupied/virtual CMOs. 
+
+One can then formulate the CDD-AO-MP2 energy expression
+\begin{equation}
+E_{CDD-AO-MP2} = - \sum_{\alpha}^n \sum_{\uli\ola\ulj\olb} \cn{\uli\ola}{\ulj\olb}\pa \left [ 2\cn{\uli\ola}{\ulj\olb}\pa -  \cn{\uli\olb}{\ulj\ola}\pa \right]
+\end{equation}
+\noindent whith the pseudo-MO integrals
+\begin{equation}
+\cn{\uli\ola}{\ulj\olb}\pa = \unl{L}\pa_{\mu\uli} \ovl{L}\pa_{\sigma\ola} \cn{\mu\sigma}{\nu\lambda} \unl{L}\pa_{\nu\ulj} \ovl{L}\pa_{\lambda\olb}
+\end{equation}
+\noindent CDD-AO-MP2 therefore reduces the sizes of the tensors from $N^{4}_{AO}$ to $N_{occ}^2N_{vir}^2$, while still being sparse. Similar to AO-MP2, Schwarz screening and interaction domain can be introduced to obtain quadratic and linear scaling CDD-AO-MP2.
+
+% first appearence of CDD-MP2 Zie2009 https://aip.scitation.org/doi/pdf/10.1063/1.3142592
+% AO-RPA Lue2017 https://pubs.acs.org/doi/abs/10.1021/acs.jctc.6b01235
+
+\subsubsection{Density Fitting in AO-MP2}
+
+To reduce the prefactor associated with integral transformation, either from AOs to pseudo-AOs, or from AOs to pseudo-MOs, on can furthermore introduce density fitting (Zie2009,Mau2014).The transformed 3c2e integrals are given at each Laplace point $\alpha$ by
+\begin{equation}
+\cn{X}{\ulgm\olgn}\pa = \cn{X}{\mu'\nu'} \unl{P}\pa_{\mu\mu'} \ovl{P}\pa_{\nu\nu'}  
+\end{equation}
+\noindent which are evaluated with $\ccpx{2}$ cost. Using local density fitting approxaimations, this step can be reduced to linear. 
+
+\subsubsection{SOS-AO-DF-MP2}
+
+From section ..., we know that SOS-MP2 is a cost-efficient variant of MP2 with excellent accuracy. Starting from equation ..., we omit the same-spin contributions and also apply the density fitting approximation to arrive at the energy expression for the AO-DF-SOS-MP2 (Mau2014,Gla2020)
+\begin{equation}
+\begin{split}
+E_{AO-DF-SOS-MP2} &= - c_{os} \sum^{nlap}_{\alpha=1} \sum_{\mu\nu\sigma\lambda} \cn{\ulgn\olgs}{X}\pa \cn{X}{Y}^{-1} \cn{Y}{\ulgn\olgl}\pa \\
+& \cn{\mu\sigma}{X'} \cn{X'}{Y'} \cn{Y'}{\nu\lambda}
+\end{split}
+\end{equation}
+\noindent Introducing the intermediates
+\begin{equation}
+Z\pa_{XY} = \cn{X}{\ulgm\olgs}\pa \cn{\mu\sigma}{Y}
+\end{equation}
+\begin{equation}
+\tilde{Z}\pa_{XY} = \cn{X}{R}^{-1} Z\pa_{RX}
+\end{equation}
+\noindent we arrive at a very compact expression
+\begin{equation}
+E_{AO-DF-SOS-MP2} = - c_{os} \sum^{nlap}_{\alpha=1} \sum_{XY} \tilde{Z}\pa_{XY} \tilde{Z}\pa_{YX} 
+\end{equation}
+\noindent Without local density fitting, the time determining step is the computation of $\mathbf{Z}\pa$ The sparse map of the intermediate is given by 
+%\begin{equation}
+%\tikzmark{X}X \quad \mu \xlr{P} \tikzmark{MUP}\mu' \xlr{S} \nu' \xlr{P} \nu; \quad Y 
+%\end{equation}
+%\begin{tikzpicture}[overlay,remember picture]
+%\node (b) at ($(X)!0.5!(MUP)$) {};
+%\draw let \p{1}=(b) in node (c) at (\x1,-0.5) {c}; 
+%\draw[->,black] (X.south) |- (c.south) -| (MUP.south) ;
+%\end{tikzpicture}
+\begin{center}
+\begin{tikzpicture}
+
+\snode{X}{-1,0}{X};
+
+\snode{MUP}{0,0}{\mu'};
+\snode{MU}{0,-1}{\mu};
+
+\snode{NUP}{1,0}{\nu'};
+\snode{NU}{1,-1}{\nu};
+
+\snode{Y}{2,-1}{Y};
+
+\draw[<->] (MUP) -- (MU) node [midway, left] () {P};
+\draw[<->] (NUP) -- (NU) node [midway, right] () {P};
+\draw[<->] (MU) -- (NU) node [midway, below] () {S};
+\draw[<->] (MUP) -- (NUP) node [midway, above] () {S};
+
+\end{tikzpicture}
+\end{center}
+\noindent which suggests that the AO-DF-SOS-MP2 has an overall asymptotic scaling of $\ccpx{3}$. With local density fitting, the graph can however become fully connected
+\begin{center}
+\begin{tikzpicture}
+
+\snode{X}{-1,0}{X};
+
+\snode{MUP}{0,0}{\mu'};
+\snode{MU}{0,-1}{\mu};
+
+\snode{NUP}{1,0}{\nu'};
+\snode{NU}{1,-1}{\nu};
+
+\snode{Y}{2,-1}{Y};
+
+\draw[<->] (MUP) -- (MU) node [midway, left] () {P};
+\draw[<->] (NUP) -- (NU) node [midway, right] () {P};
+\draw[<->] (MU) -- (NU) node [midway, below] () {S};
+\draw[<->] (MUP) -- (NUP) node [midway, above] () {S};
+
+\draw[<->] (X.north) |- (-0.5,0.5) node[above] {LDF} -| (MUP.north);
+\draw[<->] (X.north) |- (-0.5,0.5) node[above] {} -| (NUP.north);
+
+\draw[<->] (Y.south) |- (1.5,-1.5) node[below] {LDF} -| (MU.south);
+\draw[<->] (Y.south) |- (1.5,-1.5) node[below] {} -| (NU.south);
+
+\end{tikzpicture}
+\end{center}
+
+\noindent where "LDF" is the sparsity relationship introduced between the auxiliary density $X$ and the product density $\cbra{\mu\nu}$, which is metric-specific. In the case of quasi-robust density fitting, LDF = S, and the intermediates $\mathbf{Z}\pa$ can be constructed with linear effort. For weaker decay behaviour, such as the error function coulomb-attenuated metric, the scaling is intermediate between linear and quadratic (Gla2020). 
+
+% Mau2014 https://aip.scitation.org/doi/full/10.1063/1.4881144
+% Gla2020 https://pubs.acs.org/doi/abs/10.1021/acs.jctc.0c00600
 
 \subsection{SVO-MP2 flavours}
 
