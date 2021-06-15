@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  14 JUN 2021 15:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  15 JUN 2021 18:48
 entering extended mode
 **./diss.tex
 (diss.tex
@@ -120,6 +120,9 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 )
 (/home/simea/.miktex/texmfs/install/tex/latex/extarrows/extarrows.sty
 Package: extarrows 2020/03/12 v1.2.0 Some extensible arrows
+)
+(/home/simea/.miktex/texmfs/install/tex/latex/placeins/placeins.sty
+Package: placeins 2005/04/18  v 2.2
 )
 (/home/simea/.miktex/texmfs/install/tex/latex/pgf/frontendlayer/tikz.sty
 (/home/simea/.miktex/texmfs/install/tex/latex/pgf/basiclayer/pgf.sty
@@ -489,6 +492,29 @@ Package: relsize 2013/03/29 ver 4.1
 \algocf@algoframe=\box67
 \algocf@algobox=\box68
 )
+(/home/simea/.miktex/texmfs/install/tex/latex/caption/subcaption.sty
+Package: subcaption 2020/10/07 v1.3j Sub-captions (AR)
+
+(/home/simea/.miktex/texmfs/install/tex/latex/caption/caption.sty
+Package: caption 2020/10/26 v3.5g Customizing captions (AR)
+
+(/home/simea/.miktex/texmfs/install/tex/latex/caption/caption3.sty
+Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
+\captionmargin=\dimen262
+\captionmargin@=\dimen263
+\captionwidth=\dimen264
+\caption@tempdima=\dimen265
+\caption@indent=\dimen266
+\caption@parindent=\dimen267
+\caption@hangindent=\dimen268
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count292
+\c@continuedfloat=\count293
+)
+\c@subfigure=\count294
+\c@subtable=\count295
+)
 (/home/simea/.miktex/texmfs/install/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibrarypositioning.code.tex
 File: tikzlibrarypositioning.code.tex 2020/12/27 v3.1.8b (3.1.8b)
@@ -516,16 +542,16 @@ LaTeX Font Info:    ... okay on input line 4.
 
 (/home/simea/.miktex/texmfs/install/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count292
-\scratchdimen=\dimen262
+\scratchcounter=\count296
+\scratchdimen=\dimen269
 \scratchbox=\box69
-\nofMPsegments=\count293
-\nofMParguments=\count294
+\nofMPsegments=\count297
+\nofMParguments=\count298
 \everyMPshowfont=\toks33
-\MPscratchCnt=\count295
-\MPscratchDim=\dimen263
-\MPnumerator=\count296
-\makeMPintoPDFobject=\count297
+\MPscratchCnt=\count299
+\MPscratchDim=\dimen270
+\MPnumerator=\count300
+\makeMPintoPDFobject=\count301
 \everyMPtoPDFconversion=\toks34
 ) (/home/simea/.miktex/texmfs/install/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -535,6 +561,8 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 (/home/simea/.miktex/texmfs/install/tex/latex/00miktex/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 9.
 
 (/home/simea/.miktex/texmfs/install/tex/latex/amsfonts/umsa.fd
@@ -567,133 +595,172 @@ Package pdftex.def Info: Pics/fock.pdf  used on input line 34.
 
  (PARTLOCAL.tex [8
 
-]
-Overfull \hbox (11.4713pt too wide) in paragraph at lines 16--16
-[]\OT1/cmr/bx/n/14.4 Spasrity Patterns in Elctronic Structure Theory 
+] [9] [10]
+<overlap_nze.pdf, id=59, 234.67644pt x 178.60864pt>
+File: overlap_nze.pdf Graphic file (type pdf)
+<use overlap_nze.pdf>
+Package pdftex.def Info: overlap_nze.pdf  used on input line 97.
+(pdftex.def)             Requested size: 164.27237pt x 125.02518pt.
+<eri_nze.pdf, id=60, 249.67647pt x 178.60864pt>
+File: eri_nze.pdf Graphic file (type pdf)
+<use eri_nze.pdf>
+Package pdftex.def Info: eri_nze.pdf  used on input line 101.
+(pdftex.def)             Requested size: 174.77232pt x 125.02518pt.
+
+Overfull \hbox (2.27232pt too wide) in paragraph at lines 101--102
+[][] 
  []
 
 
-Overfull \hbox (1.084pt too wide) in paragraph at lines 28--29
+Overfull \hbox (2.22221pt too wide) in paragraph at lines 96--104
+[]$[]$ $[]$ 
+ []
+
+<overlap_decay.pdf, id=61, 219.55031pt x 180.08083pt>
+File: overlap_decay.pdf Graphic file (type pdf)
+<use overlap_decay.pdf>
+Package pdftex.def Info: overlap_decay.pdf  used on input line 108.
+(pdftex.def)             Requested size: 153.68416pt x 126.05571pt.
+<eri_decay.pdf, id=62, 219.55031pt x 180.08083pt>
+File: eri_decay.pdf Graphic file (type pdf)
+<use eri_decay.pdf>
+Package pdftex.def Info: eri_decay.pdf  used on input line 112.
+(pdftex.def)             Requested size: 153.68416pt x 126.05571pt.
+
+Overfull \hbox (2.22221pt too wide) in paragraph at lines 107--115
+[]$[]$ $[]$ 
+ []
+
+[11 <./overlap_nze.pdf> <./eri_nze.pdf
+
+pdfTeX warning: pdflatex (file ./eri_nze.pdf): PDF inclusion: multiple pdfs wit
+h page group included in a single page
+>]
+Overfull \hbox (1.084pt too wide) in paragraph at lines 129--130
 \OT1/cmr/m/n/10 ways: canonical molecular orbitals (CMOs) and local molecular o
 rbitals (LMOs).
  []
 
-[9]
-Overfull \hbox (2.57626pt too wide) in paragraph at lines 85--86
+[12 <./overlap_decay.pdf> <./eri_decay.pdf
+
+pdfTeX warning: pdflatex (file ./eri_decay.pdf): PDF inclusion: multiple pdfs w
+ith page group included in a single page
+>]
+Overfull \hbox (2.57626pt too wide) in paragraph at lines 186--187
 []\OT1/cmr/m/n/10 The projection operators are idempotent and mutually orthogon
 al with $[][] =
  []
 
-[10]
-Overfull \hbox (4.25061pt too wide) in paragraph at lines 115--116
+[13]
+Overfull \hbox (4.25061pt too wide) in paragraph at lines 216--217
 \OT1/cmr/m/n/10 Sparsity of the atomic density matrix is crucial for achieving 
 low-scaling electronic
  []
 
 
-Overfull \hbox (1.20906pt too wide) in paragraph at lines 121--122
+Overfull \hbox (1.20906pt too wide) in paragraph at lines 222--223
 \OT1/cmr/m/n/10 Cholesky decomposition with full row and column pivoting (ALGO)
 . The unitary
  []
 
-[11] [12]
-Overfull \hbox (13.36177pt too wide) in paragraph at lines 211--212
+[14] [15]
+Overfull \hbox (13.36177pt too wide) in paragraph at lines 312--313
 []\OT1/cmr/m/n/10 Natural transition orbitals (NTOs) were introduced to facilit
 ate the qualititative
  []
 
-[13]
-Overfull \hbox (5.69507pt too wide) in paragraph at lines 228--229
+[16]
+Overfull \hbox (5.69507pt too wide) in paragraph at lines 329--330
 []\OT1/cmr/m/n/10 Natural transition orbitals have also found use in local exci
 ted state correlation
  []
 
-[14]
-Overfull \hbox (2.18578pt too wide) in paragraph at lines 269--270
+[17]
+Overfull \hbox (2.18578pt too wide) in paragraph at lines 370--371
 \OT1/cmr/m/n/10 linear scaling correlated methods were formulated. Their depend
 ency on distance
  []
 
 
-Overfull \hbox (5.63025pt too wide) in paragraph at lines 280--281
+Overfull \hbox (5.63025pt too wide) in paragraph at lines 381--382
 \OT1/cmr/m/n/10 electron pair has a set of PNOs associated to it. PNOs are form
 ed by diagonalizing
  []
 
-[15]
-Overfull \hbox (5.83398pt too wide) in paragraph at lines 314--315
+[18]
+Overfull \hbox (5.83398pt too wide) in paragraph at lines 415--416
 \OT1/cmr/m/n/10 Closely related to PNOs are the orbital specific virtual orbita
 ls (OSVs) (Yan2011).
  []
 
-[16] [17]
-Overfull \hbox (19.00629pt too wide) in paragraph at lines 368--368
+[19] [20]
+Overfull \hbox (19.00629pt too wide) in paragraph at lines 469--469
 []\OT1/cmr/bx/n/14.4 Local Ground State Correlation Methods: MP2 
  []
 
 
-Overfull \hbox (15.87262pt too wide) in paragraph at lines 384--385
+Overfull \hbox (15.87262pt too wide) in paragraph at lines 485--486
 \OT1/cmr/m/n/10 amplitudes can be removed using an integral transform called th
 e \OT1/cmr/m/it/10 Laplace Transform 
  []
 
-[18] [19]
-Overfull \hbox (11.50075pt too wide) in paragraph at lines 460--461
+[21] [22]
+Overfull \hbox (11.50075pt too wide) in paragraph at lines 561--562
 \OT1/cmr/m/n/10 inherent asymptotic scaling of AO-MP2, without any other furthe
 r approximations,
  []
 
-[20]
-Overfull \hbox (12.49257pt too wide) in paragraph at lines 489--490
+[23]
+Overfull \hbox (12.49257pt too wide) in paragraph at lines 590--591
 []\OT1/cmr/m/n/10 For two non-overlapping charge densities $[]$ and $[]$ the fo
 llowing inequality
  []
 
 
-Overfull \hbox (1.4474pt too wide) in paragraph at lines 494--495
+Overfull \hbox (1.4474pt too wide) in paragraph at lines 595--596
 \OT1/cmr/m/n/10 We then introduce the following abbreviation for the $\OML/cmm/
 m/it/10 n$\OT1/cmr/m/n/10 th order 1-centre multipole
  []
 
-[21] [22]
-Overfull \hbox (6.20253pt too wide) in paragraph at lines 577--579
+[24] [25]
+Overfull \hbox (6.20253pt too wide) in paragraph at lines 679--681
 \OT1/cmr/m/n/10 which are evaluated with $\OMS/cmsy/m/n/10 O\OT1/cmr/m/n/10 (\O
 ML/cmm/m/it/10 N[]\OT1/cmr/m/n/10 )$ cost. Using local density fitting approxai
 mations,
  []
 
-[23]
-Overfull \hbox (4.44505pt too wide) in paragraph at lines 657--658
+[26]
+Overfull \hbox (4.44505pt too wide) in paragraph at lines 759--760
 \OT1/cmr/m/n/10 where "LDF" is the sparsity relationship introduced between the
  auxiliary density
  []
 
 
-Overfull \hbox (14.61172pt too wide) in paragraph at lines 657--658
+Overfull \hbox (14.61172pt too wide) in paragraph at lines 759--760
 \OT1/cmr/m/n/10 coulomb-attenuated metric, the scaling is intermediate between 
 linear and quadratic
  []
 
 
-Overfull \hbox (14.38959pt too wide) in paragraph at lines 682--682
+Overfull \hbox (14.38959pt too wide) in paragraph at lines 788--788
 []\OT1/cmr/bx/n/14.4 Low-Scaling Correlated Excited State Methods 
  []
 
-) [24]
+) [27]
 Overfull \hbox (81.91339pt too wide) in paragraph at lines 77--78
 \OT1/cmr/m/n/10 OTHER: $\OT1/cmtt/m/n/10 https : / / www . kth . se / blogs / p
 dc / 2018 / 11 / scalability-[]strong-[]and-[]weak-[]scaling/$ 
  []
 
-[25
+[28
 
 
 ] (diss.aux (PARTLOCAL.aux)) ) 
 Here is how much of TeX's memory you used:
- 14295 strings out of 481257
- 278121 string characters out of 2908375
- 562675 words of memory out of 3000000
- 31236 multiletter control sequences out of 15000+600000
+ 15643 strings out of 481257
+ 304110 string characters out of 2908375
+ 589196 words of memory out of 3000000
+ 32571 multiletter control sequences out of 15000+600000
  414563 words of font info for 69 fonts, out of 8000000 for 9000
  0 hyphenation exceptions out of 8191
  94i,25n,94p,986b,667s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -717,9 +784,9 @@ fb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmti10.pf
 b></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmtt10.pfb
 ></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/symbols/msbm10
 .pfb>
-Output written on diss.pdf (25 pages, 11469008 bytes).
+Output written on diss.pdf (28 pages, 11592425 bytes).
 PDF statistics:
- 170 PDF objects out of 1000 (max. 8388607)
+ 233 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 18 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 38 words of extra memory for PDF output out of 10000 (max. 10000000)
 

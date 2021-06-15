@@ -13,11 +13,112 @@ All of the above methods have their fair share of problems, some more than other
 \section{Density Fitting}
 About density fitting. Principles
 
-\section{Spasrity Patterns in Elctronic Structure Theory}
+\section{Sparsity in Electronic Structure Theory}
+
+Sparsity is a core concept in electronic structure theory. Many of the most commonly encountered matrices and tensors exhibit some form of sparsity. 
+
+\FloatBarrier
+
+\subsection{Scaling of Electron Integrals}
+
+Molecular electron integral evaluation can become prohibitively expensive for large systems, espcially the four-dimensional ERI tensor which formerly scales as $\ccpx{4}$. It is therfore imperative to exploit the exponential decay of the GTO basis.
+
+Consider a model system consisting of $n$ hydrogen atoms arranged in a line, with a distance of 1 $a_0$ between one another, and a primitive 1s Gaussian function attached to each atom. Figure ... shows the scaling behaviour for the overlap and electron repulsion integrals of this system. A full line is used to show the number of total elements, while the dotted line represents the number of significant integrals with magitude $>$ 1e-10. From observing both graphs, it becomes apparent that for increasing number of atoms, many of the electron integrals can be ignored. 
+
+\subsubsection{Linear Scaling Overlap Integrals}
+
+While the overlap integrals formely scale with $\ccpx{2}$, it can be shown that the number of significant elements scales \emph{linearly}. First, consider the product of two 1s GTOSs $\chi_{A}$ and $\chi_{B}$, centred at $\mathbf{A}$ and $\mathbf{B}$, with exponents $\alpha$ and $\beta$. The Gaussian product theorem (GPT) states that the result is itself also a (scaled) Gaussian function
+\begin{equation}
+\chi(A,\alpha) \chi(B,\beta) = e^{-\alpha \left\lvert \mathbf{r} - \mathbf{A} \right\rvert^2} e^{-\beta \left\lvert \mathbf{r} - \mathbf{B} \right\rvert^2} = \kappa \chi(P,\alpha+\beta)  
+\end{equation}
+\noindent with the scaling factor $\kappa$ 
+\begin{equation}
+\kappa = e^{-\frac{\alpha\beta}{\alpha+\beta}\left\lvert \mathbf{A} - \mathbf{B} \right\rvert^2}
+\end{equation}
+\noindent and the centre-of-charge coordinate $P$
+\begin{equation}
+\mathbf{P} = \frac{\alpha \mathbf{A} + \beta \mathbf{B}}{\alpha + \beta}
+\end{equation}
+\noindent Spatioal integration yields the expression for the overlap between $\chi_A$ and $\chi_B$
+\begin{equation}
+S_{AB} = \int \kappa \chi_{P} dr = \kappa \left(\frac{\pi}{\alpha + \beta}\right)^{3/2}
+\end{equation} 
+\noindent The magnitude of the overlap integral is proportional to the scaling factor $\kappa$ which decays exponentially with the distance between GTO centres. In the case of the model system given above, where $\alpha = \beta$, the distance at which the integral falls below a certain threshold $\eps$ is given by 
+\begin{equation}
+d_s = \sqrt{\alpha^{-1} ln \left[ \left( \frac{\pi}{2\alpha}\right)^3 \eps^{-1/2} \right]}
+\end{equation} 
+\noindent Which in our case is equal to 6.9 $a_0$. Each hydrogen atom therefore only has significant overlap with a finite number $n_{max}$ of other centres. For atom chains with $n > n_{max}$, the number of non-zero elements in the overlap matrix will no longer scale as $n^2$, but \emph{linearly} with $nn_{max}$. For more realistic, three-dimnensional molecular systems, the crossover is less clearly defined due to the non-uniform distribution of atoms and different GTO exponents. Nonetheless, if a system grows sufficiently large, the overlap integrals still scale linearly. Similar arguments can be brought forth for the kinetic-energy integrals as well. 
+
+\subsubsection{Quadratic Scaling Electron Repulsion Integrals} 
+
+Using the Guassian product theorem established above, we can express the two-electron repulsion integrals of four primtive 1s Gaussian functions $s(A,\alpha)$, $s(B,\beta)$, $s(C,\gamma)$ and $s(D,\delta)$ as
+\begin{equation}
+\begin{split}
+g_{ABCD} &= \int s(A,\alpha) s(B,\beta) \frac{1}{\left\lvert \mathbf{r_1} - \mathbf{r_2} \right\rvert} s(C,\gamma) s(D,\delta) dr \\
+&= \int \kappa s(P, \alpha+\beta) \frac{1}{\left\lvert \mathbf{r_1} - \mathbf{r_2} \right\rvert} \lambda s(Q, \gamma+\delta)
+\end{split}
+\end{equation}
+\noindent where $s(P,p)$ and $s(Q,q)$ are Gaussian distributions with
+\begin{equation}
+\mathbf{P} = \frac{\alpha \mathbf{A} + \beta \mathbf{B}}{\alpha + \beta} ; \quad \mathbf{Q} = \frac{\gamma \mathbf{C} + \delta \mathbf{D}}{\gamma + \delta}
+\end{equation}
+\begin{equation}
+\kappa = e^{-p\left\lvert \mathbf{A} - \mathbf{B} \right\rvert^2} ; \quad \lambda = e^{-q\left\lvert \mathbf{C} - \mathbf{D} \right\rvert^2}
+\end{equation}
+\begin{equation}
+p = \frac{\alpha\beta}{\alpha+\beta}; \quad q = \frac{\gamma\delta}{\gamma+\delta}
+\end{equation}
+
+\noindent The coulomb integrals can then be evaluated as 
+\begin{equation}
+g_{ABCD} = \sqrt{\frac{4 \eta}{\pi}} S_{AB} S_{CD} F_0\left(\eta \left\lvert \mathbf{P} - \mathbf{Q} \right\rvert^2 \right)
+\end{equation}
+\noindent with the Boys function $F_0$ and the reduced exponent $\eta$ given by
+\begin{equation}
+\eta = \frac{pq}{p+q}
+\end{equation}
+
+\noindent The Boys function is an important function appearing in many expressions for molecular integral evaluation. There are two expressions that bound the Boys function
+\begin{equation}
+\begin{split}
+F_n(x) \leq \frac{1}{2n+1} \quad \textrm{for small } x \\
+F_n(x) \leq \frac{(2n-1)!!}{2^{n+1}}\sqrt{\frac{\pi}{x^{2n+1}}} \quad \textrm{for large } x 
+\end{split}
+\end{equation}
+\noindent Using the Boys function's upper bounds, we can derive an upper bound for the electron repulsion integrals of our model system
+\begin{equation}
+g_{ABCD} \leq min \left\lbrace \sqrt{\frac{4\eta}{\pi}} S_{AB} S_{CD}, \frac{S_{AB} S_{CD}}{\left\lvert \mathbf{P} - \mathbf{Q} \right\rvert} \right\rbrace
+\end{equation}
+\noindent The left-hand upperbound represents the short-range limit of the Boys function, and the right-hand one the long-range limit. In the short-range limit, i.e. for increasing distance $R_{AB}$ or $R_{CD}$, the magnitude of $g$ decreases exponentially. As shown in the previous section, the non-zero elements of the overlap integrals $S_{AB}$ and $S_{CD}$ scale linearly with system size, and therefore the number of significant electron repulsion integrals scales with $N^2$ in total. 
+It should be noted, that in the long-range limit whith increasing distance $R_{PQ}$ between product densities, the elements in $g$ will eventually scale linearly. However, the $1/R$ decay of the long-range interactions is so slow that it becomes practically useless. In the case of the hydrogen atom chain, the integrals $\cn{\mu\mu}{\nu\nu}$ only fall below 1e-10 for $R_{PQ}$ greater than 10$^{10}$ $a_0$. While the long-range decay is impractical for use in the case of the electron repulsion integrals, there are instances such as in AO-MP2 where the \emph{bra} and \emph{ket} decay as $1/R^4$. 
+
+\begin{figure}
+\begin{minipage}{0.5\linewidth}
+\includegraphics[scale=0.7]{overlap_nze}
+\caption{Number of significant ...}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+\includegraphics[scale=0.7]{eri_nze}
+\caption{Number of significant ...}
+\end{minipage}%
+\end{figure}
+
+\begin{figure}
+\begin{minipage}{0.5\linewidth}
+\includegraphics[scale=0.7]{overlap_decay}
+\caption{Number of significant ...}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+\includegraphics[scale=0.7]{eri_decay}
+\caption{Number of significant ...}
+\end{minipage}%
+\end{figure}
 
 Most of the frustrations stem from N$^2$ AO ERI, but N$^4$ MO ERI
 Show a graph of AO ERI of H2: (mn,mn) vs (mm,nn)
 % Good explanation for "linked indices rule" https://aip.scitation.org/doi/pdf/10.1063/1.4926879
+
+\FloatBarrier
 
 \section{The ABCs of LMOs: Orbital Representations}
 
@@ -526,6 +627,7 @@ r_{\mu\nu} - R_{\mu} - R_{\nu} \geq r_0
 \end{equation}
 \noindent The biggest drawback of the scheme above is that the thresholding parameters $r_0$ and $\epsilon$ are system-dependent. 
 A more rigorous screening method has been proposed by Lambrecht et al. known as multipole based integral estimates (MBIE) (Lam2005,Lam2005a). MBIEs offer a tight upper bound for the AO and pseudo-AO electron integrals by using the multipole expansion in Eq. ... and replacing the higher order terms $\mathcal{O}(R^{-5})$ by lower-order ones. 
+ALternative: QQR screening
 
 % Pul1983 P. Pulay,Chem. Phys. Lett., 1983,100, 151.27 S. 
 % Sae1985 Saebø and P. Pulay,Chem. Phys. Lett., 1985,113, 13
@@ -658,6 +760,10 @@ E_{AO-DF-SOS-MP2} = - c_{os} \sum^{nlap}_{\alpha=1} \sum_{XY} \tilde{Z}\pa_{XY} 
 
 % Mau2014 https://aip.scitation.org/doi/full/10.1063/1.4881144
 % Gla2020 https://pubs.acs.org/doi/abs/10.1021/acs.jctc.0c00600
+
+% QQR screeening:
+% S. A. Maurer, D. S. Lambrecht, D. Flaig, and C. Ochsenfeld, J. Chem. Phys. 136, 144107 (2012). https://doi.org/10.1063/1.3693908
+%  S. A. Maurer, D. S. Lambrecht, J. Kussmann, and C. Ochsenfeld, J. Chem. Phys. 138, 014101 (2013). https://doi.org/10.1063/1.4770502
 
 \subsection{SVO-MP2 flavours}
 
