@@ -3,6 +3,7 @@ import os
 import string
 import matplotlib.pyplot as plt
 import math
+import numpy as np
 
 def c2n(col):
     num = 0
@@ -184,6 +185,8 @@ def save_table(fname, string):
 desktop = init_pyoo()
 doc = desktop.open_spreadsheet("../precision.ods")
 plt.style.use('science')
+plt.rcParams.update({
+    "font.size":10})          # specify font size here 
 
 # =========================================================
 # ========== SPARSITY DEMONSTRATION =======================
@@ -251,6 +254,32 @@ fig.savefig("eri_nze.pdf")
 #plt.show()
 
 doc.close()
+
+# =========================================================
+# ================= DENSITY MATRIX/CHOLESKY ===============
+# =========================================================
+
+arrayDO = np.loadtxt('densityO.dat')
+arrayLO = np.loadtxt('choleskyO.dat')
+arrayDV = np.loadtxt('densityV.dat')
+arrayLV = np.loadtxt('choleskyV.dat')
+
+fig, ax = plt.subplots()
+im = ax.imshow(arrayDO)
+fig.savefig("densityO.pdf")
+
+fig, ax = plt.subplots()
+im = ax.imshow(arrayLO)
+fig.savefig("choleskyO.pdf")
+
+fig, ax = plt.subplots()
+im = ax.imshow(arrayDV)
+fig.savefig("densityV.pdf")
+
+fig, ax = plt.subplots()
+im = ax.imshow(arrayLV)
+fig.savefig("choleskyV.pdf")
+
 exit(0)
 
 # =========== HARTREE FOCK ALKAN ==========================

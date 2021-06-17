@@ -4,16 +4,41 @@
 \usepackage{amsfonts}
 \usepackage{extarrows} 
 \usepackage{placeins}
+\usepackage{fancyhdr}
 \usepackage{tikz}
 \usepackage{physics}
 \usepackage[]{algorithm2e}
 \usepackage{subcaption} 
 \usetikzlibrary{positioning,calc}
+
+\usepackage[left=1in,right=1in,top=1.2in,bottom=1.2in]{geometry}
+
 \newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node (#1) [anchor=base] {};}
 \newcommand{\snode}[3]{\node [] (#1) at (#2) {$\mathstrut #3$}}
 \newcommand{\spath}[2]{\draw[<->] (#1) -- (#2) node [midway, above] () {S}}
 \newcommand{\ppath}[2]{\draw[<->] (#1) -- (#2) node [midway, above] () {P}}
  
+\fancypagestyle{firstpage}{%
+\fancyhf{} % clear all six fields
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+}
+\fancypagestyle{firstcoverpage}{%
+\fancyhf{} % clear all six fields
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+}
+\fancypagestyle{followingpage}{%
+\fancyhf{} % clear all six fields
+\fancyhead[LE,RO]{\textbf{\thepage}}
+\fancyhead[LO,RE]{\nouppercase{\rightmark}}
+\renewcommand{\headrulewidth}{0.7pt}
+\renewcommand{\footrulewidth}{0pt}
+}
+\pagestyle{followingpage}
+ 
+
 %\documentclass[aip,reprint]{revtex4-1}
 
 \newcommand{\ovl}{\overline}

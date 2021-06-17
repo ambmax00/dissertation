@@ -19,11 +19,37 @@ Sparsity is a core concept in electronic structure theory. Many of the most comm
 
 \FloatBarrier
 
-\subsection{Scaling of Electron Integrals}
+\subsection{Element-Wise Sparsity of Electron Integrals}
 
 Molecular electron integral evaluation can become prohibitively expensive for large systems, espcially the four-dimensional ERI tensor which formerly scales as $\ccpx{4}$. It is therfore imperative to exploit the exponential decay of the GTO basis.
 
-Consider a model system consisting of $n$ hydrogen atoms arranged in a line, with a distance of 1 $a_0$ between one another, and a primitive 1s Gaussian function attached to each atom. Figure ... shows the scaling behaviour for the overlap and electron repulsion integrals of this system. A full line is used to show the number of total elements, while the dotted line represents the number of significant integrals with magitude $>$ 1e-10. From observing both graphs, it becomes apparent that for increasing number of atoms, many of the electron integrals can be ignored. 
+Consider a model system consisting of $n$ hydrogen atoms arranged in a line, with a distance of 1 $a_0$ between one another, and a primitive 1s Gaussian function attached to each atom. Figure ... shows the scaling behaviour for the overlap and electron repulsion integrals of this system. A full line is used to show the number of total elements, while the dotted line represents the number of significant integrals with magitude $>$ 1e-10. From observing both graphs, it becomes apparent that for increasing number of atoms, many of the electron integrals can be ignored. Therefore, one only needs to store integrals above a certain threshold. This is also known as \emph{element-wise sparsity}.
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}{0.45\linewidth}
+\includegraphics[scale=0.8]{overlap_nze}
+\caption{}
+\end{subfigure}
+\begin{subfigure}{0.45\linewidth}
+\includegraphics[scale=0.8]{eri_nze}
+\caption{}
+\end{subfigure}%
+\caption{(a) Number of significant entries (full line) in the overlap matrix for a hydrogen atom chain, with a threshold of 1e-10. The dotted line shows the total number of elements for the dense matrix, which scale as $N^2$. (b) Number of significant entries (full line) in the electron repulsion integral tensor for a hydrogen atom chain, with a threshold of 1e-10. The dotted line shows the total number of elements for the dense tensor, which scale as $N^4$.}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{subfigure}{0.45\linewidth}
+\includegraphics[scale=0.8]{overlap_decay}
+\caption{}
+\end{subfigure}
+\begin{subfigure}{0.45\linewidth}
+\includegraphics[scale=0.8]{eri_decay}
+\caption{}
+\end{subfigure}%
+\caption{(a) Magnitude of the overlap integral between two Gaussian 1s orbitals as a function of distance $r$ (exponential decay). (b) Magnitude of the electron repulsion integral betwwen two Gaussian 1s orbitals as a function of $r$. The short range interaction $\cn{\mu\nu}{\mu\nu}$ decays at a  muchfaster rate with $e^{-r^2}$, compared to the long range interaction with $1/R$.}
+\end{figure}
 
 \subsubsection{Linear Scaling Overlap Integrals}
 
@@ -89,36 +115,138 @@ F_n(x) \leq \frac{(2n-1)!!}{2^{n+1}}\sqrt{\frac{\pi}{x^{2n+1}}} \quad \textrm{fo
 \begin{equation}
 g_{ABCD} \leq min \left\lbrace \sqrt{\frac{4\eta}{\pi}} S_{AB} S_{CD}, \frac{S_{AB} S_{CD}}{\left\lvert \mathbf{P} - \mathbf{Q} \right\rvert} \right\rbrace
 \end{equation}
-\noindent The left-hand upperbound represents the short-range limit of the Boys function, and the right-hand one the long-range limit. In the short-range limit, i.e. for increasing distance $R_{AB}$ or $R_{CD}$, the magnitude of $g$ decreases exponentially. As shown in the previous section, the non-zero elements of the overlap integrals $S_{AB}$ and $S_{CD}$ scale linearly with system size, and therefore the number of significant electron repulsion integrals scales with $N^2$ in total. 
-It should be noted, that in the long-range limit whith increasing distance $R_{PQ}$ between product densities, the elements in $g$ will eventually scale linearly. However, the $1/R$ decay of the long-range interactions is so slow that it becomes practically useless. In the case of the hydrogen atom chain, the integrals $\cn{\mu\mu}{\nu\nu}$ only fall below 1e-10 for $R_{PQ}$ greater than 10$^{10}$ $a_0$. While the long-range decay is impractical for use in the case of the electron repulsion integrals, there are instances such as in AO-MP2 where the \emph{bra} and \emph{ket} decay as $1/R^4$. 
+\noindent The left-hand upperbound represents the short-range limit of the Boys function, and the right-hand one the long-range limit. In the short-range limit, i.e. for increasing distance $R_{AB}$ or $R_{CD}$, the magnitude of $g$ decreases \emph{expoentially}. As shown in the previous section, the non-zero elements of the overlap integrals $S_{AB}$ and $S_{CD}$ scale linearly with system size, and therefore the number of significant electron repulsion integrals scales with $N^2$ in total. 
+It should be noted, that in the long-range limit whith increasing distance $R_{PQ}$ between product densities, the number of elements in $g$ will eventually scale linearly. However, the \emph{algebraic} $1/R$ decay of the long-range interactions is so slow that it practically useless for the size of moleculaes that can be tackled with current technologies. In the case of the hydrogen atom chain, the integrals $\cn{\mu\mu}{\nu\nu}$ only fall below 1e-10 for $R_{PQ}$ greater than 10$^{10}$ $a_0$. While the long-range decay is impractical for use in the case of the electron repulsion integrals, there are instances such as in AO-MP2 where \emph{bra} and \emph{ket} decay as $1/R^4$.
+Knowing that the electron repulsion integrals are sparse is only the first step. One also has to develop a \emph{screening} method to avoid computing small integrals, by finding a general upperbound. It has been shown (Roo1951) that $g$ is positive-definite, fullfilling the relationship
+\begin{equation}
+\sum_{abcd} c_{ab} g_{abcd} c_{cd} > 0
+\end{equation}
+\noindent where $c$ are one-electron orbital distrbutions. One can then apply the Schwarz inequality (Has1989) to obtain an upper bound expression for $g$
+\begin{equation}
+\cn{\mu\nu}{\sigma\lambda} \leq \cn{\mu\nu}{\mu\nu} \cn{\sigma\lambda}{\sigma\lambda} = Q_{\mu\nu} Q_{\sigma\lambda}
+\end{equation}
+\noindent The matrix $\mathbb{Q}$ contains the square root of the short-range diagonal entries of $g$, and is also known as the Schwarz matrix. $\mathbf{Q}$ can be evaluated quickly with $\ccpx{2}$ effort and inidividual integrals can be efficiently screened. It should be noted that Schwarz screening does not take into account the $1/R$ decay between product densities, which makes the method less useful in methods like AOMP2.
 
-\begin{figure}
-\begin{minipage}{0.5\linewidth}
-\includegraphics[scale=0.7]{overlap_nze}
-\caption{Number of significant ...}
-\end{minipage}
-\begin{minipage}{0.5\linewidth}
-\includegraphics[scale=0.7]{eri_nze}
-\caption{Number of significant ...}
-\end{minipage}%
-\end{figure}
+\subsection{Element-Wise Sparsity of the Density Matrix}
 
-\begin{figure}
-\begin{minipage}{0.5\linewidth}
-\includegraphics[scale=0.7]{overlap_decay}
-\caption{Number of significant ...}
-\end{minipage}
-\begin{minipage}{0.5\linewidth}
-\includegraphics[scale=0.7]{eri_decay}
-\caption{Number of significant ...}
-\end{minipage}%
-\end{figure}
+The decaying behaviour of the density matrix has been extensively studied in solids for atom-centred Bloch and Wannier functions. It was shown that for insulators, i.e. systems with large band-gaps, the contributions $P_{\mu\nu}$ decay exponentially with increasing distance $R_{\mu\nu}$, while for systems with small or no band gaps, such as metals, the elements decay algebraically. 
+The same observations have been made for non-periodic systems using atomic orbitals as basis. For molecules with a large HOMO-LUMO gap, e.g. alkanes, the number of non-zero elements in the atomic orbital density matrix scales linearly with increasing system size. On the other hand, molecules with strong electron delocalization, such as conjugated polyenes, have have a small HOMO-LUMO gap, and the density matrix elements decay much slower. 
+%This sparsity relationship between two AOs is also known as Kohn's conjecture (ref DLMP2).
+% exponential decay:
+% Koh1959 https://journals.aps.org/pr/abstract/10.1103/PhysRev.115.809
+% Ism1999 https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.82.2127
+% Goe1994 https://journals.aps.org/prl/pdf/10.1103/PhysRevLett.73.122
+% Goe1998 https://journals.aps.org/prb/pdf/10.1103/PhysRevB.58.3501
 
-Most of the frustrations stem from N$^2$ AO ERI, but N$^4$ MO ERI
-Show a graph of AO ERI of H2: (mn,mn) vs (mm,nn)
+% algebraic decay
+% Tar2002 https://journals.aps.org/prb/abstract/10.1103/PhysRevB.66.233101
+
+\subsection{Diagrammatic Notation}
+
+Hollmann et al. (ref) have introduced a simple graphical representation to show contributing factors to the sparsity of a given matrix, tensor or tensor contraction. Each tensor index is represented as a vertex which contributes. Non-connected vertices each contribute $\mathcal{O}(N)$ elements to the overall expression. A sparsity relationship between two indices is represented as an \emph{edge} connecting two vertices. In this case, the number of \emph{pairs} scales as $\mathcal{O}(N)$. Consider the two electron integral tensor $\cn{\mu\nu}{\sigma\lambda}$ . From the previous section, we know that the index pairs $\mu,\nu$ and $\lambda,\sigma$ are related by overlap. The diagrammtic representation takes the form:
+\begin{center}
+\begin{tikzpicture}
+
+\snode{MU}{0,0}{\mu};
+\snode{NU}{1,0}{\nu};
+\snode{SIG}{2,0}{\sigma};
+\snode{LAM}{3,0}{\lambda};
+
+\draw[<->] (MU) -- (NU) node [midway, above] () {S};
+\draw[<->] (SIG) -- (LAM) node [midway, above] () {S};
+
+\end{tikzpicture}
+\end{center}
+\noindent There are two pairs of connected vertices, which indicates that the integrals can be evaluated with $\ccpx{2}$ effort, which is in agreement with the findings above. The $S$ denotes the overlap relationship between vertices.
+For another example, consider the Hartree Fock expression for the exchange matrix
+\begin{equation}
+K_{\mu\nu} = \cn{\mu\sigma}{\nu\lambda} P_{\lambda\sigma}
+\end{equation}
+\noindent Diagrammtically, the expression for $\mathbf{K}$ can be represented as
+\begin{center}
+\begin{tikzpicture}
+
+\snode{MU}{0,0}{\mu};
+\snode{NU}{3,0}{\nu};
+\snode{SIG}{1,0}{\sigma};
+\snode{LAM}{2,0}{\lambda};
+
+\draw[<->] (MU) -- (SIG) node [midway, above] () {S};
+\draw[<->] (SIG) -- (LAM) node [midway, above] () {P};
+\draw[<->] (LAM) -- (NU) node [midway, above] () {S};
+
+\end{tikzpicture}
+\end{center}
+\noindent The connection between $\sigma$ and $\lambda$ is also known as a "P-junction", which represents the sparsity relationship arising due to the exponential decay of density matrix elements. The sparsity graph is fully connect, which suggests that $\mathbf{K}$ can be evaluated with $\mathcal{O}(N)$ effort. This is indeed the case, as shown by the ONX or LinK method. For linear scaling to emerge, indices of an expression therefore need to be fully linked. This simple but important fact is also known the linked index rule (LIR). Diagrams also show which factors can influence the performance of the scaling, such as diffuseness of the atomic orbitals (slower S decay) or size of of the HOMO-LUMO gap (slower P decay). One can therefore conclude that the expression for $\mathbf{K}$ as given above, is less suitable for large basis sets and non-insulators.
+
+\subsection{Rank Sparsity}
+
+A positive semi-definite matrix $\mathbf{A}$ has the property that it can be decomposed as a product 
+\begin{equation}
+\mathbf{A} = \mathbf{B} \mathbf{B}^T
+\end{equation}
+\noindent where $\mathbf{A}$ has dimensions $N$ by $N$, and $\mathbf{B}$ has dimensions $N$ by $rank(A)$. The rank represents the number of linearly independent column vectors in matrix, and for $rank(A) < N$, the matrix is said to  be rank-deficient. The decomposition matrix $\mathbf{B}$ therefore is more compact and needs less storage space than $\mathbf{A}$. There are different ways to compute $\mathbf{B}$, such as Cholesky decomposition or QR decomposition.
+The tensor $\cn{\mu\nu}{\sigma\lambda}$ can be represented as a $N_{AO}^2$
+by $N_{AO}^2$0 matrix with combined row indices $I = \mu + N_{AO}*\nu$ and column indices $J = \sigma + N_{AO}*\lambda$. Because the tensor has been shown to be postive semi-definite, there also exists a decomposition, such that
+\begin{equation}
+\cn{\mu\nu}{\sigma\lambda} = A_{(\mu\nu)(\sigma\lambda)} = B_{(\mu\nu)X} B_{(\sigma\lambda)X}
+\end{equation}
+\noindent The rank of $\mathbf{A}$ is in general much smaller than the combined index range $N_{AO}^2$, and scales linearly rather than quadratically with the number of basis sets. The decomposition tensor $\mathbf{B}$ is therefore 3-dimensional, rather than 4-dimensional, which reduces the storage needed by an order of magnitude from $\ccpx{4}$ to $\ccpx{3}$, but only in the case where $\cn{\mu\nu}{\sigma\lambda}$ is dense. In the limit of large molecules, the NZEs of $\mathbf{B}$ also scale with $\ccpx{2}$. Rather than for the molecular integrals in the AO basis, decomposition techniques are more useful for reducing the storage size of molecular integrals in the canonical MO basis
+\begin{equation}
+\cn{ia}{jb} = C_{\mu i} C_{\sigma a} B_{\mu \sigma X} B_{X \nu \lambda} C_{\nu j} C_{\lambda b} = B_{iaX} B_{Xjb}
+\end{equation} 
+\noindent The AO-MO transformation step is also drastically sped up, but remains a $\ccpx{4}$ effort. Rank sparsity has therefore little impact on the overall scaling, but rather reduces the scaling \emph{prefactor}. Over the years, different methods have been proposed to compute $\mathbf{C}$, such as density fitting, Cholesky decompostion, pseudo-spectral methods, or tensor hypercontraction.
+Density matrices at different levels of theory (Hartree Fock, MP2, CC ...) also exhibit rank sparsity. Decomposition of such matrices play an important role in local molecular orbital schemes and low scaling electronic structure methods, as will be shown in later sections.
+
+% pos def Roo1951 C. C. J. Roothaan, Rev. Mod. Phys., 23, 69 (1951).
+
+% Schwarz inequality Has1989 https://onlinelibrary.wiley.com/doi/abs/10.1002/jcc.540100111
+
 % Good explanation for "linked indices rule" https://aip.scitation.org/doi/pdf/10.1063/1.4926879
 
 \FloatBarrier
+
+\section{Density Fitting}
+
+The method of choice in this thesis for the decomposition of two-electron molecular integrals is \emph{density fitting} (DF), also knwon as \emph{resoulation of the identity} (RI). For a brief exploration of other popular methods, the reader is referred to (ANNEX).  
+
+\subsection{Basics of Density Fitting}
+
+The two-electron integrals can be expressed in terms of the charge product densities $\rho_{\mu\nu} = \chi_{\mu} \chi_{\nu}$ as
+\begin{equation}
+\cn{\mu\nu}{\sigma\lambda} = \int \int \frac{\rho_{\mu\nu}(\mathbf{r_1}) \rho_{\sigma\lambda}(\mathbf{r_2}) }{\mathbf{r_1} - \mathbf{r_2}} d\mathbf{r_1} d\mathbf{r_2}
+\end{equation}
+The charge densities $\rho$ can be approximated by fitting them to a set of atom-centred auxiliary functions $\chi_P$
+\begin{equation}
+\rho_{\mu\nu}(\mathbf{r}) = C_{P\mu\nu} \chi_{P}(\mathbf{r}) + \Delta \rho_{\mu\nu}
+\end{equation}
+\noindent Or in the chemist's notation:
+\begin{equation}
+\cket{\mu\nu} = C_{P\mu\nu} \cket{P} + \cket{\eps_{\mu\nu}} = \cket{\tilde{\mu\nu}} + \cket{\eps_{\mu\nu}}
+\end{equation}
+\noindent where $C_{P\mu\nu}$ are the fitting coefficients, and $\Delta \rho_{\mu\nu}$ or $\cket{\eps_{\mu\nu}}$ is the error introduced by the fitting procedure. This is known as the density fitting approximation. The two-electron integrals then take the form
+\begin{equation}
+\begin{split}
+\cn{\mu\nu}{\sigma\lambda} &= (\widetilde{\mu\nu}|\widetilde{\sigma\lambda}) + (\widetilde{\mu\nu}|\eps_{\sigma\lambda}) + (\eps_{\mu\nu}|\tilde{\sigma\lambda}) + \cn{\eps_{\mu\nu}}{\eps_{\sigma\lambda}}
+\end{split}
+\end{equation}
+
+
+% Introduced independently by
+% (Coulomb) Whi73 https://aip.scitation.org/doi/10.1063/1.1679012
+% (Overlap) Bae1973 https://doi.org/10.1016/S0301-0104(99)00271-2 2, 41 (1973).
+
+% Dunlap improved Baerends by using coulomb instead of overlap
+% Dun1979 https://aip.scitation.org/doi/pdf/10.1063/1.438728
+% Dun1979a https://doi.org/10.1063/1.438313 71, 4993 (1979).
+% Begriff "Robust" erstmals hier
+% Dun2000 https://www.sciencedirect.com/science/article/pii/S0166128099004339?via%3Dihub
+- methods to solve, problems with inverse, scaling
+
+- scaling  of 3c2e ints
+
+- local density fitting (?): types, robustness, etc...
+
 
 \section{The ABCs of LMOs: Orbital Representations}
 
@@ -233,7 +361,32 @@ Moreover, orbitals obtained by CD are less localized than FB or ER LMOs, especia
 
 CD is also used in the context of AO-MP2 to reduce the prefactor of inetgral transformation by using the rank sparsity of the pseudo-density matrices, as will be shown further below.
 
-CholMOs can also used as an initial guess for iterative localization schemes to achive faster convergence.  
+CholMOs can also used as an initial guess for iterative localization schemes to achive faster convergence.
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}{0.5\linewidth}
+\centering
+\includegraphics[scale=1.0]{densityO}
+\end{subfigure}
+$\Longrightarrow$
+\begin{subfigure}{0.4\linewidth}
+\centering
+\includegraphics[scale=1.0]{choleskyO}
+\end{subfigure}%
+\hfill
+\centering
+\begin{subfigure}{0.5\linewidth}
+\centering
+\includegraphics[scale=1.0]{densityV}
+\end{subfigure}
+$\Longrightarrow$
+\begin{subfigure}{0.4\linewidth}
+\centering
+\includegraphics[scale=1.0]{choleskyV}
+\end{subfigure}%
+\caption{Something}
+\end{figure} 
 
 \subsection{Natural Orbitals}
 
