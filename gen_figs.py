@@ -251,9 +251,40 @@ ax.set_ylabel("Number of elements")
 
 fig.savefig("eri_nze.pdf")
 
+# ====== DENSITY SPARSITY =========
+
+cells = get_data2(sheet, 'A45', 'E65')
+header, data = extract_data(cells)
+
+fig, ax = plt.subplots()
+
+ax.plot(data[0],data[3],label="H chain")
+ax.plot(data[0],data[4],label="He chain")
+
+add_names(ax, "r$_{\\mu \\nu}$ [a$_{0}$]", "$log|P_{\\mu\\nu}|$", None, None)
+ax.legend(loc="best")
+ax.set_yscale("log")
+
+fig.savefig("density_decay.pdf")
+
 #plt.show()
 
+# =======================================================
+# ================ SPARSITY 3C2E ========================
+# =======================================================
+
+cells = get_data2(sheet, 'A24', 'F43')
+header, data = extract_data(cells)
+
+fig, ax = plot_classic(header, data)
+add_names(ax, "r$_{\\mu P}$ [a$_{0}$]", "$|B_{\\mu\\mu}^{P}|$", None, None)
+ax.legend(loc="best")
+
+fig.savefig("ldf.pdf")
+
+
 doc.close()
+exit(0)
 
 # =========================================================
 # ================= DENSITY MATRIX/CHOLESKY ===============

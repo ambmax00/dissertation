@@ -131,6 +131,24 @@ Knowing that the electron repulsion integrals are sparse is only the first step.
 
 The decaying behaviour of the density matrix has been extensively studied in solids for atom-centred Bloch and Wannier functions. It was shown that for insulators, i.e. systems with large band-gaps, the contributions $P_{\mu\nu}$ decay exponentially with increasing distance $R_{\mu\nu}$, while for systems with small or no band gaps, such as metals, the elements decay algebraically. 
 The same observations have been made for non-periodic systems using atomic orbitals as basis. For molecules with a large HOMO-LUMO gap, e.g. alkanes, the number of non-zero elements in the atomic orbital density matrix scales linearly with increasing system size. On the other hand, molecules with strong electron delocalization, such as conjugated polyenes, have have a small HOMO-LUMO gap, and the density matrix elements decay much slower. 
+Consider again a chain of hydrogen atoms, equally spaced by $a_0$, each with one 1s Gaussian function, this time with $N_{atom}$ atoms. Figure ... shows the MO diagram for increasing chain length. In the limit where $N_{atom} \rightarrow \infty$, the system takes on a band structure, similar to how they are encountered in a metal, with a smooth transition between occupied (valence) and virtual (conductance) band. In other words, the HOMO-LUMO gap becomes increasingly small. For hydrogen atom which each have one electron, the band is half filled, and the system is a conductor. If the Hydrogen atoms are replaced by Helium atoms, with two electrons per site, the band is fully filled and the system becomes an insulator.
+The magnitude of the density matrix elements $P_{\mu\nu}$ is plotted in Figure ... as a function of increasing distance between 1s functions. The elements decay much slower for the conducting hydrogen chain, while a rapid exponential decay can be observed in the case of the insulating helium chain. 
+
+\begin{figure}
+\centering
+\begin{subfigure}{0.45\linewidth}
+\centering
+\includegraphics[scale=0.8]{Pics/MOchain}
+\caption{}
+\end{subfigure}
+\begin{subfigure}{0.45\linewidth}
+\centering
+\includegraphics[scale=0.8]{density_decay}
+\caption{}
+\end{subfigure}
+\end{figure}
+
+
 %This sparsity relationship between two AOs is also known as Kohn's conjecture (ref DLMP2).
 % exponential decay:
 % Koh1959 https://journals.aps.org/pr/abstract/10.1103/PhysRev.115.809
@@ -224,29 +242,236 @@ The charge densities $\rho$ can be approximated by fitting them to a set of atom
 \begin{equation}
 \cket{\mu\nu} = C_{P\mu\nu} \cket{P} + \cket{\eps_{\mu\nu}} = \cket{\tilde{\mu\nu}} + \cket{\eps_{\mu\nu}}
 \end{equation}
-\noindent where $C_{P\mu\nu}$ are the fitting coefficients, and $\Delta \rho_{\mu\nu}$ or $\cket{\eps_{\mu\nu}}$ is the error introduced by the fitting procedure. This is known as the density fitting approximation. The two-electron integrals then take the form
+\noindent where $C_{P\mu\nu}$ are the fitting coefficients, and $\Delta \rho_{\mu\nu}$ or $\cket{\eps_{\mu\nu}}$ is the error introduced by the fitting procedure. Eq. ... is known as the density fitting approximation (Whi73,Bae1973). The two-electron integrals then take the form
 \begin{equation}
 \begin{split}
-\cn{\mu\nu}{\sigma\lambda} &= (\widetilde{\mu\nu}|\widetilde{\sigma\lambda}) + (\widetilde{\mu\nu}|\eps_{\sigma\lambda}) + (\eps_{\mu\nu}|\tilde{\sigma\lambda}) + \cn{\eps_{\mu\nu}}{\eps_{\sigma\lambda}}
+\cn{\mu\nu}{\sigma\lambda} &= (\widetilde{\mu\nu}|\widetilde{\sigma\lambda}) +  \underbrace{(\widetilde{\mu\nu}|\eps_{\sigma\lambda}) + (\eps_{\mu\nu}|\widetilde{\sigma\lambda})}_\textrm{first order} + \underbrace{\cn{\eps_{\mu\nu}}{\eps_{\sigma\lambda}}}_\textrm{second order} \\
+&= (\widetilde{\mu\nu}|\widetilde{\sigma\lambda}) + \eps_J^{(1)} + \eps_J^{(2)} 
 \end{split}
 \end{equation}
-
-
+\noindent Here, $\eps_J^({1})$ and $\eps_J^({2})$ represent the first order (linear) and second order (quadratic) error. The fitting coefficients are then generally found by minimizing $\eps_J^{(2)}$. Substituting $\cbra{\eps_{\mu\nu}} = \cbra{\mu\nu - \widetilde{\mu\nu}}$ gives
+\begin{equation}
+\frac{\partial}{\partial C^P_{\mu\nu}} \cn{\mu\nu - \widetilde{\mu\nu}}{\sigma\lambda - \widetilde{\sigma\lambda}} = 0
+\end{equation}
+\noindent which then yields a set of linear equations
+\begin{equation}
+\cn{\mu\nu}{P} - \sum_Q C^Q_{\mu\nu} \cn{Q}{P} = 0 
+\end{equation}
+\noindent Finding the fitting coefficients by minimizing $\eps_J^{(2)}$ has the important feature that $eps_J^{(1)} = 0$, which can be shown by substituting Eq. ... back into Eq. ... . The total electron integral error is therefore \emph{quadratic} in the fitting error. Fitting procedures where the coefficients $C^P_{\mu\nu}$ satisfy Eq. ... are termed $\emph{robust}$ (Dun2000). Any restrictions posed on $C^P_{\mu\nu}$ makes $\eps_{1}$ diffent from zero and the error scales linearly. 
+Eq. ... needs the evaluation of the three-centre-two-electron (3c2e) and two-centre-two-electron (2c2e) integrals in the auxiliary basis set $\{P\}$
+\begin{equation}
+\cn{\mu\nu}{P} = \int \int \chi_{\mu}(\mathbf{r_1}) \chi_{\mu}(\mathbf{r_1}) \frac{1}{\mathbf{r_1} - \mathbf{r_2}} \chi_{P}(\mathbf{r_2}) d\mathbf{r_1} d\mathbf{r_2} 
+\end{equation}
+\begin{equation}
+\cn{P}{Q} = \int \int \chi_{P}(\mathbf{r_1}) \frac{1}{\mathbf{r_1} - \mathbf{r_2}} \chi_{Q}(\mathbf{r_2}) d\mathbf{r_1} d\mathbf{r_2} 
+\end{equation}
+\noindent The fitting coefficients are generally computed by inverting $\cn{P}{Q}$, which leads to the following approximation for the four-centre-two-electron integrals
+\begin{equation}
+\cn{\mu\nu}{\sigma\lambda} \approx \cn{\mu\nu}{P} \cn{P}{Q}^{-1} \cn{Q}{\sigma\lambda}
+\end{equation}
+\noindent Matrix inversion is a $\ccpx{3}$ computational effort. For more details on precision and best practices involving matrix inversion, see ... .
 % Introduced independently by
 % (Coulomb) Whi73 https://aip.scitation.org/doi/10.1063/1.1679012
 % (Overlap) Bae1973 https://doi.org/10.1016/S0301-0104(99)00271-2 2, 41 (1973).
-
 % Dunlap improved Baerends by using coulomb instead of overlap
 % Dun1979 https://aip.scitation.org/doi/pdf/10.1063/1.438728
 % Dun1979a https://doi.org/10.1063/1.438313 71, 4993 (1979).
 % Begriff "Robust" erstmals hier
 % Dun2000 https://www.sciencedirect.com/science/article/pii/S0166128099004339?via%3Dihub
-- methods to solve, problems with inverse, scaling
 
-- scaling  of 3c2e ints
+\subsection{Scaling of the 3c2e Integrals}
 
-- local density fitting (?): types, robustness, etc...
+Using the diagrammatic representation introduced earlier, the 3c2e integral tensor reduces to
+\begin{center}
+\begin{tikzpicture}
+\snode{MU}{0,0}{\mu};
+\snode{NU}{1,0}{\nu};
+\snode{X}{2,0}{P};
+\draw[<->] (MU) -- (NU) node [midway, above] () {S};
+\end{tikzpicture}
+\end{center}
+The number of non-zero elements elements therefore scales as $\ccpx{2}$, just like for the 4c2e integrals. Similarly, the Schwarz inequality can be used to screen out small integrals
+\begin{equation}
+\left\lvert \cn{\mu\nu}{P} \right\rvert \leq \left\lvert \cn{\mu\nu}{\mu\nu} \right\rvert^{1/2} \left\lvert \cn{P}{P} \right\rvert^{1/2}
+\end{equation}
+\noindent As mentioned above, Schwarz screening does not take into account increasing bra-ket distance. The long-range decay is too slow to be of any advantage in the case of the 4c2e integrals. However, it was found (Hol2015) that for an auxiliary density $\chi_P(\mathbf{r}$ with angular momentum $l_P$, the 3c2e integrals actually decay as $1/R^{-1 - l_P}$ with increasing bra-ket distance, establishing a weak sparsity relationship between $\cbra{\mu\nu}$ and $\cket{P}$ 
+\begin{center}
+\begin{tikzpicture}
+\snode{MU}{0,0}{\mu};
+\snode{NU}{1,0}{\nu};
+\snode{MUNU}{0.5,0}{};
+\snode{X}{2,0}{P};
+\draw[<->] (MU) -- (NU) node [midway, above] () {S};
+\draw[dotted] (MUNU.south) |- (1.25, -0.5) node [below]{$1/R^{-1-l_P}$} -| (X.south);
+\end{tikzpicture}
+\end{center}
+\noindent In principle, the 3c2e integrals can be evaluated with linear effort. Hollmann et al (Hol2015) have introduced a tight upperbound, known as the SVQl estimator, to exploit this faster decay. Due to the dependence on $l_P$, the screening is most effective with larger basis sets with high angular momentum functions.
 
+The fitting coefficients evaluated as $C^P_{\mu\nu} = \cn{\mu\nu}{Q} \cn{Q}{P}^{-1}$ formerly scale with $\ccpx{3}$
+\begin{center}
+\begin{tikzpicture}
+\snode{MU}{0,0}{\mu};
+\snode{NU}{1,0}{\nu};
+\snode{Q}{2,0}{Q};
+\snode{P}{3,0}{P};
+\draw[<->] (MU) -- (NU) node [midway, above] () {S};
+\end{tikzpicture}
+\end{center}
+\noindent due to the inverse of $\cn{P}{Q}$ not being sparse. 
+
+\subsection{Local Density Fitting: Principles} 
+The long-range behaviour introduced by Eq. ... is often deemed "unphysical" (Tew2019). \emph{Local density fitting} (LDF) methods circumvent this problem by forcing a more rapid decay of long-range contributions, either (a) by using a different metric in the fitting procedure Eq. ... or (b) by constructing domains $[\mu\nu]$ that exclude distant fitting functions $P$ a priori. In both cases, Eq. ... is no longer fulfilled and the error in the electron integrals ... increases linearly with the fitting error, and the density fitting procedure is no longer robust. LDF methods therefore use a different expression for the electron integrals which includes the first order terms to remove the linear error
+\begin{equation}
+\cn{\mu\nu}{\sigma\lambda} \approx (\widetilde{\mu\nu}|\sigma\lambda) + (\mu\nu|\widetilde{\sigma\lambda}) - (\widetilde{\mu\nu}|\widetilde{\sigma\lambda})
+\end{equation}
+\noindent which is known as Dunlap's robust density fitting formula. 
+ 
+\subsection{LDF (I): Short-Range Metrics}
+The first type of LDF methods replaces the fitting procedure in the Coulomb metric in Eq. ... by a more general expression
+\begin{equation}
+B_{\mu\nu}^{P} - C_{\mu\nu}^{Q} M_{QP} = 0
+\end{equation}  
+\noindent where $B_{\mu\nu}^{P}$ and $M_{PQ}$ are the 3-centre- and 2-centre-2-electron integrals given by
+\begin{equation}
+B_{\mu\nu}^P = \int\int \bfun{\mu}{1}\bfun{\nu}{1} g(\mbf{r_1},\mbf{r_2}) \bfun{P}{2} d\mbf{r_1} d\mbf{r_2}
+\end{equation}
+\begin{equation}
+M_{PQ} = \int\int \bfun{P}{1} g(\mbf{r_1},\mbf{r_2}) \bfun{Q}{2} d\mbf{r_1} d\mbf{r_2}
+\end{equation}
+\noindent with $g$ being the local metric. A list of known local metrics is given in Table ... . Earliest forms of density fitting actually first used an overlap metric to directly minimizing the norm of the residual $R_{\mu\nu} = \cbra{\mu\nu} - \cbra{\widetilde{\mu\nu}}$ using linear least squares (Baer), and the fitting coefficients are computed as
+\begin{equation}
+C^P_{\mu\nu} = S_{PQ}^{-1} (\mu\nu Q)
+\end{equation}
+\noindent where $S_{PQ}$ is the overlap in the auxiliary basis, and $(\mu\nu Q)$ are the 3-centre-\textbf{1-electron} overlap integrals. While the overlap metric has the most rapid decay and the quantities in Eq. can be evaluated in $\mathcal{O}(N)$ time, it has the worst accuracy of all metrics. One solution to this problem is to introduce a metric which is intermediate between overlap and coulomb fitting. Examples include the Yukawa, Coulomb- and Gaussian-attenuated metrics (Table ...). These intermediate metrics introduce a damping factor $\omega$ to control the sparsity and accuracy of the density fit. In the limit where $\omega \rightarrow 0$, and $\omega \rightarrow \infty$, one recovers the coulomb and overlap metric, respectively. Figure ... shows the decay behaviour of a local metric, using the Coulomb-attenuated metric as an example, for $\omega$ = 0.01, 0.1 and 1.0, compared to the overlap and the Coulomb metric. ...
+
+\begin{table}
+\makegapedcells
+\centering
+\begin{tabular}{ccc}
+\hline
+Type & Ref. & $g(r_{12})$ \\ \hline
+Overlap & [A] & 1 \\
+Coulomb-Attenuated & [B] & $\dfrac{erfc(\omega r_{12})}{r_{12}}$ \\
+Yukawa & [C] & $\dfrac{e^{-\omega r_{12}}}{r_{12}}$ \\
+Gaussian-Damped & [D] & $\dfrac{e^{-\omega r_{12}^2}}{r_{12}}$ \\ \hline
+\end{tabular}
+\caption{Expressions for the operator $g$ in different local metrics.}
+\end{table}
+
+\begin{figure}
+\centering
+\includegraphics[scale=1.0]{ldf.pdf}
+\caption{Some caption}
+\end{figure}
+
+% A:
+% Bae1973 https://www.sciencedirect.com/science/article/pii/030101047380059X?via%3Dihub
+% Vah1993 https://www.sciencedirect.com/science/article/pii/0009261493891517?via%3Dihub
+% Sky2000 https://www.sciencedirect.com/science/article/pii/S0166128099004340?via%3Dihub
+% B: Jun2005 https://www.pnas.org/content/102/19/6692 
+% C: Gil2005 https://aip.scitation.org/doi/10.1063/1.2000867 
+% D: Rei2008 https://aip.scitation.org/doi/10.1063/1.2956507
+
+% Hol2015 D.S. Hollman, H.F. Schaefer, and E.F. Valeev, J. Chem.Phys.142(2015)
+
+\subsection{LDF (II): Local Domains}
+
+The second method to force locality in density fitting consists in constructing local domains for each atom, pair of atoms or molecular orbital, and excluding any auxiliary functions that lie outside, which can drastically reduce the dimension of the fitting procedure. 
+
+\subsubsection{Atomic Resolution of the Identity}
+
+The simplest example of a domain is one that includes a single atom. The atomic resolution of the identity (ARI) [] uses a fitting procedure where the sum over auxiliary function $Q$ only includes those which are centred on the same atom $A$ as the atomic orbital $\mu$
+\begin{equation}
+\cket{\widetilde{\mu\nu}} = \sum_{Q \cup A_{\mu}} \cn{P}{Q}_{A_{\mu}}^{-1} \cn{\mu\nu}{Q}
+\end{equation}
+\noindent Each atom $X$ has its own metric matrix inverse $\cn{P}{Q}_X^{-1}$ which takes the form 
+\begin{equation}
+\cn{P}{Q}_X^{-1} = B_X \left( \cn{P}{Q}_D + B_X \cn{P}{Q}_{OD}B_X\right)^{-1}B_X
+\end{equation}
+\noindent where $\cn{P}{Q}_D$ and $\cn{P}{Q}_{OD}$ are the diagonal and off-diagonal part of $\cn{P}{Q}$ respectively. $B_X$ is a so-called \emph{bump matrix} which imposes a fast, but smooth decay between functions $P$ and $Q$ in order to avoid using all functions $P$ for the fitting in Eq. ... . For further details, the reader is referred to the orginal publication. The bump matrix uses multiple distance criteria which make the ARI less of a black-box method.
+
+% Sod2008 https://aip.scitation.org/doi/pdf/10.1063/1.2828533
+
+\subsubsection{Pair-Atomic Resolution of the Identity}
+
+A more popular and simple variant of atomic density fitting is the pair-atomic resolution of the identity (PARI) method (Mer2013). As the name implies, the domains include atom \emph{pairs} rather than a single atom. Again expressing it in terms of the fitting procedure
+\begin{equation}
+\cn{P}{\mu\nu} = \sum_{Q \in A \cup B} \cn{P}{Q} C^Q_{\mu\nu} \quad \forall P \in A \cup B
+\end{equation}
+\noindent The number of linear equations is equal to the number of non-zero pairs $\mu\nu$, which scales linearly. However, the PARI approach poses heavy constraints on the fitting coefficients, which leads to large integral errors. Merlot et al. proposed to increase the atomic pair domain with any atoms which lie between A and B. Alternatively, larger and more diffuse basis sets can be used. In both cases, performance is sacrificed for increased accuracy. The abesence of any distance dependent parameters or thresholds still make it an attractive method both for Hartree Fock and Post-Hartree Fock methods (refs).
+
+% Mer2013 https://onlinelibrary.wiley.com/doi/full/10.1002/jcc.23284
+
+\subsubsection{LDF using Local Molecular Orbitals}
+Finally, domains can also be formed using local molecular orbitals instead of AOs. LMOs are larger than AOs, but are still generally centred on only a few atoms. The exact atomic sites can be determined for example by using a Mulliken population analysis. Consider the density fitting procedure as proposed by Polly et al. for their LDF-Hartree Fock method (pol2004)
+\begin{equation}
+\cn{\mu i}{P} = \sum_{Q \in [i]_{fit}} \cn{P}{Q} C^Q_{\mu i}
+\end{equation}
+The fitting coefficients are determined individually for each AO-LMO pair $\cket{\mu i}$, and include only those auxiliary functions centred on atoms in the fitting domain $[i]_{fit}$ for which the Mulliken charges are above a given threshold. Although the fitting coefficients need to be recomputed for each update of the MO coefficients, the number of $\cket{\mu i}$ pairs scales linearly with system size. This type of local density fitting and variations thereof are predominantly used in pair-orbital specific local correlation methods (refs). 
+
+% Pol2004 Fast Hartree–Fock theory using local densityfitting approximations
+
+\subsection{LDF (III): Quasi-Robust Density Fitting}
+
+Local density fitting inmposes constraints on the fitting procedure, and the integral error consequently scales linearly with the fitting error. Using Dunlap's robust formula is deemed necessary in most cases to achieve acceptable accuracy, but reintroduces the slowly decaying 3c2e integrals. Furthermore, replacing the 4c2e integrals by Eq. ... greatly increases the complexity of expressions in electronic structure theory, which is still manageable for ground state methods, but quickly becomes cumbersome for excited states.
+
+Quasi-robust density fitting (QRDF) aims to combine the exponential decay behaviour of LDF with accuracy comparable to standard density fitting, without the use of Dunlap's formula. Again, consider the fitting procedure 
+\begin{equation}
+\sum_Q \cn{P}{Q} C^Q_{\mu\nu} = \cn{P}{\mu\nu}
+\end{equation}
+\noindent The sets of auxiliary functions $\{P\}$ and $\{Q\}$ have different roles. The functions $Q$ fit the charge density $\cket{\mu\nu}$, while the $P$ functions act as \emph{test functions} where the electron integrals should be accurate, i.e. where $\cn{X}{\widetilde{\mu\nu}} \approx \cn{X}{\mu\nu}$. For two functions $\mu$ and $\nu$ not located on the same atom, their charge density $\cket{\mu\nu}$ lies in the vacuum between them, and the atom-centred auxiliary functions may be ill-suited to fit $\cket{\mu\nu}$. For this reason, the fitting procedure draws from all fitting functions $\{P\}$ spanning the whole molecule to cancel out the linear error, which in consequence introduces long-range contributions in $C_{\mu\nu}^P$ in the coulomb metric, even if $\cket{P}$ is not close to $\cket{\mu\nu}$. 
+The basic idea of QRDF is to only chose fitting functions $\{P\}$ close to $\cket{\mu\nu}$ via overlap criteria, but still perform the fitting procedure in the coulomb metric.
+
+\subsubsection{The QRDF Fitting Procedure}
+
+For a set of given $\mu,\nu$, select a set of \emph{fitting function} $\{P_{\mu\nu}\} \in \{P\}$ close to $\cket{\mu\nu}$ according to the criteria
+\begin{equation}
+\left\lvert \sum_R S_{PR}^{-1} (R\mu\nu) \right\rvert > T 
+\end{equation} 
+\noindent where $S$ is the auxiliary overlap matrix, and $(R\mu\nu)$ are the 1-centre-3-electron overlap integrals. Next, choose a set of test functions $\{Q_{\mu\nu}\} \in \{P\}$ using
+\begin{equation}
+f(Q_{\mu\nu},P_{\mu\nu}) < R
+\end{equation}
+\noindent with
+\begin{equation}
+f(A,B) = \frac{\alpha \beta}{\alpha + \beta} \left\lvert \mathbf{A} - \mathbf{B} \right\rvert^2
+\end{equation}
+\noindent where for two auxiliary functions $A$ and $B$, the values $\alpha$, $\beta$ are their smallest primitive exponents and $\mathbf{A}$, $\mathbf{B}$ are their respective positions. The fitting coefficients are then determined via
+\begin{equation}
+\sum_P \cn{Q_{\mu\nu}}{P_{\mu\nu}} C^P_{\mu\nu} = \cn{Q_{\mu\nu}}{\mu\nu}
+\end{equation}
+\noindent where the fitting coefficients are accurate within the set of test functions $\{Q_{\mu\nu}\}$. The linear equations in Eq. ... can be solved via QR decomposition of the rectangular matrix $\cn{Q_{\mu\nu}}{P_{\mu\nu}}$.
+The QRDF scheme depends on two parameters, $T$ and $R$. In the limit where $T \rightarrow 0$ and $R \rightarrow \infty$, the standard fitting procedure in the coulomb metric is recovered. 
+
+The fitting functions $\{P_{\mu\nu}\}$ are selected via overlap criteria and therefore scale linearly with the number of pairs $\cket{\mu\nu}$, and consequently the same holds true for the number of test functions $\{Q_{\mu\nu}\}$ close to $\{P_{\mu\nu}\}$ chosen by Eq. ... . In the limit of large molecules, the size of the rectangular matrix in Eq. ... becomes constant and the fitting procedure can be evaluated with $\mathcal{O}(N)$ effort. However, a QR decomposition needs to be computed for each set of $\cket{\mu\nu}$, leading to relatively high prefactor which makes the method unuseable for dense 3D structures like water clusters, as will be discussed in the results section.
+The QRDF method has been shown to deliver accuracies comparable to standard density fitting, without the use of Dunlap's formula, making it a very attractive alternative to other LDF schemes, especially if one wishes to reduce the complexity of expressions involving LDF.
+
+\subsection{Auxiliary Basis Sets}
+
+The density fitting approximation does not make any assumptions about the size or shape of the auxiliary basis set used. In principle, the fit is exact for the basis set containing all $N_{AO}^2$ gaussian products $\chi_P = \chi_{\mu} \chi_{\nu}$. In practice, the product space is over-complete and can be represented by much smaller basis sets. Accurate results can be obtained for auxiliary basis sets which are about 4 times larger than the principal basis set they are used with. 
+
+Auxiliary basis sets generally need more higher angular momentum functions than standard basis sets. Consider an isolated, unperturbed atom, with electrons occupying atomic orbitals with highest angular momentum $l_{occ}$. A minimal basis set for this atom contains functions of angular momenta 0 to $l_{occ}$. However, a minimal auxiliary basis set for fitting the product space $\chi_{\mu}^{0...l_{occ}} \chi_{\nu}^{0...\l_{occ}}$ needs functions with maximum angular momentum $2l_{occ}$. For example, 2nd row elements ($l_{occ}$ = 1) need an auxiliary basis set containing d-functions, and first row transition metals ($l_{occ}$ = 2) even need g-functions. Similarly to standard basis sets, to describe atoms in molecules where the orbitals are subject to polarization effects, even higher angular momentum functions are needed to fit polarization functions. In practice, a principal basis set with maximum angular momentum $l_{bas}$ is paired with an auxiliary basis set with highest angular momentum $l_{bas} + l_{occ}$. 
+
+Auxiliary basis sets have the drawback of being method-specific. There are two categories: auxiliary basis sets for density fitted Hartree Fock (DF-HF) and for density fitted correlated methods (e.g. DF-MP2, DF-CCSD, DF-ADC(2)). Auxiliary basis sets for DF-HF not only need to reproduce Hartree Fock energies, but also need to minimize theor impact on post-Hartree methods. An ill-suited auxiliary basis set leads to a deterioration of the virtual orbital space, and hence an increased error for correlated methods. 
+
+Optimization procedures often try to minimize the energy differences between the standard method and its density fitting approximation in a series of atomic calculations. For example, the jkfit family of basis sets (cc-pVXZ-JKFIT [Wei2002], def-XVP-JKFIT [Wei2007]) minimize the error
+\begin{equation}
+\Delta E_{HF} = E_{HF} - E_{DF-HF}
+\end{equation}
+The RI basis set family (cc-pVXZ-RIFIT (Wei1998), def2-XVP-RIFIT (Ber1998)) minimize the same energy difference but for MP2 or Coupled Cluster. 
+
+Another disadvantage of auxiliary basis sets is that the accuracy of the fitting procedure cannot be easily controlled as a function of its composition (number of functions, angular momenta...), but rather extensive benchmarks are needed for each basis set that is introduced. An alternative approach was proposed by Aquilante et al. (Aqu2007) where the fitting basis sets are generated automatically by cholesky decomposition of the atomic 2-electron integrals
+\begin{equation}
+\cn{\mu\nu}{\sigma\lambda} = L^X_{\mu\nu} L^X_{\sigma\lambda}
+\end{equation}
+\noindent The choleksy vectors $\mathbf{L}_{\mu\nu}$ indicate which product densities should be taken to construct the auxiliary basis. This type of atomic Cholesky decompositon (aCD) basis sets has the adavantage that the accuracy can be rigorously controlled by the decompostion threshold $\theta$. To remove linear dependicies in the aCD basis set, another Cholesky decomposition can be performed to yield the atomic compact Cholesky decomposition (acCD) auxiliary basis set (Aqu2009).
+
+% Dunning JKFIT (1): Wei2002 https://pubs.rsc.org/en/content/articlepdf/2002/cp/b204199p
+% Karlsruhe JKFIT (2): Wei2007 https://onlinelibrary.wiley.com/doi/full/10.1002/jcc.20702
+% MP2 Karlsruhe Wei1998 https://www.sciencedirect.com/science/article/pii/S0009261498008628
+% Dunning (MP2) Ber1998 https://aip.scitation.org/doi/pdf/10.1063/1.476732
+% Aqu2007 https://aip.scitation.org/doi/10.1063/1.2777146
+% Aqu2009 https://aip.scitation.org/doi/10.1063/1.3116784
 
 \section{The ABCs of LMOs: Orbital Representations}
 
