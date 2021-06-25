@@ -1,0 +1,60 @@
+\documentclass[a4paper,12pt]{report}
+\include{HEADER.tex}
+
+\begin{document}
+
+\author{Maximilien Alexandre Ambroise}
+\title{My PhD thesis}
+
+\maketitle
+
+This is a fancy front page: contains supervisors, university name, location, exam date ...
+
+\newpage
+
+Licensing
+
+\newpage
+
+(empty)
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+
+This is the introduction. Talk about sparsity. Show sparse matrix. How does sparsity arise, what can we do with it, where else does it emerge?
+State of arts: adc now, adc in the future
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.05]{Pics/fock.pdf}
+\caption{Adenine-guanine fock matrix Hartree FOck cc-pVTZ}
+\label{SparseExample}
+\end{figure}
+
+\newpage
+
+\include{BASICS.tex}
+
+\include{LOCAL0.tex}
+
+\include{LOCAL1.tex}
+
+\include{LOCAL2.tex}
+
+OTHER: \url{https://www.kth.se/blogs/pdc/2018/11/scalability-strong-and-weak-scaling/}
+
+\part{Annex}
+
+- ERI deomposition: cholesky, THC, pseudo-spectral
+% cholesky https://link.springer.com/article/10.1007/s00214-009-0608-y
+- The evil matrix inversion: considerations
+% see https://www.johndcook.com/blog/2010/01/19/dont-invert-that-matrix/ 
+% also https://epubs.siam.org/doi/abs/10.1137/1.9780898718027.ch14
+- mulliken, boughton pulay
+
+\end{document}
