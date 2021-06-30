@@ -67,11 +67,13 @@
 \contentsline {subsection}{\numberline {3.2.5}FNO Coupled Cluster ??}{41}{}%
 \contentsline {chapter}{\numberline {4}Local Correlation: Excited State}{42}{}%
 \contentsline {section}{\numberline {4.1}Excited State Methods in the Atomic Orbital Basis}{42}{}%
-\contentsline {section}{\numberline {4.2}Low-Scaling Correlated Excited State Methods}{42}{}%
-\contentsline {subsection}{\numberline {4.2.1}Local Orbital Representation}{43}{}%
-\contentsline {subsection}{\numberline {4.2.2}Local Domains}{43}{}%
-\contentsline {subsection}{\numberline {4.2.3}Natural Transition Orbitals}{44}{}%
-\contentsline {section}{\numberline {4.3}Critical Stance on AO vs LMO}{44}{}%
-\contentsline {subsection}{\numberline {4.3.1}CC2}{45}{}%
-\contentsline {subsection}{\numberline {4.3.2}ADC}{45}{}%
-\contentsline {part}{I\hspace {1em}Annex}{47}{}%
+\contentsline {section}{\numberline {4.2}Low Scaling ADC, CCLR and EOM-CC using Molcular Orbitals}{42}{}%
+\contentsline {subsection}{\numberline {4.2.1}Orbital Invariant ADC/CCLR/EOM-CCSD}{43}{}%
+\contentsline {subsection}{\numberline {4.2.2}State Specificity for Local Molecular Orbitals}{44}{}%
+\contentsline {subsection}{\numberline {4.2.3}State Specificity for Natural Orbitals}{45}{}%
+\contentsline {subsection}{\numberline {4.2.4}State Specificity for Pair Natural Orbitals}{46}{}%
+\contentsline {subsection}{\numberline {4.2.5}State Specificity for Natural Transition Orbitals}{46}{}%
+\contentsline {section}{\numberline {4.3}Critical Stance on AO vs LMO}{46}{}%
+\contentsline {subsection}{\numberline {4.3.1}CC2}{48}{}%
+\contentsline {subsection}{\numberline {4.3.2}ADC}{48}{}%
+\contentsline {part}{I\hspace {1em}Annex}{50}{}%

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  25 JUN 2021 16:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  30 JUN 2021 13:13
 entering extended mode
 **./MAIN.tex
 (MAIN.tex
@@ -1222,15 +1222,21 @@ Overfull \hbox (6.2565pt too wide) in paragraph at lines 3--4
  low to linear computational
  []
 
+
+Overfull \hbox (0.34009pt too wide) in paragraph at lines 16--17
+\OT1/cmr/m/n/12 Similarly to ground state MP and CC methods, the working equati
+ons can be reformulated
+ []
+
 [42
 
 
 
 
 ]
-Overfull \hbox (28.38544pt too wide) in paragraph at lines 51--53
-\OT1/cmr/m/n/12 Orbitals whose weigths were included in that summation are then
- grouped into occupied/virtual
+Overfull \hbox (7.67549pt too wide) in paragraph at lines 25--26
+\OT1/cmr/m/n/12 similar to the Fock matrix. Fortunately, the Laplace transform 
+can be applied to circumvent
  []
 
 
@@ -1242,33 +1248,62 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [43]
-Overfull \hbox (4.77272pt too wide) in paragraph at lines 64--65
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[44]
+Overfull \hbox (1.48581pt too wide) in paragraph at lines 78--79
+\OT1/cmr/m/n/12 NO methods achieve performance by dropping virtual natural orbi
+tals with low occupation
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[45]
+<Pics/mester_adc.png, id=328, 361.35pt x 136.5903pt>
+File: Pics/mester_adc.png Graphic file (type png)
+<use Pics/mester_adc.png>
+Package pdftex.def Info: Pics/mester_adc.png  used on input line 110.
+(pdftex.def)             Requested size: 361.34912pt x 136.58995pt.
+
+Overfull \hbox (4.77272pt too wide) in paragraph at lines 129--130
 \OT1/cmr/m/n/12 and not on the system size. However, unlikeground state correla
 tion effects, some electronic
  []
 
-<Pics/NTOACID.pdf, id=322, 593.68547pt x 402.43018pt>
+<Pics/NTOACID.pdf, id=329, 593.68547pt x 402.43018pt>
 File: Pics/NTOACID.pdf Graphic file (type pdf)
 <use Pics/NTOACID.pdf>
-Package pdftex.def Info: Pics/NTOACID.pdf  used on input line 72.
+Package pdftex.def Info: Pics/NTOACID.pdf  used on input line 137.
 (pdftex.def)             Requested size: 356.21404pt x 241.45996pt.
-<Pics/CISDENSE.pdf, id=323, 462.52798pt x 346.89601pt>
+<Pics/CISDENSE.pdf, id=330, 462.52798pt x 346.89601pt>
 File: Pics/CISDENSE.pdf Graphic file (type pdf)
 <use Pics/CISDENSE.pdf>
-Package pdftex.def Info: Pics/CISDENSE.pdf  used on input line 81.
+Package pdftex.def Info: Pics/CISDENSE.pdf  used on input line 146.
 (pdftex.def)             Requested size: 277.51892pt x 208.1392pt.
 
-Overfull \hbox (141.62718pt too wide) in paragraph at lines 81--82
+Overfull \hbox (141.62718pt too wide) in paragraph at lines 146--147
  [][] 
  []
 
-<Pics/CIS.pdf, id=324, 462.52798pt x 346.89601pt>
+<Pics/CIS.pdf, id=331, 462.52798pt x 346.89601pt>
 File: Pics/CIS.pdf Graphic file (type pdf)
 <use Pics/CIS.pdf>
-Package pdftex.def Info: Pics/CIS.pdf  used on input line 87.
+Package pdftex.def Info: Pics/CIS.pdf  used on input line 152.
 (pdftex.def)             Requested size: 277.51892pt x 208.1392pt.
 
-Overfull \hbox (5.73543pt too wide) in paragraph at lines 87--88
+Overfull \hbox (5.73543pt too wide) in paragraph at lines 152--153
  [][] 
  []
 
@@ -1281,7 +1316,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[44 <./Pics/NTOACID.pdf>]
+[46 <./Pics/mester_adc.png>]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1290,11 +1325,24 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[45 <./Pics/CISDENSE.pdf> <./Pics/CIS.pdf
+[47 <./Pics/NTOACID.pdf> <./Pics/CISDENSE.pdf
+
+pdfTeX warning: pdflatex (file ./Pics/CISDENSE.pdf): PDF inclusion: multiple pd
+fs with page group included in a single page
+> <./Pics/CIS.pdf
 
 pdfTeX warning: pdflatex (file ./Pics/CIS.pdf): PDF inclusion: multiple pdfs wi
 th page group included in a single page
 >]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[48]
 Overfull \hbox (66.38165pt too wide) in paragraph at lines 49--50
 []\OT1/cmr/m/n/12 OTHER: $\OT1/cmtt/m/n/12 https : / / www . kth . se / blogs /
  pdc / 2018 / 11 / scalability-[]strong-[]and-[]weak-[]scaling/$ 
@@ -1308,10 +1356,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[46
+[49
 
 
-] [47
+] [50
 
 ]
 
@@ -1322,15 +1370,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[48] (MAIN.aux (BASICS.aux) (LOCAL0.aux) (LOCAL1.aux) (LOCAL2.aux)) ) 
+[51] (MAIN.aux (BASICS.aux) (LOCAL0.aux) (LOCAL1.aux) (LOCAL2.aux)) ) 
 Here is how much of TeX's memory you used:
- 16749 strings out of 481257
- 319991 string characters out of 2908375
- 610688 words of memory out of 3000000
- 33628 multiletter control sequences out of 15000+600000
+ 16755 strings out of 481257
+ 320119 string characters out of 2908375
+ 609689 words of memory out of 3000000
+ 33633 multiletter control sequences out of 15000+600000
  416778 words of font info for 76 fonts, out of 8000000 for 9000
  0 hyphenation exceptions out of 8191
- 94i,25n,94p,1144b,664s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 94i,25n,94p,1068b,664s stack positions out of 5000i,500n,10000p,200000b,80000s
 </home/sim
 ea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></home/sim
 ea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx12.pfb></home/sime
@@ -1354,9 +1402,9 @@ type1/public/amsfonts/cm/cmsy8.pfb></home/simea/.miktex/texmfs/install/fonts/ty
 pe1/public/amsfonts/cm/cmti12.pfb></home/simea/.miktex/texmfs/install/fonts/typ
 e1/public/amsfonts/cm/cmtt12.pfb></home/simea/.miktex/texmfs/install/fonts/type
 1/public/amsfonts/symbols/msbm10.pfb>
-Output written on MAIN.pdf (49 pages, 12158350 bytes).
+Output written on MAIN.pdf (52 pages, 12694763 bytes).
 PDF statistics:
- 445 PDF objects out of 1000 (max. 8388607)
+ 454 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 93 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 98 words of extra memory for PDF output out of 10000 (max. 10000000)
 
