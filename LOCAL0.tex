@@ -470,6 +470,97 @@ Another disadvantage of auxiliary basis sets is that the accuracy of the fitting
 % Aqu2007 https://aip.scitation.org/doi/10.1063/1.2777146
 % Aqu2009 https://aip.scitation.org/doi/10.1063/1.3116784
 
+\section{Multipole Expansion of the Electron Integrals}
+
+The slow $1/R$ between the product densities $\Omega_{\mu\nu}$ and $\Omega_{\lambda\sigma}$ in the coulomb integrals is a major obstacle for achieving linear scaling in cases where no other sparsity relationship can be stablished between indices beclonging to separate charge densities, e.g. in the evaluation of the coulomb matrix $\mathbf{J}$ versus the exchange matrix $\mathbf{K}$. Luckily, there are approximate methods for integral evaluation that can be computed with $\mathcal{O}(N)$ effort, known as \emph{multipole methods}.
+
+\subsection{Classical and Non-Classical Electron Integrals}
+
+First, one needs to introduce the concept of classical and non-classical interactions. Two electron integrals are said to be \emph{non-classical} if the two charge densities $\Omega_{\mu\nu}$ and $\Omega_{\sigma\lambda}$ overlap, and \emph{classical} if the charge densties are well separated. In the latter case, the electron integrals represent classical interactions between disjoint point charges [ref], and can be approximated using multipole methods, whereas the non-classical contributions must be evaluated using the more expensive standard integral codes such as McMurchie-Davidson or Obara-Saika. 
+
+Two gaussian distributions $\Omega_P$ and $\Omega_Q$ are considered \emph{well-separated} up to a target accuracy 10$^{-k}$, if their centre-to-centre distance $R_{PQ}$ is larger than the sum of their extents $ext_P$ and $ext_Q$:
+\begin{equation}
+R_{PQ} > ext_P + ext_Q
+\end{equation} 
+\noindent with the extent of a gaussian product $P$ defined as 
+\begin{equation}
+r_P = \frac{1}{\sqrt{p}} erfc^{-1}(10^{-k})
+\end{equation}
+\noindent where $p$ is the reduced exponent as given in Equation 0. Another important thing to note is that the number of significant non-classical and classical integrals scale as $\mathcal{O}(N)$ and $\ccpx{2}$ respectively (ref), which has important consequences as will be shown further below. 
+
+\subsection{Multipole Expansion}
+
+For two well-separated charge distributions $P$ and $Q$, the inverse interelectronic distance can be exapanded in terms of Legendre polynomials $\mathcal{P}$ as
+\begin{equation}
+\frac{1}{r_{12}} = \sum_{l=0}^{\infty} \frac{\Delta r_{12}^l}{R_{PQ}^l} \mathcal{P}_{l} cos \theta
+\end{equation}
+\noindent with 
+\begin{equation}
+cos \theta = \frac{\Delta \mathbf{r}_{12}^l \mathcal{R}_{QP}}{\Delta r_{12} R_{QP}} 
+\end{equation}
+\begin{equation}
+\Delta \mathbf{r}_{12} = \mathbf{r}_{1P} \mathbf{r}_{2Q}
+\end{equation}
+\noindent where $\mathbf{r}_{1P}$ and $\mathbf{r}_{2Q}$ are the distance between electron 1,2 and the centres $P$,$Q$. Equation ... is also known as the partial-wave expansion of the coulomb operator (Arfk1970). Plugging Equation ... into Equation gives the bipolar multipole expansion of the two-electron integrals
+\begin{equation}
+g_{abcd} = \sum_{l=0}^{\infty} \sum_{m=-l}^l \sum_{j=0}^{\infty} \sum_{k=-j}^{j} M_{ab}^{lm}(P) T_{lm,jk} M_{cd}^{jk}
+\end{equation}
+\noindent where $\mathbf{M}_{ab}^{lm}(P)$ is the multipole moment of the charge distribution $P$ with total moment $l+k$, and $\mathbf{T}$ is the so-called interaction matrix. As such, the complicated 6-dimensional evaluation of $g$ can be simply substituted by two 3-dimensional integrations of the multipole moments $\mathbf{M}$ at a much lower cost. For the lowest order expansion, where $l$ = $m$ = 0, and $j$ = $k$ = 0, the multipole moments and the interaction matrix become 
+\begin{equation}
+M_{ab}^{00} = S_{ab}
+\end{equation}
+\begin{equation}
+M_{cd}^{00} = S_{cd}
+\end{equation}
+\begin{equation}
+T_{00,00} = 1/R_{PQ}
+\end{equation}
+\noindent The zero order term of the multipole expansion therefore takes the form
+\begin{equation}
+g_{abcd} \approx \frac{S_{ab}S_{cd}}{R_{PQ}}
+\end{equation}
+
+\subsection{Fast Multipole Method}
+
+While the number of individual non-zero integrals still scales with $\ccpx{2}$, the total contribution of all pair-wise interactions to the total energy (Hartree Fock, MP2 ...), can actually be evaluated in $\mathcal{O}(N)$.
+
+For the sake of simplicity, consider system with point-charge particles with charge $Z$, in a 2-dimensional plane. The total interaction energy is given by
+\begin{equation}
+U = \sum_{i>j} \frac{Z_i Z_j}{r_{ij}}
+\end{equation}
+\noindent Evaluating Equation ... as is takes a quadratic effort. In a first approximation, one can divide the plane into a grid of blocks of equal size, where each block contains a certain number of particles (Figure ...). Consider the interaction of a single particle $i$ in its source block $C$ with the other particles in the system. The interaction has two contributions: near-field (NF) contributions $U_{NF}$ from the other particles in the source block, and the blocks immediately surrounding it, and far-field (FF) contributions $U_{FF}$ from boxes that are well-separated from $C$. The NF interactions are evaluated directly by summing over all particles $j$ in the near-field
+\begin{equation}
+U^{NF}_i = \sum_{j \in NF} \frac{Z_i Z_j}{R_{ij}}
+\end{equation}
+\noindent while FF interactions are computed using multipole expansions $\mathbf{q}_{iC}$ and $\mathbf{q}_A$ of the FF boxes and the particle $i$
+\begin{equation}
+U^{FF}_i = \sum_{A \in FF} \mathbf{q}_{iC} \mathbf{T}_{CA} \mathbf{q}_A
+\end{equation}
+\noindent While evaluating the interaction energy at block-level rather than particle-level can considerably reduce the prefactor, the cost of this \emph{single-level multipole level} is still quadratic, since for each particle $i$, there is a system-dependent number of FF boxes. The granularity of the blocks is the same, independent of how far away the blocks are. To achieve linear scaling, the crucial point to realize is that, the further one gets from the source block $C$, the smaller the single-particle interaction $U_i$ becomes, and the less accurately it actually needs to be evaluated. This means that the farther one moves away from C, the larger the FF boxes can be. For this reason, \emph{multi-level multipole methods} introduce a hierarchy of boxes (Figure ...), where at level 0, the whole system is in a single box, and for each subsequent level, the field is divided into fourths. FF boxes that are closest to C are evaluated at the highest level/granularity $S$. The region of FF boxes sourrounding the closest FF boxes are then treated at a lower level $S-1$, and so on, until all interactions have been computed. Because the multipole expansion is evaluated for increasing box size, it can be shown that the total number of boxes is constant for a single particle $i$. This is the basic idea on which the \emph{Fast Multipole Method} (FMM) operates [refs], and it has quickly become one of the most important algorithms in scientific computing, as the problem of particle-particle interaction is not limited to the field of quantum chemistry. FMM can evaluate the total interaction energy $U$ with linear computational complexity.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.35]{Pics/FMM1}
+\caption{A nice caption}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.5]{Pics/FMM2}
+\caption{Another caption}
+\end{figure}
+
+% Gre1987 L. Greengard and V. I. Rokhlin, J. Comput. Phys. 73, 325 (1987)
+% Gre1994 L. Greengard, Science 265, 909, (1994)
+% Din1992 H. Q. Ding, etc.... look at 28, 29 p. 426 big book
+
+\subsection{Continuous Fast Multipole Method}
+
+The fast multipole method does not work for continuous charge distrbutions like Gaussian functions, as their extents can be quite different from one another, making the separation into NF and FF contributions more difficult. Nonetheless, FMM has been generalized to the continous case, known as the continuous fast multipole method (CFMM) (ref). The principle is the same as in multi-level multipole methods, only special care needs to be taken to only include classical contributions into the FMM treatment. For further details, the reader is referred to the original publication. 
+
+% Ark1970 https://www.sciencedirect.com/book/9780123846549/mathematical-methods-for-physicists
+
+
 \section{The ABCs of LMOs: Orbital Representations}
 
 A small intro

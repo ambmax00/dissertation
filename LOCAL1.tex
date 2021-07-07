@@ -2,10 +2,152 @@
 
 Some choice words here.......
 
-\section{Low-Scaling Hartree Fock Methods}
+\section{Low-Scaling Self-Consistent Field Methods}
 
-Talk about bottle necks
-DF, CFMM, LinK, CADF, PARI, ...
+Hartree Fock and density field theory, also grouped under the umbrella term of self-consistent field (SCF) methods, are the working horses in quantum chemsitry, and the underlying equations, the Roothan and Kohn-Sham equations, are well known and studied. Conventional formulations of HF and DFT, without inclusion of sparsity, scale with $\ccpx{3}$ to $\ccpx{4}$ which hampers extension to very large systems. There are three major bottle-necks: (1) computation of the coulomb matrix, (2) computation of the exchange matrix and (3) diagonalization of the Fock matrix. Over the last couple of decades, multiple different approaches have been proposed on how to lower the scaling of constructing the Fock matrix and circumvent matrix diagonalization. To this day, the field of low scaling SCF methods remains an active area of research in theoretical chemistry. The next sections will address the time-determining steps in detail.
+
+\subsection{The Coulomb Matrix}
+
+Consider again the expression for the coulomb matrix $\mathbf{J}$ 
+\begin{equation}
+J_{\mu\nu} = \cn{\mu\nu}{\lambda\sigma} P_{\sigma\lambda}
+\end{equation}
+\noindent Equation ... gives the following sparsity diagram:
+
+\begin{center}
+\begin{tikzpicture}
+
+\snode{MU}{0,0}{\mu};
+\snode{NU}{1,0}{\nu};
+\snode{SIG}{2,0}{\sigma};
+\snode{LAM}{3,0}{\lambda};
+
+\draw[<->] (MU) -- (NU) node [midway, above] () {S};
+\draw[<->] (SIG) -- (LAM) node [midway, above] () {P/S};
+
+\end{tikzpicture}
+\end{center}
+
+\noindent The counstruction of $\mathbf{J}$ has an inherent compuational complexity of $\ccpx{2}$, eventhough the number of non-zero elements scales linearly due to the overlap relationship between $\mu$ and $\nu$. Quadratic scaling algorithms are straight-forward to implement. The first method to construct $\mathbf{J}$ with $\mathcal{O}(N)$ effort was the continous fast multipole method (CFMM, cf Section .). For each element $\mu\nu$ the contributions $\sigma\lambda$ are split into near-field and far-field contributions. NF interactions are computed using standard integration techniques, while FF interactions are computed using multi-level multipole expansion. The linear scaling consists even if the density matrix is not sparse. Other tree-like algorithms have also been proposed (Str1996,Cha1996). In all cases, computing the NF interactions are by far the most time-consuming step.
+
+? J-engine ?
+
+To speed up the evaluation of the non-classical contributions, one may introduce the density fitting approximation (Eq. ...). The coulomb matrix is then evaluated in several steps via an intermediate $\mathbf{d}$ as 
+\begin{equation}
+J_{\mu\nu} = \cn{\mu\nu}{X} \tilde{d}_X
+\end{equation}
+\begin{equation}
+d_X = \cn{Y}{\mu\nu} P_{\nu\mu} ; \quad \tilde{d}_X = \cn{X}{Y}^{-1} d_X 
+\end{equation}
+\noindent The computational effort remains unchanged, with $\ccpx{2}$, but with a much lower prefactor, especially for larger, more diffuse basis sets (ref Weigend). The inversion of the metric matrix $\cn{X}{Y}$ scales cubically, and dominates the cost of the DF approximation for large molecules. 
+
+For long-range interactions, one could also consider using local density fitting, such as the atomic resolution of the idenstity or pair-atomic reslution of the identity. Unfortunately, LDF also only reduces the prefactor, rather than scaling. Furthermore, it is necessary to use the robust density fitting of the electron integrals (Eqaution ...) to recover quadratic scaling in the fitting error, due to the constraints imposed on the density fitting procedure. The coulomb matrix is then expressed as
+\begin{equation}
+J_{\mu\nu} = \cn{\mu\nu}{X} b_X + c^Y_{\mu\nu} \left[ g_Y - \tilde{g}_Y \right]
+\end{equation}
+\begin{equation}
+g_X = C^X_{\mu\nu} P_{\mu\nu}; \quad \tilde{g}_X = \cn{X}{Y} b_{Y}; \quad b_{X} = C_{\mu\nu}^{X} P_{\mu\nu} 
+\end{equation}
+\noindent The robust LDF-J approximation is evaluated at an effort similar to standard DF-J. The only advantages to LDF in this case pertain to the fitting procedure itself. It is no longer necessary to invert the 2c2e integrals $\cn{X}{Y}$, and the fitting coefficients $C_{\mu\nu}^{X}$ can be evaluated in linear scaling fashion. However, it has been demonstrated that using Dunlap's robust formula in combination with local metrics leads to "attractive electron" states where the SCF energy may converge to very high positive values (Mer2013,Hol2014). The reason is that the the two-electron integral tensor in the robust LDF approximation is no longer postive semidefinite, but \emph{indefinite}, which can lead to severe convergence problems. One way to circumvent this problem is to loosen the constraints on the density fitting procedure, or use a larger auxiliary basis set. In both cases, performance is compromised.  
+
+As shall be shown in the results section/chapter?, quasi-robust density offers a better alternative to robust LDF-J methods, with high accuracy, and without convergence problems.  
+
+MEMORY : ON-THE FLY
+
+POISSON? 
+% MANBY, F. R., and KNOWLES, P. J., 2001,Phys.  Rev.Lett.,87,163001.
+% MANBY, F. R., KNOWLES, P. J., and LLOYD, A. W., 2001,J. Chem. Phys.,115,9144.
+
+% Str1996 Strain MC, Scuseria GE, Frisch MJ. Achieving linear scaling for the electronic quantum coulomb problem. Science 1996, 271:51–53.
+% Cha1996 Challacombe M, Schwegler E, Alml ̈of J. Fast assem-bly of the Coulomb matrix: a quantum chemical treecode.J Chem Phys1996, 104:4685
+% Mer2013 Merlot, P.; Kjæ rgaard, T.; Helgaker, T.; Lindh, R.; Aquilante,F.; Reine, S.; Pedersen, T. B.J. Comput. Chem.2013,34, 1486−96.
+% Hollman, D. S.; Schaefer, H. F.; Valeev, E. F.J. Chem. Phys.2014,140, 064109.
+
+\subsection{The Exchange Matrix}
+
+\subsubsection{Exact Exchange}
+
+The expression for the exchange matrix is given by 
+\begin{equation}
+K_{\mu\nu} = \cn{\mu\sigma}{\nu\lambda} P_{\lambda\sigma}
+\end{equation}
+\noindent In the section where sparsity diagrams were introduced, it was demonstrotated that the indices of the exchange expression can be fully linked:
+\begin{center}
+\begin{tikzpicture}
+
+\snode{MU}{0,0}{\mu};
+\snode{NU}{3,0}{\nu};
+\snode{SIG}{1,0}{\sigma};
+\snode{LAM}{2,0}{\lambda};
+
+\draw[<->] (MU) -- (SIG) node [midway, above] () {S};
+\draw[<->] (SIG) -- (LAM) node [midway, above] () {P};
+\draw[<->] (LAM) -- (NU) node [midway, above] () {S};
+
+\end{tikzpicture}
+\end{center}
+\noindent The non-zero elements in $\mathbf{K}$ scale linearly and can also be evaluated with $\mathcal{O}(N)$. This property has been realized quite early on (Sch1996). However, a straight-forward implementation where the 4c2e integrals are directly contracted with the density matrix $\mathbf{P}$ using sparse matrix algebra does not give the desired results, when applying the standard $\ccpx{2}$ Schwarz-screening to $\cn{\mu\sigma}{\nu\lambda}$. To lower the scaling of electron integral evaluation, it is important to design a screening algorithm which imposes the P junction between $\sigma$ and $\lambda$ which in turn leads to only a linear increase in the number of bra-ket pairs. 
+
+The ONX method by Schwegler (Sch1997) was the first $\mathcal{O}(N)$ scheme for constructing the exchange matrix, but did not exploit permutational symmetry, which lead to a four fold increase in the prefactor. More competitive methods were proposed later, such as Linear Exchange (LinK) by Ochsenfled et al (Och1997), or symmetrized ONX (SONX) (Sch2000) that could also be applied to small systems without major overhead.
+
+For all approaches, an important step is the screening of the bra-ket pairs using a density-weighted integral estimate
+\begin{equation}
+|P_{\lambda\sigma}||\cn{\mu\sigma}{\mu\sigma}|^{1/2} |\cn{\nu\lambda}{\nu\lambda}|^{1/2} \leq \tau
+\end{equation}
+\noindent which scales linearly for increasing size of systems whith large HOMO-LUMO gaps. Furthermore, shell ordering is very important to avoid the $\ccpx{2}$ complexity of thresholding and enable early exit out of the shell loops during contruction of the exchange matrix. Similarly to the J kernel, the electron integrals need not to be held in memory, but can be recomputed on the fly.
+
+% Sch1996 https://aip.scitation.org/doi/10.1063/1.472135
+% Sch1997 https://aip.scitation.org/doi/10.1063/1.473833
+% Och1998 https://aip.scitation.org/doi/10.1063/1.476741
+% Sch2000 https://link.springer.com/article/10.1007%2Fs002140000127
+
+\subsubsection{Density Fitting}
+
+The downside of exact linear exchange algorithms is the steep $\ccpx{4}$ scaling with increasing basis set size which delays the onset of the low-scaling regime. For this reason, considerable effort has been invested in recent years to also exploit rank sparsity by density fitting. The DF expression for the exchange matrix in the AO basis reads
+\begin{equation}
+C^X_{\mu\nu} = \cn{X}{Y}^{-1} \cn{Y}{\mu\nu}
+\end{equation}
+\begin{equation}
+K_{\mu\nu} = C^X_{\nu\lambda} \cn{X}{\mu \sigma} P_{\sigma\lambda}
+\end{equation}
+\noindent In a straight-forward implementation using sparse matrix algebra, Equation ... and Equation .. are evaluated with $\ccpx{3}$  and $\ccpx{2}$ effort respectively. The non-zero elements of both the fitting coefficients $C$ and the 3c2e integrals increase quadratically. Their storage can quickly become problematic for large basis sets if both are held in-core. In principle, both tensors can be recomputed batchwise on-the-fly to reduce memory-footprint, but in contrast to the DF-J kernel where only the 3c2e integrals need to be generated at each iteration, recomputing the fitting coefficients each time introduces a prefactor that is too large for an out-of-core DF-K kernel to be of any practical use. 
+
+For an efficient, direct evaluation of the exchange matrix using density fitting, an MO based approach is much more favourable (Wei2002). The MO-DF-K kernel is evaluated as
+\begin{equation}
+B^{X}_{\mu i} = C_{\nu i} \cn{X}{\mu\nu}
+\end{equation} 
+\begin{equation}
+D^{X}_{\mu i} = \cn{X}{Y}^{-1/2} B^{X}_{\mu i}
+\end{equation}
+\begin{equation}
+K_{\mu\nu} = B^{X}_{\mu i} B^{X}_{\nu i}
+\end{equation}
+\noindent with cubic computational complexity. The matrix elements of the exchange matrix are evaluated batch-wise over occupied blocks $I$. By contracting the 3c2e electron integrals with the coeffcient matrix $C_{\mu i}$ to form the half-transformed integrals $B^X_{\mu i}$, storage can be reduced from $N_{aux} N_{AO}^2$ to $N_{aux} N_{AO} N_{occ} / N_I$. The 3c2e integrals need to be recomputed for each block $I$, but in practice the number of blocks can be held quite small. The DF-MO-K method is especially well suited for small to medium sized molecules with large diffuse basis sets for post-HF calculations.      
+
+% Wei2002 https://pubs.rsc.org/en/content/articlehtml/2002/cp/b204199p
+
+\subsubsection{Local Density Fitting}
+
+For standard density fitting, one looses the linear scaling character of the exchange matrix, which can however be recovered by using LDF. Again, the Dunlap's robust density fitting needs to applied to get accurate results. The robust DF-K kernel can take the form
+\begin{equation}
+E_{\mu\nu}^{X} = C^{X}_{\mu\lambda} P_{\lambda\nu}
+\end{equation}
+\begin{equation}
+L_{\mu\nu} = \cn{\mu\sigma}{X} \cn{X}{Y} E^Y_{\nu\sigma} - \frac{1}{2} C_{\mu\sigma}^X E_{\nu\sigma}^X 
+\end{equation}
+\begin{equation}
+K_{\mu\nu} = L_{\mu\nu} + L_{\nu\mu}
+\end{equation}
+\noindent Alternatively, an LDF-K scheme based on LMOs is also possible (Pol2004,Mej2014). All steps can be evaluated with $\mathcal{O}(N)$. Over the years, many different LDF-K kernels have been proposed that approximate $C_{\mu\nu}^X$ based on LMO domains (Pol2004,Mej2014), atomic resolution of the identity (ARI) (Sod2007),  pair-atomic resolution of the identity (PARI) (Mer2013) or concentric atomic density fitting (CADF) (Hol2017). Although the electron integrals are no longer positive semidefinite, LDF-K is not plagued by the same convergence problems as LDF-J, and it has been shown that LDF-K can be combined with standard DF-J to circumvent convergence problems (Man2015). 
+
+% Pol2004 https://www.tandfonline.com/doi/abs/10.1080/0026897042000274801
+% Sod2007 Hartree-Fock exchange computed using the atomic resolutionof the identity approximation
+% Mer2013 https://onlinelibrary.wiley.com/doi/10.1002/jcc.23284
+% Mej2014 https://aip.scitation.org/doi/full/10.1063/1.4896199
+% Man2015 https://pubs.acs.org/doi/abs/10.1021/ct5008586
+% Hol2017 Fast construction of the exchange operator in anatom-centred basis with concentric atomic densityfitting
+
+\subsubsection{Semi-Numerical Exchange}
 
 \subsection{Density Purification}
 
@@ -542,6 +684,12 @@ B^{X}_{\uli\ola} = \sum_{Y \in [i]_{fit} \cup [j]_{fit}} \cn{X}{Y}^{-1/2} \cn{Y}
 \subsection{Local Coupled Cluster}
 
 \subsection{FNO Coupled Cluster ??}
+
+\section{Critical Stance on AO vs LMO} 
+
+Distance criteria, or Mulliken/Löwdin pouplation
+AO only for closed expressions (not for CCSD++) 
+LOcal: ij cirteria, ij->ab criteria % https://www.sciencedirect.com/science/article/pii/S1574140006020044?via%3Dihub
 
 % Hylleraas functional: 
 % Hyl1930 https://link.springer.com/article/10.1007/BF01397032

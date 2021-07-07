@@ -4,9 +4,6 @@ The previous chapter demonstrated how it is possible to achieve low to linear co
 
 % Bau2017 CornFlex https://aip.scitation.org/doi/pdf/10.1063/1.4984820
 
-\section{Excited State Methods in the Atomic Orbital Basis}
-
-
 \section{Low Scaling ADC, CCLR and EOM-CC using Molcular Orbitals}
 
 Virtually all existing low-scaling implementations of ADC, CCLR and EOM-CCSD use some form of local or compact molecular orbital representation, to varying degrees of success. The major problem that these methods face is the non-locality of certain excited states such as charge transfer states (Figure ...), which can involve occupied and virtually orbitals which are localized on entirely different parts in the system. Clearly, truncating virtual orbitals spatially is no longer a valid option, and makes a straight-forward extension of LMO-methods difficult, becuase they cut out far-away contributions. Similarly, the excited state is often not properly described by the electronic ground state (pair-)densities and their associated (pair) natural representation. Over the years, various strategies have been proposed to adapt exisiting LMO, NO and PNO schemes to excited states as well. 
@@ -75,7 +72,7 @@ Nonetheless, the LMO method is again plagued by spurious distance dependent thre
 
 \subsection{State Specificity for Natural Orbitals}
 
-NO methods achieve performance by dropping virtual natural orbitals with low occupation numbers. The first implementations of EOM-CC and CCLR in the NO representation used natural orbitals obtained from the diagonalization of the ground state MP2 density matrix (Lan2010,Kum2017). The excited state character was not taken into account, but still a reasonable speed-up could be observed. However, it was shown (Kum2017) that properties like the polarizability are much more sensitive to the truncation of the virtual orbitals than the ground state correlation energy, with the error increasing linearly as a function of the number of dropped virtual natural orbitals. Better results could be obtained by simply truncating the virtual CMOs instead, which invalidates the use of NOs.
+NO methods achieve performance by dropping virtual natural orbitals with low occupation numbers. The first implementations of EOM-CC and CCLR in the NO representation used natural orbitals obtained from the diagonalization of the ground state MP2 density matrix (Lan2010,Kum2017). The excited state character was not taken into account, but still a reasonable speed-up could be observed. However, it was shown (Kum2017) that properties like the polarizability are much more sensitive to the truncation of the virtual orbitals than the ground state correlation energy, with the error increasing linearly as a function of the number of dropped virtual natural orbitals. While VNOs with low occupation numbers, i.e. diffuse character, can be safely  ignored for the ground state correlation energy, diffuse VNOs play a much more important role for response properties, and hence fewer VNOs can be omitted. Better results could be obtained by simply truncating the virtual CMOs instead, which invalidates the use of VNOs. 
 
 In their NO-CC2 and NO-ADC(2) implementations, Mester et al. (Mes2017, Mes2018, Mes2019) proposed to compute a set of occupied and virtual NOs by diagonalizing occupied and virtual state-averaged densities
 \begin{equation}
@@ -101,9 +98,9 @@ D_{ab}^{CIS(D)} = \sum_{i} c_i^a c_i^b + \sum_{ijc} \left( 2c_{ij}^{ca} c_{ij}^{
 \begin{equation}
 c_{ij}^{ab} = \frac{\sum_c \left[ \cn{ac}{bj} c_i^c + \cn{ac}{bi} c_j^c \right] - \sum_k \left[ \cn{kj}{ai} c_k^b + \cn{kj}{bj} c_k^a \right]}{D_{ij}^{ab} + \omega_{CIS}}
 \end{equation}
-\noindent The state-averaged density needs to be recomputed and diagonalized for each state because $\mathbf{D}^{CIS(D)}$ depends on the excitation energy $\omega$. While the CIS(D) density is much easier to compute than the ADC(2) or CC2-LR state density, it still scales with $\ccpx{5}$. To mitigate the compuational complexity, the density is constructed in a truncated orbital space: first, a set of occupied and virtual LMOs are chosen according to the CIS weighting criteria $w$ described in the previous section. The basis is augmented by spatially close orbitals, and then canonicalized to yield a highly compact orbital molecular space. 
+\noindent The state-averaged density needs to be recomputed and diagonalized for each state because $\mathbf{D}^{CIS(D)}$ depends on the excitation energy $\omega$. While the CIS(D) density is much easier to compute than the ADC(2) or CC2-LR state density, it still scales with $\ccpx{5}$. To mitigate the computational complexity, the density is constructed in a truncated orbital space: first, a set of occupied and virtual LMOs are chosen according to the CIS weighting criteria $w$ described in the previous section. The basis is augmented by spatially close orbitals, and then canonicalized to yield a highly compact orbital molecular space which lowers the cost of constructing the CIS(D) densities. 
 
-In combination with natural auxiliary functions, this hybrid NO-LMO scheme can reduce the timings for CC2 and ADC(2) to such a drastic extent that the CIS pre-iterations become the time-determining step (Figure ...), with an additional error of only 2-4 meV. 
+In combination with natural auxiliary functions, this hybrid NO-LMO scheme can reduce the timings for CC2 and ADC(2) to such a drastic extent that the CIS pre-iterations become the time-determining step (Figure ...), with an additional error of only 2-4 meV. The reduced scaling however comes at a high prefactor for computing multiple different excitation energies. 
 
 \begin{figure}
 \centering
@@ -120,24 +117,93 @@ In combination with natural auxiliary functions, this hybrid NO-LMO scheme can r
 
 \subsection{State Specificity for Pair Natural Orbitals}
 
-\subsection{State Specificity for Natural Transition Orbitals} 
+Pair natural orbital methods face the same problems as NOs, where PNOs with low occupation numbers are considerably more important for response properties than for ground state properties. In a similar vein, excited state PNOs can be generated by considering lower level excited state electron pair densities (Hel2011). PNO methods have been succuessfully extended to ADC(2), CC2-LR (Hel2013), ADC(2)-x (Hel2014) and CCSD-LR (ref) by using CIS(D) or CIS(D)-like densities
+\begin{equation}
+D_{ij}^{ab} = \sum_c \left( 2b_{ij}^{ab} - b_{ij}^{ba} \right) b_{ij}^{ab} + \left( 2b_{ij}^{ab} - b_{ij}^{ba} \right) b_{ij}^{ba}
+\end{equation}
+\noindent where $\mathbf{b}_{ij}$ are state-specific modified pair amplitudes which are not uniquely defined. Again, these methods come at the cost of a higher prefactor due to the relatively high cost of constructing PNOs. Nonetheless, it was shown that the computational complexity can be lowered to $\ccpx{3}$ for PNO-CCSD-LR. 
 
-Local CC2, PNO-ADC, Mester-ADC, Mester-CC2, NTO-CC2, CornFlex
+Efforts have also been made to develop PNO response methods which are more economical for computing larger excitation manifolds by removing the state-specificity. Instead of taking individual excited state densities, Peng et al. (Pen2018) proposed to generate a set of \emph{state-averaged} PNOs obtained by diagonalization of the average excited state density over an $N$-state manifold 
+\begin{equation}
+\mathbf{D}_{ij} = \frac{1}{N} \sum_k^N \mathbf{D}_{ij}^{(k)}
+\end{equation}
+\noindent A production-qaulity implementation has not yet been shown which uses this approach.
 
-Exicted state domains (Kat2006) using $|w|^2$ criteria. Why different? -> virtual ortbitals might not be lying in the vicinity of the occupied orbitals (charge transfer states). Difficult 
+In their perturbed pair-natural orbital (PNO++) approach for CCLR, Cunha and Crawford (Cun2021) incorporate the external perturbation into the electron pair density
+\begin{equation}
+D_{ij}^{ab} = \sum_c \left( 2x_{ij}^{ab} - x_{ij}^{ba} \right) x_{ij}^{ab} + \left( 2x_{ij}^{ab} - x_{ij}^{ba} \right) x_{ij}^{ba}
+\end{equation}
+\noindent where $\mathbf{x}$ are perturbed amplitudes given by
+\begin{equation}
+x_{ij}^{ab} = \frac{\overline{B}}{\ovl{H}_{aa} + \ovl{H}_{bb} - \ovl{H}_{ii} - \ovl{H}_{jj} + \omega}
+\end{equation}
+\noindent with an external perturbation $\ovl{B}$ and the similarity transformed Hamiltonian $\ovl{H}$. 
 
-" For local electronic transitions,it should therefore be possible to devise a procedure where thecomputational cost depends only on the character of the elec-tronic transition and not on the system size. However, unlikeground state correlation effects, some electronic transitions arenot of local nature, and it is therefore not straightforward touse  the  same  locality  approximations  for  the  calculation  oftransition properties as for the ground state energy."
+Finally, there are also the \emph{back-transformed} PNOs, or bt-PNOs, where the ground state PNO-quantities like the amplitudes are transformed back to the canonical basis and used in the canonical working equations (Dut2016).
 
-Most expensive part: doubles-doubles. Introduce pair locality
+In the end, most local excited state methods using natural orbitals differ by how they redefine the amplitudes $\mathbf{t}$ for the individual excited states or the whole perturbed molecular system. It is still very much an active field of research.
 
-Problem: how to determine excited state domains. If only from CIS, bad becuase (see Kats) Different Solutions
+% PNO-CIS(D) Hel2011 https://aip.scitation.org/doi/10.1063/1.3664902 [Uses CIS(D) pair density]
+% PNO-CC2 Hel2013 https://aip.scitation.org/doi/10.1063/1.4819071 [Uses Excited state OSVs to construct PNOs] 
+% PNO-ADC(2)-x: Hel2014 https://www.sciencedirect.com/science/article/pii/S2210271X14001194?via%3Dihub [Also use excited state specific desnity to get OSVs using modified CIS(D) like desnities CC2/ADC(2)-x densities Dii_ab
+% PNO-CCSD https://aip.scitation.org/doi/full/10.1063/1.5018514 [Also CIS(D) like density] 
+
+% PNOs have similar Problem than NOs: Har2016  https://pubs.acs.org/doi/10.1021/acs.jctc.5b00898
+% Because diffuseness. Solution: Cra2019 PNO++ https://onlinelibrary.wiley.com/doi/10.1002/wcms.1406
+% PNO++-CCSD-LR Cun2021 https://pubs.acs.org/doi/pdf/10.1021/acs.jctc.0c01086
+
+% State-averaged Pen2018 https://arxiv.org/pdf/1802.06738.pdf
+% bt-PNOs Dut2016 https://aip.scitation.org/doi/pdf/10.1063/1.4958734
+ 
+\subsection{State Specificity for Natural Transition Orbitals}
+
+The last method to obtain a compact representation of excited states is via natural transition orbitals. NTOs are the equivalent of NOs for excited states, and represent a compact representations of their dominant contribution (Figure ...). Baudin and Kristensen have developped two different CC2LR schemes based on NTOs called LoFEX (local framework for calculating excitation energies) (Bau2016) and CornFLEX (correlated natural transition orbital framework for calculating excitation energies) (Bau2017). 
+
+Again, one needs information avout the excited state to effciently compute its properties. The LoFEX method starts with a time-dependent Hartree Fock caculation and generates a set of NTOs by decomposition of the TDHF transition vectors $\mathbf{r}$ by diagonalization
+\begin{equation}
+\mathbf{r} \mathbf{r}^{\dagger} \mathbf{U} = \lambda_o \mathbf{U}
+\end{equation}
+\begin{equation}
+\mathbf{r}^{\dagger} \mathbf{r} \mathbf{V} = \lambda_v \mathbf{V}
+\end{equation}
+\noindent Equations ... are alternative ways to compute the occupied and virtual NTO transformation matrices $\mathbf{U}$ and $\mathbf{V}$, rather than by singular value decomposition. A set of dominant NTO pairs is then chosen for which their occupation numbers are above a given treshold $\tau_{LoFEX}$. The non-dominant NTOs are not discarded, but rather localized. The idea is to construct a sourrounding excitation orbital space (XOS) containing LMOs that are important for correlation effects of the NTOs. A first guess to the XOS is chosen based on distance criteria and Löwdin charges. The CC2LR are then solved in that basis, and new NTOs are computed from the CC2 transition vector and added to the XOS. This procedure is repeated until the excitation energy $\omega$ for that state has converged. While the guess XOS is first formed using distance cirtieria, the subsequent optimization procudure makes the method much more robust and black-box. Even for relatively small molecules, LoFEX can obtain considerable speed-ups. The main disadvantage is that LoFEX does not give any leverage for very delocalized excitations. 
+
+The CornFLEX method constructs a set of CIS(D)-like NTOs (CIS(D')-NTOs) which is obtained from diagonalizing a CIS(D)-like density matrix in the CIS-NTO basis. As opposed to CIS-NTOs, the CIS(D') NTOs also include correlation effects and are a more robust representation that the simple ad-hoc extension of CIS-NTOs using LMOs. Speed-ups can be observed in CornFLEX even for delocalized excitations.
+
+% Bau2016 https://aip.scitation.org/doi/pdf/10.1063/1.4953360
+% Bau2017 https://aip.scitation.org/doi/pdf/10.1063/1.4984820
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.6]{Pics/NTOACID}
-\caption{An interesting caption}
+\caption{Dominant natural transition orbital pair for the lowest excitation of the carboxylic acid C$_{79}$H$_{159}$COOH ($\pi \rightarrow \pi^*$ transition). The span of the NTOs is very small compared to the rest of the molecule, and the compactness can be used to drastically speed up excited state caculations. }
 \end{figure}
 
+\section{Atomic Orbital Configuration Interaction Singles}
+
+-> AO TDSCF (Kussmann)
+
+The methods presented in the previous section all work similarly. They first start by approximating the targeted excited states with a lower level of theory using CIS or CIS(D). They then solve higher order equations in the basis obtained from that approximation and may also dynamically augment the correlation domain while optimizing the excitation energies. The methods work on the principle of orbital \emph{compactness} rather than sparsity
+
+At the moment of writing, CIS is the only excited state method which is traditionally evaluated in the AO basis. While CIS does not give qualitatively good results, it is still a very important stepping stone for higher order methods, as was demonstrated in the previous section. Omitting the zero-order contributions, the CIS working equations are given by
+\begin{equation}
+u_{ia} = \left[ 2 \cn{ia}{jb} - \cn{ib}{ja} \right] u_{jb}
+\end{equation}
+\noindent Factoring out the MO coefficient matrices:
+\begin{equation}
+\begin{split}
+u_{ia} &= C_{\mu i} C_{\sigma a} \left[ 2 \cn{\mu\sigma}{\nu\lambda} - \cn{\mu\lambda}{\nu\sigma} \right] C_{\nu j} C_{\lambda b} u_{jb} \\ 
+&= C_{\mu i} C_{\sigma a} \left[ 2 \cn{\mu\sigma}{\nu\lambda} - \cn{\mu\lambda}{\nu\sigma} \right] P_{\nu\lambda} 
+\end{split}
+\end{equation} 
+\noindent where $\mathbf{P}$ is the non-symmetric transition density in the AO basis. The CIS working equations can be reduced to the construction of a "pseudo"-Fock matrix which has a coulomb and an exchange part. The Fock matrix is then transformed to the MO basis:
+\begin{equation}
+F_{\mu\nu} = J_{\mu\nu} + K_{\mu\nu}  
+\end{equation}
+\begin{equation}
+u_{ia} = C_{\mu i} F_{\mu\nu} C_{\mu a}  
+\end{equation}
+\noindent For localized excitations, the AO transition density is sparse (Figure ...), and similar approximation can be used as in Hartree Fock, e.g. LinK, CFMM, or LDF. CIS can therefore be evaluated with $\mathcal{O}(N)$ computational effort. 
 
 \begin{figure}
 \centering
@@ -152,11 +218,8 @@ $\Longrightarrow$
 \includegraphics[scale=0.6]{Pics/CIS}
 \caption{}
 \end{subfigure}
-\caption{An inte capwd m}
+\caption{Logarithm of the absolute values of the matrix elements in the transition densities in the MO (left) and AO basis (right) for the lowest excited state for the carboxylic acid C$_{79}$H$_{159}$COOH. The excitation domain is entirely localized on the carboxylic group. Using sparse matrix algebra, significant speed-ups can be obtained for CIS in the AO basis}
 \end{figure}
-
-
-
 
 % PAO CCLR not good! Look at Gunnar review article perhaps
 
@@ -174,14 +237,3 @@ $\Longrightarrow$
 % Hel2013 PNO-CC2 https://aip.scitation.org/doi/10.1063/1.4819071
 
 % Hel2014 PNO-ADC2 https://www.sciencedirect.com/science/article/pii/S2210271X14001194?via%3Dihub
-
-\section{Critical Stance on AO vs LMO} 
-
-Distance criteria, or Mulliken/Löwdin pouplation
-AO only for closed expressions (not for CCSD++) 
-LOcal: ij cirteria, ij->ab criteria % https://www.sciencedirect.com/science/article/pii/S1574140006020044?via%3Dihub
-
-\subsection{CC2}
-
-
-\subsection{ADC}
