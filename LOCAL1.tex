@@ -129,28 +129,119 @@ K_{\mu\nu} = B^{X}_{\mu i} B^{X}_{\nu i}
 \subsubsection{Local Density Fitting}
 
 For standard density fitting, one looses the linear scaling character of the exchange matrix, which can however be recovered by using LDF. Again, the Dunlap's robust density fitting needs to applied to get accurate results. The robust DF-K kernel can take the form
-\begin{equation}
-E_{\mu\nu}^{X} = C^{X}_{\mu\lambda} P_{\lambda\nu}
-\end{equation}
-\begin{equation}
-L_{\mu\nu} = \cn{\mu\sigma}{X} \cn{X}{Y} E^Y_{\nu\sigma} - \frac{1}{2} C_{\mu\sigma}^X E_{\nu\sigma}^X 
-\end{equation}
-\begin{equation}
-K_{\mu\nu} = L_{\mu\nu} + L_{\nu\mu}
-\end{equation}
-\noindent Alternatively, an LDF-K scheme based on LMOs is also possible (Pol2004,Mej2014). All steps can be evaluated with $\mathcal{O}(N)$. Over the years, many different LDF-K kernels have been proposed that approximate $C_{\mu\nu}^X$ based on LMO domains (Pol2004,Mej2014), atomic resolution of the identity (ARI) (Sod2007),  pair-atomic resolution of the identity (PARI) (Mer2013) or concentric atomic density fitting (CADF) (Hol2017). Although the electron integrals are no longer positive semidefinite, LDF-K is not plagued by the same convergence problems as LDF-J, and it has been shown that LDF-K can be combined with standard DF-J to circumvent convergence problems (Man2015). 
+\begin{eqnarray}
+E_{\mu\nu}^{X} =& C^{X}_{\mu\sigma} P_{\lambda\nu} \\
+L_{\mu\nu} =& E_{\mu\sigma}^X \cn{X}{\nu\sigma} - \frac{1}{2} E_{\mu\sigma}^X \cn{X}{Y} C^{Y}_{\nu\sigma} \\
+K_{\mu\nu} =& L_{\mu\nu} + L_{\nu\mu}
+\end{eqnarray}
+\noindent All steps can be evaluated in $\mathcal{O}(N)$ time, if one presumes linear scaling of the fitting coeffcients:
+\begin{center}
+\begin{tikzpicture}
+\snode{E}{0,0}{E:};
+\snode{X}{1,0}{X};
+\snode{MU}{2,0}{\mu};
+\snode{SIGMA}{3,0}{\sigma};
+\snode{NU}{4,0}{\nu};
+\draw[<->] (X) -- (MU) node [midway, above] () {LDF};
+\draw[<->] (MU) -- (SIGMA) node [midway, above] () {S};
+\draw[<->] (SIGMA) -- (NU) node [midway, above] () {P};
+\end{tikzpicture}
+\end{center}
+\begin{center}
+\begin{tikzpicture}
+\snode{L}{0,0}{L:};
+\snode{X}{1,0}{X};
+\snode{MU}{2,0}{\mu};
+\snode{SIGMA}{3,0}{\sigma};
+\snode{NU}{4,0}{\nu};
+\snode{PLUS}{5,0}{+};
+\snode{X1}{6,0}{X};
+\snode{MU1}{7,0}{\mu};
+\snode{SIGMA1}{8,0}{\sigma};
+\snode{NU1}{9,0}{\nu};
+\snode{Y}{10,0}{Y};
+\draw[<->] (X) -- (MU) node [midway, above] () {LDF};
+\draw[<->] (MU) -- (SIGMA) node [midway, above] () {P};
+\draw[<->] (SIGMA) -- (NU) node [midway, above] () {S};
+\draw[<->] (X1) -- (MU1) node [midway, above] () {LDF};
+\draw[<->] (MU1) -- (SIGMA1) node [midway, above] () {P};
+\draw[<->] (SIGMA1) -- (NU1) node [midway, above] () {S};
+\draw[<->] (NU1) -- (Y) node [midway, above] () {LDF};
+\end{tikzpicture}
+\end{center}
+\begin{center}
+\begin{tikzpicture}
+
+\snode{K}{0,0}{K:};
+
+\snode{MU}{1,0}{\mu};
+\snode{NU}{2,0}{\nu};
+\snode{PLUS}{3,0}{+};
+\snode{MU1}{5,0}{\nu};
+\snode{NU1}{4,0}{\mu};
+
+\draw[<->] (MU) -- (NU) node [midway, above] () {};
+\draw[<->] (NU1) -- (MU1) node [midway, above] () {};
+\end{tikzpicture}
+\end{center}
+
+\noindent Alternatively, an LDF-K scheme based on LMOs is also possible (Pol2004,Mej2014). Over the years, many different LDF-K kernels have been proposed that approximate $C_{\mu\nu}^X$ based on LMO domains (Pol2004,Mej2014), the atomic resolution of the identity (ARI) (Sod2007), the pair-atomic resolution of the identity (PARI) (Mer2013) or the concentric atomic density fitting (CADF) (Hol2017). Although the electron integrals are no longer positive semidefinite, LDF-K is not plagued by the same convergence problems as LDF-J, and it has been shown that LDF-K can be combined with standard DF-J to circumvent convergence problems (Man2015). 
 
 % Pol2004 https://www.tandfonline.com/doi/abs/10.1080/0026897042000274801
 % Sod2007 Hartree-Fock exchange computed using the atomic resolutionof the identity approximation
 % Mer2013 https://onlinelibrary.wiley.com/doi/10.1002/jcc.23284
 % Mej2014 https://aip.scitation.org/doi/full/10.1063/1.4896199
 % Man2015 https://pubs.acs.org/doi/abs/10.1021/ct5008586
-% Hol2017 Fast construction of the exchange operator in anatom-centred basis with concentric atomic densityfitting
+% Hol2017 Fast construction of the exchange operator in an atom-centred basis with concentric atomic densityfitting
 
-\subsubsection{Semi-Numerical Exchange}
+\subsubsection{Other}
 
-\subsection{Density Purification}
+% COS Nee2009 https://www.sciencedirect.com/science/article/pii/S0301010408005089
+% COS2 Isz2011 https://aip.scitation.org/doi/full/10.1063/1.3646921
+% ADFMM Gui2010 https://pubs.acs.org/doi/10.1021/ct1002225
 
+\subsection{The SCF Procdure}
+
+In the standard SCF procudure, the construction of the Fock matrix is followed by a cubic scaling diagonalization to obtain the MO coefficient matrix and the MO energies. As was discussed in detail in previous sections, the eigenvectors of the Fock matrix, i.e. the canonical MOs, are delocalized, and therefore using a sparse eigenvalue solver is unfortunately not an option. The solution is to entirely avoid any MO quantities and replace the Fock diagonalization step. For a functional, fully AO-based method, the same constraints on the density matrix need to be fulfilled as in the standard SCF procedure:
+\begin{equation}
+\mathbf{P} = \mathbf{P}^{\dagger} \qquad \textrm{Hermiticity}
+\end{equation}
+\begin{equation}
+Tr(\mathbf{PS}) = N_{ele} \qquad \textrm{N-representability}
+\end{equation}
+\begin{equation}
+\mathbf{PSP} = \mathbf{P} \qquad \textrm{Idempotency}
+\end{equation}
+\begin{equation}
+\mathbf{FPS} - \mathbf{SPF} = \mathbf{0} \qquad \textrm{Commutator}
+\end{equation}
+\noindent There are two main approaches for replacing Fock matrix diagonalization: Purification (or spectral projection) and density matrix minimzation (Jor2005).
+
+In spectral projection methods, an inital guess for the density matrix $\mathbf{P}$ of its Fock matrix $\mathbf{F}$ is obtained as
+\begin{equation}
+\mathbf{P} = \Theta \left( \mu \mathbf{I} - \mathbf{F} \right)
+\end{equation}
+\noindent where $\mu$ is the chemical potential, and $\Theta$ is the Heavyside step-function. The guess density then has orbital occupation numbers spread between 0 and 1, and has the same eigenvectors as the Fock matrix. The idempotent density is then determined by \emph{density purification}. Density purification is a iterative procudre where a purification transformation is repeatedly applied to the density matrix which converges the orbital occupation numbers either towards 0 or 1. One of the earliest purification transformation by McWeeny (Wee1959) takes the form
+\begin{equation}
+\mathbf{P}_{n+1} = 3\mathbf{P}_n\mathbf{SP}_n - 2\mathbf{P}_n\mathbf{SP}_n\mathbf{SP}_n
+\end{equation}
+\noindent Equation ... is also known as the grand-canonical purification scheme. Other transformations have been proposed over the years, such as canonical purification (Pal1998) or trace-resetting purification (Nik2003), which do not need the chemical potential $\mu$. The only operations in purification schemes are matrix multiplications, which can be made linearly scaling using sparse matrix algebra. Compared to Fock diagonalization, density purification has a larger overhead, but can be easily integrated without needing large modifications of existing SCF code.
+
+The second method, density matrix minimization, starts from an existing idempotent density matrix guess from a previous SCF cycle and minimizes the energy functional (Li1993,Daw1993,Nun1994)
+\begin{equation}
+E = Tr\left[ \left(3\mathbf{PSP} - 2\mathbf{PSPSP}\right)\left(\mathbf{K} - \mu \mathbf{I}\right) \right]
+\end{equation}
+\noindent where $\mathbf{K}$ is the effective one-electron Hamiltonian matrix. The energy minimum is found either by gradient descent or the curvy-step approach (Hel2000,Sha2003).
+
+% Jor2005
+% McWeeny R. Hartree–Fock theory with nonorthogo-nal basis functions.Phys Rev1959, 114:1528–1529
+% Pal1998 A. H. R. Palser and D. E. Manolopoulos, Phys. Rev. B58, 12704~1998!.
+% Nik2003 https://aip.scitation.org/doi/pdf/10.1063/1.1559913
+% Li1993 https://journals.aps.org/prb/abstract/10.1103/PhysRevB.47.10891
+% Daw1993 https://journals.aps.org/prb/abstract/10.1103/PhysRevB.47.10895
+% Nun1994 https://journals.aps.org/prb/abstract/10.1103/PhysRevB.50.17611
+% Hel2000 https://journals.aps.org/prb/abstract/10.1103/PhysRevB.50.17611
+% Sha2003 https://aip.scitation.org/doi/10.1063/1.1558476
 
 \section{Local Ground State Correlation Methods: MP2}
 

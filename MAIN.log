@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  7 JUL 2021 13:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  13 JUL 2021 11:27
 entering extended mode
 **./MAIN.tex
 (MAIN.tex
@@ -107,6 +107,28 @@ File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
 \Gin@req@height=\dimen148
 \Gin@req@width=\dimen149
 )
+(/home/simea/.miktex/texmfs/install/tex/latex/datetime2/datetime2.sty
+Package: datetime2 2021/03/21 v1.5.7 (NLCT) date and time formats
+
+(/home/simea/.miktex/texmfs/install/tex/latex/tracklang/tracklang.sty
+Package: tracklang 2020/06/30 v1.5 (NLCT) Track Languages
+
+(/home/simea/.miktex/texmfs/install/tex/generic/tracklang/tracklang.tex))
+(/home/simea/.miktex/texmfs/install/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count266
+)
+(/home/simea/.miktex/texmfs/install/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2020/11/20 v2.8 package option processing (HA)
+
+(/home/simea/.miktex/texmfs/install/tex/generic/xkeyval/xkeyval.tex
+(/home/simea/.miktex/texmfs/install/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks21
+\XKV@tempa@toks=\toks22
+)
+\XKV@depth=\count267
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+)))
 (/home/simea/.miktex/texmfs/install/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
@@ -130,14 +152,14 @@ Package: array 2020/10/01 v2.5c Tabular extension package (FMi)
 \col@sep=\dimen150
 \ar@mcellbox=\box49
 \extrarowheight=\dimen151
-\NC@list=\toks21
+\NC@list=\toks23
 \extratabsurround=\skip52
 \backup@length=\skip53
 \ar@cellbox=\box50
 )
 \rotheadsize=\dimen152
-\c@nlinenum=\count266
-\TeXr@lab=\toks22
+\c@nlinenum=\count268
+\TeXr@lab=\toks24
 )
 (/home/simea/.miktex/texmfs/install/tex/latex/placeins/placeins.sty
 Package: placeins 2005/04/18  v 2.2
@@ -160,7 +182,7 @@ rs
 (/home/simea/.miktex/texmfs/install/tex/latex/pgf/utilities/pgfrcs.sty
 (/home/simea/.miktex/texmfs/install/tex/generic/pgf/utilities/pgfutil-common.te
 x
-\pgfutil@everybye=\toks23
+\pgfutil@everybye=\toks25
 \pgfutil@tempdima=\dimen153
 \pgfutil@tempdimb=\dimen154
 
@@ -179,12 +201,12 @@ Package: pgf 2020/12/27 v3.1.8b (3.1.8b)
 (/home/simea/.miktex/texmfs/install/tex/generic/pgf/systemlayer/pgfsys.code.tex
 Package: pgfsys 2020/12/27 v3.1.8b (3.1.8b)
 (/home/simea/.miktex/texmfs/install/tex/generic/pgf/utilities/pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks24
-\pgfkeys@temptoks=\toks25
+\pgfkeys@pathtoks=\toks26
+\pgfkeys@temptoks=\toks27
 
 (/home/simea/.miktex/texmfs/install/tex/generic/pgf/utilities/pgfkeysfiltered.c
 ode.tex
-\pgfkeys@tmptoks=\toks26
+\pgfkeys@tmptoks=\toks28
 ))
 \pgf@x=\dimen155
 \pgf@y=\dimen156
@@ -198,14 +220,14 @@ ode.tex
 \pgf@yd=\dimen164
 \w@pgf@writea=\write3
 \r@pgf@reada=\read2
-\c@pgf@counta=\count267
-\c@pgf@countb=\count268
-\c@pgf@countc=\count269
-\c@pgf@countd=\count270
-\t@pgf@toka=\toks27
-\t@pgf@tokb=\toks28
-\t@pgf@tokc=\toks29
-\pgf@sys@id@count=\count271
+\c@pgf@counta=\count269
+\c@pgf@countb=\count270
+\c@pgf@countc=\count271
+\c@pgf@countd=\count272
+\t@pgf@toka=\toks29
+\t@pgf@tokb=\toks30
+\t@pgf@tokc=\toks31
+\pgf@sys@id@count=\count273
 
 (/home/simea/.miktex/texmfs/install/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2020/12/27 v3.1.8b (3.1.8b)
@@ -223,8 +245,8 @@ File: pgfsys-common-pdf.def 2020/12/27 v3.1.8b (3.1.8b)
 (/home/simea/.miktex/texmfs/install/tex/generic/pgf/systemlayer/pgfsyssoftpath.
 code.tex
 File: pgfsyssoftpath.code.tex 2020/12/27 v3.1.8b (3.1.8b)
-\pgfsyssoftpath@smallbuffer@items=\count272
-\pgfsyssoftpath@bigbuffer@items=\count273
+\pgfsyssoftpath@smallbuffer@items=\count274
+\pgfsyssoftpath@bigbuffer@items=\count275
 )
 (/home/simea/.miktex/texmfs/install/tex/generic/pgf/systemlayer/pgfsysprotocol.
 code.tex
@@ -253,11 +275,11 @@ Package: pgfcore 2020/12/27 v3.1.8b (3.1.8b)
 (/home/simea/.miktex/texmfs/install/tex/generic/pgf/math/pgfmathutil.code.tex)
 (/home/simea/.miktex/texmfs/install/tex/generic/pgf/math/pgfmathparser.code.tex
 \pgfmath@dimen=\dimen165
-\pgfmath@count=\count274
+\pgfmath@count=\count276
 \pgfmath@box=\box52
-\pgfmath@toks=\toks30
-\pgfmath@stack@operand=\toks31
-\pgfmath@stack@operation=\toks32
+\pgfmath@toks=\toks32
+\pgfmath@stack@operand=\toks33
+\pgfmath@stack@operation=\toks34
 )
 (/home/simea/.miktex/texmfs/install/tex/generic/pgf/math/pgfmathfunctions.code.
 tex
@@ -278,7 +300,7 @@ code.tex)
 (/home/simea/.miktex/texmfs/install/tex/generic/pgf/math/pgfmathfunctions.integ
 erarithmetics.code.tex)))
 (/home/simea/.miktex/texmfs/install/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count275
+\c@pgfmathroundto@lastzeros=\count277
 )) (/home/simea/.miktex/texmfs/install/tex/generic/pgf/math/pgfint.code.tex)
 (/home/simea/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcorepoints.co
 de.tex
@@ -316,7 +338,7 @@ File: pgfcorescopes.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgfpic=\box53
 \pgf@hbox=\box54
 \pgf@layerbox@main=\box55
-\pgf@picture@serial@count=\count276
+\pgf@picture@serial@count=\count278
 )
 (/home/simea/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcoregraphicst
 ate.code.tex
@@ -351,8 +373,8 @@ File: pgfcorearrows.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 e.tex
 File: pgfcoreshade.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgf@max=\dimen189
-\pgf@sys@shading@range@num=\count277
-\pgf@shadingcount=\count278
+\pgf@sys@shading@range@num=\count279
+\pgf@shadingcount=\count280
 )
 (/home/simea/.miktex/texmfs/install/tex/generic/pgf/basiclayer/pgfcoreimage.cod
 e.tex
@@ -409,8 +431,8 @@ Package: pgffor 2020/12/27 v3.1.8b (3.1.8b)
 (/home/simea/.miktex/texmfs/install/tex/generic/pgf/math/pgfmath.code.tex)
 \pgffor@iter=\dimen192
 \pgffor@skip=\dimen193
-\pgffor@stack=\toks33
-\pgffor@toks=\toks34
+\pgffor@stack=\toks35
+\pgffor@toks=\toks36
 ))
 (/home/simea/.miktex/texmfs/install/tex/generic/pgf/frontendlayer/tikz/tikz.cod
 e.tex
@@ -419,7 +441,7 @@ Package: tikz 2020/12/27 v3.1.8b (3.1.8b)
 (/home/simea/.miktex/texmfs/install/tex/generic/pgf/libraries/pgflibraryplothan
 dlers.code.tex
 File: pgflibraryplothandlers.code.tex 2020/12/27 v3.1.8b (3.1.8b)
-\pgf@plot@mark@count=\count279
+\pgf@plot@mark@count=\count281
 \pgfplotmarksize=\dimen194
 )
 \tikz@lastx=\dimen195
@@ -434,19 +456,19 @@ File: pgflibraryplothandlers.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \tikz@figbox@bg=\box59
 \tikz@tempbox=\box60
 \tikz@tempbox@bg=\box61
-\tikztreelevel=\count280
-\tikznumberofchildren=\count281
-\tikznumberofcurrentchild=\count282
-\tikz@fig@count=\count283
+\tikztreelevel=\count282
+\tikznumberofchildren=\count283
+\tikznumberofcurrentchild=\count284
+\tikz@fig@count=\count285
 
 (/home/simea/.miktex/texmfs/install/tex/generic/pgf/modules/pgfmodulematrix.cod
 e.tex
 File: pgfmodulematrix.code.tex 2020/12/27 v3.1.8b (3.1.8b)
-\pgfmatrixcurrentrow=\count284
-\pgfmatrixcurrentcolumn=\count285
-\pgf@matrix@numberofcolumns=\count286
+\pgfmatrixcurrentrow=\count286
+\pgfmatrixcurrentcolumn=\count287
+\pgf@matrix@numberofcolumns=\count288
 )
-\tikz@expandcount=\count287
+\tikz@expandcount=\count289
 
 (/home/simea/.miktex/texmfs/install/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibrarytopaths.code.tex
@@ -461,7 +483,7 @@ Package: expl3 2021-02-18 L3 programming layer (loader)
 
 (/home/simea/.miktex/texmfs/install/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count288
+\l__color_backend_stack_int=\count290
 \l__pdf_internal_box=\box62
 ))
 (/home/simea/.miktex/texmfs/install/tex/latex/l3packages/xparse/xparse-2020-10-
@@ -470,7 +492,7 @@ File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 tex))))
 (/home/simea/.miktex/texmfs/install/tex/latex/algorithm2e/algorithm2e.sty
 Package: algorithm2e 2017/07/18 v5.2 algorithms environments
-\c@AlgoLine=\count289
+\c@AlgoLine=\count291
 
 (/home/simea/.miktex/texmfs/install/tex/latex/base/ifthen.sty
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
@@ -479,7 +501,7 @@ Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 
 (/home/simea/.miktex/texmfs/install/tex/latex/ifoddpage/ifoddpage.sty
 Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
-\c@checkoddpage=\count290
+\c@checkoddpage=\count292
 )
 (/home/simea/.miktex/texmfs/install/tex/latex/latex-tools/xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
@@ -517,9 +539,9 @@ Package: relsize 2013/03/29 ver 4.1
 \algoheightrule=\skip79
 \algotitleheightruledefault=\skip80
 \algotitleheightrule=\skip81
-\c@algocfline=\count291
-\c@algocfproc=\count292
-\c@algocf=\count293
+\c@algocfline=\count293
+\c@algocfproc=\count294
+\c@algocf=\count295
 \algocf@algoframe=\box69
 \algocf@algobox=\box70
 )
@@ -540,11 +562,11 @@ Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
 \caption@hangindent=\dimen271
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count294
-\c@continuedfloat=\count295
+\c@caption@flags=\count296
+\c@continuedfloat=\count297
 )
-\c@subfigure=\count296
-\c@subtable=\count297
+\c@subfigure=\count298
+\c@subtable=\count299
 )
 (/home/simea/.miktex/texmfs/install/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibrarypositioning.code.tex
@@ -554,6 +576,18 @@ File: tikzlibrarypositioning.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 s/tikzlibrarycalc.code.tex
 File: tikzlibrarycalc.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 )
+(/home/simea/.miktex/texmfs/install/tex/latex/draftwatermark/draftwatermark.sty
+Package: draftwatermark 2020/12/08 3.0 Put a gray textual watermark on document
+ pages
+(/home/simea/.miktex/texmfs/install/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
+
+(/home/simea/.miktex/texmfs/install/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+)
+(/home/simea/.miktex/texmfs/install/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+)))
 (/home/simea/.miktex/texmfs/install/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
 
@@ -563,9 +597,9 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 (/home/simea/.miktex/texmfs/install/tex/generic/iftex/iftex.sty
 Package: iftex 2020/03/06 v1.0d TeX engine tests
 ))
-\Gm@cnth=\count298
-\Gm@cntv=\count299
-\c@Gm@tempcnt=\count300
+\Gm@cnth=\count300
+\Gm@cntv=\count301
+\c@Gm@tempcnt=\count302
 \Gm@bindingoffset=\dimen272
 \Gm@wd@mp=\dimen273
 \Gm@odd@mp=\dimen274
@@ -574,18 +608,20 @@ Package: iftex 2020/03/06 v1.0d TeX engine tests
 \Gm@layoutheight=\dimen277
 \Gm@layouthoffset=\dimen278
 \Gm@layoutvoffset=\dimen279
-\Gm@dimlist=\toks35
+\Gm@dimlist=\toks37
 
 (/home/simea/.miktex/texmfs/install/tex/latex/geometry/geometry.cfg))
 
 Package fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 40.
+less on input line 44.
 
 
 Package fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 40.
+less on input line 44.
 
-) (MAIN.aux (BASICS.aux) (LOCAL0.aux) (LOCAL1.aux) (LOCAL2.aux))
+) (MAIN.aux (BASICS.aux) (LOCAL0.aux) (LOCAL1.aux) (LOCAL2.aux) (AOADC.aux)
+(RESULTS.aux) (INTROHPC.aux) (INTOTHEMATRIX.aux) (MEGALOCHEM1.aux)
+(MEGALOCHEM2.aux) (ANNEX.aux))
 \openout1 = `MAIN.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
@@ -605,17 +641,17 @@ LaTeX Font Info:    ... okay on input line 4.
 
 (/home/simea/.miktex/texmfs/install/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count301
+\scratchcounter=\count303
 \scratchdimen=\dimen280
 \scratchbox=\box71
-\nofMPsegments=\count302
-\nofMParguments=\count303
-\everyMPshowfont=\toks36
-\MPscratchCnt=\count304
+\nofMPsegments=\count304
+\nofMParguments=\count305
+\everyMPshowfont=\toks38
+\MPscratchCnt=\count306
 \MPscratchDim=\dimen281
-\MPnumerator=\count305
-\makeMPintoPDFobject=\count306
-\everyMPtoPDFconversion=\toks37
+\MPnumerator=\count307
+\makeMPintoPDFobject=\count308
+\everyMPtoPDFconversion=\toks39
 ) (/home/simea/.miktex/texmfs/install/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -661,22 +697,18 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 9.
-(/home/simea/.miktex/texmfs/install/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 9.
 
-(/home/simea/.miktex/texmfs/install/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <149.37697> not available
+(Font)              size <24.88> substituted on input line 32.
+
+[1{/home/simea/.miktex/texmfs/data/pdftex/config/pdftex.map}
 
 
 
 \providecommand \oddpage@label [2]{}
 
 
-{/home/simea/.miktex/texmfs/data/pdftex/config/pdftex.map}]
+]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -695,6 +727,17 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [2]
+LaTeX Font Info:    Trying to load font information for U+msa on input line 49.
+
+ (/home/simea/.miktex/texmfs/install/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 49.
+
+
+(/home/simea/.miktex/texmfs/install/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -705,7 +748,26 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [3] (MAIN.toc [4
 
-])
+]
+Overfull \hbox (7.79704pt too wide) in paragraph at lines 87--87
+ [] []\OT1/cmr/bx/n/12 The Spin-Opposite Scaled Algebraic Diagrammatic Construc
+tion Method 
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <149.37697> not available
+
+(Font)              size <24.88> substituted on input line 97.
+
+[5])
 \tf@toc=\write4
 \openout4 = `MAIN.toc'.
 
@@ -718,13 +780,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[5]
-<Pics/fock.pdf, id=26, 4893.28125pt x 4893.28125pt>
+[6]
+<Pics/fock.pdf, id=32, 4893.28125pt x 4893.28125pt>
 File: Pics/fock.pdf Graphic file (type pdf)
 <use Pics/fock.pdf>
-Package pdftex.def Info: Pics/fock.pdf  used on input line 34.
+Package pdftex.def Info: Pics/fock.pdf  used on input line 74.
 (pdftex.def)             Requested size: 244.67839pt x 244.67839pt.
+ [7
 
+]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -733,12 +797,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[6 <./Pics/fock.pdf>]
+[8 <./Pics/fock.pdf>]
 \openout2 = `BASICS.aux'.
 
  (BASICS.tex
 Chapter 1.
-) [7
+) [9
 
 
 ]
@@ -746,7 +810,7 @@ Chapter 1.
 
  (LOCAL0.tex
 Chapter 2.
-[8
+[10
 
 
 
@@ -757,22 +821,22 @@ Overfull \hbox (7.16621pt too wide) in paragraph at lines 21--22
  expensive for large systems,
  []
 
-<overlap_nze.pdf, id=49, 234.67644pt x 178.60864pt>
+<overlap_nze.pdf, id=56, 234.67644pt x 178.60864pt>
 File: overlap_nze.pdf Graphic file (type pdf)
 <use overlap_nze.pdf>
 Package pdftex.def Info: overlap_nze.pdf  used on input line 28.
 (pdftex.def)             Requested size: 187.7414pt x 142.88708pt.
-<eri_nze.pdf, id=50, 249.67647pt x 178.60864pt>
+<eri_nze.pdf, id=57, 249.67647pt x 178.60864pt>
 File: eri_nze.pdf Graphic file (type pdf)
 <use eri_nze.pdf>
 Package pdftex.def Info: eri_nze.pdf  used on input line 32.
 (pdftex.def)             Requested size: 199.74144pt x 142.88708pt.
-<overlap_decay.pdf, id=51, 219.55031pt x 180.08083pt>
+<overlap_decay.pdf, id=58, 219.55031pt x 180.08083pt>
 File: overlap_decay.pdf Graphic file (type pdf)
 <use overlap_decay.pdf>
 Package pdftex.def Info: overlap_decay.pdf  used on input line 41.
 (pdftex.def)             Requested size: 175.64047pt x 144.06485pt.
-<eri_decay.pdf, id=52, 219.55031pt x 180.08083pt>
+<eri_decay.pdf, id=59, 219.55031pt x 180.08083pt>
 File: eri_decay.pdf Graphic file (type pdf)
 <use eri_decay.pdf>
 Package pdftex.def Info: eri_decay.pdf  used on input line 45.
@@ -785,7 +849,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[9 <./overlap_nze.pdf> <./eri_nze.pdf
+[11 <./overlap_nze.pdf> <./eri_nze.pdf
 
 pdfTeX warning: pdflatex (file ./eri_nze.pdf): PDF inclusion: multiple pdfs wit
 h page group included in a single page
@@ -798,7 +862,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[10 <./overlap_decay.pdf> <./eri_decay.pdf
+[12 <./overlap_decay.pdf> <./eri_decay.pdf
 
 pdfTeX warning: pdflatex (file ./eri_decay.pdf): PDF inclusion: multiple pdfs w
 ith page group included in a single page
@@ -811,13 +875,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[11]
-<Pics/MOchain.pdf, id=123, 214.98383pt x 192.28787pt>
+[13]
+<Pics/MOchain.pdf, id=131, 214.98383pt x 192.28787pt>
 File: Pics/MOchain.pdf Graphic file (type pdf)
 <use Pics/MOchain.pdf>
 Package pdftex.def Info: Pics/MOchain.pdf  used on input line 138.
 (pdftex.def)             Requested size: 171.98727pt x 153.8305pt.
-<density_decay.pdf, id=124, 241.38477pt x 180.08083pt>
+<density_decay.pdf, id=132, 241.38477pt x 180.08083pt>
 File: density_decay.pdf Graphic file (type pdf)
 <use density_decay.pdf>
 Package pdftex.def Info: density_decay.pdf  used on input line 143.
@@ -826,34 +890,6 @@ Package pdftex.def Info: density_decay.pdf  used on input line 143.
 Overfull \hbox (11.09279pt too wide) in paragraph at lines 161--162
 \OT1/cmr/m/n/12 Hollmann et al. (ref) have introduced a simple graphical repres
 entation to show contributing
- []
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[12]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[13 <./Pics/MOchain.pdf> <./density_decay.pdf
-
-pdfTeX warning: pdflatex (file ./density_decay.pdf): PDF inclusion: multiple pd
-fs with page group included in a single page
->]
-Overfull \hbox (4.67943pt too wide) in paragraph at lines 202--206
-\OT1/cmr/m/n/12 represents the number of linearly independent column vectors in
- matrix, and for $\OML/cmm/m/it/12 rank\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 A\OT1/
-cmr/m/n/12 ) \OML/cmm/m/it/12 <
  []
 
 
@@ -873,7 +909,17 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[15]
+[15 <./Pics/MOchain.pdf> <./density_decay.pdf
+
+pdfTeX warning: pdflatex (file ./density_decay.pdf): PDF inclusion: multiple pd
+fs with page group included in a single page
+>]
+Overfull \hbox (4.67943pt too wide) in paragraph at lines 202--206
+\OT1/cmr/m/n/12 represents the number of linearly independent column vectors in
+ matrix, and for $\OML/cmm/m/it/12 rank\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 A\OT1/
+cmr/m/n/12 ) \OML/cmm/m/it/12 <
+ []
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -883,10 +929,28 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [16]
-<ldf.pdf, id=186, 228.03305pt x 180.08083pt>
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[17]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[18]
+<ldf.pdf, id=194, 228.03305pt x 180.08083pt>
 File: ldf.pdf Graphic file (type pdf)
 <use ldf.pdf>
-Package pdftex.def Info: ldf.pdf  used on input line 360.
+Package pdftex.def Info: ldf.pdf  used on input line 362.
 (pdftex.def)             Requested size: 228.03247pt x 180.08038pt.
 
 
@@ -897,8 +961,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[17]
-Overfull \hbox (9.51736pt too wide) in paragraph at lines 387--389
+[19]
+Overfull \hbox (9.51736pt too wide) in paragraph at lines 389--391
 \OT1/cmr/m/n/12 where $[][]$ and $[][]$ are the diagonal and off-diagonal part 
 of $[]$ respectively.
  []
@@ -911,7 +975,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[18 <./ldf.pdf>]
+[20 <./ldf.pdf>]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -920,9 +984,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[19]
+[21]
 
-LaTeX Warning: Command \l invalid in math mode on input line 450.
+LaTeX Warning: Command \l invalid in math mode on input line 452.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -932,14 +996,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[20]
-Overfull \hbox (7.79572pt too wide) in paragraph at lines 457--459
+[22]
+Overfull \hbox (7.79572pt too wide) in paragraph at lines 459--461
 \OT1/cmr/m/n/12 The RI basis set family (cc-pVXZ-RIFIT (Wei1998), def2-XVP-RIFI
 T (Ber1998)) minimize
  []
 
 
-Overfull \hbox (3.38014pt too wide) in paragraph at lines 460--461
+Overfull \hbox (3.38014pt too wide) in paragraph at lines 462--463
 []\OT1/cmr/m/n/12 Another disadvantage of auxiliary basis sets is that the accu
 racy of the fitting procedure
  []
@@ -952,34 +1016,34 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[21]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[22]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
 [23]
-<Pics/FMM1.pdf, id=226, 1085.9362pt x 484.58586pt>
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[24]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[25]
+<Pics/FMM1.pdf, id=234, 1085.9362pt x 484.58586pt>
 File: Pics/FMM1.pdf Graphic file (type pdf)
 <use Pics/FMM1.pdf>
-Package pdftex.def Info: Pics/FMM1.pdf  used on input line 543.
+Package pdftex.def Info: Pics/FMM1.pdf  used on input line 545.
 (pdftex.def)             Requested size: 380.08336pt x 169.60759pt.
-<Pics/FMM2.pdf, id=227, 484.07626pt x 484.0762pt>
+<Pics/FMM2.pdf, id=235, 484.07626pt x 484.0762pt>
 File: Pics/FMM2.pdf Graphic file (type pdf)
 <use Pics/FMM2.pdf>
-Package pdftex.def Info: Pics/FMM2.pdf  used on input line 549.
+Package pdftex.def Info: Pics/FMM2.pdf  used on input line 551.
 (pdftex.def)             Requested size: 242.03754pt x 242.0375pt.
 
 
@@ -990,7 +1054,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[24 <./Pics/FMM1.pdf>]
+[26 <./Pics/FMM1.pdf>]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -999,7 +1063,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[25 <./Pics/FMM2.pdf>]
+[27 <./Pics/FMM2.pdf>]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1008,14 +1072,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[26]
-Overfull \hbox (6.2565pt too wide) in paragraph at lines 655--656
+[28]
+Overfull \hbox (6.2565pt too wide) in paragraph at lines 657--658
 \OT1/cmr/m/n/12 Sparsity of the atomic density matrix is crucial for achieving 
 low-scaling electronic structure
  []
 
 
-Overfull \hbox (12.5407pt too wide) in paragraph at lines 667--668
+Overfull \hbox (12.5407pt too wide) in paragraph at lines 669--670
 \OT1/cmr/m/n/12 using sparse matrix algebra. CholMOs have several advantages: t
 he Cholesky decomposition
  []
@@ -1028,31 +1092,31 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[27]
-Overfull \hbox (22.17033pt too wide) in paragraph at lines 673--674
+[29]
+Overfull \hbox (22.17033pt too wide) in paragraph at lines 675--676
 []\OT1/cmr/m/n/12 CD is also used in the context of AO-MP2 to reduce the prefac
 tor of inetgral transformation
  []
 
-<densityO.pdf, id=252, 176.81592pt x 169.158pt>
+<densityO.pdf, id=259, 176.81592pt x 169.158pt>
 File: densityO.pdf Graphic file (type pdf)
 <use densityO.pdf>
-Package pdftex.def Info: densityO.pdf  used on input line 681.
+Package pdftex.def Info: densityO.pdf  used on input line 683.
 (pdftex.def)             Requested size: 176.81548pt x 169.15758pt.
-<choleskyO.pdf, id=253, 57.23006pt x 169.158pt>
+<choleskyO.pdf, id=260, 57.23006pt x 169.158pt>
 File: choleskyO.pdf Graphic file (type pdf)
 <use choleskyO.pdf>
-Package pdftex.def Info: choleskyO.pdf  used on input line 686.
+Package pdftex.def Info: choleskyO.pdf  used on input line 688.
 (pdftex.def)             Requested size: 57.2299pt x 169.15758pt.
-<densityV.pdf, id=254, 176.81592pt x 169.158pt>
+<densityV.pdf, id=261, 176.81592pt x 169.158pt>
 File: densityV.pdf Graphic file (type pdf)
 <use densityV.pdf>
-Package pdftex.def Info: densityV.pdf  used on input line 692.
+Package pdftex.def Info: densityV.pdf  used on input line 694.
 (pdftex.def)             Requested size: 176.81548pt x 169.15758pt.
-<choleskyV.pdf, id=255, 154.58444pt x 169.158pt>
+<choleskyV.pdf, id=262, 154.58444pt x 169.158pt>
 File: choleskyV.pdf Graphic file (type pdf)
 <use choleskyV.pdf>
-Package pdftex.def Info: choleskyV.pdf  used on input line 697.
+Package pdftex.def Info: choleskyV.pdf  used on input line 699.
 (pdftex.def)             Requested size: 154.58405pt x 169.15758pt.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1062,7 +1126,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[28 <./densityO.pdf> <./choleskyO.pdf
+[30 <./densityO.pdf> <./choleskyO.pdf
 
 pdfTeX warning: pdflatex (file ./choleskyO.pdf): PDF inclusion: multiple pdfs w
 ith page group included in a single page
@@ -1083,7 +1147,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[29]
+[31]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1092,8 +1156,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[30]
-Overfull \hbox (7.2315pt too wide) in paragraph at lines 842--843
+[32]
+Overfull \hbox (7.2315pt too wide) in paragraph at lines 844--845
 \OT1/cmr/m/n/12 First introduced under the guise of "pseudo-natural orbitals" (
 Edmiston), then rediscovered
  []
@@ -1106,7 +1170,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[31])
+[33])
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1115,7 +1179,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[32]
+[34]
 \openout2 = `LOCAL1.aux'.
 
  (LOCAL1.tex
@@ -1126,7 +1190,7 @@ Overfull \hbox (3.21487pt too wide) in paragraph at lines 7--8
 well known and studied.
  []
 
-[33
+[35
 
 
 
@@ -1158,7 +1222,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[34]
+[36]
 Overfull \hbox (34.60435pt too wide) in paragraph at lines 89--90
 \OT1/cmr/m/n/12 property has been realized quite early on (Sch1996). However, a
  straight-forward implementation
@@ -1192,24 +1256,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[35]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[36]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
 [37]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1220,6 +1266,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [38]
+Overfull \hbox (14.42494pt too wide) in paragraph at lines 227--229
+\OT1/cmr/m/n/12 Equation ... is also known as the grand-canonical purification 
+scheme. Other transformations
+ []
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1229,11 +1280,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [39]
-Overfull \hbox (2.33987pt too wide) in paragraph at lines 330--331
-\OT1/cmr/m/n/12 Similar to the orbital localization technique described in Sect
-ion ..., where the (incomplete)
- []
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1261,6 +1307,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [42]
+Overfull \hbox (2.33987pt too wide) in paragraph at lines 421--422
+\OT1/cmr/m/n/12 Similar to the orbital localization technique described in Sect
+ion ..., where the (incomplete)
+ []
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1279,7 +1330,34 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [44]
-Overfull \hbox (1.72763pt too wide) in paragraph at lines 564--566
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[45]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[46]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[47]
+Overfull \hbox (1.72763pt too wide) in paragraph at lines 655--657
 \OT1/cmr/m/n/12 atomic orbital space (PAOs) and subsequently assigning them to 
 pair domains $[\OML/cmm/m/it/12 ij\OT1/cmr/m/n/12 ]$ (domain
  []
@@ -1292,11 +1370,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[45]
-<Pics/electron_pairs.png, id=339, 566.115pt x 436.63126pt>
+[48]
+<Pics/electron_pairs.png, id=350, 566.115pt x 436.63126pt>
 File: Pics/electron_pairs.png Graphic file (type png)
 <use Pics/electron_pairs.png>
-Package pdftex.def Info: Pics/electron_pairs.png  used on input line 602.
+Package pdftex.def Info: Pics/electron_pairs.png  used on input line 693.
 (pdftex.def)             Requested size: 283.05681pt x 218.3151pt.
 
 
@@ -1307,8 +1385,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[46 <./Pics/electron_pairs.png>]
-Overfull \hbox (3.92459pt too wide) in paragraph at lines 670--671
+[49 <./Pics/electron_pairs.png>]
+Overfull \hbox (3.92459pt too wide) in paragraph at lines 761--762
 \OT1/cmr/m/n/12 As opposed to SOS-AO-MP2, where density fitting can give a more
  favourable factorization
  []
@@ -1322,7 +1400,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[47]
+[50]
 \openout2 = `LOCAL2.aux'.
 
  (LOCAL2.tex
@@ -1339,7 +1417,7 @@ Overfull \hbox (0.34009pt too wide) in paragraph at lines 13--14
 ons can be reformulated
  []
 
-[48
+[51
 
 
 
@@ -1358,7 +1436,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[49]
+[52]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1367,7 +1445,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[50]
+[53]
 Overfull \hbox (1.48581pt too wide) in paragraph at lines 75--76
 \OT1/cmr/m/n/12 NO methods achieve performance by dropping virtual natural orbi
 tals with low occupation
@@ -1381,8 +1459,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[51]
-<Pics/mester_adc.png, id=359, 361.35pt x 136.5903pt>
+[54]
+<Pics/mester_adc.png, id=370, 361.35pt x 136.5903pt>
 File: Pics/mester_adc.png Graphic file (type png)
 <use Pics/mester_adc.png>
 Package pdftex.def Info: Pics/mester_adc.png  used on input line 107.
@@ -1396,7 +1474,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[52 <./Pics/mester_adc.png>]
+[55 <./Pics/mester_adc.png>]
 Overfull \hbox (3.04416pt too wide) in paragraph at lines 160--161
 \OT1/cmr/m/n/12 (local framework for calculating excitation energies) (Bau2016)
  and CornFLEX (correlated
@@ -1422,8 +1500,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[53]
-<Pics/NTOACID.pdf, id=366, 593.68547pt x 402.43018pt>
+[56]
+<Pics/NTOACID.pdf, id=377, 593.68547pt x 402.43018pt>
 File: Pics/NTOACID.pdf Graphic file (type pdf)
 <use Pics/NTOACID.pdf>
 Package pdftex.def Info: Pics/NTOACID.pdf  used on input line 178.
@@ -1434,7 +1512,7 @@ Overfull \hbox (0.2498pt too wide) in paragraph at lines 182--182
  []
 
 
-Overfull \hbox (3.7107pt too wide) in paragraph at lines 186--187
+Overfull \hbox (3.7107pt too wide) in paragraph at lines 187--188
 \OT1/cmr/m/n/12 approximation and may also dynamically augment the correlation 
 domain while optimizing
  []
@@ -1447,24 +1525,24 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[54 <./Pics/NTOACID.pdf>]
-<Pics/CISDENSE.pdf, id=394, 462.52798pt x 346.89601pt>
+[57 <./Pics/NTOACID.pdf>]
+<Pics/CISDENSE.pdf, id=404, 462.52798pt x 346.89601pt>
 File: Pics/CISDENSE.pdf Graphic file (type pdf)
 <use Pics/CISDENSE.pdf>
-Package pdftex.def Info: Pics/CISDENSE.pdf  used on input line 212.
+Package pdftex.def Info: Pics/CISDENSE.pdf  used on input line 213.
 (pdftex.def)             Requested size: 277.51892pt x 208.1392pt.
 
-Overfull \hbox (141.62718pt too wide) in paragraph at lines 212--213
+Overfull \hbox (141.62718pt too wide) in paragraph at lines 213--214
  [][] 
  []
 
-<Pics/CIS.pdf, id=395, 462.52798pt x 346.89601pt>
+<Pics/CIS.pdf, id=405, 462.52798pt x 346.89601pt>
 File: Pics/CIS.pdf Graphic file (type pdf)
 <use Pics/CIS.pdf>
-Package pdftex.def Info: Pics/CIS.pdf  used on input line 218.
+Package pdftex.def Info: Pics/CIS.pdf  used on input line 219.
 (pdftex.def)             Requested size: 277.51892pt x 208.1392pt.
 
-Overfull \hbox (5.73543pt too wide) in paragraph at lines 218--219
+Overfull \hbox (5.73543pt too wide) in paragraph at lines 219--220
  [][] 
  []
 
@@ -1477,28 +1555,30 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[55 <./Pics/CISDENSE.pdf> <./Pics/CIS.pdf
+[58 <./Pics/CISDENSE.pdf> <./Pics/CIS.pdf
 
 pdfTeX warning: pdflatex (file ./Pics/CIS.pdf): PDF inclusion: multiple pdfs wi
 th page group included in a single page
 >]
-Overfull \hbox (66.38165pt too wide) in paragraph at lines 49--50
-[]\OT1/cmr/m/n/12 OTHER: $\OT1/cmtt/m/n/12 https : / / www . kth . se / blogs /
- pdc / 2018 / 11 / scalability-[]strong-[]and-[]weak-[]scaling/$ 
+\openout2 = `AOADC.aux'.
+
+ (AOADC.tex
+Chapter 5.
+
+Overfull \hbox (41.41377pt too wide) in paragraph at lines 5--5
+[]\OT1/cmr/bx/n/17.28 Working Equations for Restricted ADC with Doubles-
  []
 
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
+Overfull \hbox (19.88852pt too wide) in paragraph at lines 18--20
+\OT1/cmr/m/n/12 singles (DS), singles-doubles (SD) and doubles-doubles (DD) sub
+-blocks, with the eigenvectors
+ []
 
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[56
+[59
 
 
-] [57
+
 
 ]
 
@@ -1509,41 +1589,157 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[58] (MAIN.aux (BASICS.aux) (LOCAL0.aux) (LOCAL1.aux) (LOCAL2.aux)) ) 
+[60]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[61]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[62]
+Overfull \hbox (5.13574pt too wide) in paragraph at lines 137--137
+[]\OT1/cmr/bx/n/17.28 Working Equations for Restricted SOS-ADC with
+ []
+
+
+Overfull \hbox (1.12054pt too wide) in paragraph at lines 139--140
+\OT1/cmr/m/n/12 In the restricted ADC expressions for the matrix-vector product
+, the 4-index intermediates
+ []
+
+
+Overfull \hbox (16.94318pt too wide) in paragraph at lines 139--140
+\OML/cmm/m/it/12 u[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 !\OT1/cmr/m/n/12 )$ need 
+to be evaluated and temporarily stored, even if the density fitting approximati
+on
+ []
+
+)
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[63]
+\openout2 = `RESULTS.aux'.
+
+ (RESULTS.tex
+Chapter 6.
+) [64
+
+
+
+
+]
+\openout2 = `INTROHPC.aux'.
+
+ (INTROHPC.tex
+Chapter 7.
+) [65
+
+
+
+
+]
+\openout2 = `INTOTHEMATRIX.aux'.
+
+ (INTOTHEMATRIX.tex
+Chapter 8.
+) [66
+
+
+
+
+]
+\openout2 = `MEGALOCHEM1.aux'.
+
+ (MEGALOCHEM1.tex
+Chapter 9.
+) [67
+
+
+
+
+]
+\openout2 = `MEGALOCHEM2.aux'.
+
+ (MEGALOCHEM2.tex
+Chapter 10.
+) [68
+
+
+
+
+]
+\openout2 = `ANNEX.aux'.
+
+ (ANNEX.tex
+Chapter 11.
+) [69
+
+
+
+
+] (MAIN.aux (BASICS.aux) (LOCAL0.aux) (LOCAL1.aux) (LOCAL2.aux) (AOADC.aux) (RE
+SULTS.aux) (INTROHPC.aux) (INTOTHEMATRIX.aux) (MEGALOCHEM1.aux)
+(MEGALOCHEM2.aux) (ANNEX.aux))
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 124.49696pt have occurred.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 16769 strings out of 481257
- 320369 string characters out of 2908375
- 611689 words of memory out of 3000000
- 33645 multiletter control sequences out of 15000+600000
- 416778 words of font info for 76 fonts, out of 8000000 for 9000
+ 20269 strings out of 481257
+ 395535 string characters out of 2908375
+ 696042 words of memory out of 3000000
+ 37054 multiletter control sequences out of 15000+600000
+ 414647 words of font info for 66 fonts, out of 8000000 for 9000
  0 hyphenation exceptions out of 8191
- 94i,25n,94p,1704b,664s stack positions out of 5000i,500n,10000p,200000b,80000s
-</home/sim
-ea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></home/sim
-ea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx12.pfb></home/sime
-a/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx8.pfb></home/simea/
-.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/simea/.
-miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi10.pfb></home/simea/.m
-iktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi12.pfb></home/simea/.mi
-ktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi6.pfb></home/simea/.mikt
-ex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi7.pfb></home/simea/.miktex
-/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/simea/.miktex/t
-exmfs/install/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/simea/.miktex/tex
-mfs/install/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/simea/.miktex/texmf
-s/install/fonts/type1/public/amsfonts/cm/cmr17.pfb></home/simea/.miktex/texmfs/
-install/fonts/type1/public/amsfonts/cm/cmr6.pfb></home/simea/.miktex/texmfs/ins
-tall/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/simea/.miktex/texmfs/instal
-l/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/simea/.miktex/texmfs/install/f
-onts/type1/public/amsfonts/cm/cmsy10.pfb></home/simea/.miktex/texmfs/install/fo
-nts/type1/public/amsfonts/cm/cmsy6.pfb></home/simea/.miktex/texmfs/install/font
-s/type1/public/amsfonts/cm/cmsy7.pfb></home/simea/.miktex/texmfs/install/fonts/
-type1/public/amsfonts/cm/cmsy8.pfb></home/simea/.miktex/texmfs/install/fonts/ty
-pe1/public/amsfonts/cm/cmti12.pfb></home/simea/.miktex/texmfs/install/fonts/typ
-e1/public/amsfonts/cm/cmtt12.pfb></home/simea/.miktex/texmfs/install/fonts/type
-1/public/amsfonts/symbols/msbm10.pfb>
-Output written on MAIN.pdf (59 pages, 12779129 bytes).
+ 94i,25n,136p,1704b,664s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/home/simea/.miktex/texmfs/install/fonts/enc/dvips/cm-super/cm-super-ts1.enc
+}</home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbsy10.pfb
+></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
+</home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx8.pfb></
+home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></
+home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb></h
+ome/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi10.pfb></ho
+me/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi12.pfb></hom
+e/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi6.pfb></home/
+simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi7.pfb></home/si
+mea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/sime
+a/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/simea/
+.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/simea/.m
+iktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr17.pfb></home/simea/.mik
+tex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr6.pfb></home/simea/.miktex
+/texmfs/install/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/simea/.miktex/te
+xmfs/install/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/simea/.miktex/texmf
+s/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/simea/.miktex/texmfs
+/install/fonts/type1/public/amsfonts/cm/cmsy6.pfb></home/simea/.miktex/texmfs/i
+nstall/fonts/type1/public/amsfonts/cm/cmsy7.pfb></home/simea/.miktex/texmfs/ins
+tall/fonts/type1/public/amsfonts/cm/cmsy8.pfb></home/simea/.miktex/texmfs/insta
+ll/fonts/type1/public/amsfonts/cm/cmti12.pfb></home/simea/.miktex/texmfs/instal
+l/fonts/type1/public/amsfonts/symbols/msbm10.pfb></home/simea/.miktex/texmfs/in
+stall/fonts/type1/public/cm-super/sfrm1200.pfb>
+Output written on MAIN.pdf (70 pages, 12824388 bytes).
 PDF statistics:
- 495 PDF objects out of 1000 (max. 8388607)
+ 535 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  108 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -192,7 +192,7 @@ K_{\mu\nu} = \cn{\mu\sigma}{\nu\lambda} P_{\lambda\sigma}
 
 \end{tikzpicture}
 \end{center}
-\noindent The connection between $\sigma$ and $\lambda$ is also known as a "P-junction", which represents the sparsity relationship arising due to the exponential decay of density matrix elements. The sparsity graph is fully connect, which suggests that $\mathbf{K}$ can be evaluated with $\mathcal{O}(N)$ effort. This is indeed the case, as shown by the ONX or LinK method. For linear scaling to emerge, indices of an expression therefore need to be fully linked. This simple but important fact is also known the linked index rule (LIR). Diagrams also show which factors can influence the performance of the scaling, such as diffuseness of the atomic orbitals (slower S decay) or size of of the HOMO-LUMO gap (slower P decay). One can therefore conclude that the expression for $\mathbf{K}$ as given above, is less suitable for large basis sets and non-insulators.
+\noindent The connection between $\sigma$ and $\lambda$ is also known as a "P-junction" (Nee2009), which represents the sparsity relationship arising due to the exponential decay of density matrix elements. The sparsity graph is fully connect, which suggests that $\mathbf{K}$ can be evaluated with $\mathcal{O}(N)$ effort. This is indeed the case, as shown by the ONX or LinK method. For linear scaling to emerge, indices of an expression therefore need to be fully linked. This simple but important fact is also known the linked index rule (LIR). Diagrams also show which factors can influence the performance of the scaling, such as diffuseness of the atomic orbitals (slower S decay) or size of of the HOMO-LUMO gap (slower P decay). One can therefore conclude that the expression for $\mathbf{K}$ as given above, is less suitable for large basis sets and non-insulators.
 
 \subsection{Rank Sparsity}
 
@@ -218,6 +218,8 @@ Density matrices at different levels of theory (Hartree Fock, MP2, CC ...) also 
 % Schwarz inequality Has1989 https://onlinelibrary.wiley.com/doi/abs/10.1002/jcc.540100111
 
 % Good explanation for "linked indices rule" https://aip.scitation.org/doi/pdf/10.1063/1.4926879
+
+% Nee2009 https://reader.elsevier.com/reader/sd/pii/S0301010408005089?token=A38BA6311BBE21191E796ADD75EF1602618F281416BBB8E8C22D61B0C75DF4C02EF402A33375738162D7AA02AFAB8685&originRegion=eu-west-1&originCreation=20210707062425
 
 \FloatBarrier
 

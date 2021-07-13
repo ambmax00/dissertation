@@ -4,11 +4,32 @@
 \begin{document}
 
 \author{Maximilien Alexandre Ambroise}
-\title{My PhD thesis}
+\title{The Algebraic Diagrammatic Construction Method For High Performance Computing Environments Using an Atomic Orbital Representation}
 
-\maketitle
-
-This is a fancy front page: contains supervisors, university name, location, exam date ...
+\begin{titlepage}
+\begin{center}
+{\Huge\scshape Inaugural - Dissertation \\}
+{ zur Erlangung der Doktorwürde der \\
+Naturwissenschaftlich-Mathematischen Gesamtfakultät \\
+der Ruprecht-Karls-Universität Heidelberg \\}
+\vspace{1cm}
+{\huge\bfseries The Algebraic Diagrammatic Construction Method For High Performance Computing Environments \\}
+{\Large\bfseries Using an Atomic Orbital Representation \\}
+ 
+%----------------------------------------------------------------
+\vspace{1.5cm}
+{vorgelegt von\\}
+\vspace*{1.5cm}
+{\Large Maximilien Alexandre Ambroise}\\
+{\large aus Differdingen, Luxemburg}\\
+%----------------------------------------------------------------
+\vspace{2cm}
+{Juli 2021} \\[5pt]
+\vspace{2cm}
+{\bfseries Gutachter: \\}
+{Prof. Dr. Andreas Dreuw \\ Prof. Dr. Christian Ochsenfeld}\\
+\end{center}
+\end{titlepage}
 
 \newpage
 
@@ -20,11 +41,30 @@ Licensing
 
 \newpage
 
+\noindent {\Large \bfseries Notation for Orbital Representations}
+
+\begin{table}[h]
+\setlength{\tabcolsep}{14pt}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{ll}
+$\mu$, $\nu$, $\gamma$, $\lambda$, ... & atomic orbitals \\
+$i$, $j$, $k$, $l$, ... & occupied molecular orbitals \\
+$a$, $b$, $c$, $d$, ... & virtual molecular orbitals \\
+$\uli$, $\ulj$, $\ulk$, $\ull$, ... & local occupied molecular orbitals \\
+$\ola$, $\olb$, $\olc$, $\old$, ... & local virtual molecular orbitals \\
+$I$, $J$, $K$, $L$, ... & occupied projected atomic orbitals \\
+$A$, $B$, $C$, $D$, ... & virtual projected atomic orbitals \\
+\end{tabular}
+\end{table}
+
+
+\newpage
+
 \tableofcontents
 
 \newpage
 
-\section{Introduction}
+\chapter*{Introduction}
 
 This is the introduction. Talk about sparsity. Show sparse matrix. How does sparsity arise, what can we do with it, where else does it emerge?
 State of arts: adc now, adc in the future
@@ -46,15 +86,22 @@ State of arts: adc now, adc in the future
 
 \include{LOCAL2.tex}
 
-OTHER: \url{https://www.kth.se/blogs/pdc/2018/11/scalability-strong-and-weak-scaling/}
+\include{AOADC.tex}
 
-\part{Annex}
+\include{RESULTS.tex}
 
-- ERI deomposition: cholesky, THC, pseudo-spectral
-% cholesky https://link.springer.com/article/10.1007/s00214-009-0608-y
-- The evil matrix inversion: considerations
-% see https://www.johndcook.com/blog/2010/01/19/dont-invert-that-matrix/ 
-% also https://epubs.siam.org/doi/abs/10.1137/1.9780898718027.ch14
-- mulliken, boughton pulay
+\include{INTROHPC.tex}
+
+\include{INTOTHEMATRIX.tex}
+
+\include{MEGALOCHEM1.tex}
+
+\include{MEGALOCHEM2.tex}
+
+\include{ANNEX.tex}
+
+%OTHER: \url{https://www.kth.se/blogs/pdc/2018/11/scalability-strong-and-weak-scaling/}
+
+
 
 \end{document}

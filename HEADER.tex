@@ -1,5 +1,6 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{datetime2}
 \usepackage{url}
 \usepackage{amsfonts}
 \usepackage{extarrows} 
@@ -11,6 +12,9 @@
 \usepackage[]{algorithm2e}
 \usepackage{subcaption} 
 \usetikzlibrary{positioning,calc}
+\usepackage{draftwatermark}
+\SetWatermarkText{DRAFT}
+\SetWatermarkScale{5}
 
 \usepackage[left=1in,right=1in,top=1.2in,bottom=1.2in]{geometry}
 
@@ -53,6 +57,17 @@
 \newcommand{\olc}{\overline{c}}
 \newcommand{\old}{\overline{d}}
 
+\newcommand{\ooli}{\overline{\overline{i}}}
+\newcommand{\oolj}{\overline{\overline{j}}}
+\newcommand{\oolk}{\overline{\overline{k}}}
+\newcommand{\ooll}{\overline{\overline{l}}}
+\newcommand{\oola}{\overline{\overline{a}}}
+\newcommand{\oolb}{\overline{\overline{b}}}
+\newcommand{\oolc}{\overline{\overline{c}}}
+\newcommand{\oold}{\overline{\overline{d}}}
+
+\newcommand{\ool}[1]{\overline{\overline{#1}}}
+
 \newcommand{\eps}{\epsilon}
 
 \newcommand{\olI}{\overline{I}}
@@ -64,12 +79,15 @@
 \newcommand{\olC}{\overline{C}}
 \newcommand{\olD}{\overline{D}}
 
-\newcommand{\dota}{\hat{a}}
-\newcommand{\dotb}{\hat{b}}
 \newcommand{\doti}{\hat{i}}
 \newcommand{\dotj}{\hat{j}}
 \newcommand{\dotk}{\hat{k}}
+\newcommand{\dotl}{\hat{l}}
+
+\newcommand{\dota}{\hat{a}}
+\newcommand{\dotb}{\hat{b}}
 \newcommand{\dotc}{\hat{c}}
+\newcommand{\dotd}{\hat{d}}
 
 \newcommand{\odota}{\overline{\dota}}
 \newcommand{\odotb}{\overline{\dotb}}
@@ -123,11 +141,14 @@
 \newcommand{\xlr}[1]{\xleftrightarrow{#1}}
 
 \newcommand{\bk}[2]{\bra{#1} \ket{#2}}
+\newcommand{\sbk}[2]{\bra{#1} {} \ket{#2}}
 
 \newcommand{\ep}{\epsilon}
 
 \newcommand{\ccpx}[1]{\mathcal{O}(N^{#1})}
 
 \newcommand{\sym}[2]{_{#1 \leftrightarrow #2}}
+
+\newcommand{\ssg}{^{\sigma}}
 
 \setcellgapes{10pt}
