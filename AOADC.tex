@@ -56,7 +56,7 @@ I_{ij} &= \frac{1}{2} \sum_{ckd} \left[ t_{ickd} \cn{jc}{kd} - t_{ickd} \cn{jd}{
 \end{equation}
 \noindent and the iteration intermediates which depend on the trial vectors $\mathbf{u}$ (computed at each Davidson iteration)
 \begin{equation}
-I_{ia}^{(1)} = \sum_{jb} \left[ \cn{ja}{ia} - \cn{ja}{ib} \right] u_{jb} + \sum_{\ool{jb}} \cn{\ool{jb}}{ia} u_{jb}
+I_{ia}^{(1)} = \sum_{jb} \left[ \cn{jb}{ia} - \cn{ja}{ib} \right] u_{jb} + \sum_{\ool{jb}} \cn{\ool{jb}}{ia} u_{jb}
 \end{equation}
 \begin{equation}
 I_{ia}^{(2)} = \sum_{jb} \left[ t_{iajb} - t_{jaib} \right] u_{jb} + \sum_{\ool{jb}} t_{ia\ool{jb}} u_{\ool{jb}}
@@ -89,7 +89,7 @@ u_{ia} &= - u_{\ool{ia}} \qquad \textrm{if triplet}
 \noindent One then obtains two separate expressions for restricted ADC(2), depending on whether singlet or triplet states are addressed
 \begin{equation}
 \begin{split}
-r_{ia}^S(\omega) &= (\eps_a - \eps_i) u_{ia} - \sum_{jb} \left[ 2\cn{ij}{ab} - \cn{ia}{jb} \right] u_{jb}^S + \sum_b I_{ab} u_{ib} + \sum_j u_{ja}^S I_{ij} \\
+r_{ia}^S(\omega) &= (\eps_a - \eps_i) u_{ia} - \sum_{jb} \left[ 2\cn{ia}{jb} - \cn{ij}{ab} \right] u_{jb}^S + \sum_b I_{ab} u_{ib} + \sum_j u_{ja}^S I_{ij} \\
 &- \frac{1}{2} \sum_{jb} \left[2t_{iajb} - t_{ibja}\right] I^{(1)S}_{jb} - \frac{1}{2} sum_{jb} \left[ 2 \cn{ia}{jb} - \cn{ib}{ja} \right] I^{(2)S}_{jb} \\
 &+ \sum_{kcl} \cn{ik}{lc} \left( 2 u_{kalc}^S(\omega) - u_{lakc}^S(\omega) \right) + \sum_{ckd} \left( 2 u^S_{ickd}(\omega) - u^S_{kcid}(\omega) \right) \cn{kd}{ac}  
 \end{split}
@@ -98,14 +98,13 @@ r_{ia}^S(\omega) &= (\eps_a - \eps_i) u_{ia} - \sum_{jb} \left[ 2\cn{ij}{ab} - \
 \begin{split}
 r_{ia}^T(\omega) &= (\eps_a - \eps_i) u_{ia}^T - \sum_{jb} \cn{ij}{ab} u_{jb}^T + \sum_b I_{ab} u_{ib}^T + \sum_j I_{ij} u_{ja}^T \\
 &+ \frac{1}{2} \sum_{jb} t_{ibja} I^{(1)T}_{jb} + \frac{1}{2} \sum_{jb} \cn{ib}{ja} I^{(2)T}_{jb} \\
-+& \sum_{kcl} \cn{ik}{lc} \left[ 2 u^T_{kalc}(\omega) - u^T_{lakc}(\omega) - u^T_{kcla}(\omega) \right] \\
-+& \sum_{ckd} \left[ 2 u^T_{ickd}(\omega) - u^T_{idkc}(\omega) - u^T_{kcid}(\omega) \right] 
++& \sum_{kcl} \cn{ik}{lc} u^T_{kalc}(\omega) + \sum_{ckd} \left[ 2 u^T_{ickd}(\omega) - u^T_{idkc}(\omega) - u^T_{kcid}(\omega) \right] 
 \end{split}
 \end{equation}
 \noindent with the singlet and triplet doubles intermediates
 \begin{equation}
 \begin{split}
-u^S_{iajb}(\omega) = \frac{1}{\omega - \eps_a + \eps_i - \eps_b + \eps_j} \left\lbrace \sum_k \left[ u^S_{ka} \cn{ki}{jb} + u^S_{kb} \cn{kj}{ai} \right] \right. \\
+u^{S,SOS}_{iajb}(\omega) = \frac{c_{osc}}{\omega - \eps_a + \eps_i - \eps_b + \eps_j} \left\lbrace \sum_k \left[ u^S_{ka} \cn{ki}{jb} + u^S_{kb} \cn{kj}{ai} \right] \right. \\
 \left. - \sum_c \left[ u^S_{ic} \cn{jb}{ac} - u^S_{jc} \cn{ib}{ac} \right] \right\rbrace
 \end{split} 
 \end{equation}
@@ -114,10 +113,16 @@ u^T_{iajb}(\omega) = \frac{1}{\omega - \eps_a + \eps_i - \eps_b + \eps_j} \left\
 \end{equation}
 \noindent The pre-iteration intermediates are given by
 \begin{equation}
-I_{ab} = \frac{1}{2} \sum_{kcl} \left[ \left( 2t_{kalc} - t_{kcla}\right) \cn{kb}{lc} + \left( 2t_{kblc} - t_{kclb} \right) \cn{ka}{lc} \right]
+\begin{split}
+I_{ab} &= \frac{1}{2} \sum_{kcl} \left[ \left( 2t_{kalc} - t_{kcla}\right) \cn{kb}{lc} + \left( 2t_{kblc} - t_{kclb} \right) \cn{ka}{lc} \right] \\
+&= \frac{1}{2} \left[ \sum_{kcl} \left( 2t_{kalc} - t_{kcla}\right) \cn{kb}{lc} \right]\sym{a}{b}
+\end{split}
 \end{equation}
 \begin{equation}
-I_{ij} = \frac{1}{2} \sum_{ckd} \left[ \left( 2t_{ickd} - t_{idkc}\right) \cn{jc}{kd} + \left( 2t_{jckd} - t_{jdkc} \right) \cn{ic}{kd} \right]
+\begin{split}
+I_{ij} &= \frac{1}{2} \sum_{ckd} \left[ \left( 2t_{ickd} - t_{idkc}\right) \cn{jc}{kd} + \left( 2t_{jckd} - t_{jdkc} \right) \cn{ic}{kd} \right] \\
+&= \frac{1}{2} \left[ \sum_{ckd} \left( 2t_{ickd} - t_{idkc}\right) \cn{jc}{kd} \right]\sym{i}{j}
+\end{split}
 \end{equation}
 \noindent and are the same for both singlet and triplet expressions. The iterative intermediates however are split:
 \begin{equation}
@@ -134,7 +139,7 @@ I^{(2)T}_{ia} = - \sum_{jb} t_{ibja} u_{jb}^T
 \end{equation}
 \noindent For the restricted equations ... to ..., the indices $ijkl...$ and $abcd...$  represent the occupied and virtual spin-integrated \emph{spatial} molecular orbitals. 
 
-\section{Working Equations for Restricted SOS-ADC with Doubles-Folding}
+\section{Working Equations for Restricted SOS-ADC(2) with Doubles-Folding}
 
 In the restricted ADC expressions for the matrix-vector product, the 4-index intermediates $u_{iajb}(\omega)$ need to be evaluated and temporarily stored, even if the density fitting approximation is used. This memory-intensive step can be avoided by using spin-opposite scaling (Section ...). Consider again the approximations introduced by the SOS method for the unrestricted ADC(2) matrix equations
 \begin{itemize}
@@ -151,20 +156,605 @@ C_{iajb,kc} = c_{osc} \left[ \sbk{kb}{ij} \delta_{ac} - \sbk{ka}{ij} \delta_{bc}
 \end{equation}
 \noindent Here, the function $\sigma(x)$ returns the spin of orbital $x$.
 \end{itemize}
+Applying the above constraints to Equation ... gives the spin components of the SOS-ADC(2) matrix-vector product with doubles-folding 
+\begin{equation}
+\begin{split}
+r_{ia}^{SOS}( \omega) = &(\eps_a - \eps_i) u_{ia} - \sum_{jb} \left[ \cn{ij}{ab} - \cn{ia}{jb} \right] u_{jb} + \sum_{\ool{jb}} \cn{ia}{\ool{jb}} u_{\ool{jb}} \\
+&+ \sum_b I^{SOS}_{ab} u_{ib} + \sum_{j} I^{SOS}_{ij} u_{ja} - \frac{1}{2} \left[ t_{ia\ool{jb}} I^{(1)SOS}_{\ool{jb}} + \cn{ia}{\ool{jb}} I_{\ool{jb}}^{(2)SOS} \right] \\
+&- \frac{1}{2} \left[\cn{ia}{jb} - \cn{ja}{ib} \right] I_{jb}^{(2)SOS} \\
+&+ c_{osc} \left\lbrace \sum_{k\ool{cl}} u_{ka\ool{lc}}(\omega) \cn{ik}{\ool{cl}} - \sum_{c\ool{kd}} \cn{ac}{\ool{kd}} u_{ic\ool{kd}}(\omega) \right\rbrace
+\end{split}
+\end{equation}  
+\noindent with the SOS pre-iteration intermediates 
+\begin{equation}
+\begin{split}
+I_{ab}^{SOS} &= \frac{1}{2} \sum_{k\ool{cl}} \left[ t_{ka\ool{lc}} \cn{kb}{\ool{lc}} + \cn{ak}{\ool{cl}} t_{kb\ool{lc}} \right]
+\end{split}
+\end{equation}
+\begin{equation}
+\begin{split}
+I_{ij}^{SOS} &= \frac{1}{2} \sum_{c\ool{kd}} \left[ t_{ic\ool{kd}} \cn{jc}{\ool{kd}} + \cn{ci}{\ool{dk}} t_{jc\ool{kd}} \right]  
+\end{split}
+\end{equation}
+\noindent and the SOS iteration intermediates
+\begin{equation}
+I_{ia}^{(1)SOS} = \sum_{jb} \left[ \cn{jb}{ia} - \cn{ja}{ib} \right] u_{jb} + \sum_{\ool{jb}} \cn{\ool{jb}}{ia} u_{\ool{jb}}
+\end{equation}
+\begin{equation}
+I_{ia}^{(2)SOS} = \sum_{\ool{jb}} t_{ia\ool{jb}} u_{\ool{jb}}
+\end{equation}
+\noindent Only the opposite-spin components of the doubles components are needed:
+\begin{equation}
+\begin{split}
+u_{ia\ool{jb}}^{SOS}(\omega) = \frac{c_{osc}}{\omega - \eps_a - \eps_b + \eps_i + \eps_j} \left\lbrace \sum_k u_{ka} \cn{ki}{\ool{bj}} + \sum_{\ool{k}} u_{\ool{kb}} \cn{\ool{kj}}{ai} \right. \\ - \sum_c u_ic \cn{ac}{\ool{bj}} - \left. \sum_{\ool{c}} u_{\ool{jc}} \cn{\ool{bc}}{ai} \right\rbrace
+\end{split}
+\end{equation}
+\noindent Finally, for closed-shell molecules, the matrix vector products for singlet and triplet excitations for restricted SOS-ADC(2) can be obtained by inserting the spin-symmetry relationships (...) into Equation (...)
+\begin{myframe}{EQUATION}
+\begin{equation}
+\begin{split}
+r_{ia}^{S,SOS}(\omega) &= (\eps_a - \eps_i) u_{ia}^S - \sum_{jb} \left[ 2\cn{ia}{jb} - \cn{ij}{ab} \right] u_{jb}^S + \sum_b I^{SOS}_{ab} u_{ib} + \sum_j u_{ja}^S I^{SOS}_{ij} \\
+&- \frac{1}{2} \sum_{jb} t_{iajb}I^{(1)S,SOS}_{jb} - \frac{1}{2} \sum_{jb} \left[ 2\cn{ia}{jb} - \cn{ib}{ja} \right] I^{(2)S,SOS}_{jb} \\
+&+ c_{osc} \left\lbrace \sum_{kcl} \cn{ik}{lc} u^{S,SOS}_{kalc}(\omega) - \sum_{ckd} u^{S,SOS}_{ickd}(\omega) \cn{kd}{ac} \right\rbrace
+\end{split}
+\end{equation} 
+\end{myframe}
+\begin{equation}
+\begin{split}
+r_{ia}^{T,SOS}(\omega) &= (\eps_a - \eps_i) u_{ia}^S - \sum_{jb} \cn{ij}{ab} u_{jb}^T + \sum_b I^{SOS}_{ab} u_{ib} + \sum_j u_{ja}^S I^{SOS}_{ij} \\
+&- \frac{1}{2} \sum_{jb} t_{iajb}I^{(1)T,SOS}_{jb} + \frac{1}{2} \sum_{jb} \cn{ib}{ja} I^{(2)T,SOS}_{jb} \\
+&+ c_{osc} \left\lbrace \sum_{kcl} \cn{ik}{lc} u^{T,SOS}_{kalc}(\omega) - \sum_{ckd} u^{T,SOS}_{ickd}(\omega) \cn{kd}{ac} \right\rbrace
+\end{split}
+\end{equation} 
+\begin{equation}
+\begin{split}
+u_{iajb}^{S,SOS}(\omega) = \frac{c_{osc}}{\omega - \eps_a - \eps_b + \eps_i + \eps_j} \left\lbrace \sum_k u_{ka} \cn{ki}{bj} + \sum_{k} u_{kb} \cn{kj}{ai} \right. \\ - \sum_c u_ic \cn{ac}{bj} - \left. \sum_{c} u_{jc} \cn{bc}{ai} \right\rbrace
+\end{split}
+\end{equation}
+\begin{equation}
+\begin{split}
+u_{iajb}^{T,SOS}(\omega) = \frac{c_{osc}}{\omega - \eps_a - \eps_b + \eps_i + \eps_j} \left\lbrace \sum_k u_{ka} \cn{ki}{bj} - \sum_{k} u_{kb} \cn{kj}{ai} \right. \\ - \sum_c u_ic \cn{ac}{bj} + \left. \sum_{c} u_{jc} \cn{bc}{ai} \right\rbrace
+\end{split}
+\end{equation}
+\noindent with the the intermediates
+\begin{equation}
+I_{ab}^{SOS} = \frac{c_os}{2} \left[ \sum_{kcl} t_{kalc} \cn{kb}{lc} \right]\sym{a}{b}
+\end{equation}
+\begin{equation}
+I_{ij}^{SOS} = \frac{c_os}{2} \left[ \sum_{ckd} t_{ickd} \cn{jc}{kd} \right]\sym{i}{j}
+\end{equation}
+\begin{equation}
+I^{(1)S,SOS}_{ia} = \sum_{jb} \left( 2\cn{ia}{jb} - \cn{ib}{ja} \right) u_{jb}^S
+\end{equation}
+\begin{equation}
+I^{(2)S,SOS}_{ia} = c_{os} \sum_{jb} t_{iajb} u_{jb}^S
+\end{equation}
+\begin{equation}
+I^{(1)T,SOS}_{ia} = - \sum_{jb} \cn{ib}{ja} u_{jb}^T
+\end{equation}
+\begin{equation}
+I^{(2)T,SOS}_{ia} = - c_{os} \sum_{jb} t_{iajb} u_{jb}^T
+\end{equation}
 
-%\noindent If singlet:
-%\begin{equation}
-%\begin{split}
-%u_{ia} = u_{\ool{ia}} := v^S_{ia} \\
-%u_{iajb} = u_{\ool{iajb}} := v^S_{iajb} - v^S_{ibja} \\
-%u_{ia\ool{jb}} := u^{S}_{iajb}
-%\end{split}
-%\end{equation}
-%\noindent If triplet 
-%\begin{equation}
-%\begin{split}
-%u_{ia} = - u_{\ool{ia}} := v^T_{ia} \\
-%u_{iajb} = - u_{\ool{iajb}} := v^T_{iajb} - v^T_{ibja} - v^T_{jaib} + v^T_{jbia} \\
-%u_{ia\ool{jb}} := u^{T}_{iajb} - u^T_{jbia}
-%\end{split}
-%\end{equation}
+\section{Working Equations For Restricted AO-SOS-ADC(2) with Doubles-Folding}
+
+The goal of an atomic orbital based formulation of ADC(2) is to compute the matrix-vector product in an intermediate AO basis and transform it back to the MO basis (or alternatively an LMO basis) for the Davidson procedure, similarly to how it is done for CIS:
+\begin{equation}
+r_{ia} = C_{\mu i} r_{\ulgm \olgn} C_{\nu a}
+\end{equation}
+\noindent Furthermore, it is convenient to split the MVP into six components which are evaluated individually
+\begin{equation}
+r_{ia}(\omega) = r_{ia}^{CIS} + r_{ia}^{2A} + r_{ia}^{2B} + r_{ia}^{2C} + r_{ia}^{2D} + r_{ia}^{2E}(\omega)
+\end{equation}
+\noindent In the next sections, using Equations ... and ... as starting points, the working equations for restricted AO-SOS-ADC(2) will be derived and discussed in detail. 
+
+\subsection{First Order}
+
+The first order part of the MVP is identical in both ADC(2) and SOS-ADC(2)
+\begin{align}
+r_{ia}^{S,CIS} &= (\eps_a - \eps_i) u^S_{ia} + \sum_{jb} \left[ 2\cn{ia}{jb} - \cn{ij}{ab}\right] u^S_{jb} \\
+r_{ia}^{T,CIS} &= (\eps_a - \eps_i) u^T_{ia} - \sum_{jb} \cn{ij}{ab} u^T_{jb} 
+\end{align}
+\noindent An AO formulation is obtained in an indentical manner to AO-CIS by factoring out the coefficient matrices to obtain Hartree-Fock-like expressions:
+\begin{align}
+\begin{split}
+r_{ia}^{S,CIS,AO} &= (\eps_a - \eps_i) u^S_{ia} + \sum_{ia} C_{\mu i} C_{\sigma a} \left[ \left( 2\cn{\mu\sigma}{\nu\lambda} - \cn{\mu\nu}{\sigma\lambda} \right) u^S_{\ulgn \olgl} \right] \\
+&= (\eps_a - \eps_i) u^S_{ia} + \sum_{ia} C_{\mu i} C_{\sigma a} \left[ 2\tilde{J}^S_{\mu\sigma} - \tilde{K}^S_{\mu\sigma} \right]
+\end{split}
+\\
+\begin{split}
+r_{ia}^{T,CIS,AO} &= (\eps_a - \eps_i) u^T_{ia} - \sum_{ia} C_{\mu i} C_{\sigma a} \left[ \cn{\mu\nu}{\sigma\lambda} u^T_{\ulgn \olgl} \right] \\
+&= (\eps_a - \eps_i) u^T_{ia} - \sum_{ia} C_{\mu i} C_{\sigma a} \tilde{K}^T_{\mu\sigma} 
+\end{split}
+\end{align}
+\noindent where $\mathbf{\tilde{J}}$ and $\mathbf{\tilde{K}}$ are the coulomb and exchange kernels, and $u_{\ulgm\olgs}$ is the transition density in the AO basis
+\begin{equation}
+u_{\ulgm\olgs} = C_{\mu i} u_{ia} C_{\olgs a}
+\end{equation}
+\noindent The zero order terms (i.e. the molecular orbital energy differences) do not need to be formulated in an AO basis, because the computation time is negligeable. Similarly, transforming $\mathbf{\tilde{J}}$ and $\mathbf{\tilde{K}}$ to the MO basis formerly scales as $\ccpx{3}$ but has very low overhead and does not influence the overall scaling of AO-SOS-ADC(2). The time-determining steps are the computataion of the J-kernel, which scales as $ccpx{2}$ (or $\mathcal{O}(N)$ if the continuous fast multipole method is used) and the K-kernel, which scales as $\mathcal{O}(N)$ in limit of large systems. For triplet excitations, the scaling is reduced to linear due to the absence of coulomb contributions.
+
+\subsection{Second Order: Part 2A and 2B}
+
+The expressions for component 2A and 2B read
+\begin{align}
+r_{ia}^{S,SOS,2A} = \sum_b I^{SOS}_{ab} u^S_{ib} + \sum_j I^{SOS}_{ij} u^S_{ja} \\
+r_{ia}^{T,SOS,2A} = \sum_b I^{SOS}_{ab} u^T_{ia} + \sum_j I^{SOS}_{ij} u^T_{ja} 
+\end{align}
+\noindent with the intermediates as defined in Equation ....  and .... Rather than casting the whole expression into the AO basis, it is more convenient to evaluate only the non-symmetrized intermediates $I^{SOS,ns}_ab$ and $I^{SOS,ns}_{ij}$ in the AO basis.
+The expressions for the intermediates involve the t-amplitudes, and to obtain an orbital-invariant formulation, it is necessary to use the Laplace transform
+\begin{equation}
+\frac{1}{\eps_a - \eps_i + \eps_b - \eps_j} = \sum^{nlap}_{\alpha} |w\pa| e^{-\eps_a t\pa} e^{\eps_i t\pa} e^{-\eps_b t\pa} e^{\eps_j t\pa} 
+\end{equation}
+\noindent Using a similar strategy to AO-MP2 to factor out the coefficient matrices, the intermediates can be formulated as
+\begin{align}
+I_{ab}^{AO-SOS,ns} &= \frac{c_os}{2} \sum_{kcl} \sum_{\alpha} |w\pa| e^{\Delta_{kalc}t\pa} \cn{ka}{lc} \cn{kb}{lc} \\
+&= \frac{c_os}{2} \sum_b C_{\lambda b} \sum_{\alpha} \mid w\pa\mid^{1/4} e^{-\eps_a t\pa} C_{\sigma a} \sum_{\kappa \gamma \tau} \cn{\ulgk \sigma}{\ulgt \olgg}\pa \cn{\kappa \lambda}{\tau \gamma} \\
+&= \frac{c_os}{2} \sum_b C_{\lambda b} \sum_{\alpha} \mid w\pa\mid^{1/4} e^{-\eps_a t\pa} C_{\sigma a} A\pa_{\sigma\lambda}
+\end{align}
+\noindent with the pseudo-AO electron integrals and the occupied/virtual pseudo density matrices
+\begin{align}
+\cn{\ulgk \sigma}{\ulgt \olgg}\pa &= P_{\kappa\kappa'}\pa \cn{\kappa' \sigma}{\tau' \gamma'} P_{\tau\tau'}\pa Q_{\gamma\gamma'}\pa \\
+P_{\mu\mu'}\pa &= \sum_i C_{\mu i} e^{0.25 ln\wpa + \eps_i t\pa} C_{\mu' i} \\
+Q_{\nu\nu'}\pa &= \sum_a C_{\nu a} e^{0.25 ln\wpa - \eps_a t\pa} C_{\nu' a}
+\end{align}
+Similarly
+\begin{align}
+I_{ij}^{AO-SOS,ns} &= \frac{c_{os}}{2} \sum_{\alpha} \sum_{ckd} \wpa e^{\Delta_{ickd}t\pa} \cn{ic}{kd} \cn{jc}{kd} \\
+&= \frac{c_{os}}{2} \sum_j C_{\nu j} \sum_i \wpa^{1/4} C_{\mu i} e^{\eps_i t\pa} \sum_{\gamma\kappa\delta} \cn{\mu\olgg}{\ulgk\olgd} \cn{\nu\gamma}{\kappa\delta} \\
+&= \frac{c_{os}}{2} \sum_j C_{\nu j} \sum_i \wpa^{1/4} C_{\mu i} e^{\eps_i t\pa} B_{\mu\nu}\pa
+\end{align}
+\noindent Finally, the intermediates are symmetrized
+\begin{align}
+I^{AO-SOS}_{ab} &= I^{AO-SOS,ns}_{ab} + I^{AO-SOS,ns}_{ba} \\
+I^{AO-SOS}_{ij} &= I^{AO-SOS,ns}_{ij} + I^{AO-SOS,ns}_{ji}
+\end{align}
+The time-determining step for both intermediates is the computation of the Laplace intermediates $\mathbf{A}\pa$ and $\mathbf{B}\pa$. The subsequent multiplication with the coefficient matrices is again negligeable. Consider now the sparsity diagram for the Laplace intermediate $\mathbf{A}\pa$:
+\begin{center}
+\begin{tikzpicture}
+
+\snode{LAM}{1,0}{\lambda};
+\snode{KAP}{2,0}{\kappa};
+\snode{KAP2}{3,0}{\kappa'};
+\snode{SIG}{4,0}{\sigma};
+\snode{TAU}{5,0}{\tau};
+\snode{TAU2}{6,0}{\tau'};
+\snode{GAM2}{7,0}{\gamma'};
+\snode{GAM}{8,0}{\gamma};
+
+\draw[<->] (LAM) -- (KAP) node [midway, above] () {S};
+\draw[<->] (KAP) -- (KAP2) node [midway, above] () {P};
+\draw[<->] (KAP2) -- (SIG) node [midway, above] () {S};
+
+\draw[<->] (TAU) -- (TAU2) node [midway, above] () {P};
+\draw[<->] (TAU2) -- (GAM2) node [midway, above] () {S};
+\draw[<->] (GAM2) -- (GAM) node [midway, above] () {P};
+
+\end{tikzpicture}
+\end{center}
+
+\noindent The diagram has two edges, and hence $\mathbf{A}$ is evaluated with $\ccpx{2}$ computational complexity. The same can be shown for $\mathbf{B}$. The total memory footprint is also quadratic in $N$. 
+
+\subsection{Second Order: Part 2C}
+
+Component 2C is computed as
+\begin{align}
+r_{ia}^{S,SOS,2C} &= -\frac{c_{os}}{2} \sum_{jb} t_{iajb} I^{(1)S,SOS}_{jb} \\
+r_{ia}^{T,SOS,2C} &= -\frac{c_{os}}{2} \sum_{jb} t_{iajb} I^{(1)T,SOS}_{jb}
+\end{align}
+\noindent Applying the Laplace transform, this then gives
+\begin{align}
+\begin{split}
+r_{ia}^{S,AO-SOS,2C} &= -\frac{c_{os}}{2} \sum_{jb} \sum_{alpha} \wpa e^{\Delta_{iajb}t\pa} \cn{ia}{jb} \left[\sum_{kc} \left(2\cn{jb}{kc} - \cn{jc}{kb} \right) u_{kc}^S \right] \\
+&=  -\frac{c_{os}}{2} \sum_{alpha} \sum_{ia} \wpa^{1/2} C_{\mu i} e^{\eps_i t\pa} C_{\sigma a} e^{-\eps_a t\pa} \left\lbrace \sum_{\nu\lambda} \cn{\mu\alpha}{\ulgn\olgl}\pa \left[ \sum_{\kappa\gamma}  \left( 2\cn{\nu\lambda}{\kappa\gamma} - \cn{\nu\gamma}{\kappa\lambda}\right) u^S_{\ulgk\olgg} \right] \right\rbrace \\
+&=   -\frac{c_{os}}{2} \sum_{alpha} \sum_{ia} \wpa^{1/2} C_{\mu i} e^{\eps_i t\pa} C_{\sigma a} e^{-\eps_a t\pa} \left\lbrace \sum_{\nu\lambda} \cn{\mu\alpha}{\ulgn\olgl}\pa \left[ 2\tilde{J}_{\lambda\nu} - \tilde{K}_{\lambda\nu} \right] \right\rbrace \\
+&= -\frac{c_{os}}{2} \sum_{alpha} \sum_{ia} \wpa^{1/2} C_{\mu i} e^{\eps_i t\pa} C_{\sigma a} e^{-\eps_a t\pa} I^{(1)(\alpha)S,AO-SOS}_{\mu \sigma}
+\end{split} 
+\end{align}
+\noindent Similarly, triplet contributions are given by
+\begin{align}
+\begin{split}
+r_{ia}^{T,AO-SOS,2C} &= \frac{c_{os}}{2} \sum_{alpha} \sum_{ia} \wpa^{1/2} C_{\mu i} e^{\eps_i t\pa} C_{\sigma a} e^{-\eps_a t\pa} \left\lbrace \sum_{\nu\lambda} \cn{\mu\alpha}{\ulgn\olgl}\pa \tilde{K}_{\lambda\nu} \right\rbrace \\
+&= \frac{c_{os}}{2} \sum_{alpha} \sum_{ia} \wpa^{1/2} C_{\mu i} e^{\eps_i t\pa} C_{\sigma a} e^{-\eps_a t\pa} I^{(1)(\alpha)T,AO-SOS}_{\mu \sigma}
+\end{split}
+\end{align}
+\noindent where $\mathbf{\tilde{J}}$ and $\mathbf{\tilde{K}}$ are the same matrices needed for the CIS contributions. Note that the matrices are \emph{transposed}, i.e. the index order is $\lambda\nu$, and not $\nu\lambda$. The time-determining step is the formation of the Laplace AO intermediates $I_{\mu\nu}^{\alpha(1)}$. Their sparsity diagrams read
+\begin{center}
+\begin{tikzpicture}
+
+\snode{MU}{0,0}{\mu};
+\snode{SIG}{1,0}{\sigma};
+\snode{NU}{2,0}{\nu};
+\snode{NU2}{3,0}{\nu'};
+\snode{LAM2}{4,0}{\lambda'};
+\snode{LAM}{5,0}{\lambda};
+%\snode{INTER}{3.5,0}{};
+
+\draw[<->] (MU) -- (SIG) node [midway, above] () {S};
+\draw[<->] (NU) -- (NU2) node [midway, above] () {P};
+\draw[<->] (NU2) -- (LAM2) node [midway, above] () {S};
+\draw[<->] (LAM2) -- (LAM) node [midway, above] () {P};
+\draw[<->] (NU) |- +(1.5,-0.5) node[below] {J/K} -| (LAM);
+
+\end{tikzpicture}
+\end{center}
+\noindent The singlet and triplet AO intermediates are therefore evaluated in $\ccpx{2}$ time. 
+
+\subsection{Second Order: Part 2D}
+
+Now consider part 2D
+\begin{align}
+\begin{split}
+r_{ia}^{S,SOS,2D} &= -\frac{1}{2}\sum_{jb} \left[ 2\cn{ia}{jb} \cn{ib}{ja} \right] I_{jb}^{(2)S,SOS} \\
+&= -\frac{1}{2}\sum_{jb} K_{iajb} I_{jb}^{(2)S,SOS}
+\end{split}
+\\
+r_{ia}^{T,SOS,2D} = \frac{1}{2}\sum_{jb} \cn{ib}{ja} I_{jb}^{(2)T,SOS}
+\end{align}
+
+\noindent Applying the Laplace transform gives the singlet expression
+\begin{align}
+\begin{split}
+r_{ia}^{S,AO-SOS,2D} &= -\frac{c_{os}}{2} \sum_{jb} K_{iajb} \sum_{kc} \sum_{\alpha} \wpa e^{\Delta_{iajb}tpa} \cn{jb}{kc} u_{kc}^S \\
+&= -\frac{c_{os}}{2} \sum_{ia} C_{\mu i} C_{\sigma a} \left[  K_{\mu\sigma\nu\lambda} \left( \sum_{\alpha} \cn{\ulgn\olgl}{\kappa\gamma}\pa u^{(\alpha)S}_{\ulgk\olgg} \right)  \right] \\
+&= -\frac{c_{os}}{2} \sum_{ia} C_{\mu i} C_{\sigma a} I^{(2)S,AO-SOS}_{\mu\sigma} 
+\end{split} 
+\end{align}
+Similarly, the triplet expressions
+\begin{align}
+\begin{split}
+r_{ia}^{T,AO-SOS,2D} &= \frac{c_{os}}{2} \sum_{jb} \cn{ia}{jb} \sum_{kc} \sum_{\alpha} \wpa e^{\Delta_{iajb}tpa} \cn{jb}{kc} u_{kc}^T \\
+&= \frac{c_{os}}{2} \sum_{ia} C_{\mu i} C_{\sigma a} \left[  \cn{\mu\sigma}{\nu\lambda} \left( \sum_{\alpha} \cn{\ulgn\olgl}{\kappa\gamma}\pa u^{(\alpha)T}_{\ulgk\olgg} \right) \right] \\
+&= \frac{c_{os}}{2} \sum_{ia} C_{\mu i} C_{\sigma a} I^{(2)T,AO-SOS}_{\mu\sigma} 
+\end{split}
+\end{align}
+\noindent With the transition density in the pseudo atomic orbital basis
+\begin{equation}
+u\pa_{\ulgm\olgs} = \wpa^{1/2} C_{\mu i} e^{\eps_i t\pa}  u_{ia} C_{\sigma a} e^{-\eps_a t\pa} 
+\end{equation}
+\noindent The computation of the AO intermediates $I^{(2)SOS-AO}$ is the time-determining step, and is best evaluated as
+\begin{align}
+\tilde{J}\pa_{\mu\sigma} &= \cn{\mu\sigma}{\nu\lambda} u\pa_{\ulgn\olgl} \\
+\tilde{J}_{\ulgm\olgs}\pa &= P_{\mu\mu'}\pa \tilde{J}\pa_{\mu\nu} Q_{\nu\nu'}\pa \\
+I^{(2)SOS-AO}_{\mu\sigma} &= \sum_{\alpha} \left[2 \cn{\mu\sigma}{\nu\lambda} - \cn{\mu\lambda}{\nu\sigma} \right] \tilde{J}_{\ulgn\olgl}\pa
+\end{align}
+\noindent Every individual step can be computed with $\ccpx{2}$ complexity, meaning the intermediate is also evaluated with overall quadratic effort.
+
+\subsection{Second Order: Part 2E}
+
+The final part is given by
+\begin{align}
+r_{ia}^{S,SOS,2E}(\omega) &= c_{osc} \left\lbrace \sum_{kcl} \cn{ik}{lc} u^{S,SOS}_{kalc}(\omega) - \sum_{ckd} u^{S,SOS}_{ickd}(\omega) \cn{kd}{ac} \right\rbrace  \\
+r_{ia}^{T,SOS,2E}(\omega) &= c_{osc} \left\lbrace \sum_{kcl} \cn{ik}{lc} u^{T,SOS}_{kalc}(\omega) - \sum_{ckd} u^{T,SOS}_{ickd}(\omega) \cn{kd}{ac} \right\rbrace
+\end{align}
+\noindent With the doubles intermediates as given in Equation ... and .... The Laplace transform needs to be applied to the energy denominator present in these intermediates. The optimal Laplace parameters are however different from the ones used for the t-amplitudes, due to the additional factor of the excitation energy $\omega$. For each different excitation energy $\omega$, a new Laplace quadrature needs to be computed, alongside a new set of pseudo-density matrices $\mathbf{P}$ and $\mathbf{Q}$. The additional time is however negligebale for the standard number of qudrature points ($n_{lap}$ $<$ 10). The symbol $\theta$ is used to designate the Laplace quadrature for the doubles denominator to differentiate them from the ones for the t-amplitudes. 
+
+First, an AO formulation of the doubles amplitudes will be derived such that
+\begin{equation}
+u_{iajb}(\omega) = C_{\mu i} C_{\sigma a} u_{\mu\sigma\nu\lambda} C_{\nu j} C_{\lambda b}
+\end{equation}
+\noindent For qunatities like the MO integrals $\cn{ia}{jb}$, this is straight-forwardly done by factoring out the coefficient matrices. However, the situation is more complex in the doubles intermediates, due to the presence of terms like $u_{ka}\cn{ki}{bj}$. For the MO transition densties, the non-orthogonality of the AO basis needs to be taken into consideration. The MO coefficient matrices are factored out by a PAO backtransform (cf. Eqaution ...)
+\begin{equation}
+u_{ia} = C_{\mu i} S_{\mu\mu'} u_{\ulgm'\olgs'} S_{\sigma'\sigma} C_{\sigma a}
+\end{equation}
+The doubles intermediates can then be expressed as (shown for singlet only)
+\begin{equation}
+\begin{split}
+u_{iajb}^{S/T}(\omega) &= - c_{osc} \sum_{\theta} \sum_{\mu\sigma\nu\lambda} |w\pt| e^{\left(\omega - \eps_a - \eps_b + \eps_i + \eps_j\right)t\pt} C_{\mu i} C_{\sigma a} C_{\nu j} C_{\lambda b} \left\lbrace \vphantom{\sum_i} \right. \\
+&\left. \sum_{\kappa} \left[ u^{S/T}_{\ulgk\olgs'} S_{\sigma'\sigma} \cn{\kappa \mu}{\nu\lambda} \pm u^{S/T}_{\ulgk\olgl'} S_{\lambda'\lambda} \cn{\nu\kappa}{\mu\sigma} \right] \right. \\
+&\left. - \sum_{\gamma} \left[ S_{\mu\mu'} u^{S/T}_{\ulgm'\olgs} \cn{\nu\lambda}{\sigma\gamma} \pm S_{\nu\nu'} u^{S/T}_{\ulgn'\olgg} \cn{\mu\sigma}{\gamma\lambda} \right]   \right\rbrace \\
+&= - \sum_{\theta} \sum_{\mu\sigma\nu\lambda} |w\pt| e^{\left(\omega - \eps_a - \eps_b + \eps_i + \eps_j\right)t\pt} C_{\mu i} C_{\sigma a} u_{\mu\sigma\nu\lambda}^{S/T} C_{\nu j} C_{\lambda b}
+\end{split}
+\end{equation}
+\noindent Note the additional minus sign in front of the Laplace summation. After the Laplace transform, the sign of the denominator is swapped, i.e. $\frac{1}{\pm x} \rightarrow exp(\mp x t\pt)$. For large negative occupied molecular orbital energies $\eps_i$ or large postive virtual molecular orbital energies $\eps_a$, this would lead to very large values and numerical instabilities. For this reason, the minus sign is factored out to reverse the sign in the exponent. 
+
+Inserting the above expression into Eqaution ... gives the final expression for part 2E constructed via AO intermediates:
+\begin{equation}
+\begin{split}
+u_{ia}^{S/T,AO-SOS}(\omega) &= - c_{osc}^2 \sum_{\theta} e^{\omega t\pt} |w\pt|^{1/2} C_{\mu i} e^{\eps_i t\pt} C_{\sigma a} e^{-\eps_a t\pt} \left\lbrace \vphantom{\sum_d} \right. \\
+&\left.  \sum_{\kappa\gamma\tau} \cn{\mu\ulgk}{\ulgt\olgg}\pt u_{\kappa\sigma\tau\gamma}^{S/T} - \sum_{\gamma\kappa\delta} u_{\mu\gamma\kappa\delta}^{S/T} \cn{\ulgk\olgd}{\sigma\olgg}\pt \right\rbrace \\
+&= - c_{osc}^2 \sum_{\theta} e^{\omega t\pt} |w\pt|^{1/2} C_{\mu i} e^{\eps_i t\pt} C_{\sigma a} e^{-\eps_a t\pt} \left[ R^{(1)S/T}_{\ulgm\olgs} - R^{(2)S/T}_{\ulgm\olgs} \right]
+\end{split}
+\end{equation}
+\noindent Similarly to previous expressions, the AO electron repulsion integrals are not completely transformed into the pseudo-AO basis, but only three-quarter transformed integrals are obtained. 
+
+The time-determining step is the formation of the $\mathbf{R}$ intermediates, which in turn depend on the AO doubles intermediates. Consider the sparsity diagram for the following term encountered in Equation ... :
+
+\begin{equation}
+u_{\ulgk\olgs'} S_{\sigma'\sigma} \cn{\kappa \mu}{\nu\lambda}
+\end{equation}
+
+\begin{center}
+\begin{tikzpicture}
+\snode{NU}{-3,0}{\nu};
+\snode{LAM}{-2,0}{\lambda};
+\snode{MU}{-1,0}{\mu};
+\snode{KAP}{0,0}{\kappa};
+\snode{SIG1}{1,0}{\sigma'};
+\snode{SIG}{2,0}{\sigma};
+
+\draw[<->] (KAP) -- (SIG1) node [midway, above] () {P};
+\draw[<->] (SIG1) -- (SIG) node [midway, above] () {S};
+\draw[<->] (MU) -- (KAP) node [midway, above] () {S};
+
+\draw[<->] (NU) -- (LAM) node [midway, above] () {S};
+
+\end{tikzpicture}
+\end{center}
+\noindent Similar diagrams can be derived for the other three contractions in Equation .... This shows an overall quadratic scaling in computational effort and number of non-zero elements for the AO doubles intermediates $u_{\mu\sigma\nu\lambda}$. The indices $\mu$/$\sigma$ and $\nu$/$\lambda$ are connected by either an S/P junction, but no sparsity relationship can be established between those pairs, similar to the AO electron integrals.  
+
+This information can be used to find the scaling of the $\mathbf{R}$ intermediates. For example, the sparsity digram for $\mathbf{R}^{(1)} = \cn{\mu\ulgk}{\ulgt\olgg}\pt u_{\kappa\sigma\tau\gamma}$ reads
+\begin{center}
+\begin{tikzpicture}
+\snode{MU}{-3,0}{\mu};
+\snode{KAP'}{-2,0}{\kappa'};
+\snode{KAP}{-1,0}{\kappa};
+\snode{SIG}{0,0}{\sigma};
+\snode{TAU}{1,0}{\tau};
+\snode{TAU1}{2,0}{\tau'};
+\snode{GAM1}{3,0}{\gamma'};
+\snode{GAM}{4,0}{\gamma};
+
+\draw[<->] (MU) -- (KAP') node [midway, above] () {S};
+\draw[<->] (KAP') -- (KAP) node [midway, above] () {P};
+\draw[<->] (KAP) -- (SIG) node [midway, above] () {S/P};
+\draw[<->] (TAU) -- (TAU1) node [midway, above] () {P};
+\draw[<->] (TAU1) -- (GAM1) node [midway, above] () {S};
+\draw[<->] (GAM1) -- (GAM) node [midway, above] () {P};
+
+
+\end{tikzpicture}
+\end{center}
+\noindent and a similar diagram can be drawn for $\mathbf{R}^{(2)}$, which again shows quadratic scaling. 
+
+\subsection{Potential Linear Scaling Formulation}
+
+\subsection{Summary}
+
+The SOS-ADC(2) matrix-vector product is finally computed as
+\begin{align}
+\begin{split}
+r_{ia}^{S,AO-DF-SOS}(\omega) &= (\eps_a - \eps_i) u_{ia}^S + \sum_{\mu\nu} C_{\mu i} C_{\nu a} \left( 2\tilde{J}^S_{\mu\nu} - \tilde{K}^S_{\mu\nu} \right) \\
+&+ \sum_b I_{ab}^{AO-DF-SOS} u_{ib}^S + \sum_j I_{ij}^{AO-DF-SOS} u_{ja}^S \\
+&- \frac{c_{os}}{2} \sum_{\alpha} \sum_{ia} \wpa^{1/2} C_{\mu i}\pa C_{\sigma a}\pa I_{\mu\sigma}^{(1)(\alpha)S,AO-DF-SOS} \\
+&- \frac{c_{os}}{2} \sum_{ia} C_{\mu i} C_{\sigma a} I_{\mu\sigma}^{(2)S,AO-DF-SOS} \\
+&- c_{osc}^2 \sum_{\theta} e^{\omega t\pt} |w\pt|^{1/2} C\pt_{\mu i} C_{\sigma a}\pt \left[ R_{\ulgm \olgs}^{(1)S} - R_{\ulgm\olgs}^{(2)S} \right]
+\end{split}
+\\
+\begin{split}
+r_{ia}^{T,AO-DF-SOS}(\omega) &= (\eps_a - \eps_i) u_{ia}^T + \sum_{\mu\nu} C_{\mu i} C_{\nu a} \tilde{K}^T_{\mu\nu} \\
+&+ \sum_b I_{ab}^{AO-DF-SOS} u_{ib}^T + \sum_j I_{ij}^{AO-DF-SOS} u_{ja}^T \\
+&- \frac{c_{os}}{2} \sum_{\alpha} \sum_{ia} \wpa^{1/2} C_{\mu i}\pa C_{\sigma a}\pa I_{\mu\sigma}^{(1)(\alpha)T,AO-DF-SOS} \\
+&- \frac{c_{os}}{2} \sum_{ia} C_{\mu i} C_{\sigma a} I_{\mu\sigma}^{(2)T,AO-DF-SOS} \\
+&- c_{osc}^2 \sum_{\theta} e^{\omega t\pt} |w\pt|^{1/2} C\pt_{\mu i} C_{\sigma a}\pt \left[ R_{\ulgm \olgs}^{(1)T} - R_{\ulgm\olgs}^{(2)T} \right]
+\end{split}
+\end{align}
+\noindent where the intermediates are evaluated as presented in the previous sections. The 2-index intermediates still need to be transformed back to the canonical MO basis for the Davidson procedure, but the computational effort required is negligeable. The overall cost of the AO-SOS-ADC(2) scales quadratically both in time and memory requirements.
+
+It is expected that AO-SOS-ADC(2) has the same drawback as LinK or AO-MP2, namely a late onset of the low-scaling regime for larger basis sets. This additional overhead is even worse for AO-ADC due to the complexity of the formulas which involve many more tensor contractions than the ground state. Moreover, diffuse basis are often essential to obtain accurate excitation energies as opoosed to ground state correlation energies, which further aggravates the problem. 
+
+\section{Working Equations for Restricted AO-DF-SOS-ADC(2) with Doubles-Folding}
+
+To lower the steep scaling associated with increasing basis set size, the density fitting approximation is introduced. The two-electron repulsion integrals are approximated as
+\begin{equation}
+\cn{\mu\sigma}{\nu\lambda} = B_{\mu\sigma X} M_{XY} B_{Y \nu\lambda}
+\end{equation}
+\noindent where the general quantities $\mathbf{B}$ and $\mathbf{M}$ depend on the density fitting method. Furthermore, the J-,K- and Z-kernels are introduced:
+\begin{align}
+\calJ\left\lbrace M,P \right\rbrace_{\mu\nu} &= B_{\mu\nu X} M_{XY} B_{Y\sigma\lambda} P_{\lambda\sigma} \\
+\calK\left\lbrace M,P \right\rbrace_{\mu\nu} &= B_{\mu\sigma X} M_{XY} B_{Y \nu\lambda} P_{\lambda\sigma} \\
+\calZ\left\lbrace P, Q \right\rbrace_{XY} &= B_{X\mu\nu} P_{\mu\mu'} B_{\mu'\nu' Y} Q_{\nu' \nu} 
+\end{align}
+\noindent This notation allows to reduce the complexity of the formulas to some degree. 
+
+The working equations for the singlet and triplet AO-SOS-ADC(2) matrix vector products, with doubles-folding and density fitting, are given in Tables ... to .... in algorithmic form to allow a clearer picture. Table ... lists the pre-iterative steps, where the Laplace points for $\frac{1}{\eps_a + \eps_b - \eps_i - \eps_j}$ and the intermediates $I_{ab}$ and $I_{ij}$ are computed. Table ... groups the steps necessary to form the components of the MVP (1, 2A-2D) which are independent of the excitation energy $\omega$. Finally, the expression for part 2E is given in Table .... The major advantage of using density fitting is the complete avoidance of any 4-index intermediate in the AO basis, which greatly reduces the prefactor.
+
+\begin{table}
+\begin{tabular}{p{0.8\textwidth}}
+\hline
+Step-by-step \\ \hline
+\begin{enumerate}
+\item Compute Laplace quadrature parameters $\{w\pa,t\pa\}$ for $\frac{1}{\eps_i + \eps_j - \eps_a - \eps_b}$
+\item If needed by the J,K or Z kernels, compute the cholesky decompositions of the occupied and virtual pseudo-density matrix 
+\item Compute the intermediate matrices $I_{ij}$ and $I_{ab}$
+\begin{algorithm}[H]
+\For{\forcond}{
+	\begin{enumerate}
+		\itemR\label{GMATINTERMED}
+	$G\pa_{XY} \leftarrow M_{XR} \calZ\left\lbrace P\pa,Q\pa\right\rbrace_{RS} M_{SR}$
+	\itemR\label{IVVINTERMED}	
+	$I_{ab} \leftarrow - \frac{c_{os}}{2} C_{\nu b} \sum_\alpha C_{\mu a} \mid w\pa \mid^{1/4} e^{-\eps_a t\pa} \calK\left\lbrace P\pa,G\pa\right\rbrace_{\mu\nu}$
+	\itemR\label{IOOINTERMED}
+	$I_{ij} \leftarrow - \frac{c_{os}}{2} C_{\nu j} \sum_\alpha C_{\mu i} \mid w\pa \mid^{1/4} e^{ \eps_i t\pa} \calK\left\lbrace P\pa,G\pa\right\rbrace_{\mu\nu}$ 
+	\end{enumerate}
+}
+\begin{enumerate}
+\setcounter{enumii}{\theISTEP}
+\item\label{AntisymIOO}
+Symmetrize: $I_{ij} \leftarrow I_{ji}$
+\item\label{AntisymIVV}
+Symmetrize: $I_{ab} \leftarrow I_{ba}$
+\end{enumerate}
+\end{algorithm}
+%
+\setcounter{ISTEP}{0}
+%
+\end{enumerate}
+\\ \hline
+\end{tabular}
+\caption{Intermediates}
+\end{table}
+%
+\begin{table}
+\begin{tabular}{p{0.8\textwidth}}
+\hline
+Step-by-step (2) \\ \hline
+\begin{enumerate}
+\item Compute the CIS Fock-like matrix
+\begin{enumerate}
+	\item\label{vecAO}
+	\begin{description}
+		\item if singlet: $U_{\mu\nu} \leftarrow C_{\mu i} u^S_{ia} C_{\nu a}$
+		\item if triplet: $U_{\mu\nu} \leftarrow C_{\mu i} u^T_{ia} C_{\nu a}$
+	\end{description}
+	
+	\item\label{FockCIS}
+	\begin{description}
+		\item if singlet: $F^{CIS}_{\mu\nu} \leftarrow 2 * \calJ\left\lbrace U,M \right\rbrace_{\nu\mu} - \calK\left\lbrace U,M \right\rbrace_{\nu\mu}$
+		\item if triplet: $F^{CIS}_{\mu\nu} \leftarrow - \calK\left\lbrace U,M \right\rbrace_{\nu\mu}$
+	\end{description}
+\end{enumerate}
+%
+\item  Add zero- and first-order terms
+\begin{enumerate}
+	\item\label{WorkADC0}
+	$r_{ia} \leftarrow (\eps_a - \eps_i) u_{ia}$
+	\item\label{WorkADC1}
+	$r_{ia} \leftarrow C_{\mu i} F^{CIS}_{\mu\nu} C_{\nu a}$
+\end{enumerate}
+%
+\item Compute part (C) of seond-order term
+
+\begin{algorithm}[H]
+\For{\forcond}{
+	\begin{enumerate}
+		\item\label{SIGMA2C_INTERMED}
+		\begin{description}
+			\item if singlet: $H\pa_{\mu\nu} \leftarrow P\pa_{\mu'\mu} Q\pa_{\nu'\nu} F^{CIS}_{\nu'\mu'}$
+			\item if triplet: $H\pa_{\mu\nu} \leftarrow - P\pa_{\mu'\mu} Q\pa_{\nu'\nu} F^{CIS}_{\nu'\mu'}$
+		\end{description}
+		\item\label{SIGMA2C}
+		$r_{ia} \leftarrow \frac{-c_{os}}{4} \mid w\pa \mid^{1/2} C_{\mu i} e^{\eps_i t\pa} C_{\nu a} e^{-\eps_a t\pa}  \calJ\left\lbrace H\pa,M \right\rbrace_{\mu\nu}$
+	\end{enumerate}
+}
+\end{algorithm}
+%
+\item Compute part (D) of second-order term
+
+\begin{algorithm}[H]
+\For{\forcond}{
+	\begin{enumerate}
+		\itemR\label{SIGMA2D_INTERMED0}
+		\begin{description}
+			\item if singlet: $U\pa_{\mu\nu} \leftarrow \mid w\pa \mid^{1/2} C_{\mu i} e^{\eps_i t\pa} C_{\nu a} e^{-\eps_a t\pa} u^S_{ia}$
+			\item if triplet: $U\pa_{\mu\nu} \leftarrow - \mid w\pa \mid^{1/2} C_{\mu i} e^{\eps_i t\pa} C_{\nu a} e^{-\eps_a t\pa} u^T_{ia}$
+		\end{description}
+		
+		\itemR\label{SIGMA2D_INTERMED1}
+		$T_{\mu\nu} \leftarrow \frac{1}{2} \sum_{\alpha} P\pa_{\mu\mu'} Q\pa_{\nu\nu'} \calJ\left\lbrace U\pa,M \right\rbrace_{\nu\mu}$
+	\end{enumerate}
+}
+\end{algorithm}
+\begin{enumerate}
+\setcounter{enumii}{\theISTEP}
+\item\label{SIGMA2D}
+$r_{ia} \leftarrow -\frac{c_{os}}{2} C_{\mu i} C_{\nu a} \left[ 2\calJ\left\lbrace T,M \right\rbrace_{\mu\nu} - \calK\left\lbrace T,M \right\rbrace_{\mu\nu} \right]$
+\end{enumerate}
+\setcounter{ISTEP}{0}
+%
+\end{enumerate}
+\\ \hline
+\end{tabular}
+\caption{Intermediates}
+\end{table}
+%
+\begin{table}
+
+\begin{tabular}{p{0.8\textwidth}}
+\hline
+Step-by-step (3) \\ \hline
+\begin{enumerate}
+\item Compute Laplace quadrature parameters $\{w\pt,t\pt\}$ for $\frac{1}{-\omega + \eps_i + \eps_j - \eps_a - \eps_b}$
+\item Compute part (E) of second-order contributions
+
+\begin{algorithm}[H]
+\For{\forcond}{
+	\begin{enumerate}
+		\itemR\label{SIGMA2E_CHOL}
+		Compute doubles pseudo-matrices $P\pt$ and $Q\pt$
+		\itemR\label{SIGMA2E_B}
+		$B_{X \ulgm \olgs}\pt \leftarrow P\pt_{\mu\mu'} B_{X \mu'\nu'} Q\pt_{\nu'\nu}$
+		\itemR\label{uhto}
+		$v_{\ulgm\olgs}^{(1)(\theta)} \leftarrow P\pt_{\mu\lambda} S_{\lambda\nu} u_{\ulgn\olgs}$
+		\itemR\label{uhtv}
+		$v_{\ulgm\olgs}^{(2)(\theta)} \leftarrow u_{\ulgm\olgg} S_{\gamma\lambda} Q\pt_{\lambda\sigma}$		
+		\itemR\label{SIGMA2E_R}
+		$R_{X \ulgm \olgs}\pt \leftarrow P_{\mu\lambda}\pt B_{X \lambda\nu} v_{\ulgn\olgs}^{(1)(\theta)} - v_{\ulgm\olgg}^{(2)(\theta)} B_{X \gamma\nu} Q\pt_{\nu\sigma}$
+		\itemR\label{SIGMA2E_FA}
+		$H_{XY}\pt \leftarrow B_{X \ulgm\olgs}\pt B_{Y \mu\sigma}$
+		\itemR\label{SIGMA2E_FB}
+		$G_{XY}\pt \leftarrow R_{X \ulgm\olgs}\pt B_{Y \mu\sigma}$
+		\itemR\label{SIGMA2E_D}
+		$D_{X \ulgm\olgs}\pt \leftarrow H_{XY}\pt R_{Y \ulgm\olgs}\pt  + G_{XY}\pt B_{Y \ulgm\olgs}$
+		\itemR\label{SIGMA2E_ILAPA}
+		$r^{(A)}_{ia}(\omega) \leftarrow \overline{C}_{\mu i} P_{\mu\mu'} \left[ D_{X \ulgn \olgs}\pt B_{X \nu\mu'} \right] \overline{C}_{\sigma a}$
+		\itemR\label{SIGMA2E_ILAPB}
+		$r^{(B)}_{ia}(\omega) \leftarrow \overline{C}_{\mu i} \left[ D_{X \ulgm \olgg}\pt B_{X \gamma\sigma'} \right] Q_{\sigma'\sigma} \overline{C}_{\sigma a}$
+		\itemR $r_{ia} += c_{os-coupling}^2 e^{\omega t\pa} \left[ - r^{(A)}_{ia}(\alpha,\omega) + r^{(B)}_{ia}(\alpha,\omega) \right]$
+	\end{enumerate}
+}
+\end{algorithm}
+\end{enumerate}
+%
+\\ \hline
+\end{tabular}
+\caption{Algorithm for singlet-excitations \label{SOS-AO-ADC(2)}}
+\end{table}
+
+\begin{table}
+\begin{tabular}{p{0.8\textwidth}}
+\hline
+Step-by-step (3) \\ \hline
+\begin{enumerate}
+\item Compute Laplace quadrature parameters $\{w\pt,t\pt\}$ for $\frac{1}{-\omega + \eps_i + \eps_j - \eps_a - \eps_b}$
+\item Compute part (E) of second-order contributions
+
+\begin{algorithm}[H]
+\For{\forcond}{
+	\begin{enumerate}
+		\itemR\label{SIGMA2E_CHOL}
+		Compute doubles pseudo-matrices $P\pt$ and $Q\pt$
+		\itemR\label{SIGMA2E_B}
+		$B_{X \uli \ola}\pt \leftarrow L\pt_{\mu\uli} B_{X \mu\nu} L\pt_{\nu\ola}$
+		\itemR\label{uhto}
+		$v_{\uli\olgs}^{(1)(\theta)} \leftarrow L\pt_{\mu\uli} S_{\mu\nu} u_{\ulgn\olgs}$
+		\itemR\label{uhtv}
+		$v_{\ulgm\ola}^{(2)(\theta)} \leftarrow u_{\ulgm\olgg} S_{\gamma\lambda} L\pt_{\lambda\ola}$		
+		\itemR\label{SIGMA2E_R}
+		$R_{X \uli \ola}\pt \leftarrow L_{\mu\uli}\pt B_{X \mu\nu} v_{\ulgn\olga}^{(1)(\theta)} - v_{\uli\olgg}^{(2)(\theta)} B_{X \gamma\nu} L\pt_{\nu\ola}$
+		\itemR\label{SIGMA2E_FA}
+		$H_{XY}\pt \leftarrow B_{X \uli\ola}\pt B_{Y \uli\ola}$
+		\itemR\label{SIGMA2E_FB}
+		$G_{XY}\pt \leftarrow R_{X \uli\ola}\pt B_{Y \uli\ola}$
+		\itemR\label{SIGMA2E_D}
+		$D_{X \uli\ola}\pt \leftarrow H_{XY}\pt R_{Y \uli\ola}\pt  + G_{XY}\pt B_{Y \uli\ola}$
+		\itemR\label{SIGMA2E_ILAPA}
+		$r^{(A)}_{ia}(\omega) \leftarrow \overline{C}_{\lambda i} P_{\lambda\mu} \left[ D_{X \ulk \ola}\pt B_{X \nu\mu} L_{\nu \ulk}  \right] L_{\sigma \ola} \overline{C}_{\sigma a}$
+		\itemR\label{SIGMA2E_ILAPB}
+		$r^{(B)}_{ia}(\omega) \leftarrow \overline{C}_{\mu i} L_{\mu \uli} \left[ D_{X \uli \olb}\pt B_{X \gamma\sigma} L_{\sigma \olb}  \right] Q_{\gamma\lambda} \overline{C}_{\lambda a}$
+		\itemR $r_{ia} += c_{os-coupling}^2 e^{\omega t\pa} \left[ - r^{(A)}_{ia}(\alpha,\omega) + r^{(B)}_{ia}(\alpha,\omega) \right]$
+	\end{enumerate}
+}
+\end{algorithm}
+\end{enumerate}
+%
+\\ \hline
+\end{tabular}
+\caption{Algorithm for singlet-excitations \label{SOS-AO-ADC(2)-OV}}
+\end{table}
+
+%The intermediates in the expression for AO-SOS-ADC(2) (Equation ...) are then given as
+%\begin{align}
+%\tilde{J}^{S/T}_{\mu\sigma} &= B_{X\mu\sigma} \left[ M_{XY} \left( B_{X\lambda\nu} u^{S/T}_{\ulgn \olgl} \right) \right] 
+%\\
+%\tilde{K}^{S/T}_{\mu\nu} &= \left( M_{XY} B_{Y\mu\sigma} \right) \left( B_{X\nu\lambda} u^{S/T}_{\ulgl \olgs} \right) 
+%\\
+%I_{ab}^{AO-DF-SOS,ns} &= \frac{c_os}{2} \sum_b C_{\lambda b} \sum_{\alpha} \mid w\pa\mid^{1/4} e^{-\eps_a t\pa} C_{\sigma a} A\pa_{\sigma\lambda} 
+%\\
+%A\pa_{\sigma\lambda} &= \left[ M_{XX'} \left( B_{X'\tau\gamma} B_{Y'\ulgt\olgg}\pa \right) M_{Y'Y} \right] B_{Y\kappa\gamma} \left( B_{X\kappa'\sigma} P_{\kappa'\kappa}\pa \right)
+%\\
+%I_{ij}^{AO-DF-SOS,ns} &= \frac{c_{os}}{2} \sum_j C_{\nu j} \sum_i \wpa^{1/4} C_{\mu i} e^{\eps_i t\pa} B_{\mu\nu}\pa 
+%\\
+%B\pa_{\sigma\lambda} &= \left[ M_{XX'} \left( B_{X'\tau\gamma} B_{Y'\ulgt\olgg}\pa \right) M_{Y'Y} \right] B_{Y\kappa\gamma} \left( B_{X\kappa\sigma'} Q_{\sigma'\sigma}\pa \right)
+%\\
+%I_{\mu\sigma}^{(1)(\alpha)S,AO-DF-SOS} &= \left\lbrace \left[ \left[ P\pa_{\nu\nu'} \left( 2\tilde{J}_{\lambda'\nu'} - \tilde{K}_{\lambda'\nu'} \right) Q_{\lambda'\lambda} \right] B_{X \nu \lambda} \right] M_{XY} \right\rbrace B_{Y\mu\sigma}
+%\end{align}

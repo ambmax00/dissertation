@@ -1,12 +1,211 @@
 \chapter{Theory: The Basics}
 
-\section{Ground Work}
+Over the last decades, quantum chemistry has emerged as a crucial tool for investigating a wide variety of problems in chemistry. This, in combination with the increasing performance and widespread use of computers, has spawned a whole new branch of chemsitry known as \emph{computational chemistry}. The field of computational chemistry uses methods developed in \emph{theoretical chemistry} and incorporates them into efficient programs. Nowaydays, quantum chemical methods are routinely applied to assist in solving problems related to chemical structure, reactivity and spectroscopy. However, one of the main problems in computational chemistry is choosing a suitable level of theory for a given problem - the best choice is always a trade-off between speed and accuracy, and requires intricate knowledge of the methods' theoretical and computational limits. This chapter summarizes the core concepts of quantum chemsitry and introduces the most important methods used in modern computational chemistry. It is by no means complete, and the reader is referred to the original text book resources used by the author for more details (Szabo,Jensen,Helgaker,Schirmer,Norman).
 
-\subsection{The Schrödinger Equation}
+\section{Describing Dynamics in a Molecular System}
 
-\subsection{Basis Sets}
+In order to describe a molecular system, one needs to decide
+\begin{itemize}
+\item what the fundamental particles are
+\item what forces are governing them
+\item what the starting conditions are
+\item and what form the dynamical equations take.
+\end{itemize}
+\noindent The choice of particles dictates what properties the model is ultimately able to describe. For example, force field methods use atoms as the indivisible unit, which is sufficient to describe the molecular structure and dynamics of large molecules such as proteins, but does not provide any information on electron distribution. Using electrons and nuclei as the fundamental particles allows to get a better picture of the electron density and how it reacts to external perturbation, which is important for studies on reactivity and spectroscopic constants. To describe radioactive decay, it is necessary to further divide the nuleus into protons and neutrons. 
 
-\subsection{Electron Integrals}
+Smaller subdivisions lead to a stricter limit on the size of molecules that can be treated. Force field methods may describe the dynamics of molecules with several tens of thousands of atoms, while a finer grained method involving electrons can often only desribe molecules one to two orders of magnitudes smaller depending on the approximantion used.
+
+The mathematical form of the dynamical equations is determined by the size and mass of the particles. They can be divided into four regimes (Figure ...). Atoms are sufficiently heavy and slow that their trajectories can be described using classical (newtonian) mechanics. The time evolution of the positions $\mathbf{r}$ of the atoms in a potential $\mathbf{V}$ can be written as
+\begin{equation}
+-\frac{\partial \mbf{V}}{\partial t} = m\frac{\partial^2 \mathbf{r}}{\partial t}
+\end{equation} 
+\noindent which is another form of Newton's second law $\mbf{F} = m\mbf{a}$. The potential $\mbf{V}$ is also treated classicaly as the sum of contributions of particle-particle interactions.
+
+For objects with velocities approaching the speed of light, it is necessary to introduce \emph{relativistic effects}. Mass then becomes a function of velocity
+\begin{equation}
+m = \frac{m_0}{\sqrt{1-v^2/c^2}}
+\end{equation}
+
+Classical newtonian mechanics cannot be applied to very light particles, such as electrons, and quantum effects need to taken into considerations. For non-relativistic velocities, the dynamics are governed by the time-dependent Schrödinger equation:
+\begin{equation}
+\mathbf{\mbf{H} \Psi(\mbf{r},t) = i \frac{\partial \Psi(\mbf{r},t)}{\partial t}}
+\end{equation}
+\noindent where $\mbf{H}$ is the Hamiltonian operator which is a sum of the kinetic and potential energy operators
+\begin{align}
+\mbf{H} = \mbf{T} + \mbf{V} \\
+\mbf{T} = -\frac{1}{2m} \nabla^2
+\end{align}
+\noindent and $\Psi$ is the wavefunction of the system, which is obtained as the solution to the Schrödinger Eqaution, and gives the probability of finding a particle at position $\mbf{r}$ at time $t$. Here, atomic units are assumed.
+
+For electrons moving at relativistic speed, for example in the core orbitals in super-heavy atoms, the Hamiltonian takes a more complex form, and the Schrödinger equation is then known as the $\emph{Dirac}$ equation:
+\begin{equation}
+\mbf{H}_{Dirac} = \left(c\mbf{\alpha} \mbf{p} + \mbf{\beta}mc^2\right) + \mbf{V}
+\end{equation}
+Here, only the solutions and aproximations to the non-relativistic Schrödinger equation will be discussed.
+
+\begin{figure}
+\centering
+\includegraphics[scale=1.0]{Pics/dyneq}
+\caption{Adapted form (ref)}
+\end{figure}
+
+\section{The Electronic Schrödinger Equation}
+
+\begin{quote}
+  "Where did we get that [Schrödinger's equation] from? It's not possible to derive it from anything you know. It came out of the mind of Schrödinger."
+  \begin{flushright}
+    \small{--- \textit{Richard Feynman, The Feynman Lectures on Physics}}
+  \end{flushright}
+\end{quote}
+
+If one is interested in describing the electron distribtion in detail, the Schrödinger Eqaution (SEQ) is the best starting point. There is no formal, rigorous proof for the Schrödinger equation, similar to how Newton's second law cannot really be "derived", more than simply "motivated" by observation. 
+
+As successful as the Schrödinger equation is, finding solutions to it is non-trivial. Different approximations may be applied to the SEQ to solve it more easily, without considerable loss of accuracy. 
+
+\subsection{The Time-Independent Schrödinger Equation}
+
+The potential energy operator is the only time-dependent part of the Hamiltonian:
+\begin{equation}
+\mbf{H}(\mbf{r},t) = \mbf{T}(\mbf{r}) + \mbf{V}(\mbf{r},t)
+\end{equation} 
+\noindent For systems where the potential is time-independent, e.g. bound systems without external (electromagnetic) perturbation, the Hamiltonian is time-indepedent as well, which in turn allows to separate space and time variables. It can then be shown that the \emph{time-independent} Schrödinger equation takes the form
+\begin{equation}
+\mbf{H}\Psi(\mbf{r}) = E \Psi(\mbf{r})
+\end{equation}
+\noindent where $E$ is the total energy of the system, and the eigenvalue of the wavefunction $\Psi$. The time-depedence is then simply reduced to a phase factor:
+\begin{equation}
+\Psi(\mbf{r},t) = e^{-iEt} \Psi(\mbf{r})
+\end{equation}
+\noindent 
+
+\subsection{The Born-Oppenheimer Approximation}
+
+Atomic nuclei are much heavier than electrons ($m_{proton} \approx 1836 m_{electron}$), and move much slower. To a good approximation, the nuclei can be assumed to be stationnary from the point of view of electrons. This is known as the \emph{Born-Oppenheimer approximation}. The total Hamiltonian operator can be written in terms of the kinetic and potential operator of the nuclei ($n$) and electrons ($e$) as
+\begin{equation}
+\mbf{H}_{tot} = \mbf{T}_n + \mbf{T}_e + \mbf{V}_{ne} + \mbf{V}_{ee} + \mbf{V}_{nn}
+\end{equation}
+\noindent In the Born-Oppenheimer approximation, the kinetic energy of the nuclei $T_{nn}$ is neglected, and the nucleus-nucleus potential $V_{nn}$ is taken as a constant, which corresponds to neglecting the coupling between electrons and nuclei. This allows a separation of the electronic and nuclar variables. The remaining terms of Equation ... form the electronic Hamiltonian $\mbf{H_{elec}}$. The solutions to the \emph{electronic Schrödinger eqaution}
+\begin{equation}
+\mbf{H}_{elec} \Psi_{elec}(\mbf{r}_i, \mbf{R}_n ) = E_{elec}(\mbf{R}_n) \Psi_{elec}(\mbf{r}_i, \mbf{R}_n )
+\end{equation}
+\noindent produce the electronic wavefunction which depends on the (fixed) \emph{position} $\mbf{R}_n$ of the nuclei and no longer on the \emph{momentum} of the nuclei. The total energy
+\begin{equation}
+E_{tot}(\mbf{R}_n) = E_{elec}(\mbf{R}_n) + E_{nucl}(\mbf{R}_n)
+\end{equation} 
+\noindent provides a \emph{potential energy surface} (PES) on which the nuclei move. The PES can then be used to solve the nulcear Schrödinger equation to obtain information on vibrational, rotational and translational properties in the molecular system.
+
+From this point onward, the subscript $elec$ is dropped, and only the electronic Schrödinger Equation is considered.
+
+\section{Solutions to the Electronic Schrödinger Equation}
+
+\subsection{Slater Determinants}
+
+It is first important to consider the wave function of the single electrons. In single-atom systems, these functions take the form of "atomic orbitals" (AOs). Correspondingly, "molecular orbitals" (MOs) are defined as the single electron wave functions in a molecular system. These spatial orbital functions form the basis of the total electronic wave function.  
+
+The Hamiltonian in ... only depends on the spatial coordinates. However, to fully describe an electron, one also needs to consider spin. This is done by introducing two orthonormal spin functions $\alpha(\omega)$ and $\beta(\omega)$ corresponding to spin-up ($\uparrow$) and spin-down ($\downarrow$), with the spin-coordinate $\omega$. For one spatial molecular orbital, this gives two possible \emph{spin-orbitals}
+\begin{equation}
+\phi(\mathbf{x}) = \left\lbrace\begin{matrix}
+\varphi(\mathbf{r}) \alpha(\omega) \\
+\varphi(\mathbf{r}) \beta(\omega)
+\end{matrix} \right.
+\end{equation}
+\noindent where $\varphi$ are the \emph{spatial orbitals}, and $\mathbf{x}$ are the combined spatial and spin coordinates. The spin orbitals therefore depend on four variables.
+
+To a first approximation, one may consider a molecular system to consist of $N$ \emph{non-interacting}, independent electrons. The Hamiltonian is then written as a sum of one-particle Hamiltonians 
+\begin{equation}
+\mathbf{H} = \sum_i^N \mathbf{h}_i 
+\end{equation}
+\noindent Electron correlation may then be included in some average way by using \emph{effective} one-electron Hamiltonians, which is the basic working idea of the \emph{Hartree} method. The solution to the SEQ can then be expressed as a product of the one electron wave functions
+\begin{equation}
+\Psi^{HP}(\mbf{x}_1,\mbf{x}_2,...,\mbf{x}_N) = \phi(\mbf{x}_1) \phi(\mbf{x}_2) ... \phi(\mbf{x}_N)
+\end{equation}
+\noindent which is also known as \emph{Hartree product}. 
+
+However, the Hartree product does not take into account the \emph{indistinguishability} of electrons. In what is known as the antisymmetry principle, which is a generilization of the Pauli exclusion principle, the wave function needs to fulfill 
+\begin{equation}
+\Psi(\mbf{x}_1,\mbf{x}_2) = - \Psi(\mbf{x}_2,\mbf{x}_1) 
+\end{equation}
+\noindent upon exchange of any two electrons in the system. This is most easily achived by using \emph{Slater determinants} (SD). For a molecular system consisting of $N$ electrons distributed over $N$ spin orbitals $\phi_i$, the SD takes the form
+\begin{equation}
+\Psi_{SD}(\mbfx_1, \mbfx_2, \ldots, \mbfx_N) = \frac{1}{\sqrt{N!}}
+\begin{vmatrix}
+\phi_I(\mbfx_1) & \phi_J(\mbfx_1) & \ldots & \phi_P(\mbfx_1) \\
+\phi_I(\mbfx_2) & \phi_J(\mbfx_2) & \ldots & \phi_P(\mbfx_2) \\
+\vdots & \vdots & \ddots & \vdots \\
+\phi_I(\mbfx_N) & \phi_J(\mbfx_N) & \ldots & \phi_P(\mbfx_N) \\
+\end{vmatrix}
+\end{equation}
+\noindent Or, using the diagonal of the SD as a short-hand notation
+\begin{equation}
+\Psi_{SD}(\mbfx_1, \mbfx_2, \ldots, \mbfx_N) = \ket{\phi_I(\mbfx_1) , \phi_J(\mbfx_1), \ldots, \phi_K(\mbfx_1)}
+\end{equation}
+
+\subsection{The Fock Space}
+
+A more generalized representation of the space of the antisymmetrized electron wave functions can be achived by introducing the concept of occupation number (ON) vectors in the context of second quantization (Annex). In a system with $M$ possible states (in this case spin molecular orbitals), the ON vectors take the form
+\begin{equation}
+\ket{\mbf{k}} = \ket{k_1, k_2, \ldots, k_M} = 
+\left\lbrace
+\begin{matrix}
+1 \textit{if $\phi_P$ occupied} \\
+0  \textit{if $\phi_P$ occupied}
+\end{matrix}
+\right.
+\end{equation}
+\noindent The occupation number is 1 if $\phi_P$ is present in the SD, and 0 if not. Together, all possible ON vectors in Equation ... form an orthonormal abstract vector space, known as Fock space. The Fock space formed by $N$ electrons distributed over $M$ orbitals is denoted as $F(M,N)$ with total dimension equal to the binomial coefficient $\begin{bmatrix} M \\ N \end{bmatrix}$. The sum of the occupation numbers in the ON vectors gives the total number of electrons
+\begin{equation}
+N = \sum_i^M k_i
+\end{equation}
+\noindent The subspace $F(0,M)$ contains a single vector known as the vacuum state with
+\begin{align}
+\ket{vac} = \ket{0_1, 0_2, \ldots, 0_M} \\
+\bra{vac}\ket{vac} = 1
+\end{align}
+\noindent The ON vectors in $F(M,N)$ can be alternatively expressed in terms of the vaccum state in $F(M,0)$ using creation operators
+\begin{equation}
+\ket{\mbf{k}} = \left[ \prod_{P=1}^M (a\pdg_P)^{k_P} \right] \ket{vac}
+\end{equation}
+\noindent In second quantization, the antisymmetry principle of the wavefunction is guranteed by the commutator relationship of the annihilation and creation operators $a_P$ and $a\pdg_P$ which act on the ON vectors.
+
+\subsection{Exact Solution and Standard Models}
+
+The simplest approach to solving the electronic SEQ is by approximating the exact wave function $\Psi$ using a single Slater determinant where the electrons occupy the lowest lying molecular orbitals. The Hartree-Fock method is an example of a \emph{single-determinant method} and finds \emph{the} single best Slater determinant for $\ket{\Psi}$. In terms of the ON vectors, this corresponds
+
+As will be discussed in more detail later, a single-determinant treatment of the electronic wavefunction is insufficient to fully capture \emph{electron correlation}. The electron correlation energy is formerly defined as the difference between the Hartree-Fock energy and the \emph{exact} energy of $\ket{Psi}$
+\begin{equation}
+E_{correlation} = E_{HF} - E_{exact}
+\end{equation}
+\noindent although the Hartree-Fock wave function does include correlation effects to some degree. In a more general sense, electron correlation is a broad term for any interactions between electrons that make their movement depend on each other, or \emph{correlate} with each other (cf Section ...). 
+
+In order to improve on the HF approximation, it is important to add additional Slater determinats. These SDs can be generated from the HF reference wave function by replacing the occupied MOs $\phi_I$ in a reference Slater determinant ... by one or multiple orbitals $\phi_A$ which were previously unoccupied. This effectively corresponds to exciting one or more electrons from their occupied molecular orbitals $I,J,..$ to unoccupied, or $virtual$ orbitals $A,B,..$ (Figure ...). These excited Slater determinants can be classified by the number of electrons they excite and are often referred to as singles, doubles, triples and so on.
+\begin{align*}
+\ket{S} &= a\pdg_A a_I \ket{HF} \\
+\ket{D} &= a\pdg_A a_I a\pdg_B a_J \ket{HF} \\
+\ket{T} &= a\pdg_A a_I a\pdg_B a_J a\pdg_C a_K \ket{HF} \\
+\ldots &
+\end{align*}
+
+The exact solution to the electronic Schrödinger equation is then given by the sum of the Hartree Fock wave function and all possible ON vectors in $F(M,N)$
+\begin{equation}
+\ket{\Psi} = c_0 \ket{HF} + \sum^{{{M}\choose{N}}-1}_{i=1} c_i  \ket{i} 
+\end{equation}  
+\noindent Equation ... offers a systematic approach to improve on the Hartree Fock method, by increasing (1) the number of Sater determinats and (2) the basis set size $M$, and gives rise to a hierarchy of methods. Correlated electronic structure methods mainly differ by how they determine the expansion coefficients $c$. For all but the smallest systems, the full $F(M,N)$ cannot be used in calculations due to the total number of ON vectors which increases binomially with ${M}\choose{N}$, and hence the number of coefficients to be determined. In practice, the Fock space is \emph{truncated} to some degree.
+
+\begin{figure}
+\centering
+\includegraphics[scale=2.0]{Pics/standardmodel}
+\caption{Standard model}
+\end{figure}
+
+\emph{Multi-determinant} methods like configuration interaction (CI) or coupled cluster (CC) use the Hartree Fock wave function as the reference from which they generate singles, doubles, triples ... SDs  as in Eqaution .... By truncating at different excitation levels, one gets a hierarchy of CI/CC methods which recover different amounts of correlation energy (e.g. CIS, CISD, CISDT ...). Multi-determinant methods are mainly suited to recover dynamic correlation (cf. ...).
+
+For systems with strong static correlation, additionally, a multi-reference approach is needed. Here, the excited SDs are generated from multiple references rather than only from HF. Methods include multireference CI (MRCI) and multireference CC (MRCC). The reference states are traditionally obtained from multiconfigurational self-consistent-field methods (MCSCF) like the complete active space SCF (CASSCF) or restrcited active space SCF (RASSCF). MCSCF is a combination of HF and CI, which both optimizes the HF molecular coefficients and the CI expansion coeffcients. Multi-determant methods mostly recover dynamic correlation, while \emph{multi-reference} methods mainly recover \emph{static correlation} (cf. Section ...). 
+
+A summary of all \emph{ab-initio} standard models is given in Figure ...
+
+Different Route: Moller plesset
+
+\subsection{Basis Set Approximation}
 
 \section{Hartree Fock}
 
@@ -19,8 +218,6 @@
 \subsection{Coupled Cluster}
 
 \section{Post-Hartree Fock Excited State}
-
-\subsection{Configuration Interaction}
 
 \subsection{Coupled Cluster Linear Repsonse}
 

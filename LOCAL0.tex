@@ -619,28 +619,51 @@ EXAMPLES!! Ethylene
 % (0) https://www.annualreviews.org/doi/10.1146/annurev.pc.44.100193.001241
 % (1) https://aip.scitation.org/doi/full/10.1063/1.2173249
 
-A set of highly localized molecular orbitals can be obtained by projecting the CMOs onto the atomic orbital basis, known as projected atomic orbitals (PAO) (0). For a set of orthonormal occupied/virtual molecular orbitals $\{\Psi_i\}$ and $\{\Psi_a\}$, the projection operators are defined as (1)
+A set of highly localized molecular orbitals can be obtained by projecting the CMOs onto the atomic orbital basis, known as projected atomic orbitals (PAO) (0). For a set of orthonormal occupied and virtual molecular orbitals $\{\Psi_i\}$ and $\{\Psi_a\}$, the projection operators $\hat{P}$ and $\hat{Q}$ are defined as (1)
 
 \begin{eqnarray}
 \hat{P} &= \ket{\Psi_i} \bra{\Psi_i} &= \ket{\chi_{\mu}} C_{\mu i} C_{\nu i} \bra{\chi_{\nu}} \\
 \hat{Q} &= \ket{\Psi_a} \bra{\Psi_a} &= \ket{\chi_{\mu}} C_{\mu a} C_{\nu a} \bra{\chi_{\nu}}
 \end{eqnarray}
 
-The projection operators are idempotent and mutually orthogonal with $\hat{P}\hat{Q} = \mathbb{1}$. Applying the projection operators to the set of AOs 
+\noindent which are then applied to the atomic orbitals $\chi$ 
 
 \begin{eqnarray}
-\hat{P} \ket{\chi_{\mu'}} &= \sum_{\mu} \ket{\chi_{\mu}} P_{\mu\nu} S_{\nu\mu'} &= L_{\mu I} \ket{\chi_{\mu}} \\
-\hat{Q} \ket{\chi_{\mu'}} &= \sum_{\mu} \ket{\chi_{\mu}} Q_{\mu\nu} S_{\nu\mu'} &= L_{\mu A} \ket{\chi_{\mu}}
+\hat{P} \ket{\chi_{\mu'}} &= \sum_{\mu} P_{\mu\nu} S_{\nu\mu'} \ket{\chi_{\mu'}} &= \sum_{\mu} \ovl{P}_{\mu \mu'} \ket{\chi_{\mu'}} = \ket{\chi_{\ulgm}} \\
+\hat{Q} \ket{\chi_{\mu'}} &= \sum_{\mu} Q_{\mu\nu} S_{\nu\mu'} \ket{\chi_{\mu'}}  &= \ovl{Q}_{\mu \mu'} \ket{\chi_{\mu'}} = \ket{\chi_{\olgm}}
 \end{eqnarray} 
 
-\noindent yields the set of occipied and virtual PAOs $\{\chi_I\},\{\chi_A\}$. Both sets span a space of $n_{AO}$ functions each, as opposed to $n_{occ}$ and $n_{vir}$. As such, just like the AO basis, the PAO basis is redundant (non-orthogonal). CMOs are transformed to PAOs by the relationship
+The projection operators $\hat{P}$, $\hat{Q}$ and the non-symmetric PAO coefficient matrices $\mathbf{\ovl{P}}$, $\mathbf{\ovl{Q}}$ are \emph{idempotent}
+\begin{equation}
+\mbf{\ovl{P}}\mbf{\ovl{P}} = \mbf{\ovl{P}} \qquad
+\mbf{\ovl{Q}}\mbf{\ovl{Q}} = \mbf{\ovl{Q}}
+\end{equation}
 
+\noindent and \emph{mutually orthogonal} 
+\begin{equation}
+\mbf{\ovl{P}}\mbf{\ovl{Q}} = \mbf{0} \qquad \mbf{\ovl{P}} + \mbf{\ovl{Q}} = \mbf{1} 
+\end{equation} 
+
+\noindent But not orthogonal within themselves
+\begin{equation}
+\bra{\chi_{\ulgm}} \ket{\chi_{\ulgn}} = S^{PAO}_{\ulgm\ulgn} \qquad \bra{\chi_{\olgm}} \ket{\chi_{\olgn}} = S^{PAO}_{\olgm\olgn}
+\end{equation}
+The number of PAOs (occupied or virtual) is equal to the number of AOs, and are therefore linearly dependent (redundant). CMOs are transformed to PAOs by using
 \begin{eqnarray}
-\ket{\chi_I} = (\mathbf{SC})_{Ii} \ket{\Psi_i} \\
-\ket{\chi_A} = (\mathbf{SC})_{Aa} \ket{\Psi_a}
+\ket{\chi_{\ulgm}} &= (\mathbf{SC})_{\mu i}  \ket{\Psi_i} &= \ovl{C}_{\mu i} \ket{Psi_i} \\
+\ket{\chi_{\olgm}} &= (\mathbf{SC})_{\mu a} \ket{\Psi_a} &=  \ovl{C}_{\mu a} \ket{\Psi_a}
+\label{CMO2PAO}
 \end{eqnarray}
-
-PAOs are centred on the atom on which their corresponding AO is localized. However, PAOs can still span multiple atoms. Methods which are entirely formulated in PAOs are rare but possible (1). 
+\noindent The back-transformation is defined as
+\begin{eqnarray}
+\ket{\Psi_{i}} &= C_{\mu i} \ket{\ulgm} \\
+\ket{\Psi_{a}} &= C_{\mu a} \ket{\olgn} 
+\label{PAO2CMO}
+\end{eqnarray}
+PAOs are centred on the atom on which their corresponding AO is localized, but can still be delocalized over multiple atoms, depending on the sparsity of the density matrix. Methods which are entirely formulated in PAOs are rare but possible (1). The projection method is most often used on the virtual orbital space, where standrad localiztaion procedures fail. A set of virtual PAOs is generated from LMOs by using the orthogonality relationship from Eqaution ...
+\begin{equation}
+\mbf{\ovl{Q}} = \left( \mbf{1} - \mbf{LL}^{\dagger} \mbf{S} \right) \mbf{C} 
+\end{equation}
 
 \subsection{Subspace Projected Atomic Orbitals}
 

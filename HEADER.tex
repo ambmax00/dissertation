@@ -9,10 +9,13 @@
 \usepackage{fancyhdr}
 \usepackage{tikz}
 \usepackage{physics}
+%\usepackage{mathabx}
 \usepackage[]{algorithm2e}
+\usepackage[skins]{tcolorbox}
 \usepackage{subcaption} 
 \usetikzlibrary{positioning,calc}
 \usepackage{draftwatermark}
+\usepackage{framed}
 \SetWatermarkText{DRAFT}
 \SetWatermarkScale{5}
 
@@ -108,11 +111,13 @@
 \newcommand{\ulgn}{\underline{\nu}}
 \newcommand{\olgn}{\overline{\nu}}
 \newcommand{\ulgk}{\underline{\kappa}}
-\newcommand{\olgl}{\overline{\lambda}}
+\newcommand{\ulgt}{\underline{\tau}}
+\newcommand{\ulgl}{\underline{\lambda}}
+\newcommand{\olgl}{\overline{\lambda}} % use for b
 \newcommand{\olga}{\overline{\alpha}}
 \newcommand{\olgb}{\overline{\beta}}
-\newcommand{\olgs}{\overline{\sigma}}
-\newcommand{\olgg}{\overline{\gamma}}
+\newcommand{\olgs}{\overline{\sigma}} % use for a
+\newcommand{\olgg}{\overline{\gamma}} 
 \newcommand{\olgd}{\overline{\delta}}
 
 \newcommand{\gm}{\mu}
@@ -127,9 +132,12 @@
 
 \newcommand{\pa}{^{(\alpha)}}
 \newcommand{\pt}{^{(\theta)}}
-\newcommand{\pdg}{^{(\dagger)}}
+\newcommand{\pdg}{^{\dagger}}
 \newcommand{\ptw}{^{(\theta,\omega)}}
 
+\newcommand{\calJ}{\mathcal{J}}
+\newcommand{\calK}{\mathcal{K}}
+\newcommand{\calZ}{\mathcal{Z}}
 
 \newcommand{\cn}[2]{\left( #1 \mid #2 \right)}
 \newcommand{\mbf}[1]{\mathbf{#1}}
@@ -139,6 +147,7 @@
 \newcommand{\B}[2]{B_{#1}^{#2}}
 \newcommand{\x}[2]{_{#1}^{#2}}
 \newcommand{\xlr}[1]{\xleftrightarrow{#1}}
+\newcommand{\wpa}{\left\lvert w\pa \right\rvert}
 
 \newcommand{\bk}[2]{\bra{#1} \ket{#2}}
 \newcommand{\sbk}[2]{\bra{#1} {} \ket{#2}}
@@ -151,4 +160,33 @@
 
 \newcommand{\ssg}{^{\sigma}}
 
+\newcommand{\mbfx}{\mathbf{x}}
+
 \setcellgapes{10pt}
+
+\newtcolorbox{myframe}[2][]{%
+  enhanced,colback=white,colframe=black,coltitle=black,
+  sharp corners,boxrule=0.4pt,
+  fonttitle=\itshape,
+  attach boxed title to bottom right={yshift=0.3\baselineskip+0.4pt,xshift=-2mm},
+  boxed title style={tile,size=minimal,left=0.5mm,right=0.5mm,
+    colback=white,before upper=\strut},
+  title=#2,#1
+}
+
+\allowdisplaybreaks 
+
+\newcommand{\forcond}{$\alpha=0$ \KwTo $n_{lap}$}
+\newcounter{ISTEP}
+\newcommand{\itemR}{\item \refstepcounter{ISTEP}}
+
+\def\signed #1{{\leavevmode\unskip\nobreak\hfil\penalty50\hskip2em
+  \hbox{}\nobreak\hfil(#1)%
+  \parfillskip=0pt \finalhyphendemerits=0 \endgraf}}
+
+\newsavebox\mybox
+\newenvironment{aquote}[1]
+  {\savebox\mybox{#1}\begin{quote}}
+  {\signed{\usebox\mybox}\end{quote}}
+
+%\newcommand{\nperp}{^{\not\perp}}

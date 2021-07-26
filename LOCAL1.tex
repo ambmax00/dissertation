@@ -257,6 +257,8 @@ We will now address each point in detail in the next sections.
 
 MP2 was first formulated in the AO basis in 1993 by Häser , and a linear scaling algorithm was presented by Scuseria and Ayala in 1999 (ref). AO-MP2 has since then been extended to DF-MP2 (ref) and SOS-MP2 (ref). 
 
+ALSO: CC2 CAN ALSO BE USED SIMILARLY
+
 \subsubsection{The Laplace Transform}
 
 In 1991, Almlöf showed (Alm1991) that the energy denominator in the MP2 amplitudes can be removed using an integral transform called the \emph{Laplace Transform}
@@ -324,6 +326,8 @@ Tr[\mathbf{I}_{exp}] = \sum_i e^{0.25 ln(w\pa) + \eps_i t\pa} + \sum_a e^{0.25 l
 \end{equation}
 
 The entries of the pseudo-density also decay exponentially as function of the distance between pseudo-AO centres. 
+
+STRICTLY SPEAKING, NOT ENTIRELY IN AN AO BASIS, BUT MIXED AO-pseudo-PAO-basis.
 
 \subsubsection{Quadratic Scaling AO-MP2}
 
@@ -534,6 +538,8 @@ E_{AO-DF-SOS-MP2} = - c_{os} \sum^{nlap}_{\alpha=1} \sum_{XY} \tilde{Z}\pa_{XY} 
 \end{center}
 
 \noindent where "LDF" is the sparsity relationship introduced between the auxiliary density $X$ and the product density $\cbra{\mu\nu}$, which is metric-specific. In the case of quasi-robust density fitting, LDF = S, and the intermediates $\mathbf{Z}\pa$ can be constructed with linear effort. For weaker decay behaviour, such as the error function coulomb-attenuated metric, the scaling is intermediate between linear and quadratic (Gla2020). 
+
+CAN BE APPLIED TO CC2
 
 % Mau2014 https://aip.scitation.org/doi/full/10.1063/1.4881144
 % Gla2020 https://pubs.acs.org/doi/abs/10.1021/acs.jctc.0c00600
@@ -770,7 +776,60 @@ B^{X}_{\uli\ola} = \sum_{Y \in [i]_{fit} \cup [j]_{fit}} \cn{X}{Y}^{-1/2} \cn{Y}
 % Pin2015 https://aip.scitation.org/doi/pdf/10.1063/1.4926879
 % Wer2015 https://pubs.acs.org/doi/pdf/10.1021/ct500725e
 
-\subsection{Atomic Orbital Coupled Cluster}
+\subsection{Atomic Orbital CC2}
+
+The atomic orbital approach for low scaling MP2 can be extended to CC2 ... currently under work
+
+\subsection{Atomic Orbital CCSD: PAO or AO?}
+
+!!!!!!!!!!!!! REWRITE !!!!!!!!!!!!!!!!
+As opposed to MP2 and CC2, where the energy denominator in the closed form expression for the doubles amplitudes $t_{iajb}$ makes it difficult to find an orbital-invariant representation of the energy expressions, it is much easier to do so for CCSD. The restricted CCSD correlation energy expression reads
+\begin{equation}
+E_{corr} = \sum_{ijab} v_{iajb} t^{CCSD}_{iajb} \qquad v_{iajb} = 2\cn{ia}{jb} - \cn{ib}{ja} 
+\end{equation}   
+\noindent In their 1999 paper [ref], Scuseria and Ayala have shown that there are two possible "AO" representations of the CCSD correlation energy. The first and most straight-forward approach is to factor out the MO coefficient matrices from the MO electron repulsion integrals $v$, similar to AO-MP2
+\begin{equation}
+\begin{split}
+E_{corr} &= \sum_{ijab} \sum_{\mu\nu\sigma\lambda} C_{\mu i} C_{\sigma  a} v_{\mu\sigma\nu\lambda} C_{\nu j} C_{\lambda b} t_{iajb} \\
+&= \sum_{\mu\nu\sigma\lambda} v_{\mu\sigma\nu\lambda} t_{\ulgm\olgs\ulgn\olgl}
+\end{split} 
+\end{equation}
+\noindent whith the amplitudes $\mathbf{t}$ recast in a PAO-like basis:
+\begin{equation}
+t_{\ulgm\olgs\ulgn\olgl} = C_{\mu i} C_{\sigma a} t_{iajb} C_{\nu j} C_{\lambda b}
+\end{equation}
+\noindent The MO amplitudes can be recovered with
+\begin{equation}
+t_{iajb} = \ovl{C}_{\mu i} \ovl{C}_{\sigma a} t_{\ulgm\olgs\ulgn\olgl} \ovl{C}_{\nu j} \ovl{C}_{\lambda b}
+\end{equation}
+\noindent It should be noted that $\ulgm$, $\olgs$, $\ulgn$ and $\olgl$ do not correspond to the definition of PAOs given in Section .... As opposed to standard PAOs, they lack the overlap matrix $\mathbf{S}$ in the MO-PAO transformation and vice-versa (compare Equation ... with Eqaution ...). Here, the occupied and virtual PAO-like spaces are not mutually orthogonal, but related through the overlap matrix, similar to the pseudo-PAOs used in AO-MP2
+\begin{equation}
+\mathbf{PSQ} = \mathbf{0} \qquad \mbf{P} + \mbf{Q} = \mbf{S}^{-1}
+\end{equation}
+\noindent This alternative PAO-like formulation will be referred to as \emph{mutually non-orthogonal projected atomic orbitals} (or mnoPAOs) from here on out.    
+
+\noindent Instead of using this mnoPAO approach, Scuseria and Ayala proposed an alternative formulation where the coefficient matrices are factored out from the t-amplitudes instead, using the PAO backtransformation \ref{CMO2PAO}:
+\begin{equation}
+\begin{split}
+E_{corr} &= \sum_{ijab} \sum_{\mu\nu\sigma\lambda} v_{iajb} C_{\mu i} C_{\sigma  a} \theta_{\ulgm\olgs\ulgn\olgl} C_{\nu j} C_{\lambda b} \\
+&= \sum_{\mu\nu\sigma\lambda} \Pi_{\ulgm\olgs\ulgn\olgl} \theta_{\ulgm\olgs\ulgn\olgl}
+\end{split} 
+\end{equation}
+\noindent The PAO-amplitudes $\theta$ are related to the MO quantities by
+\begin{equation}
+\theta_{\ulgm\olgs\ulgn\olgl} = \ovl{C}_{\mu i} \ovl{C}_{\sigma a} t_{iajb} \ovl{C}_{\nu j} \ovl{C}_{\lambda b}
+\end{equation}
+\begin{equation}
+t_{iajb} = C_{\mu i} C_{\sigma a} \theta_{\ulgm\olgs\ulgn\olgl} C_{\nu j} C_{\lambda b}
+\end{equation}
+\noindent The mnoPAO and PAO t-amplitudes are related by
+\begin{equation}
+\theta_{\ulgm\olgs\ulgn\olgl} = S_{\mu\mu'} S_{\olgs\olgs'} t_{\ulgm'\olgs'\ulgn'\olgl'} S_{\ulgn\ulgn'} S_{\olgl\olgl'}  
+\end{equation}
+\begin{equation}
+\theta_{\ulgm\olgs\ulgn\olgl} = P_{\mu\mu'} P_{\olgs\olgs'} \theta_{\ulgm\olgs\ulgn\olgl} P_{\ulgn\ulgn'} P_{\olgl\olgl'} 
+\end{equation}
+!!!!! REWRITE !!!!!!!!!!!
 
 \subsection{Local Coupled Cluster}
 
