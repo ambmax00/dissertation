@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  26 JUL 2021 15:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  30 JUL 2021 16:31
 entering extended mode
 **./MAIN.tex
 (MAIN.tex
@@ -654,11 +654,11 @@ Package: iftex 2020/03/06 v1.0d TeX engine tests
 (/home/simea/.miktex/texmfs/install/tex/latex/geometry/geometry.cfg))
 
 Package fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 47.
+less on input line 49.
 
 
 Package fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 47.
+less on input line 49.
 
 \c@ISTEP=\count306
 \mybox=\box80
@@ -693,8 +693,42 @@ LaTeX Warning: Label `SIGMA2E_ILAPA' multiply defined.
 
 LaTeX Warning: Label `SIGMA2E_ILAPB' multiply defined.
 
-) (RESULTS.aux) (INTROHPC.aux) (INTOTHEMATRIX.aux) (MEGALOCHEM1.aux)
-(MEGALOCHEM2.aux) (ANNEX.aux))
+
+LaTeX Warning: Label `SIGMA2E_CHOL' multiply defined.
+
+
+LaTeX Warning: Label `SIGMA2E_B' multiply defined.
+
+
+LaTeX Warning: Label `uhto' multiply defined.
+
+
+LaTeX Warning: Label `uhtv' multiply defined.
+
+
+LaTeX Warning: Label `SIGMA2E_R' multiply defined.
+
+
+LaTeX Warning: Label `SIGMA2E_FA' multiply defined.
+
+
+LaTeX Warning: Label `SIGMA2E_FB' multiply defined.
+
+
+LaTeX Warning: Label `SIGMA2E_D' multiply defined.
+
+
+LaTeX Warning: Label `SIGMA2E_ILAPA' multiply defined.
+
+
+LaTeX Warning: Label `SIGMA2E_ILAPB' multiply defined.
+
+) (RESULTS.aux
+
+LaTeX Warning: Label `' multiply defined.
+
+) (INTROHPC.aux) (INTOTHEMATRIX.aux) (MEGALOCHEM1.aux) (MEGALOCHEM2.aux)
+(ANNEX.aux))
 \openout1 = `MAIN.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
@@ -800,12 +834,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [2]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 49.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 51.
 
  (/home/simea/.miktex/texmfs/install/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 49.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 51.
 
 
 (/home/simea/.miktex/texmfs/install/tex/latex/amsfonts/umsb.fd
@@ -819,7 +853,16 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[3] (MAIN.toc [4
+[3] (MAIN.toc
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[4
 
 ]
 Overfull \hbox (7.79704pt too wide) in paragraph at lines 92--92
@@ -854,13 +897,61 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[6]
-<Pics/fock.pdf, id=32, 4893.28125pt x 4893.28125pt>
+[6] (MAIN.lof
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[7
+
+])
+\tf@lof=\write5
+\openout5 = `MAIN.lof'.
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[8] (MAIN.lot)
+\tf@lot=\write6
+\openout6 = `MAIN.lot'.
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[9
+
+]
+<Pics/fock.pdf, id=47, 4893.28125pt x 4893.28125pt>
 File: Pics/fock.pdf Graphic file (type pdf)
 <use Pics/fock.pdf>
-Package pdftex.def Info: Pics/fock.pdf  used on input line 74.
+Package pdftex.def Info: Pics/fock.pdf  used on input line 86.
 (pdftex.def)             Requested size: 244.67839pt x 244.67839pt.
- [7
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[1
 
 ]
 
@@ -871,16 +962,24 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[8 <./Pics/fock.pdf>]
+[2 <./Pics/fock.pdf>]
 \openout2 = `BASICS.aux'.
 
  (BASICS.tex
 Chapter 1.
-[9
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[3
 
 
 ]
-<Pics/dyneq.pdf, id=51, 165.61874pt x 165.61874pt>
+<Pics/dyneq.pdf, id=67, 165.61874pt x 165.61874pt>
 File: Pics/dyneq.pdf Graphic file (type pdf)
 <use Pics/dyneq.pdf>
 Package pdftex.def Info: Pics/dyneq.pdf  used on input line 48.
@@ -894,7 +993,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[10]
+[4]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -903,7 +1002,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[11 <./Pics/dyneq.pdf>]
+[5 <./Pics/dyneq.pdf>]
 Overfull \hbox (14.5106pt too wide) in paragraph at lines 97--98
 []\OT1/cmr/m/n/12 From this point onward, the subscript $\OML/cmm/m/it/12 elec$
  \OT1/cmr/m/n/12 is dropped, and only the electronic Schrodinger
@@ -917,7 +1016,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[12]
+[6]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -926,7 +1025,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[13]
+[7]
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
@@ -940,8 +1039,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[14]
-<Pics/standardmodel.pdf, id=85, 111.64104pt x 104.85912pt>
+[8]
+<Pics/standardmodel.pdf, id=96, 111.64104pt x 104.85912pt>
 File: Pics/standardmodel.pdf Graphic file (type pdf)
 <use Pics/standardmodel.pdf>
 Package pdftex.def Info: Pics/standardmodel.pdf  used on input line 196.
@@ -955,7 +1054,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[15 <./Pics/standardmodel.pdf>]
+[9 <./Pics/standardmodel.pdf>]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -964,12 +1063,20 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[16]
+[10]
 \openout2 = `LOCAL0.aux'.
 
  (LOCAL0.tex
 Chapter 2.
-[17
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[11
 
 
 
@@ -980,22 +1087,22 @@ Overfull \hbox (7.16621pt too wide) in paragraph at lines 21--22
  expensive for large systems,
  []
 
-<overlap_nze.pdf, id=103, 234.67644pt x 178.60864pt>
+<overlap_nze.pdf, id=115, 234.67644pt x 178.60864pt>
 File: overlap_nze.pdf Graphic file (type pdf)
 <use overlap_nze.pdf>
 Package pdftex.def Info: overlap_nze.pdf  used on input line 28.
 (pdftex.def)             Requested size: 187.7414pt x 142.88708pt.
-<eri_nze.pdf, id=104, 249.67647pt x 178.60864pt>
+<eri_nze.pdf, id=116, 249.67647pt x 178.60864pt>
 File: eri_nze.pdf Graphic file (type pdf)
 <use eri_nze.pdf>
 Package pdftex.def Info: eri_nze.pdf  used on input line 32.
 (pdftex.def)             Requested size: 199.74144pt x 142.88708pt.
-<overlap_decay.pdf, id=105, 219.55031pt x 180.08083pt>
+<overlap_decay.pdf, id=117, 219.55031pt x 180.08083pt>
 File: overlap_decay.pdf Graphic file (type pdf)
 <use overlap_decay.pdf>
 Package pdftex.def Info: overlap_decay.pdf  used on input line 41.
 (pdftex.def)             Requested size: 175.64047pt x 144.06485pt.
-<eri_decay.pdf, id=106, 219.55031pt x 180.08083pt>
+<eri_decay.pdf, id=118, 219.55031pt x 180.08083pt>
 File: eri_decay.pdf Graphic file (type pdf)
 <use eri_decay.pdf>
 Package pdftex.def Info: eri_decay.pdf  used on input line 45.
@@ -1008,7 +1115,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[18 <./overlap_nze.pdf> <./eri_nze.pdf
+[12 <./overlap_nze.pdf> <./eri_nze.pdf
 
 pdfTeX warning: pdflatex (file ./eri_nze.pdf): PDF inclusion: multiple pdfs wit
 h page group included in a single page
@@ -1021,7 +1128,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[19 <./overlap_decay.pdf> <./eri_decay.pdf
+[13 <./overlap_decay.pdf> <./eri_decay.pdf
 
 pdfTeX warning: pdflatex (file ./eri_decay.pdf): PDF inclusion: multiple pdfs w
 ith page group included in a single page
@@ -1034,13 +1141,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[20]
-<Pics/MOchain.pdf, id=173, 214.98383pt x 192.28787pt>
+[14]
+<Pics/MOchain.pdf, id=183, 214.98383pt x 192.28787pt>
 File: Pics/MOchain.pdf Graphic file (type pdf)
 <use Pics/MOchain.pdf>
 Package pdftex.def Info: Pics/MOchain.pdf  used on input line 138.
 (pdftex.def)             Requested size: 171.98727pt x 153.8305pt.
-<density_decay.pdf, id=174, 241.38477pt x 180.08083pt>
+<density_decay.pdf, id=184, 241.38477pt x 180.08083pt>
 File: density_decay.pdf Graphic file (type pdf)
 <use density_decay.pdf>
 Package pdftex.def Info: density_decay.pdf  used on input line 143.
@@ -1059,7 +1166,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[21]
+[15]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1068,7 +1175,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[22 <./Pics/MOchain.pdf> <./density_decay.pdf
+[16 <./Pics/MOchain.pdf> <./density_decay.pdf
 
 pdfTeX warning: pdflatex (file ./density_decay.pdf): PDF inclusion: multiple pd
 fs with page group included in a single page
@@ -1087,7 +1194,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[23]
+[17]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1096,7 +1203,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[24]
+[18]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1105,8 +1212,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[25]
-<ldf.pdf, id=236, 228.03305pt x 180.08083pt>
+[19]
+<ldf.pdf, id=246, 228.03305pt x 180.08083pt>
 File: ldf.pdf Graphic file (type pdf)
 <use ldf.pdf>
 Package pdftex.def Info: ldf.pdf  used on input line 362.
@@ -1120,7 +1227,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[26]
+[20]
 Overfull \hbox (9.51736pt too wide) in paragraph at lines 389--391
 \OT1/cmr/m/n/12 where $[][]$ and $[][]$ are the diagonal and off-diagonal part 
 of $[]$ respectively.
@@ -1134,7 +1241,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[27 <./ldf.pdf>]
+[21 <./ldf.pdf>]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1143,7 +1250,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[28]
+[22]
 
 LaTeX Warning: Command \l invalid in math mode on input line 452.
 
@@ -1155,7 +1262,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[29]
+[23]
 Overfull \hbox (7.79572pt too wide) in paragraph at lines 459--461
 \OT1/cmr/m/n/12 The RI basis set family (cc-pVXZ-RIFIT (Wei1998), def2-XVP-RIFI
 T (Ber1998)) minimize
@@ -1175,7 +1282,111 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
+[24]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[25]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[26]
+<Pics/FMM1.pdf, id=286, 1085.9362pt x 484.58586pt>
+File: Pics/FMM1.pdf Graphic file (type pdf)
+<use Pics/FMM1.pdf>
+Package pdftex.def Info: Pics/FMM1.pdf  used on input line 545.
+(pdftex.def)             Requested size: 380.08336pt x 169.60759pt.
+<Pics/FMM2.pdf, id=287, 484.07626pt x 484.0762pt>
+File: Pics/FMM2.pdf Graphic file (type pdf)
+<use Pics/FMM2.pdf>
+Package pdftex.def Info: Pics/FMM2.pdf  used on input line 551.
+(pdftex.def)             Requested size: 242.03754pt x 242.0375pt.
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[27 <./Pics/FMM1.pdf>]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[28 <./Pics/FMM2.pdf>]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[29]
+Overfull \hbox (6.2565pt too wide) in paragraph at lines 680--681
+\OT1/cmr/m/n/12 Sparsity of the atomic density matrix is crucial for achieving 
+low-scaling electronic structure
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
 [30]
+Overfull \hbox (12.5407pt too wide) in paragraph at lines 692--693
+\OT1/cmr/m/n/12 using sparse matrix algebra. CholMOs have several advantages: t
+he Cholesky decomposition
+ []
+
+
+Overfull \hbox (22.17033pt too wide) in paragraph at lines 698--699
+[]\OT1/cmr/m/n/12 CD is also used in the context of AO-MP2 to reduce the prefac
+tor of inetgral transformation
+ []
+
+<densityO.pdf, id=312, 176.81592pt x 169.158pt>
+File: densityO.pdf Graphic file (type pdf)
+<use densityO.pdf>
+Package pdftex.def Info: densityO.pdf  used on input line 706.
+(pdftex.def)             Requested size: 176.81548pt x 169.15758pt.
+<choleskyO.pdf, id=313, 57.23006pt x 169.158pt>
+File: choleskyO.pdf Graphic file (type pdf)
+<use choleskyO.pdf>
+Package pdftex.def Info: choleskyO.pdf  used on input line 711.
+(pdftex.def)             Requested size: 57.2299pt x 169.15758pt.
+<densityV.pdf, id=314, 176.81592pt x 169.158pt>
+File: densityV.pdf Graphic file (type pdf)
+<use densityV.pdf>
+Package pdftex.def Info: densityV.pdf  used on input line 717.
+(pdftex.def)             Requested size: 176.81548pt x 169.15758pt.
+<choleskyV.pdf, id=315, 154.58444pt x 169.158pt>
+File: choleskyV.pdf Graphic file (type pdf)
+<use choleskyV.pdf>
+Package pdftex.def Info: choleskyV.pdf  used on input line 722.
+(pdftex.def)             Requested size: 154.58405pt x 169.15758pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1193,111 +1404,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[32]
-<Pics/FMM1.pdf, id=276, 1085.9362pt x 484.58586pt>
-File: Pics/FMM1.pdf Graphic file (type pdf)
-<use Pics/FMM1.pdf>
-Package pdftex.def Info: Pics/FMM1.pdf  used on input line 545.
-(pdftex.def)             Requested size: 380.08336pt x 169.60759pt.
-<Pics/FMM2.pdf, id=277, 484.07626pt x 484.0762pt>
-File: Pics/FMM2.pdf Graphic file (type pdf)
-<use Pics/FMM2.pdf>
-Package pdftex.def Info: Pics/FMM2.pdf  used on input line 551.
-(pdftex.def)             Requested size: 242.03754pt x 242.0375pt.
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[33 <./Pics/FMM1.pdf>]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[34 <./Pics/FMM2.pdf>]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[35]
-Overfull \hbox (6.2565pt too wide) in paragraph at lines 680--681
-\OT1/cmr/m/n/12 Sparsity of the atomic density matrix is crucial for achieving 
-low-scaling electronic structure
- []
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[36]
-Overfull \hbox (12.5407pt too wide) in paragraph at lines 692--693
-\OT1/cmr/m/n/12 using sparse matrix algebra. CholMOs have several advantages: t
-he Cholesky decomposition
- []
-
-
-Overfull \hbox (22.17033pt too wide) in paragraph at lines 698--699
-[]\OT1/cmr/m/n/12 CD is also used in the context of AO-MP2 to reduce the prefac
-tor of inetgral transformation
- []
-
-<densityO.pdf, id=302, 176.81592pt x 169.158pt>
-File: densityO.pdf Graphic file (type pdf)
-<use densityO.pdf>
-Package pdftex.def Info: densityO.pdf  used on input line 706.
-(pdftex.def)             Requested size: 176.81548pt x 169.15758pt.
-<choleskyO.pdf, id=303, 57.23006pt x 169.158pt>
-File: choleskyO.pdf Graphic file (type pdf)
-<use choleskyO.pdf>
-Package pdftex.def Info: choleskyO.pdf  used on input line 711.
-(pdftex.def)             Requested size: 57.2299pt x 169.15758pt.
-<densityV.pdf, id=304, 176.81592pt x 169.158pt>
-File: densityV.pdf Graphic file (type pdf)
-<use densityV.pdf>
-Package pdftex.def Info: densityV.pdf  used on input line 717.
-(pdftex.def)             Requested size: 176.81548pt x 169.15758pt.
-<choleskyV.pdf, id=305, 154.58444pt x 169.158pt>
-File: choleskyV.pdf Graphic file (type pdf)
-<use choleskyV.pdf>
-Package pdftex.def Info: choleskyV.pdf  used on input line 722.
-(pdftex.def)             Requested size: 154.58405pt x 169.15758pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[37]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[38 <./densityO.pdf> <./choleskyO.pdf
+[32 <./densityO.pdf> <./choleskyO.pdf
 
 pdfTeX warning: pdflatex (file ./choleskyO.pdf): PDF inclusion: multiple pdfs w
 ith page group included in a single page
@@ -1318,7 +1425,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[39]
+[33]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1327,7 +1434,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[40]
+[34]
 Overfull \hbox (7.2315pt too wide) in paragraph at lines 867--868
 \OT1/cmr/m/n/12 First introduced under the guise of "pseudo-natural orbitals" (
 Edmiston), then rediscovered
@@ -1341,7 +1448,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[41])
+[35])
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1350,7 +1457,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[42]
+[36]
 \openout2 = `LOCAL1.aux'.
 
  (LOCAL1.tex
@@ -1361,7 +1468,15 @@ Overfull \hbox (3.21487pt too wide) in paragraph at lines 7--8
 well known and studied.
  []
 
-[43
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[37
 
 
 
@@ -1393,7 +1508,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[44]
+[38]
 Overfull \hbox (34.60435pt too wide) in paragraph at lines 89--90
 \OT1/cmr/m/n/12 property has been realized quite early on (Sch1996). However, a
  straight-forward implementation
@@ -1427,7 +1542,71 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
+[39]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[40]
+Overfull \hbox (14.42494pt too wide) in paragraph at lines 227--229
+\OT1/cmr/m/n/12 Equation ... is also known as the grand-canonical purification 
+scheme. Other transformations
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[41]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[42]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[43]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[44]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
 [45]
+Overfull \hbox (2.33987pt too wide) in paragraph at lines 425--426
+\OT1/cmr/m/n/12 Similar to the orbital localization technique described in Sect
+ion ..., where the (incomplete)
+ []
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1437,11 +1616,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [46]
-Overfull \hbox (14.42494pt too wide) in paragraph at lines 227--229
-\OT1/cmr/m/n/12 Equation ... is also known as the grand-canonical purification 
-scheme. Other transformations
- []
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1469,65 +1643,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [49]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[50]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[51]
-Overfull \hbox (2.33987pt too wide) in paragraph at lines 425--426
-\OT1/cmr/m/n/12 Similar to the orbital localization technique described in Sect
-ion ..., where the (incomplete)
- []
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[52]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[53]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[54]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[55]
 Overfull \hbox (1.72763pt too wide) in paragraph at lines 661--663
 \OT1/cmr/m/n/12 atomic orbital space (PAOs) and subsequently assigning them to 
 pair domains $[\OML/cmm/m/it/12 ij\OT1/cmr/m/n/12 ]$ (domain
@@ -1541,8 +1656,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[56]
-<Pics/electron_pairs.png, id=395, 566.115pt x 436.63126pt>
+[50]
+<Pics/electron_pairs.png, id=405, 566.115pt x 436.63126pt>
 File: Pics/electron_pairs.png Graphic file (type png)
 <use Pics/electron_pairs.png>
 Package pdftex.def Info: Pics/electron_pairs.png  used on input line 699.
@@ -1556,7 +1671,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[57 <./Pics/electron_pairs.png>]
+[51 <./Pics/electron_pairs.png>]
 Overfull \hbox (3.92459pt too wide) in paragraph at lines 767--768
 \OT1/cmr/m/n/12 As opposed to SOS-AO-MP2, where density fitting can give a more
  favourable factorization
@@ -1576,7 +1691,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[58]
+[52]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1585,7 +1700,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[59])
+[53])
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1594,7 +1709,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[60]
+[54]
 \openout2 = `LOCAL2.aux'.
 
  (LOCAL2.tex
@@ -1611,7 +1726,15 @@ Overfull \hbox (0.34009pt too wide) in paragraph at lines 13--14
 ons can be reformulated
  []
 
-[61
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[55
 
 
 
@@ -1630,7 +1753,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[62]
+[56]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1639,7 +1762,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[63]
+[57]
 Overfull \hbox (1.48581pt too wide) in paragraph at lines 75--76
 \OT1/cmr/m/n/12 NO methods achieve performance by dropping virtual natural orbi
 tals with low occupation
@@ -1653,8 +1776,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[64]
-<Pics/mester_adc.png, id=421, 361.35pt x 136.5903pt>
+[58]
+<Pics/mester_adc.png, id=432, 361.35pt x 136.5903pt>
 File: Pics/mester_adc.png Graphic file (type png)
 <use Pics/mester_adc.png>
 Package pdftex.def Info: Pics/mester_adc.png  used on input line 107.
@@ -1668,7 +1791,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[65 <./Pics/mester_adc.png>]
+[59 <./Pics/mester_adc.png>]
 Overfull \hbox (3.04416pt too wide) in paragraph at lines 160--161
 \OT1/cmr/m/n/12 (local framework for calculating excitation energies) (Bau2016)
  and CornFLEX (correlated
@@ -1694,8 +1817,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[66]
-<Pics/NTOACID.pdf, id=429, 593.68547pt x 402.43018pt>
+[60]
+<Pics/NTOACID.pdf, id=439, 593.68547pt x 402.43018pt>
 File: Pics/NTOACID.pdf Graphic file (type pdf)
 <use Pics/NTOACID.pdf>
 Package pdftex.def Info: Pics/NTOACID.pdf  used on input line 178.
@@ -1719,8 +1842,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[67 <./Pics/NTOACID.pdf>]
-<Pics/CISDENSE.pdf, id=456, 462.52798pt x 346.89601pt>
+[61 <./Pics/NTOACID.pdf>]
+<Pics/CISDENSE.pdf, id=466, 462.52798pt x 346.89601pt>
 File: Pics/CISDENSE.pdf Graphic file (type pdf)
 <use Pics/CISDENSE.pdf>
 Package pdftex.def Info: Pics/CISDENSE.pdf  used on input line 213.
@@ -1730,7 +1853,7 @@ Overfull \hbox (141.62718pt too wide) in paragraph at lines 213--214
  [][] 
  []
 
-<Pics/CIS.pdf, id=457, 462.52798pt x 346.89601pt>
+<Pics/CIS.pdf, id=467, 462.52798pt x 346.89601pt>
 File: Pics/CIS.pdf Graphic file (type pdf)
 <use Pics/CIS.pdf>
 Package pdftex.def Info: Pics/CIS.pdf  used on input line 219.
@@ -1749,7 +1872,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[68 <./Pics/CISDENSE.pdf> <./Pics/CIS.pdf
+[62 <./Pics/CISDENSE.pdf> <./Pics/CIS.pdf
 
 pdfTeX warning: pdflatex (file ./Pics/CIS.pdf): PDF inclusion: multiple pdfs wi
 th page group included in a single page
@@ -1769,7 +1892,15 @@ Overfull \hbox (19.88852pt too wide) in paragraph at lines 18--20
 -blocks, with the eigenvectors
  []
 
-[69
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[63
 
 
 
@@ -1783,7 +1914,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[70]
+[64]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1792,7 +1923,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[71]
+[65]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1801,7 +1932,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[72]
+[66]
 Overfull \hbox (1.12054pt too wide) in paragraph at lines 144--145
 \OT1/cmr/m/n/12 In the restricted ADC expressions for the matrix-vector product
 , the 4-index intermediates
@@ -1822,7 +1953,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[73]
+[67]
 Overfull \hbox (2.3257pt too wide) detected at line 200
 []
  []
@@ -1835,7 +1966,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[74]
+[68]
 Overfull \hbox (27.73787pt too wide) in paragraph at lines 239--239
 []\OT1/cmr/bx/n/17.28 Working Equations For Restricted AO-SOS-ADC(2)
  []
@@ -1848,7 +1979,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[75]
+[69]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1857,7 +1988,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[76]
+[70]
 Overfull \hbox (5.0343pt too wide) in paragraph at lines 287--289
 \OT1/cmr/m/n/12 Using a similar strategy to AO-MP2 to factor out the coefficien
 t matrices, the intermediates
@@ -1878,11 +2009,132 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[77]
+[71]
 Overfull \hbox (118.13559pt too wide) detected at line 352
 []
  []
 
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[72]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[73]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[74]
+Overfull \hbox (3.25375pt too wide) in paragraph at lines 496--497
+\OT1/cmr/m/n/12 shows an overall quadratic scaling in computational effort and 
+number of non-zero elements
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[75]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[76]
+Underfull \hbox (badness 10000) in paragraph at lines 577--578
+[]\OT1/cmr/m/n/12 Compute Laplace quadrature parameters $\OMS/cmsy/m/n/12 f\OML
+/cmm/m/it/12 w[]; t[]\OMS/cmsy/m/n/12 g$ \OT1/cmr/m/n/12 for
+ []
+
+
+Underfull \hbox (badness 1087) in paragraph at lines 578--579
+[]\OT1/cmr/m/n/12 If needed by the J,K or Z kernels, compute the cholesky
+ []
+
+
+Overfull \hbox (35.64963pt too wide) detected at line 598
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 579--598
+[]\OT1/cmr/m/n/12 Compute the intermediate matrices $\OML/cmm/m/it/12 I[]$ \OT1
+/cmr/m/n/12 and $\OML/cmm/m/it/12 I[]$
+ []
+
+
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 579--598
+[]$ 
+ []
+
+
+Overfull \hbox (35.64963pt too wide) detected at line 657
+[][] 
+ []
+
+
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 645--657
+$[]$ 
+ []
+
+
+Overfull \hbox (35.64963pt too wide) detected at line 674
+[][] 
+ []
+
+
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 661--674
+$[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 695--696
+[]\OT1/cmr/m/n/12 Compute Laplace quadrature parameters $\OMS/cmsy/m/n/12 f\OML
+/cmm/m/it/12 w[]; t[]\OMS/cmsy/m/n/12 g$ \OT1/cmr/m/n/12 for
+ []
+
+
+Overfull \hbox (35.64963pt too wide) detected at line 724
+[][] 
+ []
+
+
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 698--724
+$[]$ 
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[77]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1910,11 +2162,38 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [80]
-Overfull \hbox (3.25375pt too wide) in paragraph at lines 483--484
-\OT1/cmr/m/n/12 shows an overall quadratic scaling in computational effort and 
-number of non-zero elements
+Underfull \hbox (badness 10000) in paragraph at lines 744--745
+[]\OT1/cmr/m/n/12 Compute Laplace quadrature parameters $\OMS/cmsy/m/n/12 f\OML
+/cmm/m/it/12 w[]; t[]\OMS/cmsy/m/n/12 g$ \OT1/cmr/m/n/12 for
  []
 
+
+Overfull \hbox (35.64963pt too wide) detected at line 773
+[][] 
+ []
+
+
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 747--773
+$[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 787--788
+[]\OT1/cmr/m/n/12 Compute Laplace quadrature parameters $\OMS/cmsy/m/n/12 f\OML
+/cmm/m/it/12 w[]; t[]\OMS/cmsy/m/n/12 g$ \OT1/cmr/m/n/12 for
+ []
+
+
+Overfull \hbox (35.64963pt too wide) detected at line 816
+[][] 
+ []
+
+
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 790--816
+$[]$ 
+ []
+
+)
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1924,92 +2203,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [81]
-Overfull \hbox (0.77303pt too wide) in paragraph at lines 540--542
-\OT1/cmr/m/n/12 where the general quantities $\OT1/cmr/bx/n/12 B$ \OT1/cmr/m/n/
-12 and $\OT1/cmr/bx/n/12 M$ \OT1/cmr/m/n/12 depend on the density fitting metho
-d. Furthermore,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 556--557
-[]\OT1/cmr/m/n/12 Compute Laplace quadrature parameters $\OMS/cmsy/m/n/12 f\OML
-/cmm/m/it/12 w[]; t[]\OMS/cmsy/m/n/12 g$ \OT1/cmr/m/n/12 for
- []
-
-
-Underfull \hbox (badness 1087) in paragraph at lines 557--558
-[]\OT1/cmr/m/n/12 If needed by the J,K or Z kernels, compute the cholesky
- []
-
-
-Overfull \hbox (35.64963pt too wide) detected at line 577
-[][] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 558--577
-[]\OT1/cmr/m/n/12 Compute the intermediate matrices $\OML/cmm/m/it/12 I[]$ \OT1
-/cmr/m/n/12 and $\OML/cmm/m/it/12 I[]$
- []
-
-
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 558--577
-[]$ 
- []
-
-
-Overfull \hbox (35.64963pt too wide) detected at line 629
-[][] 
- []
-
-
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 617--629
-$[]$ 
- []
-
-
-Overfull \hbox (35.64963pt too wide) detected at line 646
-[][] 
- []
-
-
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 633--646
-$[]$ 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 666--667
-[]\OT1/cmr/m/n/12 Compute Laplace quadrature parameters $\OMS/cmsy/m/n/12 f\OML
-/cmm/m/it/12 w[]; t[]\OMS/cmsy/m/n/12 g$ \OT1/cmr/m/n/12 for
- []
-
-
-Overfull \hbox (35.64963pt too wide) detected at line 695
-[][] 
- []
-
-
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 669--695
-$[]$ 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 708--709
-[]\OT1/cmr/m/n/12 Compute Laplace quadrature parameters $\OMS/cmsy/m/n/12 f\OML
-/cmm/m/it/12 w[]; t[]\OMS/cmsy/m/n/12 g$ \OT1/cmr/m/n/12 for
- []
-
-
-Overfull \hbox (35.64963pt too wide) detected at line 737
-[][] 
- []
-
-
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 711--737
-$[]$ 
- []
-
-)
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -2028,58 +2221,313 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [83]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[84]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[85]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[86]
 \openout2 = `RESULTS.aux'.
 
  (RESULTS.tex
 Chapter 6.
-) [87
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[84
 
 
 
 
 ]
+<Pics/alkan.png, id=567, 667.74469pt x 551.81157pt>
+File: Pics/alkan.png Graphic file (type png)
+<use Pics/alkan.png>
+Package pdftex.def Info: Pics/alkan.png  used on input line 27.
+(pdftex.def)             Requested size: 181.18439pt x 149.72365pt.
+<Pics/FW63.png, id=568, 667.74469pt x 551.81157pt>
+File: Pics/FW63.png Graphic file (type png)
+<use Pics/FW63.png>
+Package pdftex.def Info: Pics/FW63.png  used on input line 33.
+(pdftex.def)             Requested size: 226.48395pt x 187.15877pt.
+<Pics/acid.png, id=569, 667.74469pt x 551.81157pt>
+File: Pics/acid.png Graphic file (type png)
+<use Pics/acid.png>
+Package pdftex.def Info: Pics/acid.png  used on input line 40.
+(pdftex.def)             Requested size: 181.18439pt x 149.72365pt.
+<../articles/art1/eri_nze_alkan.pdf, id=570, 246.49954pt x 188.6488pt>
+File: ../articles/art1/eri_nze_alkan.pdf Graphic file (type pdf)
+<use ../articles/art1/eri_nze_alkan.pdf>
+Package pdftex.def Info: ../articles/art1/eri_nze_alkan.pdf  used on input line
+ 72.
+(pdftex.def)             Requested size: 226.48395pt x 173.34024pt.
+
+Overfull \hbox (30.58626pt too wide) in paragraph at lines 77--85
+[][] 
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[85 <./Pics/alkan.png (PNG copy)> <./Pics/FW63.png (PNG copy)> <./Pics/acid.png
+ (PNG copy)>]
+<../articles/art1/qrtime_alkan.pdf, id=575, 240.78757pt x 180.9784pt>
+File: ../articles/art1/qrtime_alkan.pdf Graphic file (type pdf)
+<use ../articles/art1/qrtime_alkan.pdf>
+Package pdftex.def Info: ../articles/art1/qrtime_alkan.pdf  used on input line 
+91.
+(pdftex.def)             Requested size: 226.48395pt x 170.23015pt.
+<../articles/art1/eri_nze_fw.pdf, id=576, 232.45421pt x 188.6488pt>
+File: ../articles/art1/eri_nze_fw.pdf Graphic file (type pdf)
+<use ../articles/art1/eri_nze_fw.pdf>
+Package pdftex.def Info: ../articles/art1/eri_nze_fw.pdf  used on input line 11
+0.
+(pdftex.def)             Requested size: 226.48395pt x 183.80374pt.
+
+Overfull \hbox (30.58626pt too wide) in paragraph at lines 115--123
+[][] 
+ []
+
+<../articles/art1/cfit_nze_alkan.pdf, id=577, 241.49953pt x 188.6488pt>
+File: ../articles/art1/cfit_nze_alkan.pdf Graphic file (type pdf)
+<use ../articles/art1/cfit_nze_alkan.pdf>
+Package pdftex.def Info: ../articles/art1/cfit_nze_alkan.pdf  used on input lin
+e 129.
+(pdftex.def)             Requested size: 226.48395pt x 176.92978pt.
+
+Overfull \hbox (30.58626pt too wide) in paragraph at lines 134--142
+[][] 
+ []
+
+<../articles/art1/cfit_nze_fw.pdf, id=578, 224.67639pt x 188.6488pt>
+File: ../articles/art1/cfit_nze_fw.pdf Graphic file (type pdf)
+<use ../articles/art1/cfit_nze_fw.pdf>
+Package pdftex.def Info: ../articles/art1/cfit_nze_fw.pdf  used on input line 1
+48.
+(pdftex.def)             Requested size: 226.48395pt x 190.16821pt.
+
+Overfull \hbox (30.58626pt too wide) in paragraph at lines 153--161
+[][] 
+ []
+
+<../articles/art1/hfJ_alkan.pdf, id=579, 244.83287pt x 178.60864pt>
+File: ../articles/art1/hfJ_alkan.pdf Graphic file (type pdf)
+<use ../articles/art1/hfJ_alkan.pdf>
+Package pdftex.def Info: ../articles/art1/hfJ_alkan.pdf  used on input line 167
+.
+(pdftex.def)             Requested size: 226.48395pt x 165.22401pt.
+
+Overfull \hbox (30.58626pt too wide) in paragraph at lines 172--180
+[][] 
+ []
+
+<../articles/art1/hfK1_alkan.pdf, id=580, 249.8329pt x 178.60864pt>
+File: ../articles/art1/hfK1_alkan.pdf Graphic file (type pdf)
+<use ../articles/art1/hfK1_alkan.pdf>
+Package pdftex.def Info: ../articles/art1/hfK1_alkan.pdf  used on input line 18
+6.
+(pdftex.def)             Requested size: 226.48395pt x 161.91817pt.
+
+Overfull \hbox (30.58626pt too wide) in paragraph at lines 191--199
+[][] 
+ []
+
+<../articles/art1/hfK2_alkan.pdf, id=581, 249.8329pt x 178.65092pt>
+File: ../articles/art1/hfK2_alkan.pdf Graphic file (type pdf)
+<use ../articles/art1/hfK2_alkan.pdf>
+Package pdftex.def Info: ../articles/art1/hfK2_alkan.pdf  used on input line 20
+5.
+(pdftex.def)             Requested size: 226.48395pt x 161.95651pt.
+
+Overfull \hbox (104.26897pt too wide) in paragraph at lines 210--218
+[][] 
+ []
+
+<../articles/art1/ftmp2_nze_alkan.pdf, id=582, 246.49954pt x 188.6488pt>
+File: ../articles/art1/ftmp2_nze_alkan.pdf Graphic file (type pdf)
+<use ../articles/art1/ftmp2_nze_alkan.pdf>
+Package pdftex.def Info: ../articles/art1/ftmp2_nze_alkan.pdf  used on input li
+ne 240.
+(pdftex.def)             Requested size: 226.48395pt x 173.34024pt.
+
+Overfull \hbox (30.58626pt too wide) in paragraph at lines 245--254
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 254--254
+[]\OT1/cmr/m/n/12 Table 6.11: |REDO
+ []
+
+<../articles/art1/mp2_alkan.pdf, id=583, 249.8329pt x 178.60864pt>
+File: ../articles/art1/mp2_alkan.pdf Graphic file (type pdf)
+<use ../articles/art1/mp2_alkan.pdf>
+Package pdftex.def Info: ../articles/art1/mp2_alkan.pdf  used on input line 260
+.
+(pdftex.def)             Requested size: 226.48395pt x 161.91817pt.
+
+Overfull \hbox (30.58626pt too wide) in paragraph at lines 265--274
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 274--274
+[]\OT1/cmr/m/n/12 Table 6.12: |REDO
+ []
+
+)
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[86 <../articles/art1/eri_nze_alkan.pdf>]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[87 <../articles/art1/qrtime_alkan.pdf> <../articles/art1/eri_nze_fw.pdf
+
+pdfTeX warning: pdflatex (file ../articles/art1/eri_nze_fw.pdf): PDF inclusion:
+ multiple pdfs with page group included in a single page
+> <../articles/art1/cfit_nze_alkan.pdf
+
+pdfTeX warning: pdflatex (file ../articles/art1/cfit_nze_alkan.pdf): PDF inclus
+ion: multiple pdfs with page group included in a single page
+>]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[88 <../articles/art1/cfit_nze_fw.pdf> <../articles/art1/hfJ_alkan.pdf
+
+pdfTeX warning: pdflatex (file ../articles/art1/hfJ_alkan.pdf): PDF inclusion: 
+multiple pdfs with page group included in a single page
+> <../articles/art1/hfK1_alkan.pdf
+
+pdfTeX warning: pdflatex (file ../articles/art1/hfK1_alkan.pdf): PDF inclusion:
+ multiple pdfs with page group included in a single page
+>]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[89 <../articles/art1/hfK2_alkan.pdf> <../articles/art1/ftmp2_nze_alkan.pdf
+
+pdfTeX warning: pdflatex (file ../articles/art1/ftmp2_nze_alkan.pdf): PDF inclu
+sion: multiple pdfs with page group included in a single page
+> <../articles/art1/mp2_alkan.pdf
+
+pdfTeX warning: pdflatex (file ../articles/art1/mp2_alkan.pdf): PDF inclusion: 
+multiple pdfs with page group included in a single page
+>]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[90]
 \openout2 = `INTROHPC.aux'.
 
  (INTROHPC.tex
 Chapter 7.
-) [88
+
+Overfull \hbox (12.77126pt too wide) in paragraph at lines 13--14
+[]\OT1/cmr/m/n/12 Figure ... shows the trends in clock speed, single-thread per
+formance, power consumption
+ []
+
+
+Overfull \hbox (4.88568pt too wide) in paragraph at lines 15--16
+[]\OT1/cmr/m/n/12 Shifting towards increasing core count however entails that t
+he most ideal perfpormance
+ []
+
+
+Overfull \hbox (8.99397pt too wide) in paragraph at lines 15--16
+\OT1/cmr/m/n/12 Moreover, different programming language and compiler extension
+s have emerged alongside,
+ []
+
+<Pics/moore.pdf, id=686, 285.065pt x 179.67125pt>
+File: Pics/moore.pdf Graphic file (type pdf)
+<use Pics/moore.pdf>
+Package pdftex.def Info: Pics/moore.pdf  used on input line 19.
+(pdftex.def)             Requested size: 342.07628pt x 215.6044pt.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[91
 
 
 
 
 ]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[92 <./Pics/moore.pdf>]
+<Pics/memory.pdf, id=699, 410.96536pt x 384.7676pt>
+File: Pics/memory.pdf Graphic file (type pdf)
+<use Pics/memory.pdf>
+Package pdftex.def Info: Pics/memory.pdf  used on input line 65.
+(pdftex.def)             Requested size: 410.96436pt x 384.76663pt.
+)
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[93 <./Pics/memory.pdf>]
 \openout2 = `INTOTHEMATRIX.aux'.
 
  (INTOTHEMATRIX.tex
 Chapter 8.
-) [89
+)
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[94
 
 
 
@@ -2089,7 +2537,16 @@ Chapter 8.
 
  (MEGALOCHEM1.tex
 Chapter 9.
-) [90
+)
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[95
 
 
 
@@ -2099,7 +2556,16 @@ Chapter 9.
 
  (MEGALOCHEM2.tex
 Chapter 10.
-) [91
+)
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[96
 
 
 
@@ -2109,13 +2575,22 @@ Chapter 10.
 
  (ANNEX.tex
 Chapter 11.
-) [92
+)
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[97
 
 
 
 
-] (MAIN.aux (BASICS.aux) (LOCAL0.aux) (LOCAL1.aux) (LOCAL2.aux) (AOADC.aux) (RE
-SULTS.aux) (INTROHPC.aux) (INTOTHEMATRIX.aux) (MEGALOCHEM1.aux)
+] (MAIN.aux (BASICS.aux) (LOCAL0.aux) (LOCAL1.aux) (LOCAL2.aux) (AOADC.aux)
+(RESULTS.aux) (INTROHPC.aux) (INTOTHEMATRIX.aux) (MEGALOCHEM1.aux)
 (MEGALOCHEM2.aux) (ANNEX.aux))
 
 LaTeX Font Warning: Size substitutions with differences
@@ -2126,11 +2601,11 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 23275 strings out of 481257
- 475186 string characters out of 2908375
- 825656 words of memory out of 3000000
- 40030 multiletter control sequences out of 15000+600000
- 415947 words of font info for 71 fonts, out of 8000000 for 9000
+ 23417 strings out of 481257
+ 478820 string characters out of 2908375
+ 819840 words of memory out of 3000000
+ 40148 multiletter control sequences out of 15000+600000
+ 417672 words of font info for 78 fonts, out of 8000000 for 9000
  0 hyphenation exceptions out of 8191
  94i,25n,136p,1704b,1204s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/home/simea/.miktex/texmfs/install/fonts/enc/dvips/cm-super/cm-super-ts1.enc
@@ -2156,11 +2631,12 @@ nstall/fonts/type1/public/amsfonts/cm/cmsy7.pfb></home/simea/.miktex/texmfs/ins
 tall/fonts/type1/public/amsfonts/cm/cmsy8.pfb></home/simea/.miktex/texmfs/insta
 ll/fonts/type1/public/amsfonts/cm/cmti10.pfb></home/simea/.miktex/texmfs/instal
 l/fonts/type1/public/amsfonts/cm/cmti12.pfb></home/simea/.miktex/texmfs/install
-/fonts/type1/public/amsfonts/symbols/msbm10.pfb></home/simea/.miktex/texmfs/ins
-tall/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on MAIN.pdf (93 pages, 12946672 bytes).
+/fonts/type1/public/amsfonts/cm/cmtt12.pfb></home/simea/.miktex/texmfs/install/
+fonts/type1/public/amsfonts/symbols/msbm10.pfb></home/simea/.miktex/texmfs/inst
+all/fonts/type1/public/cm-super/sfrm1200.pfb>
+Output written on MAIN.pdf (107 pages, 13248335 bytes).
 PDF statistics:
- 631 PDF objects out of 1000 (max. 8388607)
+ 796 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 118 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 193 words of extra memory for PDF output out of 10000 (max. 10000000)
 

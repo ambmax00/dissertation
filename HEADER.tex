@@ -9,6 +9,8 @@
 \usepackage{fancyhdr}
 \usepackage{tikz}
 \usepackage{physics}
+\usepackage{url}
+\usepackage{etoolbox}
 %\usepackage{mathabx}
 \usepackage[]{algorithm2e}
 \usepackage[skins]{tcolorbox}
@@ -188,5 +190,10 @@
 \newenvironment{aquote}[1]
   {\savebox\mybox{#1}\begin{quote}}
   {\signed{\usebox\mybox}\end{quote}}
+  
+% needed so that chpater doesn't use plain style
+\patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
+
+% rest of document ...
 
 %\newcommand{\nperp}{^{\not\perp}}
