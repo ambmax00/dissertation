@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  30 JUL 2021 16:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  2 AUG 2021 18:22
 entering extended mode
 **./MAIN.tex
 (MAIN.tex
@@ -490,9 +490,43 @@ File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 01.sty
 (/home/simea/.miktex/texmfs/install/tex/latex/l3packages/xparse/xparse-generic.
 tex))))
+(/home/simea/.miktex/texmfs/install/tex/latex/inconsolata/inconsolata.sty
+Package: inconsolata 2019/05/17 v1.12
+
+`inconsolata-zi4' v1.12, 2019/05/17 Text macros for Inconsolata (msharpe)
+(/home/simea/.miktex/texmfs/install/tex/latex/base/textcomp.sty
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
+)
+\zifour@ocount=\count291
+)
+(/home/simea/.miktex/texmfs/install/tex/latex/listings/listings.sty
+\lst@mode=\count292
+\lst@gtempboxa=\box63
+\lst@token=\toks37
+\lst@length=\count293
+\lst@currlwidth=\dimen259
+\lst@column=\count294
+\lst@pos=\count295
+\lst@lostspace=\dimen260
+\lst@width=\dimen261
+\lst@newlines=\count296
+\lst@lineno=\count297
+\lst@maxwidth=\dimen262
+
+(/home/simea/.miktex/texmfs/install/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+\c@lstnumber=\count298
+\lst@skipnumbers=\count299
+\lst@framebox=\box64
+)
+(/home/simea/.miktex/texmfs/install/tex/latex/listings/listings.cfg
+File: listings.cfg 2020/03/24 1.8d listings configuration
+))
+Package: listings 2020/03/24 1.8d (Carsten Heinz)
+
 (/home/simea/.miktex/texmfs/install/tex/latex/algorithm2e/algorithm2e.sty
 Package: algorithm2e 2017/07/18 v5.2 algorithms environments
-\c@AlgoLine=\count291
+\c@AlgoLine=\count300
 
 (/home/simea/.miktex/texmfs/install/tex/latex/base/ifthen.sty
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
@@ -501,7 +535,7 @@ Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 
 (/home/simea/.miktex/texmfs/install/tex/latex/ifoddpage/ifoddpage.sty
 Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
-\c@checkoddpage=\count292
+\c@checkoddpage=\count301
 )
 (/home/simea/.miktex/texmfs/install/tex/latex/latex-tools/xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
@@ -517,41 +551,41 @@ Package: relsize 2013/03/29 ver 4.1
 \skiplength=\skip69
 \algomargin=\skip70
 \skipalgocfslide=\skip71
-\algowidth=\dimen259
-\inoutsize=\dimen260
-\inoutindent=\dimen261
-\interspacetitleruled=\dimen262
-\interspacealgoruled=\dimen263
-\interspacetitleboxruled=\dimen264
+\algowidth=\dimen263
+\inoutsize=\dimen264
+\inoutindent=\dimen265
+\interspacetitleruled=\dimen266
+\interspacealgoruled=\dimen267
+\interspacetitleboxruled=\dimen268
 \algocf@ruledwidth=\skip72
-\algocf@inoutbox=\box63
-\algocf@inputbox=\box64
+\algocf@inoutbox=\box65
+\algocf@inputbox=\box66
 \AlCapSkip=\skip73
 \AlCapHSkip=\skip74
 \algoskipindent=\skip75
-\algocf@nlbox=\box65
-\algocf@hangingbox=\box66
-\algocf@untilbox=\box67
+\algocf@nlbox=\box67
+\algocf@hangingbox=\box68
+\algocf@untilbox=\box69
 \algocf@skipuntil=\skip76
-\algocf@capbox=\box68
+\algocf@capbox=\box70
 \algocf@lcaptionbox=\skip77
 \algoheightruledefault=\skip78
 \algoheightrule=\skip79
 \algotitleheightruledefault=\skip80
 \algotitleheightrule=\skip81
-\c@algocfline=\count293
-\c@algocfproc=\count294
-\c@algocf=\count295
-\algocf@algoframe=\box69
-\algocf@algobox=\box70
+\c@algocfline=\count302
+\c@algocfproc=\count303
+\c@algocf=\count304
+\algocf@algoframe=\box71
+\algocf@algobox=\box72
 )
 (/home/simea/.miktex/texmfs/install/tex/latex/tcolorbox/tcolorbox.sty
 Package: tcolorbox 2021/06/14 version 4.51 text color boxes
 
 (/home/simea/.miktex/texmfs/install/tex/latex/latex-tools/verbatim.sty
 Package: verbatim 2020-07-07 v1.5u LaTeX2e package for verbatim enhancements
-\every@verbatim=\toks37
-\verbatim@line=\toks38
+\every@verbatim=\toks38
+\verbatim@line=\toks39
 \verbatim@in@stream=\read3
 )
 (/home/simea/.miktex/texmfs/install/tex/latex/environ/environ.sty
@@ -560,25 +594,115 @@ Package: environ 2014/05/04 v0.3 A new way to define environments
 (/home/simea/.miktex/texmfs/install/tex/latex/trimspaces/trimspaces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 ))
-\tcb@titlebox=\box71
-\tcb@upperbox=\box72
-\tcb@lowerbox=\box73
-\tcb@phantombox=\box74
-\c@tcbbreakpart=\count296
-\c@tcblayer=\count297
-\c@tcolorbox@number=\count298
-\tcb@temp=\box75
-\tcb@temp=\box76
+\tcb@titlebox=\box73
+\tcb@upperbox=\box74
+\tcb@lowerbox=\box75
+\tcb@phantombox=\box76
+\c@tcbbreakpart=\count305
+\c@tcblayer=\count306
+\c@tcolorbox@number=\count307
 \tcb@temp=\box77
 \tcb@temp=\box78
+\tcb@temp=\box79
+\tcb@temp=\box80
 
-(/home/simea/.miktex/texmfs/install/tex/latex/tcolorbox/tcbskins.code.tex
+(/home/simea/.miktex/texmfs/install/tex/latex/tcolorbox/tcbraster.code.tex
+Library (tcolorbox): 'tcbraster.code.tex' version '4.51'
+\c@tcbrastercolumn=\count308
+\c@tcbrasterrow=\count309
+\c@tcbrasternum=\count310
+\c@tcbraster=\count311
+) (/home/simea/.miktex/texmfs/install/tex/latex/tcolorbox/tcbskins.code.tex
 Library (tcolorbox): 'tcbskins.code.tex' version '4.51'
-\tcb@waterbox=\box79
+\tcb@waterbox=\box81
 
 (/home/simea/.miktex/texmfs/install/tex/latex/tcolorbox/tcbskinsjigsaw.code.tex
 Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '4.51'
-))) (/home/simea/.miktex/texmfs/install/tex/latex/caption/subcaption.sty
+))
+(/home/simea/.miktex/texmfs/install/tex/latex/tcolorbox/tcbbreakable.code.tex
+Library (tcolorbox): 'tcbbreakable.code.tex' version '4.51'
+(/home/simea/.miktex/texmfs/install/tex/generic/oberdiek/pdfcol.sty
+Package: pdfcol 2019/12/29 v1.6 Handle new color stacks for pdfTeX (HO)
+
+(/home/simea/.miktex/texmfs/install/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+)
+(/home/simea/.miktex/texmfs/install/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+(/home/simea/.miktex/texmfs/install/tex/generic/iftex/iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+))
+Package pdfcol Info: New color stack `tcb@breakable' = 1 on input line 23.
+\tcb@testbox=\box82
+\tcb@totalupperbox=\box83
+\tcb@totallowerbox=\box84
+)
+(/home/simea/.miktex/texmfs/install/tex/latex/tcolorbox/tcbhooks.code.tex
+Library (tcolorbox): 'tcbhooks.code.tex' version '4.51'
+) (/home/simea/.miktex/texmfs/install/tex/latex/tcolorbox/tcbtheorems.code.tex
+Library (tcolorbox): 'tcbtheorems.code.tex' version '4.51'
+) (/home/simea/.miktex/texmfs/install/tex/latex/tcolorbox/tcbfitting.code.tex
+Library (tcolorbox): 'tcbfitting.code.tex' version '4.51'
+\tcbfitdim=\dimen269
+\tcb@lowerfitdim=\dimen270
+\tcb@upperfitdim=\dimen271
+\tcb@cur@hbadness=\count312
+) (/home/simea/.miktex/texmfs/install/tex/latex/tcolorbox/tcbxparse.code.tex
+Library (tcolorbox): 'tcbxparse.code.tex' version '4.51'
+)
+(/home/simea/.miktex/texmfs/install/tex/latex/tcolorbox/tcblistingsutf8.code.te
+x
+Library (tcolorbox): 'tcblistingsutf8.code.tex' version '4.51'
+(/home/simea/.miktex/texmfs/install/tex/latex/tcolorbox/tcblistings.code.tex
+Library (tcolorbox): 'tcblistings.code.tex' version '4.51'
+
+(/home/simea/.miktex/texmfs/install/tex/latex/tcolorbox/tcblistingscore.code.te
+x
+Library (tcolorbox): 'tcblistingscore.code.tex' version '4.51'
+(/home/simea/.miktex/texmfs/install/tex/latex/tcolorbox/tcbprocessing.code.tex
+Library (tcolorbox): 'tcbprocessing.code.tex' version '4.51'
+(/home/simea/.miktex/texmfs/install/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/home/simea/.miktex/texmfs/install/tex/latex/latex-tools/shellesc.sty
+Package: shellesc 2019/11/08 v1.0c unified shell escape interface for LaTeX
+Package shellesc Info: Restricted shell escape enabled on input line 77.
+))
+\c@tcblisting=\count313
+))
+(/home/simea/.miktex/texmfs/install/tex/latex/listingsutf8/listingsutf8.sty
+Package: listingsutf8 2019-12-10 v1.5 Allow UTF-8 in listings input (HO)
+
+(/home/simea/.miktex/texmfs/install/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+
+(/home/simea/.miktex/texmfs/install/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+))))
+(/home/simea/.miktex/texmfs/install/tex/latex/tcolorbox/tcbexternal.code.tex
+Library (tcolorbox): 'tcbexternal.code.tex' version '4.51'
+) (/home/simea/.miktex/texmfs/install/tex/latex/tcolorbox/tcbmagazine.code.tex
+Library (tcolorbox): 'tcbmagazine.code.tex' version '4.51'
+) (/home/simea/.miktex/texmfs/install/tex/latex/tcolorbox/tcbvignette.code.tex
+Library (tcolorbox): 'tcbvignette.code.tex' version '4.51'
+
+(/home/simea/.miktex/texmfs/install/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibraryfadings.code.tex
+File: tikzlibraryfadings.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+
+(/home/simea/.miktex/texmfs/install/tex/generic/pgf/libraries/pgflibraryfadings
+.code.tex
+File: pgflibraryfadings.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)))
+(/home/simea/.miktex/texmfs/install/tex/latex/tcolorbox/tcbposter.code.tex
+Library (tcolorbox): 'tcbposter.code.tex' version '4.51'
+)) (/home/simea/.miktex/texmfs/install/tex/latex/caption/subcaption.sty
 Package: subcaption 2020/10/07 v1.3j Sub-captions (AR)
 
 (/home/simea/.miktex/texmfs/install/tex/latex/caption/caption.sty
@@ -586,20 +710,21 @@ Package: caption 2020/10/26 v3.5g Customizing captions (AR)
 
 (/home/simea/.miktex/texmfs/install/tex/latex/caption/caption3.sty
 Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
-\captionmargin=\dimen265
-\captionmargin@=\dimen266
-\captionwidth=\dimen267
-\caption@tempdima=\dimen268
-\caption@indent=\dimen269
-\caption@parindent=\dimen270
-\caption@hangindent=\dimen271
+\captionmargin=\dimen272
+\captionmargin@=\dimen273
+\captionwidth=\dimen274
+\caption@tempdima=\dimen275
+\caption@indent=\dimen276
+\caption@parindent=\dimen277
+\caption@hangindent=\dimen278
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count299
-\c@continuedfloat=\count300
+\c@caption@flags=\count314
+\c@continuedfloat=\count315
+Package caption Info: listings package is loaded.
 )
-\c@subfigure=\count301
-\c@subtable=\count302
+\c@subfigure=\count316
+\c@subtable=\count317
 )
 (/home/simea/.miktex/texmfs/install/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibrarypositioning.code.tex
@@ -615,53 +740,49 @@ Package: draftwatermark 2020/12/08 3.0 Put a gray textual watermark on document
 (/home/simea/.miktex/texmfs/install/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
 
-(/home/simea/.miktex/texmfs/install/tex/generic/ltxcmds/ltxcmds.sty
-Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
-)
 (/home/simea/.miktex/texmfs/install/tex/generic/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
 )))
 (/home/simea/.miktex/texmfs/install/tex/latex/framed/framed.sty
 Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 \OuterFrameSep=\skip82
-\fb@frw=\dimen272
-\fb@frh=\dimen273
-\FrameRule=\dimen274
-\FrameSep=\dimen275
+\fb@frw=\dimen279
+\fb@frh=\dimen280
+\FrameRule=\dimen281
+\FrameSep=\dimen282
 )
 (/home/simea/.miktex/texmfs/install/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
 
 (/home/simea/.miktex/texmfs/install/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
-
-(/home/simea/.miktex/texmfs/install/tex/generic/iftex/iftex.sty
-Package: iftex 2020/03/06 v1.0d TeX engine tests
-))
-\Gm@cnth=\count303
-\Gm@cntv=\count304
-\c@Gm@tempcnt=\count305
-\Gm@bindingoffset=\dimen276
-\Gm@wd@mp=\dimen277
-\Gm@odd@mp=\dimen278
-\Gm@even@mp=\dimen279
-\Gm@layoutwidth=\dimen280
-\Gm@layoutheight=\dimen281
-\Gm@layouthoffset=\dimen282
-\Gm@layoutvoffset=\dimen283
-\Gm@dimlist=\toks39
+)
+\Gm@cnth=\count318
+\Gm@cntv=\count319
+\c@Gm@tempcnt=\count320
+\Gm@bindingoffset=\dimen283
+\Gm@wd@mp=\dimen284
+\Gm@odd@mp=\dimen285
+\Gm@even@mp=\dimen286
+\Gm@layoutwidth=\dimen287
+\Gm@layoutheight=\dimen288
+\Gm@layouthoffset=\dimen289
+\Gm@layoutvoffset=\dimen290
+\Gm@dimlist=\toks40
 
 (/home/simea/.miktex/texmfs/install/tex/latex/geometry/geometry.cfg))
 
 Package fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 49.
+less on input line 52.
 
 
 Package fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 49.
+less on input line 52.
 
-\c@ISTEP=\count306
-\mybox=\box80
+\c@ISTEP=\count321
+\mybox=\box85
+\c@tcb@cnt@cpp=\count322
+\c@tcb@cnt@cppcode=\count323
 ) (MAIN.aux (BASICS.aux) (LOCAL0.aux) (LOCAL1.aux) (LOCAL2.aux) (AOADC.aux
 
 LaTeX Warning: Label `SIGMA2E_CHOL' multiply defined.
@@ -748,17 +869,17 @@ LaTeX Font Info:    ... okay on input line 4.
 
 (/home/simea/.miktex/texmfs/install/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count307
-\scratchdimen=\dimen284
-\scratchbox=\box81
-\nofMPsegments=\count308
-\nofMParguments=\count309
-\everyMPshowfont=\toks40
-\MPscratchCnt=\count310
-\MPscratchDim=\dimen285
-\MPnumerator=\count311
-\makeMPintoPDFobject=\count312
-\everyMPtoPDFconversion=\toks41
+\scratchcounter=\count324
+\scratchdimen=\dimen291
+\scratchbox=\box86
+\nofMPsegments=\count325
+\nofMParguments=\count326
+\everyMPshowfont=\toks41
+\MPscratchCnt=\count327
+\MPscratchDim=\dimen292
+\MPnumerator=\count328
+\makeMPintoPDFobject=\count329
+\everyMPtoPDFconversion=\toks42
 ) (/home/simea/.miktex/texmfs/install/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -767,6 +888,17 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 (/home/simea/.miktex/texmfs/install/tex/latex/00miktex/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
+(/home/simea/.miktex/texmfs/install/tex/latex/upquote/upquote.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
+tim
+)
+\c@lstlisting=\count330
+
+(/home/simea/.miktex/texmfs/install/tex/latex/base/inputenc.sty
+Package: inputenc 2020/08/01 v1.3d Input encoding file
+\inpenc@prehook=\toks43
+\inpenc@posthook=\toks44
+)
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 
@@ -908,7 +1040,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [7
 
-])
+]
+LaTeX Font Info:    Trying to load font information for OT1+zi4 on input line 3
+2.
+ (/home/simea/.miktex/texmfs/install/tex/latex/inconsolata/ot1zi4.fd
+File: ot1zi4.fd 2018/01/14 OT1/zi4 (Inconsolata)
+)
+LaTeX Font Info:    Font shape `OT1/zi4/m/n' will be
+(Font)              scaled to size 12.0pt on input line 32.
+)
 \tf@lof=\write5
 \openout5 = `MAIN.lof'.
 
@@ -937,7 +1077,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [9
 
 ]
-<Pics/fock.pdf, id=47, 4893.28125pt x 4893.28125pt>
+<Pics/fock.pdf, id=83, 4893.28125pt x 4893.28125pt>
 File: Pics/fock.pdf Graphic file (type pdf)
 <use Pics/fock.pdf>
 Package pdftex.def Info: Pics/fock.pdf  used on input line 86.
@@ -979,7 +1119,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 
 ]
-<Pics/dyneq.pdf, id=67, 165.61874pt x 165.61874pt>
+<Pics/dyneq.pdf, id=103, 165.61874pt x 165.61874pt>
 File: Pics/dyneq.pdf Graphic file (type pdf)
 <use Pics/dyneq.pdf>
 Package pdftex.def Info: Pics/dyneq.pdf  used on input line 48.
@@ -1040,7 +1180,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [8]
-<Pics/standardmodel.pdf, id=96, 111.64104pt x 104.85912pt>
+<Pics/standardmodel.pdf, id=132, 111.64104pt x 104.85912pt>
 File: Pics/standardmodel.pdf Graphic file (type pdf)
 <use Pics/standardmodel.pdf>
 Package pdftex.def Info: Pics/standardmodel.pdf  used on input line 196.
@@ -1087,22 +1227,22 @@ Overfull \hbox (7.16621pt too wide) in paragraph at lines 21--22
  expensive for large systems,
  []
 
-<overlap_nze.pdf, id=115, 234.67644pt x 178.60864pt>
+<overlap_nze.pdf, id=151, 234.67644pt x 178.60864pt>
 File: overlap_nze.pdf Graphic file (type pdf)
 <use overlap_nze.pdf>
 Package pdftex.def Info: overlap_nze.pdf  used on input line 28.
 (pdftex.def)             Requested size: 187.7414pt x 142.88708pt.
-<eri_nze.pdf, id=116, 249.67647pt x 178.60864pt>
+<eri_nze.pdf, id=152, 249.67647pt x 178.60864pt>
 File: eri_nze.pdf Graphic file (type pdf)
 <use eri_nze.pdf>
 Package pdftex.def Info: eri_nze.pdf  used on input line 32.
 (pdftex.def)             Requested size: 199.74144pt x 142.88708pt.
-<overlap_decay.pdf, id=117, 219.55031pt x 180.08083pt>
+<overlap_decay.pdf, id=153, 219.55031pt x 180.08083pt>
 File: overlap_decay.pdf Graphic file (type pdf)
 <use overlap_decay.pdf>
 Package pdftex.def Info: overlap_decay.pdf  used on input line 41.
 (pdftex.def)             Requested size: 175.64047pt x 144.06485pt.
-<eri_decay.pdf, id=118, 219.55031pt x 180.08083pt>
+<eri_decay.pdf, id=154, 219.55031pt x 180.08083pt>
 File: eri_decay.pdf Graphic file (type pdf)
 <use eri_decay.pdf>
 Package pdftex.def Info: eri_decay.pdf  used on input line 45.
@@ -1142,12 +1282,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [14]
-<Pics/MOchain.pdf, id=183, 214.98383pt x 192.28787pt>
+<Pics/MOchain.pdf, id=219, 214.98383pt x 192.28787pt>
 File: Pics/MOchain.pdf Graphic file (type pdf)
 <use Pics/MOchain.pdf>
 Package pdftex.def Info: Pics/MOchain.pdf  used on input line 138.
 (pdftex.def)             Requested size: 171.98727pt x 153.8305pt.
-<density_decay.pdf, id=184, 241.38477pt x 180.08083pt>
+<density_decay.pdf, id=220, 241.38477pt x 180.08083pt>
 File: density_decay.pdf Graphic file (type pdf)
 <use density_decay.pdf>
 Package pdftex.def Info: density_decay.pdf  used on input line 143.
@@ -1213,7 +1353,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [19]
-<ldf.pdf, id=246, 228.03305pt x 180.08083pt>
+<ldf.pdf, id=282, 228.03305pt x 180.08083pt>
 File: ldf.pdf Graphic file (type pdf)
 <use ldf.pdf>
 Package pdftex.def Info: ldf.pdf  used on input line 362.
@@ -1301,12 +1441,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [26]
-<Pics/FMM1.pdf, id=286, 1085.9362pt x 484.58586pt>
+<Pics/FMM1.pdf, id=322, 1085.9362pt x 484.58586pt>
 File: Pics/FMM1.pdf Graphic file (type pdf)
 <use Pics/FMM1.pdf>
 Package pdftex.def Info: Pics/FMM1.pdf  used on input line 545.
 (pdftex.def)             Requested size: 380.08336pt x 169.60759pt.
-<Pics/FMM2.pdf, id=287, 484.07626pt x 484.0762pt>
+<Pics/FMM2.pdf, id=323, 484.07626pt x 484.0762pt>
 File: Pics/FMM2.pdf Graphic file (type pdf)
 <use Pics/FMM2.pdf>
 Package pdftex.def Info: Pics/FMM2.pdf  used on input line 551.
@@ -1364,22 +1504,22 @@ Overfull \hbox (22.17033pt too wide) in paragraph at lines 698--699
 tor of inetgral transformation
  []
 
-<densityO.pdf, id=312, 176.81592pt x 169.158pt>
+<densityO.pdf, id=348, 176.81592pt x 169.158pt>
 File: densityO.pdf Graphic file (type pdf)
 <use densityO.pdf>
 Package pdftex.def Info: densityO.pdf  used on input line 706.
 (pdftex.def)             Requested size: 176.81548pt x 169.15758pt.
-<choleskyO.pdf, id=313, 57.23006pt x 169.158pt>
+<choleskyO.pdf, id=349, 57.23006pt x 169.158pt>
 File: choleskyO.pdf Graphic file (type pdf)
 <use choleskyO.pdf>
 Package pdftex.def Info: choleskyO.pdf  used on input line 711.
 (pdftex.def)             Requested size: 57.2299pt x 169.15758pt.
-<densityV.pdf, id=314, 176.81592pt x 169.158pt>
+<densityV.pdf, id=350, 176.81592pt x 169.158pt>
 File: densityV.pdf Graphic file (type pdf)
 <use densityV.pdf>
 Package pdftex.def Info: densityV.pdf  used on input line 717.
 (pdftex.def)             Requested size: 176.81548pt x 169.15758pt.
-<choleskyV.pdf, id=315, 154.58444pt x 169.158pt>
+<choleskyV.pdf, id=351, 154.58444pt x 169.158pt>
 File: choleskyV.pdf Graphic file (type pdf)
 <use choleskyV.pdf>
 Package pdftex.def Info: choleskyV.pdf  used on input line 722.
@@ -1657,7 +1797,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [50]
-<Pics/electron_pairs.png, id=405, 566.115pt x 436.63126pt>
+<Pics/electron_pairs.png, id=441, 566.115pt x 436.63126pt>
 File: Pics/electron_pairs.png Graphic file (type png)
 <use Pics/electron_pairs.png>
 Package pdftex.def Info: Pics/electron_pairs.png  used on input line 699.
@@ -1777,7 +1917,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [58]
-<Pics/mester_adc.png, id=432, 361.35pt x 136.5903pt>
+<Pics/mester_adc.png, id=468, 361.35pt x 136.5903pt>
 File: Pics/mester_adc.png Graphic file (type png)
 <use Pics/mester_adc.png>
 Package pdftex.def Info: Pics/mester_adc.png  used on input line 107.
@@ -1818,7 +1958,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [60]
-<Pics/NTOACID.pdf, id=439, 593.68547pt x 402.43018pt>
+<Pics/NTOACID.pdf, id=475, 593.68547pt x 402.43018pt>
 File: Pics/NTOACID.pdf Graphic file (type pdf)
 <use Pics/NTOACID.pdf>
 Package pdftex.def Info: Pics/NTOACID.pdf  used on input line 178.
@@ -1843,7 +1983,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [61 <./Pics/NTOACID.pdf>]
-<Pics/CISDENSE.pdf, id=466, 462.52798pt x 346.89601pt>
+<Pics/CISDENSE.pdf, id=502, 462.52798pt x 346.89601pt>
 File: Pics/CISDENSE.pdf Graphic file (type pdf)
 <use Pics/CISDENSE.pdf>
 Package pdftex.def Info: Pics/CISDENSE.pdf  used on input line 213.
@@ -1853,7 +1993,7 @@ Overfull \hbox (141.62718pt too wide) in paragraph at lines 213--214
  [][] 
  []
 
-<Pics/CIS.pdf, id=467, 462.52798pt x 346.89601pt>
+<Pics/CIS.pdf, id=503, 462.52798pt x 346.89601pt>
 File: Pics/CIS.pdf Graphic file (type pdf)
 <use Pics/CIS.pdf>
 Package pdftex.def Info: Pics/CIS.pdf  used on input line 219.
@@ -2239,22 +2379,22 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 
 ]
-<Pics/alkan.png, id=567, 667.74469pt x 551.81157pt>
+<Pics/alkan.png, id=603, 667.74469pt x 551.81157pt>
 File: Pics/alkan.png Graphic file (type png)
 <use Pics/alkan.png>
 Package pdftex.def Info: Pics/alkan.png  used on input line 27.
 (pdftex.def)             Requested size: 181.18439pt x 149.72365pt.
-<Pics/FW63.png, id=568, 667.74469pt x 551.81157pt>
+<Pics/FW63.png, id=604, 667.74469pt x 551.81157pt>
 File: Pics/FW63.png Graphic file (type png)
 <use Pics/FW63.png>
 Package pdftex.def Info: Pics/FW63.png  used on input line 33.
 (pdftex.def)             Requested size: 226.48395pt x 187.15877pt.
-<Pics/acid.png, id=569, 667.74469pt x 551.81157pt>
+<Pics/acid.png, id=605, 667.74469pt x 551.81157pt>
 File: Pics/acid.png Graphic file (type png)
 <use Pics/acid.png>
 Package pdftex.def Info: Pics/acid.png  used on input line 40.
 (pdftex.def)             Requested size: 181.18439pt x 149.72365pt.
-<../articles/art1/eri_nze_alkan.pdf, id=570, 246.49954pt x 188.6488pt>
+<../articles/art1/eri_nze_alkan.pdf, id=606, 246.49954pt x 188.6488pt>
 File: ../articles/art1/eri_nze_alkan.pdf Graphic file (type pdf)
 <use ../articles/art1/eri_nze_alkan.pdf>
 Package pdftex.def Info: ../articles/art1/eri_nze_alkan.pdf  used on input line
@@ -2275,13 +2415,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [85 <./Pics/alkan.png (PNG copy)> <./Pics/FW63.png (PNG copy)> <./Pics/acid.png
  (PNG copy)>]
-<../articles/art1/qrtime_alkan.pdf, id=575, 240.78757pt x 180.9784pt>
+<../articles/art1/qrtime_alkan.pdf, id=611, 240.78757pt x 180.9784pt>
 File: ../articles/art1/qrtime_alkan.pdf Graphic file (type pdf)
 <use ../articles/art1/qrtime_alkan.pdf>
 Package pdftex.def Info: ../articles/art1/qrtime_alkan.pdf  used on input line 
 91.
 (pdftex.def)             Requested size: 226.48395pt x 170.23015pt.
-<../articles/art1/eri_nze_fw.pdf, id=576, 232.45421pt x 188.6488pt>
+<../articles/art1/eri_nze_fw.pdf, id=612, 232.45421pt x 188.6488pt>
 File: ../articles/art1/eri_nze_fw.pdf Graphic file (type pdf)
 <use ../articles/art1/eri_nze_fw.pdf>
 Package pdftex.def Info: ../articles/art1/eri_nze_fw.pdf  used on input line 11
@@ -2292,7 +2432,7 @@ Overfull \hbox (30.58626pt too wide) in paragraph at lines 115--123
 [][] 
  []
 
-<../articles/art1/cfit_nze_alkan.pdf, id=577, 241.49953pt x 188.6488pt>
+<../articles/art1/cfit_nze_alkan.pdf, id=613, 241.49953pt x 188.6488pt>
 File: ../articles/art1/cfit_nze_alkan.pdf Graphic file (type pdf)
 <use ../articles/art1/cfit_nze_alkan.pdf>
 Package pdftex.def Info: ../articles/art1/cfit_nze_alkan.pdf  used on input lin
@@ -2303,7 +2443,7 @@ Overfull \hbox (30.58626pt too wide) in paragraph at lines 134--142
 [][] 
  []
 
-<../articles/art1/cfit_nze_fw.pdf, id=578, 224.67639pt x 188.6488pt>
+<../articles/art1/cfit_nze_fw.pdf, id=614, 224.67639pt x 188.6488pt>
 File: ../articles/art1/cfit_nze_fw.pdf Graphic file (type pdf)
 <use ../articles/art1/cfit_nze_fw.pdf>
 Package pdftex.def Info: ../articles/art1/cfit_nze_fw.pdf  used on input line 1
@@ -2314,7 +2454,7 @@ Overfull \hbox (30.58626pt too wide) in paragraph at lines 153--161
 [][] 
  []
 
-<../articles/art1/hfJ_alkan.pdf, id=579, 244.83287pt x 178.60864pt>
+<../articles/art1/hfJ_alkan.pdf, id=615, 244.83287pt x 178.60864pt>
 File: ../articles/art1/hfJ_alkan.pdf Graphic file (type pdf)
 <use ../articles/art1/hfJ_alkan.pdf>
 Package pdftex.def Info: ../articles/art1/hfJ_alkan.pdf  used on input line 167
@@ -2325,7 +2465,7 @@ Overfull \hbox (30.58626pt too wide) in paragraph at lines 172--180
 [][] 
  []
 
-<../articles/art1/hfK1_alkan.pdf, id=580, 249.8329pt x 178.60864pt>
+<../articles/art1/hfK1_alkan.pdf, id=616, 249.8329pt x 178.60864pt>
 File: ../articles/art1/hfK1_alkan.pdf Graphic file (type pdf)
 <use ../articles/art1/hfK1_alkan.pdf>
 Package pdftex.def Info: ../articles/art1/hfK1_alkan.pdf  used on input line 18
@@ -2336,7 +2476,7 @@ Overfull \hbox (30.58626pt too wide) in paragraph at lines 191--199
 [][] 
  []
 
-<../articles/art1/hfK2_alkan.pdf, id=581, 249.8329pt x 178.65092pt>
+<../articles/art1/hfK2_alkan.pdf, id=617, 249.8329pt x 178.65092pt>
 File: ../articles/art1/hfK2_alkan.pdf Graphic file (type pdf)
 <use ../articles/art1/hfK2_alkan.pdf>
 Package pdftex.def Info: ../articles/art1/hfK2_alkan.pdf  used on input line 20
@@ -2347,7 +2487,7 @@ Overfull \hbox (104.26897pt too wide) in paragraph at lines 210--218
 [][] 
  []
 
-<../articles/art1/ftmp2_nze_alkan.pdf, id=582, 246.49954pt x 188.6488pt>
+<../articles/art1/ftmp2_nze_alkan.pdf, id=618, 246.49954pt x 188.6488pt>
 File: ../articles/art1/ftmp2_nze_alkan.pdf Graphic file (type pdf)
 <use ../articles/art1/ftmp2_nze_alkan.pdf>
 Package pdftex.def Info: ../articles/art1/ftmp2_nze_alkan.pdf  used on input li
@@ -2363,7 +2503,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 254--254
 []\OT1/cmr/m/n/12 Table 6.11: |REDO
  []
 
-<../articles/art1/mp2_alkan.pdf, id=583, 249.8329pt x 178.60864pt>
+<../articles/art1/mp2_alkan.pdf, id=619, 249.8329pt x 178.60864pt>
 File: ../articles/art1/mp2_alkan.pdf Graphic file (type pdf)
 <use ../articles/art1/mp2_alkan.pdf>
 Package pdftex.def Info: ../articles/art1/mp2_alkan.pdf  used on input line 260
@@ -2471,7 +2611,7 @@ Overfull \hbox (8.99397pt too wide) in paragraph at lines 15--16
 s have emerged alongside,
  []
 
-<Pics/moore.pdf, id=686, 285.065pt x 179.67125pt>
+<Pics/moore.pdf, id=722, 285.065pt x 179.67125pt>
 File: Pics/moore.pdf Graphic file (type pdf)
 <use Pics/moore.pdf>
 Package pdftex.def Info: Pics/moore.pdf  used on input line 19.
@@ -2499,11 +2639,88 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [92 <./Pics/moore.pdf>]
-<Pics/memory.pdf, id=699, 410.96536pt x 384.7676pt>
+Overfull \hbox (4.98152pt too wide) in paragraph at lines 48--49
+\OT1/cmr/m/n/12 Leveraging the power of each type requires some understanding o
+f the underlying hardware. 
+ []
+
+<Pics/memory.pdf, id=735, 410.96536pt x 384.7676pt>
 File: Pics/memory.pdf Graphic file (type pdf)
 <use Pics/memory.pdf>
-Package pdftex.def Info: Pics/memory.pdf  used on input line 65.
+Package pdftex.def Info: Pics/memory.pdf  used on input line 54.
 (pdftex.def)             Requested size: 410.96436pt x 384.76663pt.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[93]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[94 <./Pics/memory.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 77--77
+[]|\OT1/cmr/m/n/12 SSE (Streaming SIMD
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 79--79
+[]|\OT1/cmr/m/n/12 AVX/AVX2 (advanced
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[95]
+LaTeX Font Info:    Font shape `OT1/zi4/b/n' will be
+(Font)              scaled to size 12.0pt on input line 96.
+
+Underfull \hbox (badness 5652) in paragraph at lines 96--96
+[]\OT1/cmr/bx/n/12 Listing 7.4.1: Parallelization-unaware implementation of sax
+py
+ []
+
+(/home/simea/.miktex/texmfs/install/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+)
+(/home/simea/.miktex/texmfs/install/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+)
+(/home/simea/.miktex/texmfs/install/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+)
+LaTeX Font Info:    Font shape `OT1/zi4/m/n' will be
+(Font)              scaled to size 10.95pt on input line 96.
+
+(listings/saxpy_nopara.c
+LaTeX Font Info:    Font shape `OT1/zi4/b/n' will be
+(Font)              scaled to size 10.95pt on input line 1.
+)
+Overfull \hbox (5.01624pt too wide) in paragraph at lines 105--106
+\OT1/cmr/m/n/12 O2 -march=native -ftree-vectorize -fopt-info-vec-optimized" gen
+erates the following report: 
+ []
+
+(listings/saxpy_intrinsic.c
+
+LaTeX Font Warning: Font shape `OT1/zi4/m/it' undefined
+(Font)              using `OT1/zi4/m/n' instead on input line 4.
+
+LaTeX Font Info:    Font shape `OT1/zi4/m/it' will be
+(Font)              scaled to size 10.95pt on input line 4.
 )
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2513,7 +2730,45 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[93 <./Pics/memory.pdf>]
+[96]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[97] (listings/saxpy_openmp.c)
+Overfull \hbox (8.28009pt too wide) in paragraph at lines 119--120
+\OT1/cmr/m/n/12 Simply plopping the directive in front of the for loop takes ca
+re of generating the appropriate
+ []
+
+(listings/saxpy_blas.c)
+Overfull \hbox (0.12843pt too wide) in paragraph at lines 121--122
+\OT1/cmr/m/n/12 spcifications, and the direct implementation is compiler-depend
+ent. In the BLAS routines,
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[98])
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[99]
 \openout2 = `INTOTHEMATRIX.aux'.
 
  (INTOTHEMATRIX.tex
@@ -2527,7 +2782,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[94
+[100
 
 
 
@@ -2546,7 +2801,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[95
+[101
 
 
 
@@ -2565,7 +2820,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[96
+[102
 
 
 
@@ -2584,59 +2839,64 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[97
+[103
 
 
 
 
-] (MAIN.aux (BASICS.aux) (LOCAL0.aux) (LOCAL1.aux) (LOCAL2.aux) (AOADC.aux)
-(RESULTS.aux) (INTROHPC.aux) (INTOTHEMATRIX.aux) (MEGALOCHEM1.aux)
+] (MAIN.aux (BASICS.aux) (LOCAL0.aux) (LOCAL1.aux) (LOCAL2.aux) (AOADC.aux) (RE
+SULTS.aux) (INTROHPC.aux) (INTOTHEMATRIX.aux) (MEGALOCHEM1.aux)
 (MEGALOCHEM2.aux) (ANNEX.aux))
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 124.49696pt have occurred.
 
 
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 23417 strings out of 481257
- 478820 string characters out of 2908375
- 819840 words of memory out of 3000000
- 40148 multiletter control sequences out of 15000+600000
- 417672 words of font info for 78 fonts, out of 8000000 for 9000
+ 27594 strings out of 481257
+ 567582 string characters out of 2908375
+ 1205915 words of memory out of 3000000
+ 44198 multiletter control sequences out of 15000+600000
+ 418329 words of font info for 81 fonts, out of 8000000 for 9000
  0 hyphenation exceptions out of 8191
- 94i,25n,136p,1704b,1204s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/home/simea/.miktex/texmfs/install/fonts/enc/dvips/cm-super/cm-super-ts1.enc
-}</home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbsy10.pfb
-></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx8.pfb></
-home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></
-home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb></h
-ome/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi10.pfb></ho
-me/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi12.pfb></hom
-e/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi6.pfb></home/
-simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi7.pfb></home/si
-mea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/sime
-a/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/simea/
-.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/simea/.m
-iktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr17.pfb></home/simea/.mik
-tex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr6.pfb></home/simea/.miktex
-/texmfs/install/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/simea/.miktex/te
-xmfs/install/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/simea/.miktex/texmf
-s/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/simea/.miktex/texmfs
-/install/fonts/type1/public/amsfonts/cm/cmsy6.pfb></home/simea/.miktex/texmfs/i
-nstall/fonts/type1/public/amsfonts/cm/cmsy7.pfb></home/simea/.miktex/texmfs/ins
-tall/fonts/type1/public/amsfonts/cm/cmsy8.pfb></home/simea/.miktex/texmfs/insta
-ll/fonts/type1/public/amsfonts/cm/cmti10.pfb></home/simea/.miktex/texmfs/instal
-l/fonts/type1/public/amsfonts/cm/cmti12.pfb></home/simea/.miktex/texmfs/install
-/fonts/type1/public/amsfonts/cm/cmtt12.pfb></home/simea/.miktex/texmfs/install/
-fonts/type1/public/amsfonts/symbols/msbm10.pfb></home/simea/.miktex/texmfs/inst
-all/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on MAIN.pdf (107 pages, 13248335 bytes).
+ 102i,25n,136p,1704b,1736s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/home/simea/.miktex/texmfs/install/fonts/enc/dvips/inconsolata/i4-ot1-0.enc}
+{/home/simea/.miktex/texmfs/install/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<
+/home/simea/.miktex/texmfs/install/fonts/type1/public/inconsolata/Inconsolata-z
+i4b.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/inconsolata/Inco
+nsolata-zi4r.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfont
+s/cm/cmbsy10.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfont
+s/cm/cmbx12.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts
+/cm/cmbx8.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/c
+m/cmcsc10.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/c
+m/cmex10.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm
+/cmmi10.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/
+cmmi12.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/c
+mmi6.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmm
+i7.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi8
+.pfb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr10.p
+fb></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr12.pfb
+></home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr17.pfb><
+/home/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr6.pfb></ho
+me/simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/
+simea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/sim
+ea/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/sime
+a/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy6.pfb></home/simea/
+.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy7.pfb></home/simea/.m
+iktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy8.pfb></home/simea/.mik
+tex/texmfs/install/fonts/type1/public/amsfonts/cm/cmti10.pfb></home/simea/.mikt
+ex/texmfs/install/fonts/type1/public/amsfonts/cm/cmti12.pfb></home/simea/.mikte
+x/texmfs/install/fonts/type1/public/amsfonts/symbols/msbm10.pfb></home/simea/.m
+iktex/texmfs/install/fonts/type1/public/cm-super/sfrm1200.pfb>
+Output written on MAIN.pdf (113 pages, 13307798 bytes).
 PDF statistics:
- 796 PDF objects out of 1000 (max. 8388607)
+ 857 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 193 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 337 words of extra memory for PDF output out of 10000 (max. 10000000)
 

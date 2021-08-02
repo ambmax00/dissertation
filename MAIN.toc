@@ -110,8 +110,14 @@
 \contentsline {section}{\numberline {6.4}Excited-State}{86}{}%
 \contentsline {chapter}{\numberline {7}Parallel Computing}{91}{}%
 \contentsline {section}{\numberline {7.1}Moore's Law}{91}{}%
-\contentsline {subsection}{\numberline {7.1.1}Benefits and Limits of Parallel Computing}{92}{}%
-\contentsline {chapter}{\numberline {8}Into The Matrix}{94}{}%
-\contentsline {chapter}{\numberline {9}MEGALOchem: User Guide}{95}{}%
-\contentsline {chapter}{\numberline {10}MEGALOchem: Developer's Guide}{96}{}%
-\contentsline {chapter}{\numberline {11}Annex}{97}{}%
+\contentsline {section}{\numberline {7.2}Benefits and Limits of Parallel Computing}{92}{}%
+\contentsline {section}{\numberline {7.3}Types of Parallelism and Memory Hierarchy}{93}{}%
+\contentsline {section}{\numberline {7.4}Vectorization}{95}{}%
+\contentsline {subsection}{\numberline {7.4.1}Parallel SAXPY using vectorization}{95}{}%
+\contentsline {section}{\numberline {7.5}Thread-based Parallelism}{99}{}%
+\contentsline {section}{\numberline {7.6}Process-based Parallelism}{99}{}%
+\contentsline {section}{\numberline {7.7}Steaming}{99}{}%
+\contentsline {chapter}{\numberline {8}Into The Matrix}{100}{}%
+\contentsline {chapter}{\numberline {9}MEGALOchem: User Guide}{101}{}%
+\contentsline {chapter}{\numberline {10}MEGALOchem: Developer's Guide}{102}{}%
+\contentsline {chapter}{\numberline {11}Annex}{103}{}%

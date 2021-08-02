@@ -10,10 +10,13 @@
 \usepackage{tikz}
 \usepackage{physics}
 \usepackage{url}
+\usepackage{xcolor}
+\usepackage{inconsolata}
+\usepackage{listings}
 \usepackage{etoolbox}
 %\usepackage{mathabx}
 \usepackage[]{algorithm2e}
-\usepackage[skins]{tcolorbox}
+\usepackage[most,skins]{tcolorbox}
 \usepackage{subcaption} 
 \usetikzlibrary{positioning,calc}
 \usepackage{draftwatermark}
@@ -193,6 +196,36 @@
   
 % needed so that chpater doesn't use plain style
 \patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
+
+\definecolor{light-gray}{gray}{0.95}
+
+\newtcbinputlisting[auto counter, number within=section]{cpp}[2][]{
+	sharp corners, 
+    fonttitle=\bfseries, 
+    colframe=gray, listing only, 
+    listing options={
+		breaklines=true,		
+		basicstyle=\small\ttfamily,
+		language=C++	
+	}, 
+    title=Listing \thetcbcounter: #2, #1}
+
+\lstset{inputpath=listings}
+
+\newtcbinputlisting[auto counter,number within=section]{cppcode}[3][]{
+	sharp corners, 
+    fonttitle=\bfseries, 
+    colframe=gray, listing only, 
+    listing file={#3},
+    	breakable,
+    listing options={
+    	numbers=left,
+    	xleftmargin=1em,
+    	breaklines=true,
+    	numberstyle=\scriptsize,
+    	basicstyle=\small\ttfamily,
+    	language=C++}, 
+    title=Listing \thetcbcounter: #2 (\texttt{\detokenize{#3}}), #1}
 
 % rest of document ...
 
