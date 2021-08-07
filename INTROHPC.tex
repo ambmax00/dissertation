@@ -47,7 +47,7 @@ Nowadays, a programmer has access to four categories of parallelism:
 \end{enumerate} 
 \noindent Leveraging the power of each type requires some understanding of the underlying hardware. 
 
-Figure \ref{clusterArchitecture} shows the major components and memory pathways in a modern computing cluster. A \emph{cluster} is a collection of individual computers that work together and form a single unit. Individual computers are also called \emph{nodes} and occupy a single rack (or "shelf") each in a large server cabinet. The nodes are connected via a low-latency, high through-put network, e.g. ethernet cables to enable inter-node communication. Each node contains one or more central proecessing units (CPU) and optionally one or more graphical processing units (GPU). Systems where different types of hardware architecture are mixed are also known as \emph{heterogenous} systems. The individual components are fixed on a \emph{motherboard}: CPUs are plugged into \emph{sockets} and GPUs into \emph{PCIe slots}. A CPU is composed of one or more cores, where the actual processing of data is carried out. A GPU is also composed of multiple cores, which are grouped into independent \emph{streaming multiprocessors} (SM). 
+Figure \ref{clusterArchitecture} shows the major components and memory pathways in a modern computing cluster. A \emph{cluster} is a collection of individual computers that work together and form a single unit. Individual computers are also called \emph{nodes} and occupy a single rack (or "shelf") each in a large server cabinet. The nodes are connected via a low-latency, high through-put network, e.g. ethernet cables to enable inter-node communication. Each node contains one or more central proecessing units (CPU) and optionally one or more graphical processing units (GPU). Systems where different types of hardware architecture are mixed are also known as \emph{heterogenous} systems. The individual components are fixed on a \emph{motherboard}: CPUs are plugged into \emph{sockets} and GPUs into \emph{PCIe slots}. A CPU is composed of one or more cores, where the actual processing of data is carried out. A GPU is also composed of multiple cores, which are grouped into independent \emph{streaming multiprocessors} (SM -> nvidia CU (compute units OpenCL, subslices ). 
 
 \begin{figure}
 \centering
@@ -115,7 +115,7 @@ In some cases, auto-vectorization cannot take place because the compiler did not
 The major problem with using intrinsic functions, besides increased complexity, is \emph{portability}. The code in \ref{lst:SAXPYINTRINSICS} does not compile on machines that do not support AVX, and is limited to 256-bit registers even on AVX-512 machines. Portable alternatives include using compiler directives or optimized libraries.
 
 Directives (or "pragmas") are hints that can be given to the compiler that suggest that the loop might be vectorizeable. By far the most popular set of compiler directives that provide vectorization capabilities is undoubtedly included in the OpenMP application programming interface (API). The OpenMP API is standardized accross all compilers, making it highly portable. The OpenMP directives greatly simplify the SAXPY program:
-\cppcode{SAXPY using compiler directives \label{lst:SAXPYDIRECTIVES}}{saxpy_openmp.c}
+\cppcode{SAXPY using compiler directives \label{lst:SAXPYDIRECTIVES}}{saxpy_simd.c}
 \noindent Simply plopping the directive in front of the for loop takes care of generating the appropriate machine code for the targeted architecture. 
 
 The last way to introduce vectorization is via external programs, such as the basic linear algebra subprograms (BLAS) library. It provides a set of specific functions for performing basic vector and matrix operations. Similar to OpenMP, it only provides spcifications, and the direct implementation is compiler-dependent. In the BLAS routines, there is a saxpy functions available that can be called directly. It has the advantage of completely removing the loop and clearly states what operation is performed.
@@ -124,31 +124,105 @@ The last way to introduce vectorization is via external programs, such as the ba
 
 \section{Thread-based Parallelism}
 
+Vectorization is limited to single cores only. For multicore processing, it is important to understand the concept of processes and threads. Processes are executing instances of programs and group related operating system resources together. These resources are exclusive (private) to the process which allocated them, such as system memory, file handles, I/O status information, scheduling information and accounting information. 
+
+A process spawns one or more \emph{threads} (Figure \ref{fig:shared}). A thread is the smallest subset of a process that can be scheduled independently by the OS scheduler. Unlike processes, threads of the same process share resources. They can be seen as "light-weight" processes: start-up of individual threads and communication between threads is much faster. Each core executes only  one thread at a time, but can quickly switch between different threads (or \emph{contexts}). Threads with a higher \emph{priority} are granted more CPU time than threads with lower priority. One a single-core processor, threads are only executed \emph{concurrently}, i.e. they are paused and resumed at regular intervals depending on their priority. One multi-core processors, threads can be executed at the same time (multithreading), but concurrency is still needed if the number of threads exceeds the number of logical cores.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=1.4]{Pics/shared}
+\caption{Shared memory parallelism}
+\label{fig:shared}
+\end{figure}
+
+\subsection{SAXPY using OpenMP}
+
+The most popular standard for thread-based parallelism (or \emph{shared-memory parallelism}) is OpenMP, which was briefly discussed in the previous section. OpenMP was originally introduced to parallelize highly regular loops, but the standard has since then been greatly expanded and includes vectorization directives as well. Using pragmas, multiple threads can be spawned that execute the code within the parallel region. Lising ... shows an OpenMP parallel version of SAXPY. Each thread in the parallel region has a unique number associated with it which is used to divide up the arrays. Caution needs to be taken that threads do not operate on the same region at once, as this can lead to undefined behaviour ("race conditions").  
+\cppcode{SAXPY using OpenMP \label{lst:SAXPYOMP}}{saxpy_omp.c}
+\noindent Alternatively, the code may be more easily expressed by using a single compiler directive:
+\cppcode{SAXPY using OpenMP \label{lst:SAXPYOMP2}}{saxpy_omp2.c}
+\noindent The \texttt{omp parallel for} directive also offers different scheduling tatctics which may be difficult to programm by hand. Listing \ref{lst:SAXPYOMP} is an example of \emph{static scheduling} the work is divided equally among threads \emph{a priori}. However, in the case where each step requires different computational cost, \emph{dynamic scheduling} offers a more balanced approach, although with a somewhat higher prefactor. Threads request tasks, or a chunk of multiple tasks, from the main thread, which distributes work on a first-come first-serve basis. There are many more directives available in the OpenMP standard with a lot of options for fine-tuning. For further details, the reader is referred to the official specifications (ref)
+% (ref) https://www.openmp.org/specifications/
+
+OpenMP is not the only option available for introducing shared-memory parallelism into a program. Alternatives include the \texttt{pthread} (POSIX threads) library for C, the \texttt{std::thread} library, or the Intel TBB (thread building blocks) library for C++. While these libraries can offer a more fine-grained control of threads, the learning curve can be very steep, and parallelizing an application can be very time-consuming. In contrast to OpenMP, they are not based on high-level compiler directives, but rather expose low-level functions and structures that create and control threads. 
+
+Shared-memory parallelism, as the name implies, is limited to cores sharing the same memory space. The primary disadvantage of this model is scalability. It becomes increasingly expensive to produce shared memory systems with more and more cores. Moreover, a larger number of cores implies heavier CPU traffic and time penalties due to \emph{cache coherence}. Cache coherence is the mechanism by which uniformity of data is guaranteed and propagated among processes. There can be multiple copies of the same memory region in chache, which is operated on by different cores. Checking how to combine data from different caches can become costly for a large number of cores.
+
 \section{Process-based Parallelism}
 
-\section{Steaming}
+One of the most scalable aproaches in parallel computing is process-based parallelism, also known as distributed memory parallelism. Multiple copies of the same program run on separate processes, each with thier own local memory and instruction set. In contrast to threads, processes cannot exchange data via shared memory, but need to communicate via a network (Figure ...) using \emph{message passing}. The increased cost of communication is often outweighed by the increased potential for scalability. Larger problems can be tackled simply ba adding more nodes. 
 
-Why parallel computing?
--> becomes increasingly important, programmers should be well versed in it
+Pure message-passing assigns or \emph{binds} one rank to a single CPU core. In hybrid parallel approaches, a single process can be bound to a whole node, using shared-memory parallelism for intra-node communication and message passing for inter-node communication. It is also possible to spawn more processes than there are available cores: in that case, the processes are scheduled and excuted concurrently similar to threads.
 
-Moores's Law
+The most popular standard for message passing is the message passing interface (MPI). It defines a set of functions that allow processes to send and receive messages. There are different implementations of MPI, such as the open-source implementations OpenMPI, MPICH, or the vendor implementations Intel MPI or Cray MPI. MPI programs are run using a special start-up command:
+\begin{lstlisting}[backgroundcolor=\color{light-gray},breaklines=true]
+mpirun -n <nprocs> ./myprogram.exe 
+\end{lstlisting}
+\noindent The exact command and options depends on the MPI implementation. The start-up program is reponsible for duplicating the program on the different processes and establishing the communication network. Most implementations use the flag \texttt{-n} to pass the number of processes to be spawned. 
 
-Fundamental law's: Amdahl
+All processes are characterized by their \emph{rank}, a unique, portable identifier, normally an integer between $[0:nprocs-1]$. Only processes using the same \emph{communicator} can exchange messages. A communicator is a special handle of type \texttt{MPI{\_}Comm} and describes a group of processes. Communicators may also have different \emph{topologies}, such as cartesian grids, or  graphs, which restrict the flow communication between processes to nearest neighbours. Cartesian grids for example are best suited for matrix operations (cf. section ...). By passing topology information to MPI, it can optimize the runtime environemnt by renumbering tasks such that processes are physically closer to lower communivation overhead. By default, the topology is undefined, and any processor can exchange messages with all other processors.
 
-Types of parallelism:
-- vectorization
-- threads
-- processes
-- streaming (GPU)
+\subsection{SAXPY using MPI}
 
-Work at different levels of hardware
+Modifiying programs to exploit distrubuted parallelism requires significant effort, the most crucial point being how data is distributed over the processes. Consider again the SAXPY kernel. There are two memory models: either every process has a copy of the whole array, or the arrays are distrubuted in chunks over all processes. If data is duplicated on every rank, this can quickly exhaust memory resources for large datasets. On the other hand, if data is distributed in a non-ideal way, communation may incur major overhead. A programmer has to outweigh the benefits of data duplication and network communication. 
 
-SETI@HOME
+Listing \ref{lst:SAXPYMPI} shows a distributed memory approach to the SAXPY kernel
+\cppcode{SAXPY using MPI \label{lst:SAXPYMPI}}{saxpy_mpi.c}
+\noindent The program starts by initializing the executing environment using \texttt{MPI{\_}Init}, and defining the communicator handle. The communicator that groups all processes is called \texttt{MPI{\_}COMM{\_}WORLD}, and is a macro defined in the header \texttt{<mpi.h>}. If the programm is stand-alone, it is safe to use as the primary communicator. When writing a library that is used in combination with other MPI libraries, it is crucial to use a communicator that is passed from the main program. There are two reasons for this: (1) the user may want to use a subcommunicator, rather than the whole process group, and (2) MPI messages have a unique identifier (integer) and if another library uses the same identifier, erroneous communication can take place. In this example, the global communicator is suffcient.
 
-Categorizing parallel approaches Flynn's Taxonomy
+Each process then allocates a local array of size \texttt{num{\_}local} $<$ \texttt{ARRAY{\_}SIZE}. In this example, the main data is intialized on rank 0, which is then split into equal chunks and send to the other processes' local array using \texttt{MPI{\_}Scatter}. Each process then only needs to perform the SAXPY operation on its local chunk. Afterwards, the results are collected on rank 0 using the routine \texttt{MPI{\_}Gather}. Data is then available on rank 0 to be further manipulated, written to console, etc. 
 
-errors in parallelism (p.40-41)
+It should be noted that the above program only works for a number of processes that is a divisor of \texttt{ARRAY{\_}SIZE}, because \texttt{MPI{\_}Scatter} and \texttt{MPI{\_}Gather} can only handle chunks that are of equal size on each process. If that is not the case, one can use the more general routines \texttt{MPI{\_}Scatterv} and \texttt{MPI{\_}Gatherv} which also take the different chunk sizes as an input.
 
-Performance limits
-Levels of memory : speed vs feed (p. 59) show example of sizes of L caches
+Furthermore, the local SAXPY for loop can be parallelized using the techniques described in the previous sections (vectorization, threads) in case where a process is bound to a whole node and has access to further compute resources.
 
+This programm shows only a few of the many functions available for message passing. The MPI standard defines many more functions for sending, receiving, broadcasting, reduction, one-sided communication etc. The official document for the newest MPI standard (ref) is over a thousand pages long, and is updated regularly. Message passing has a very steep learning curve, and can be quite difficult to debug.  
+
+% ref https://www.mpi-forum.org/docs/
+
+\subsection{MPI and Shared Memory}
+
+One may come under the impression that MPI is not efficient on shared-memory systems, as data is exchanged via network-calls. However, MPI is optimized to recognize shared memory and data is then copied within DRAM rather than send through a comunication layer, making MPI competitive even on single nodes. Of course, there is still a slight overhead associated with it compared to thread-based parallelism.
+
+MPI standards of version 3.0 and above furthermore introduce functions to allocate shared memory, also known as \emph{windows}, for processes on the same node. Processes can then read/write to the same memory region without using network calls, much in the same manner as OpenMP. This approach can be seen as a MPI+MPI hybrid parallel approach rather than the more often used MPI+OpenMP approach. Hybrid parallelism is much more efficient than "MPI-everywhere" approaches due to reduced communication overhead and easier load-balancing. 
+
+MPI+MPI has the advantage of only needing one programming model for both distributed and shared memory access, with relatively easy syntax. However, MPI+MPI is much lesser known, and there are is no automatic support for splitting up loops or atomic loads/stores to shared memory. An external library that offers auxiliary functions for MPI+MPI would be most beneficial.
+
+\section{Stream Processing}
+
+The last type of parallelism tackled in this chapter is \emph{stream processing}. A stream is defined as a sequence of data that requires similar (low-level) computation. Streams are processed by \emph{accelerators}, special hardware components with high data throughput, that complement the general purpose CPU by speeding up certain operations. 
+
+\subsection{GPU Architecture}
+
+By far the most popular type of accelerators are graphical processing units (GPUs). As the name implies, GPUs were originally conceived to speed up graphics-related computation, but their use was later extended to include non-graphics workloads as well, in what is known as \emph{general-purpose} graphic processing unit (GPGPU) programming. Nowaydays, computing clusters increasingly come with one or more GPGPUs included on each node.
+
+The hardware archituecture design of modern GPUs is much more varied than that of CPUs. GPU vendors, like NVIDIA or AMD, have different hardware variations and use different terminology for similar components, and it can be difficult to abstract hardware as some vendor-specific features need to be omitted. Figure \ref{fig:gpu} shows a simplified block diagram of the most common GPU components. A GPU is composed of multiple compute units (CUs), also known as streaming multi-processors (SMs) in NVIDIA GPUs. Work is assigned to different CUs by a workload distributor. Each CU is further subdivided into an array of processing elements (PEs), or CUDA cores as referred to by NVIDIA. A single PE can operate on multiple data elements at once using SIMD or a variation known as single instruction multiple threads (SIMT) used in CUDA cores.
+
+The overall performance of a GPU is given by the number of CUs and PEs, as well as the bandwidth of the PCIe land connecting CPU and GPU. Data transfer between the two devices is often the time-determinig step.
+
+\begin{figure}
+\centering
+\includegraphics[scale=2.0]{Pics/gpu}
+\caption{GPU architecture}
+\label{fig:gpu}
+\end{figure}
+
+\subsection{GPU Programming Model}
+
+The rise of GPGPU programming has given rise to a plethora of different programming languages and models. Low-level languages like CUDA, OpenCL or HIP directly reflect features of the targeted GPU hardware as part of their syntax, and the user is reponsible for managing each aspect of parallelism and data transfer. They require a very thorough understanding of how GPUs operate. Due to the complexity of "native" languages, higher-level languages have gained popularity over the years. Pragma based languages like OpenACC or OpenMP offer a much easier approach to GPU programming that ressembles shared memory parallelism on CPUs, and offer a higher degree of portability, at the cost of lower performance ceiling.
+
+Low level languages all operate on a similar programming model which allow the programmer to define special functions called \emph{kernels}, which, when called on a GPU, are executed $N$ times in parallel by $N$ GPU threads. Rather than using for loops, kernels oparate on a whole range of data at once, known as a \emph{grid} or NDRange. A grid can be one, two or three-dimensional to allow a more intuitive view of the data at hand. Each grid is subdivided into blocks or work groups which can be executed independently. The maximum size of a block is given by the number of threads in a CU. "Good" values are generally 128, 256 or 512, but the optimal size depends on the hardware and the problem addressed. Threads in a block share memory which is useful in case data from neighbouring subblocks is needed. Information on grid and block dimensions are needed by the kernels for distributing work over the GPU.
+
+As an example, consider the SAXPY function using the CUDA programming language:
+\cppcode{SAXPY using CUDA \label{lst:SAXPYCUDA}}{saxpy_cuda.cu}
+\noindent CPU and GPU do not share memory. The first steps therefore involve allocating memory using \texttt{cudaMalloc} and copying data from CPU ("Host") to GPU ("Device") with \texttt{cudaMemcpy}. The arrays can then be passed to the kernel. The kernel function is indicated by the identifier \texttt{\_\_ global\_\_}, and is executed at the same time by all threads in a block. Each thread has a unique block and thread id which indicate its position in the work group. This information is used to make sure that the thread is operating on the correct portions of the array. The GPU threads do not have any information of the loop extent, and it is the user's responsibility to make sure that threads do not write past the allocated memory window by introduing boundary checks (\texttt{if (i < N)}).
+
+In this example for a 1D array, the kernel takes two launch parameters: the number of blocks, and the block size which are put between \texttt{<<< .... >>>} after the function call. Afterwards, the data can be copied back to the CPU for further processing. 
+
+The concept of operating relative to thread coordinates rather than using a for loop with a single index can be quite confusing. Nowadays, there are directive-based compiler extensions, that allow to easily offload work to accelerators, such as OpenMP and OpenACC (Open ACCelerators). Listing \ref{lst:SAXPYACC} shows how a for loop can be easily modified using OpenACC
+\cppcode{SAXPY using OpenACC \label{lst:SAXPYACC}}{saxpy_acc.c}
+\noindent OpenACC offers several pragmas for allocating and copying arrays to GPUs and back. By only adding two directives, the SAXPY code is easily ported to GPUs. 
+
+\subsection{When to Use GPUs}
+
+Despite the success of GPU computing, GPUs only complement, rather than replace CPUs. GPU cores are very light-weight and have a limited instruction set compared to CPU cores, making them ill-suited for \emph{task-based parallelism}, e.g. running an operating system with many different processes executing in the background. The strength of GPUs rather lies in \emph{data-based parallelism}. Generally, any code that can benefit from vectorization can be sped up using GPUs. 

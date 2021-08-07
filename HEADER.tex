@@ -153,6 +153,7 @@
 \newcommand{\x}[2]{_{#1}^{#2}}
 \newcommand{\xlr}[1]{\xleftrightarrow{#1}}
 \newcommand{\wpa}{\left\lvert w\pa \right\rvert}
+\newcommand{\tPsi}{\smash{\widetilde{\Psi}}}
 
 \newcommand{\bk}[2]{\bra{#1} \ket{#2}}
 \newcommand{\sbk}[2]{\bra{#1} {} \ket{#2}}
@@ -203,6 +204,8 @@
 	sharp corners, 
     fonttitle=\bfseries, 
     colframe=gray, listing only, 
+    size=minimal,
+    width=0.7\textwidth,
     listing options={
 		breaklines=true,		
 		basicstyle=\small\ttfamily,
@@ -218,7 +221,11 @@
     colframe=gray, listing only, 
     listing file={#3},
     	breakable,
+    	center,
+    	boxrule=0pt,
+    	width=1.0\textwidth,
     listing options={
+    frame=none,
     	numbers=left,
     	xleftmargin=1em,
     	breaklines=true,

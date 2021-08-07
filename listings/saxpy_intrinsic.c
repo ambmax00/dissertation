@@ -2,9 +2,10 @@
 #define ARRAY_SIZE 1024
 
 // attribute needed for alignment, misalignment leads to errors
-static float x[ARRAY_SIZE] __attribute__ ((aligned(8*ARRAY_SIZE))) = {1.0};
-static float y[ARRAY_SIZE] __attribute__ ((aligned(8*ARRAY_SIZE))) = {2.0};
+static float x[] __attribute__ ((aligned(8*ARRAY_SIZE))) = {[0 ... ARRAY_SIZE] = 1.0};
+static float y[] __attribute__ ((aligned(8*ARRAY_SIZE))) = {[0 ... ARRAY_SIZE] = 2.0};
 static float a = 3.0;
+
 
 int main() {
 
