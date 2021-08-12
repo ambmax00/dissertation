@@ -179,10 +179,11 @@ E_{correlation} = E_{HF} - E_{exact}
 
 In order to improve on the HF approximation, it is important to add additional Slater determinats. These SDs can be generated from the HF reference wave function by replacing the occupied MOs $\phi_I$ in a reference Slater determinant ... by one or multiple orbitals $\phi_A$ which were previously unoccupied. This effectively corresponds to exciting one or more electrons from their occupied molecular orbitals $I,J,..$ to unoccupied, or $virtual$ orbitals $A,B,..$ (Figure ...). These excited Slater determinants can be classified by the number of electrons they excite and are often referred to as singles, doubles, triples and so on.
 \begin{align*}
-\ket{S} &= a\pdg_A a_I \ket{HF} \\
-\ket{D} &= a\pdg_A a_I a\pdg_B a_J \ket{HF} \\
-\ket{T} &= a\pdg_A a_I a\pdg_B a_J a\pdg_C a_K \ket{HF} \\
-\ldots &
+\ket{\Phi_0} = \ket{HF}
+\ket{\Phi_{I}^{A}} &= a\pdg_A a_I \ket{HF} \\
+\ket{\Phi_{IJ}^{AB}} &= a\pdg_A a_I a\pdg_B a_J \ket{HF} \\
+\ket{\Phi_{IJK}^{ABC}} &= a\pdg_A a_I a\pdg_B a_J a\pdg_C a_K \ket{HF} \\
+\ldots & 
 \end{align*}
 \noindent Alternatively, singles states are known as 1-particle-1-hole (1p-1h or simply p-h) states, doubles as 2-particle-2-hole (2p-2h) and so on, due to the excitation operators effectively creating \emph{holes} in the reference determinant and adding \emph{particles} in higher lying orbitals instead. 
 
@@ -292,7 +293,7 @@ f_{PQ} &= \bra{\phi_P} \mbf{f} \ket{\phi_Q} \\
 	&= h_{PQ} + \frac{1}{2} (J_{PQ} - K_{PQ})
 \end{split}
 \end{equation} 
-\noindent The symmetric matrix with entries $f_{PQ}$ is also known as the \emph{Fock matrix}. $\mbf{J}$ is the \emph{coulomb matrix} and describes electron correlation due to the coulomb potential (coulomb correlation), and $\mbf{K}$ is the exchange matrix describing the electron correlation which arises due to the Pauli exclusion principle (Fermi correlation). The exchange contributions have no classical counterpart and arise purely from quantum mechanical considerations.
+\noindent The symmetric matrix with entries $f_{PQ}$ is also known as the \emph{Fock matrix}. $\mbf{J}$ is the \emph{coulomb matrix} and describes electron correlation due to the coulomb potential (coulomb correlation), and $\mbf{K}$ is the exchange matrix describing the electron correlation which arises due to the Pauli exclusion principle (Fermi correlation). The exchange contributions have no classical counterpart and arise purely from quantum mechanical considerations. FOCK POTENTIAL
 
 In the special basis where the Fock matrix is diagonal
 \begin{equation}
@@ -303,7 +304,7 @@ f_{PQ} = \delta_{PQ} \eps_P
 \mbf{f} \ket{\phi_P} = \eps_P \ket{\phi_P} 
 \label{eq:HFEQ}
 \end{equation} 
-\noindent are known as the \emph{canonical molecular spin orbitals}, and the eigenvalues are the \emph{molecular orbital energies}. Solving the \emph{Hartree-Fock equation} \ref{eq:HFEQ} gives the MOs which form the basis of Hartree-Fock wavefunction. It should be stressed that the total electronic Hartree Fock energy is not the sum of the individual MO energies, but is given by the expectation value of the Hamiltonian 
+\noindent are known as the \emph{canonical molecular spin orbitals}, and the eigenvalues are the \emph{molecular orbital energies}. Solving the \emph{canonical Hartree-Fock equation} \ref{eq:HFEQ} gives the MOs which form the basis of the Hartree-Fock wavefunction. It should be stressed that the total electronic Hartree Fock energy is not the sum of the individual MO energies, but is given by the expectation value of the Hamiltonian 
 \begin{equation}
 E_{HF} = \bra{HF}\mbf{H}\ket{HF} = \sum_{I}^{N} h_{II} + \frac{1}{2} \sum_{I}^{N} \left( J_{II} - K_{II} \right)   
 \end{equation}
@@ -368,66 +369,476 @@ P^T_{\mu\nu} &= P^{\sigma}_{\mu\nu} + P^{\sigma'}_{\mu\nu}
 
 \subsection{The Self-Consistent Field Method}
 
-In general, the atomic orbitals are not orthogonal. Defining the overlap matrix $\mbf{S}$ with entries 
+In general, the atomic orbitals are not orthogonal. The overlap matrix $\mbf{S}$ is defined as 
 \begin{equation}
 S_{\mu\nu} = \int \chi_{\mu}^*(\mbf{r}) \chi_{\nu}^*(\mbf{r}) d\mbf{r}
 \end{equation}
-\noindent where $S_{\mu\mu} = 1$, the eigenvalue problem for RHF takes the more general form
+\noindent whith diagonal entries $S_{\mu\mu} = 1$, and off-diagonal elements $0 < S_{\mu\nu} < 1$. The eigenvalue problem for RHF then takes the more general form
 \begin{equation}
 \mbf{F} \mbf{C} = \mbf{SC} \mbf{E}
 \label{eq:RHALL}
 \end{equation}
-\noindent The equations in \ref{eq:RHALL} are known as the \emph{Roothan equations}. In the unrestricted case, they are called the \emph{Pople-Nesbet equations}:
+\noindent The equations in \ref{eq:RHALL} are known as the \emph{Roothan-Hall equations}. In the unrestricted case, they are called the \emph{Pople-Nesbet equations} which are given by
 \begin{align}
 \mbf{F}^{\alpha} \mbf{C}^{\alpha} &= \mbf{SC}^{\alpha} \mbf{E}^{\alpha} \\
-\mbf{F}^{\beta} \mbf{C}^{\beta} = \mbf{SC}^{\beta} \mbf{E}^{\beta}
+\mbf{F}^{\beta} \mbf{C}^{\beta} &= \mbf{SC}^{\beta} \mbf{E}^{\beta}
 \end{align}  
+\noindent The Fock matrix is constructed using the coefficient matrices $\mbf{C}$ to compute the density matrix $\mbf{P}$. This means that the RH (and PN) equations depend on their own solution and must be solved iteratively. Popular choices for iterative schemes include \emph{Newton's} method and the \emph{self-consistent field} (SCF) method, with the latter being the most straight-forward one to implement. 
 
-%In the HF approximation, the molecular system is treated as $N$ independent electrons where the Hamiltonian operator is expressed as a sum of $N$ effective Hamiltonians
-%
-%% give form of electronic hamiltonian
-%% collect them in 1elec components and 2elec components, second quantization
-%% fock operator, mean field
-%% evaluation of fock matrix elements / energy
-%% restricted form.
-%
-%\subsection{SCF}
-%
-%\subsection{What does HF miss}
-%
-%\begin{equation}
-%\mbf{H} = \sum^N_i \mbf{f}(i) 
-%\end{equation}
-%\noindent where $\mbf{f}$ is also known the \emph{Fock} operator, of the form
-%\begin{equation}
-%\mbf{f} &= \mbf{h} + \mbf{v}^{HF}
-%\label{eq:FOCKOPERATOR}
-%\end{equation}
-%\noindent Here, $\mbf{h}$ is a one-electron operator, also known as the core Hamiltonian, which sums the kinetic and nuclei-electron repulsion part:
-%\begin{equation}
-%\mbf{h} = -\frac{1}{2} \nabla^2 - \sum^{M_{nuc}}_{A=1} \frac{Z_A}{r_{A}} 
-%\end{equation} 
-%\noindent where $Z$ is the nuclear charge, and $r_{A}$ is the nucleus-electron distance. The two-electron operator $\mbf{v}^{HF}$ in the Fock operator describes the average potential (or "field") experienced by electron $i$ due to the presence of all the other electrons. For this reason, Hartree-Fock was originally known as the \emph{mean-field} approximation. In second qunatization, the Fock operator can be written as
-%\begin{equation}
-%\mbf{f} = \sum_{PQ} h_{PQ} a\pdg_P a_Q + \frac{1}{2} \sum_{PQRS} g_{PQRS} a\pdg_P a\pdg_R a_S a_Q  
-%\end{equation}
+The SCF procedure is summmarized in Algorithm \ref{algo:SCF}. At every iteration, the Fock matrix is diagonalized to obtain a new guess for the density matrix, which is used for constructing the Fock matrix in the next step. These steps are repated until \emph{self-consistency} is reached. There are different ways to test for convergence, the simplest being the Hartree-Fock energy difference between subsequent iterations. A more rigourous bound is given by the matrix norm of the error vector $\mbf{e}$
+\begin{equation}
+\mbf{e} = \mbf{FPS} - \mbf{SPF} 
+\end{equation}
+\noindent At convergence, the density matrix commutes with the Fock matrix though the overlap matrix. 
 
+\begin{algorithm}
+\KwIn{Molecule with nuclear coordinates $\{\mbf{R}_A\}$, atomic numbers $\{Z_A\}$, number of electrons $N$ and basis set $\{\chi_{\mu}\}$}
+\KwOut{The matrices $\mbf{F}$, $\mbf{P}$, $\mbf{C}$ and $\mbf{E}$} 
+Calculate all one- and two electron integrals
+\\
+Compute the transformation matrix $\mbf{X}$ from the overlap matrix $\mbf{S}$ with
+\begin{equation}
+\mbf{X}\pdg \mbf{SX} = \mbf{1} 
+\end{equation}
+\\
+Generate a set of guess orbitals to compute an initial guess density $\mbf{P}$
+\\
+\While{not converged}{
+	Construct the Fock matrix $\mbf{F}$ using the current guess density
+	\\
+	Orthogonalize the Fock matrix $\mbf{F'} = \mbf{X}\pdg \mbf{FX}$
+	\\
+	Diagonalize $\mbf{F}'$ to obtain the new orthogonalized MO coefficient matrices $\mbf{C}'$
+	\\
+	Compute $\mbf{C} = \mbf{X}\mbf{C}$
+	\\
+	Form the new density $\mbf{P} = \mbf{CC}^T$
+	\\
+	Check convergence using certain criteria
+}
+\caption{Hartree-Fock Self-Consistent Field}
+\label{algo:SCF}
+\end{algorithm}
 
+\subsubsection{SCF Initial Guesses}
+
+The pre-itearation steps compute the two-electron integrals, the transformation matrix $\mbf{X}$ (see ...) and a set of guess orbitals. There are different methods for generating a guess. The closer the guess is to the solution, the fewer SCF iterations are needed which saves time. The simplest method consists in using a null matrix for $\mbf{P}$, which corresponds to setting the Fock matrix to the core Hamiltonian $\mbf{H}^{core}$. Diagonalization then gives the guess orbitals. The core Hamiltonian gives a sufficiently close starting guess for small molecules, but is unsuitable for larger molecules. 
+
+The most popular and efficient method at the time of writing is the superposition of atomic densities (SAD) (ref). For each type of atom in the molecule, an atomic HF calculation is carried out which gives the atomic density matrix for this atom type. The molecular guess density matrix is then constructed by setting its diagonal blocks to to the atomic densities. The SAD method generates densities that are quite close to the solution. For implementation details, see Annex ...
+
+An alternative starting guess can be obtained by first carrying out a HF calculation with a smaller basis set using the core or SAD guess, and then projecting the density matrix onto the larger basis set (Annex ...). This method is especially useful for larger basis sets.  
+
+\subsubsection{SCF convergence}
+
+There is no guarantee that the SCF procedure converges. For small molecules and equilibrium geometries, the unmodified SCF procedure converges quite smoothly. For large, diffuse basis sets or distorted gemoetries, additional modifications to the algorithms might be necessary:
+\begin{enumerate}
+\item Direct inversion of the iterative subscpace (DIIS): the previous Fock matrices are used for extrapolation to generate a better Fock matrix (Annex)
+\item Damping: A damping factor $\omega$ is introduced and the density matrix is replaced by a weighted average $\mbf{P}'_{n+1} = \omega \mbf{D}_n + (1-\omega)\mbf{D}_{n+1}$. Damping is especially useful when the SCF energy oscillates around the equilibrium
+\item Level shifting: It has been shown that raising the energy of the virtual orbitals guarantees convergence, at the cost of a decreased convergence rate
+\end{enumerate} 
+
+\subsection{Brillouin's Theorem and Orbital Rotations}
+
+The Fock matrix can be divided into four blocks: occupied-occupied, occupied-virtual, virtual-occupied and virtual-virtual (Figure ...). The terms "particle" (p) and "hole" (h) may be used instead of occupied and virtual. In the special case where the orbitals are the canonical MOs, the Fock matrix is diagonal. This is known as the \emph{canonical condition} for the HF wavefunction. However, diagonality is not necessary for obtaining a valid HF wavefunction. The general Hartree-Fock equations take the form
+\begin{equation}
+\mbf{f} \phi_P = \sum_{PR} \lambda_{PR} \phi_R
+\end{equation}
+\noindent Where $\lambda$ are the Lagrange multipliers. For non-canonical MOs, the p-p and h-h are non-diagonal, with elemets $\lambda_{IJ}$ and $\lambda_{AB}$ respectively. The off-diagonal elements are computed as
+\begin{equation}
+f_{IA} = \bra{HF}\mbf{f}\ket{a\pdg_A a_I HF} = 0
+\end{equation}
+\noindent and are zero by virtue of \emph{Brillouin's theorem}. This is also known as the \emph{variational condition} for the HF wavefunction; it is an alternative formulation of the variational principle (ref, section 10.3.5).
+
+The Hartree-Fock energy is therefore stable under unitary rotations
+\begin{equation}
+\phi_{I'} = \mbf{U} \phi_I \qquad U\pdg U = \mbf{U}
+\end{equation}
+\noindent The canonical MOs may be rotated to give another orbital representation with smaller spatial extent, also known as localized molecular orbitals (see chapter ...).
 
 \section{Electron Correlation}
 
-\section{Post-Hartree Fock Ground State}
+In the Hartree-Fock method, the electron-electron interaction is replaced by an average interaction. For large basis sets, Hartree-Fock is actually able to recover approximately 99\% of the electron correlation. Unforntunately, the remaining 1\% are often important to compute chemical properties with suffcient accuracy.
 
-\subsection{Configuration Interaction}
+Electron correlation arises from electrons trying to avoid each other due to coulombic repulsion (coulomb correlation) and the antisymmetry principle (Fermi correlation). This in turn leads to a region of space around each electron where the probabilty of finding another electron is reduced, typically known as the \emph{coulomb hole} for electrons of opposite spin, and \emph{Fermi hole} for electrons of the same spin. 
 
-\subsection{Perturbation Theory}
+Another distinction is often drawn between \emph{dynamic correlation} and \emph{static correlation}, although there exists no formal definition. Dynamic correlation generally describes the correlated movement of electrons due to their "instantaneous mutual repulsion" (ref). For example, in the ground-state Helium atom, electron correlation is purely dynamical. Static (or non-dynamic) correlation on the other hand arises in the case of near-degeneracy, where multiple configurations of similar energy contribute to the ground-state wave function. To show the difference between these two two types of correlation, the dissociation of the H$_2$ molecule is often taken as an illustrative example. At equilibrium distance, correlation is mostly dynamic, and the ground-state can be well described as a singlet state. In the (covalent) dissociation limit, electrons may be coupled to yield either a singlet \emph{or} a triplet, as the energy difference between those two states vanishes (Figure). The correlation in the system in then entirely static. There is no clear-cut line between dynamic and static correlation, but it offers a useful classification for correlation effects.
 
-\subsection{Coupled Cluster}
+To fully capture both dynamic and static correlation, it is crucial to add additional Slater determinants as mentioned previously. Methods which generate excited SLater determinants from a single reference SD recover mostly dynamical correlation. """" Electrons are disturbed through their repulsion and are excited to higher spin orbitals, hence the need of additional excited SDs """". Methods generating SDs from multiple references recover mostly static correlation. At the theoretical limit (i.e. the full configuration space), both types eventually recover all correlation effects. It is therefore the responsibility of the computational chemist to choose the correct method that best fits the problem at hand.
 
-\section{Post-Hartree Fock Excited State}
+Any electronic structure method that improves on the HF wavefunction is usually referred to as a "correlated method". Hartree-Fock, by convention, is an "uncorrelated method", although it does include electron correlation. 
 
-\subsection{Coupled Cluster Linear Repsonse}
+For the rest of this report, only single-reference methods are considered.
 
-\subsection{Equation-of-Motion Coupled Cluster}
+\section{Configuration Interaction}
 
-\subsection{Algebraic Diagrammatic Construction}
+\subsection{The CI Matrix}
+
+Configuration interaction (CI) is the simplest and oldest example of a correlated electronic structure method. The CI wave function takes the general form
+\begin{equation}
+\ket{CI} = \ket{\Psi_0} + \sum_{IA} c_{I}^{A} \ket{\Phi_{IA}} + \sum_{\substack{I < J \\ A < B}} c_{IJ}^{AB} \ket{\Phi_{IJ}^{AB}} + \sum_{\substack{I < J < K \\ A < B < C}} c_{IJK}^{ABC} \Phi_{IJK}^{ABC} + \dots
+\end{equation}
+\noindent summing all SDs of all possible types (singles, doubles, triples...). $\Phi_0$ is the reference wave function, here taken as the HF ground state. Whereas the HF wave function was a linear combination of molecular orbitals, the CI wave function is a linear expansion of SDs. Similarly, the CI expansion coefficient matrix $\mbf{C}$ are determined variationally
+\begin{equation}
+\frac{\partial}{\partial C_i} \frac{\bra{CI}\mbf{H}\ket{CI}}{\bra{CI}\ket{C}}
+\end{equation}
+\noindent which, as was shown before, reduces to the eigenvalue problem
+\begin{equation}
+\mbf{H}\mbf{C} = \mbf{C}\mbf{E}
+\end{equation}
+\noindent The matrix $\mbf{H}$ is also known as the \emph{CI matrix}. Using the notation $\ket{S}$, $\ket{D}$, $\ket{T}$, ... to denote the set of singles, doubles, triples ... SDs, the CI matrix takes the form
+\begin{equation}
+\begin{bmatrix}
+\bra{\Phi_0}\mbf{H}\ket{\Phi_0} & 0 & \bra{\Phi_0}\mbf{H}\ket{D} & 0 & 0 & \ldots \\
+0 & \bra{S}\mbf{H}\ket{S} & \bra{S}\mbf{H}\ket{D} & \bra{S}\mbf{H}\ket{T} & 0 & \ldots \\
+\bra{D}\mbf{H}\ket{\Phi_0} & \bra{D}\mbf{H}\ket{S} & \bra{D}\mbf{H}\ket{D} & \bra{D}\mbf{H}\ket{T} & \bra{D}\mbf{H}\ket{Q} & \ldots \\
+0 & \bra{T}\mbf{H}\ket{S} & \bra{T}\mbf{H}\ket{D} & \bra{T}\mbf{H}\ket{T} & \bra{T}\mbf{H}\ket{Q} & \ldots \\
+0 & 0 & \bra{D}\mbf{H}\ket{Q} & \bra{T}\mbf{H}\ket{Q} & \bra{Q}\mbf{H}\ket{Q} & \ldots \\
+\vdots & \vdots & \vdots & \vdots & \vdots & \ddots  
+\end{bmatrix}
+\end{equation}
+\noindent In analogy to the Fock matrix, some blocks in the CI matrix are zero. Brillouin's theorem states that there is no coupling between the ground state and the singlet states. That does not signify that they do not contribute to the Ci energy at all. Singles mix \emph{indirectly} via doubles. Moreover, matrix blocks of the Hamiltonian between two SDs which differ by more than two spin orbital orbitals are also zero. Triples mix with doubles and singles, but not with the ground state.
+
+A more compact representation of the CI matrix is obtained by taking linear combinations of SDs in the same excitation manifold, known as configuration state functions (CSF) or spin-adapted configurations (SAC). The CSFs form a basis smaller than that composed of all individual SDs which leads to computational savings. However, CSFs were primarly introduced to preserve the spin symmetry of the ground state, or in other words, CSFs are eigenfunctions of the $\mbf{S}^2$ operator. If the HF ground state is a singlet, a non-spin-symmetric CI basis may lead to the CI wave function being a mixture of singlet and triplet determinants. 
+
+\subsection{Truncated CI}
+
+Full CI, i.e. including all excitation manifolds, is only computationally feasible for all but the smallest molecules, due to the binomial increase in SDs as s function of system and basis set size. For this reason, the CI wave function my be truncated at a given excitation level. Including only singles gives configuration interaction with singles (CIS), including singles and doubles yields configuration interaction with singles and doubles (CISD), etc. Higher order methods recover more of the correlation energy, but come at a higher computational cost.
+
+It should be noted that the energy of the CIS wave function is equal to the HF energy due to Brillouin's theorem, and hence does not contribute to the correlation energy of the ground state.  
+
+\subsection{Solving the CI Eigenvalue Problem}
+
+Even at relatively low truncation levels, the number of matrix elements have a quite steep polynomial scaling with $\ccpx{6}$ for CISD and $\ccpx{8}$ for CISDT. In most cases however, only the few lowest eigenvalues are needed. Davidson's method of matrix diagonalization (Annex ...) was specifically developed to tackle this problem. Rather than storing the whole matrix, only matrix-vector products need to be computed
+\begin{equation}
+\mbf{r} = \mbf{M}_{CI} \mbf{u}
+\end{equation}
+\noindent Closed expressions can be derived and the full matrix is not explicitly needed, but generated on-the-fly. 
+
+\subsection{Size Consistency and Size Extensivity}
+
+Over the years, single-reference truncated CI methods have fallen out of favor for more sophisticated methods, due to them not being size-consistent and size-extensive. \emph{Size-consistency} refers to the idea that the energy of two non-interacting systems $A$ and $B$ should be equal to the sum of their individual energies obtained from two different calculations:
+\begin{equation}
+E(A+B) = E(A) + E(B)
+\end{equation}
+\noindent \emph{Size-extensivity} is closely-related criterium that states that the energy should be a linear function of the number of electrons (ref), i.e. the energies of small and large molecules have similar errors, which is important for comparing properties. As the system size increases, truncated CI recovers less and less of the total correlation energy.
+
+% Computational Chemistry: A Practical Guide for Applying Techniques to Real https://books.google.de/books?id=-pn8K53IUqgC&pg=PA223&lpg=PA223&dq=size+consistency+vs+extensivity&source=bl&ots=x_g9YAUAPZ&sig=ACfU3U3bLZ64HmFbRQrFiSvYR1BwsHOdyw&hl=en&sa=X&ved=2ahUKEwjag4H696XyAhVhgf0HHbVfBzEQ6AF6BAguEAM#v=onepage&q=size%20consistency%20vs%20extensivity&f=false
+
+\section{Coupled Cluster}
+
+The coupled-cluster (CC) approximation offers a more sophisticated picture of electron correlation than CI, and has become one of the most successful and accurate \emph{ab initio} correlated methods. It is both size-consistent and size-extensive.
+
+\subsection{Pair Clusters}
+
+Consider a system composed of two electrons, occupying the orbitals $I$ and $J$ in the independent particle model. Correlation manifests itself by the electrons' instantaneous repulsion and excitation into higher lying orbitals. Mathematically, this may be expressed as
+\begin{equation}
+a\pdg_I a\pdg_J + \sum_{A > B} t_{IJ}^{AB} a\pdg_A a\pdg_B = \left( 1 + t_{IJ}^{AB} \mbf{tau}_{IJ}^{AB} \right) a\pdg_I  a\pdg_J 
+\label{eq:epair}
+\end{equation}
+\noindent where $\mbf{t}$ are the associated cluster coefficients, also known as \emph{amplitudes}. %, and $\mbf{\tau}$ are the cluster operators. 
+By virtue of Brillouin's theorem, single excitations are not considered. Equation \ref{eq:epair} is known as the \emph{electron pair}, \emph{two-electron cluster} or \emph{pair-cluster} approximation. 
+
+In a first approximations, electron pairs may be treated indepedently in a molecular system, in what is known as the independent electron pair approximation (IEPA). The total correlation energy is then simply given as the sum of the individual \emph{pair correlation energies}
+\begin{align}
+E_{corr}^{IEPA} &= \sum_{I < J} e_{IJ}  \\
+\ket{IEPA} = \sum_{I < J, A < B} \left(1 + t_{IJ}^{AB}\mbf{\tau}_{IJ}^{AB} \right) \ket{HF} 
+\end{align}
+\noindent A more complete picture of electron correlation is given by additionally letting electron clusters interact whith each other by using the parametrization
+\begin{equation}
+\ket{CCD} = \left( \prod_{A > B,I > J} 1 + t_{IJ}^{AB}\mbf{\tau}_{IJ}^{AB} \right) \ket{HF}
+\end{equation}
+\noindent The resulting wave function correpsonds to the coupled cluster approximation including only doubles (CCD). As opposed to CID, CCD additionally includes \emph{products} of doubles cluster operators ($\tau_{IJ}^{AB} \tau_{KL}^{CD}$, $\tau_{IJ}^{AB} \tau_{KL}^{CD} \tau_{MN}^{EF}$), in other words, doubles excitations are included up to infinite order (ref). It is this property that makes CC size-extensize.
+
+% ref R J Bartlett J Phys Chem 93 (1996) 216
+
+\subsection{Coupled Cluster Ansatz}
+
+The CCD model can be generalized to let custers of three and more electrons interact with each other, and electrons interact within these clusters. The general CC ansatz reads
+\begin{equation}
+\ket{CC} = \left( \prod_{\mu} 1 + t_{\mu}\boldsymbol{\tau}_{\mu} \right) \ket{HF} = exp(t_{\mu}\boldsymbol{\tau}_{\mu}) \ket{HF} = exp(\mbf{T}_{\mu}) \ket{HF}
+\label{eq:CCANSATZ}
+\end{equation}
+\noindent where $\mbf{T}_{\mu}$ is the \emph{cluster operator}, and $\mu$ are the excitation manifolds. The cluster operator may be partitioned into classes comprising all singles, doubles, ... excitations:
+\begin{equation}
+\mbf{T} = \mbf{T}_1 + \mbf{T}_2 + ... \mbf{T}_N
+\end{equation}
+\noindent Truncating the cluster operator to include only excitations up to a certain degree yields a hierarchy of CC method named CCS, CCSD, CCSDT etc. Again, including higher orders necessitate a higher computational effort. The exponential in Equation \ref{eq:CCANSATZ} for different truncation levels is approximated as
+\begin{align}
+exp(\hat{T}) &= \hat{T}_1 \\
+exp(\hat{T}_1 + \hat{T}_2) &= \hat{T}_2 + \frac{1}{2} \hat{T}_1^2 \\
+exp(\hat{T}_1 + \hat{T}_2 + \hat{T}_3) &= \hat{T}_3 + \hat{T}_1 \hat{T}_2 + \frac{1}{6} \hat{T}_1^3 \\
+\ldots
+\end{align}
+\noindent Triplet configurations for example are generated by three mechanisms. $\hat{T}_3$ is known as a \emph{connected} term, and the other terms which are products of lower order operators are known as \emph{disconnected} terms. 
+
+\subsection{The Coupled Cluster Equations} 
+
+The cluster amplitudes are unknown and need to be solved for. Equations for the amplitudes can be obtained by projecting the excitation manifolds onto the CC ground state wave function \ref{eq:CCANSATZ}. Using the so-called \emph{similarity-transformed} Hamiltonian
+\begin{equation}
+\mbf{\ovl{H}} = exp(-\hat{T}) \mbf{H} exp(\hat{T})
+\end{equation} 
+\noindent gives the set of non-linear equations
+\begin{align}
+\bra{\mu_1}\ovl{H}\ket{HF} &= 0 \\
+\bra{\mu_2}\ovl{H}\ket{HF} &= 0 \\
+\bra{\mu_3}\ovl{H}\ket{HF} &= 0 \\
+\vdots
+\label{eq:CCEQ}
+\end{align}
+\noindent where $\mu_n$ is $n$th order excitation manifold (singles, doubles ....). The exact expressions of the CC amplitude equations at different truncation levels may be evaluated using the 
+Baker–Campbell–Hausdorff (BCH) formula (ANNEX?), but will not be discussed in detail here. As an example of the exact form of the working equations, consider the CCSD model truncated at doubles excitation. Equation \ref{eq:CCEQ} then reduces to
+\begin{align}
+\sbra{\mu_1} \hat{\ovl{H}} + \left[\hat{\ovl{H}},\hat{T}_2\right] \sket{HF} = 0 
+\label{eq:CCSDEQSINGLES}
+\\
+\sbra{\mu_2} \hat{\ovl{H}} + \left[\hat{\ovl{H}},\hat{T}_2\right] + \frac{1}{2} \left[ \left[ \hat{\ovl{H}},\hat{T}_2\right],\hat{T}_2\right] \sket{HF} = 0
+\label{eq:CCSDEQDOUBLES}
+\end{align}
+The system of equations \ref{eq:CCEQ} depends on its own solution, and therefore needs to be solved iteratively. They are most commonly solved using a modified Newton method with DIIS acceleration. 
+
+\section{Perturbation Theory}
+
+Coupled cluster and configuration interaction offer a systematic way to move towards the exact solution to the Schrödinger equation by means of adding more Slater determinants. However, the calculation of the  CC and CI wavefunctions is very expensive, and it may be profitable to look at alternative schemes. \emph{Pertubation theory} (PT) is a different approach to systematically close in on the exact wavefunction. It is based on the idea that the exact solution differs only slightly from a previously solved problem for a simpler, but related system.
+
+\subsection{Rayleigh-Schrödinger Perturbation Theory}
+
+Perturbation theory is used in a wide range of fields and disciplines in natural sciences and mathematics. In the context of molecular electronic structure theory, the most widely used form of PT is Rayleigh Schrödinger perturbation theory (RSPT). In RSPT, the Hamiltonian is partitioned according to
+\begin{equation}
+\hat{H} = \hat{H}_0 + \hat{U}
+\end{equation}
+\noindent where $\hat{H}_0$ is some reference zero-order Hamiltonian with known eigenfunctions $\ket{\Psi^{0}_i}$ and eigenvalues $E_i^{0}$. $\hat{U}$ is a small perturbation to the system. The exact wave function and energies may be expanded in orders of the perturbation
+\begin{align}
+\ket{\Phi_i} &= \sum_{k=0}^{\infty} \ket{\Psi_i^{(k)}} \label{eq:RSPTWF} \\
+E_i &= \sum_{k=0}^{\infty} E_i^{(k)} \label{eq:RSPTEN}
+\end{align} 
+\noindent The task at hand is now to derive closed expression for higher order terms of order $n$ using terms of order $n-1$ and lower. Substituting the expressions \ref{eq:RSPTWF} and \ref{eq:RSPTEN} into the Schrödinger equation gives
+\begin{equation}
+\left(\hat{H}_0 + \hat{U}\right) \sum_{k=0}^{\infty} \ket{\Psi_i^{(k)}} = \left( \sum_{k=0}^{\infty} E_i^{(k)} \right) \left( \sum_{k=0}^{\infty} \ket{\Psi_i^{(k)}} \right)
+\label{eq:RSPTSEQ}
+\end{equation}
+\noindent Collecting terms of order $n$, the above expression may be rewritten as a system of equations involving the residual of the Hamiltonian:
+\begin{equation}
+(\hat{H}_0 - E_i^{(0)}) \sket{\Psi_i^{(n)}} = -\hat{U} \sket{\Psi_i^{(n-1)}} + \sum_{k=1}^{n} E_i^{(k)} \sket{\Psi_i^{(n-k)}}
+\label{eq:RSPTSEQ2}
+\end{equation}
+\noindent Or alternatively, when multiplied with the inverse of the Hamiltonian residual:
+\begin{equation}
+ \sket{\Psi_i^{(n)}} = - (\hat{H}_0 - E_i^{(0)})^{-1} \left( \hat{U} \sket{\Psi_i^{(n-1)}} + \sum_{k=1}^{n} E_i^{(k)} \sket{\Psi_i^{(n-k)}} \right)
+\label{eq:RSPTSWF}
+\end{equation}
+\noindent Furthermore, to obtain simpler expressions for $E_i^{(k)}$, the normalization is chosen such that $\sbra{\Psi_i^{(0)}}\sket{\Phi_i}=1$, also known as intermediate normalization. From this it follows that the approximate wave functions are then orthogonal to the reference states
+\begin{equation}
+\sbraket{\Psi_i^{(0)}}{\Psi_i^{(n)}} = 0 \qquad n = 1,2,3,\ldots
+\label{eq:RSPTORTHO}
+\end{equation}
+\noindent Left-projection of $\sbra{\Psi_i^{(0)}}$ onto the system of equations in \ref{eq:RSPTSEQ2} and using the orthogonality condition \ref{eq:RSPTORTHO} yields the master equations for the RSPT energies
+\begin{equation}
+E_i^{(n)} = \sbra{\Psi_i^{(0)}} \hat{U} \sket{\Psi_i^{(n-1)}} \qquad n > 0
+\label{eq:RSPTENEQ}
+\end{equation}
+
+\noindent The approximate energy expressions can be solved for without the need of iterative procedures, and closed expressions may be derived for a given reference. One way of solving \ref{eq:RSPTENEQ} is to expand the first-order wave function in terms of the the eigenfunctions of $\hat{H}_0$:
+\begin{equation}
+\sket{\Psi_i^{(1)}} = \sum_n c^{(1)}_n \sket{\Psi_i^{(0)}}
+\end{equation}
+\noindent Multiplying from the left by $\sbra{\Psi_n^{(0)}}$, the expansion coeffcients can be obtained with
+\begin{equation}
+\sbraket{\Psi_n^{(0)}}{\Psi_i^{(1)}} = c_n^{(1)}
+\end{equation}
+From the expression of the first order wave function in \ref{eq:RSPTWF}
+\begin{equation}
+\sket{\Psi_i^{(1)}} = - (\hat{H}_0 - E_i^{(0)})^{-1} (\hat{U} + E_i^{(1)}) \sket{\Psi_i^{(1)}} 
+\end{equation}
+\noindent it follows that the first order expansion coefficients are given by
+\begin{equation}
+c_n^{(1)} = \frac{\sbra{\Psi_n^{(0)}} \hat{U} \sket{\Psi_0^{(0)}}}{E_i^{(0)} - E_n^{(0)}} 
+\end{equation}
+\noindent Higher order energy expressions can then be "build up" step by step from lower order approximations following the normalization and orthogonality conditions. The first few closed-form RSPT energy expressions are given by
+\begin{align}
+E_0^{(1)} &= \sbra{\Psi_0^{(0)}} \hat{U} \sket{\Psi_0^{(0)}} \\
+E_0^{(2)} &= \sum_n \frac{
+	\mid\sbra{\Psi_0^{(0)}} \hat{U}\sket{\Psi_n^{(0)}} \mid^2
+}{
+	E_0^{(0)} - E_n^{(0)}
+} \\
+\begin{split}
+E_0^{(3)} &= \sum_{nm} \frac{
+	\sbra{\Psi_0^{(0)}}\hat{U}\sket{\Psi_n^({0})}
+	\sbra{\Psi_n^{(0)}}\hat{U}\sket{\Psi_m^({0})}
+	\sbra{\Psi_m^{(0)}}\hat{U}\sket{\Psi_0^({0})}
+}{
+	(E_0^{(0)} - E_n^{(0)})(E_0^{(0)} - E_m^{(0)})
+} \\
+&- E_0^{(1)} \sum_n \frac{
+	\mid\sbra{\Psi_0^{(0)}} \hat{U}\sket{\Psi_n^{(0)}} \mid^2
+}{
+	(E_0^{(0)} - E_n^{(0)})^2
+} 
+\end{split} \\ \nonumber
+\ldots
+\end{align}
+
+\subsection{M{\o}ller-Plesset Perturbation Theory}
+
+The success of RSPT is closely related to the choice of the zero-order Hamiltonian. The most popular variant of RSPT is M${\o}$ller-Plesset perturbation theory (MPPT), where $\hat{H_0}$ is taken as the Fock operator from HF theory
+\begin{equation}
+\hat{H}_0 = \hat{f} = \sum_P \eps_P a\pdg_P a_P
+\end{equation}
+\noindent The zero-order wave function $\sket{\Psi_0^{(0)}}$ corresponds to the Hartree Fock wave function $\sket{HF}$. The perturbation operator takes the form
+\begin{equation}
+\hat{U} = \hat{H} - \hat{f} = \sum_{PQRS} \hat{g}_PQRS a\pdg_P a\pdg_R a_S a_Q - \hat{V}^{HF} 
+\end{equation}
+\noindent where $V^{HF}$ is the Hartree-Fock potential. The zero-order component of the ground state energy is simply given as the sum of the orbital energies
+\begin{equation}
+E_0^{(0)} = \sum_I \eps_I
+\end{equation}
+\noindent The first order energy is
+\begin{equation}
+\begin{split}
+E_0^{(1)} &= \sbra{\Psi_0^{(0)}} \hat{U} \sket{\Psi_0^{(0)}} \\
+&= \sbra{HF}\hat{U}\sket{HF} \\
+&= -\frac{1}{2} \sum_{IJ} ( \sbraket{IJ}{IJ} - \sbraket{IJ}{JI} ) \\
+&= -\frac{1}{2} \sum_{IJ} \sbra{IJ}\sket{IJ} 
+\end{split}
+\end{equation}
+\noindent where $\sbra{IJ}\sket{IJ}$ are the antisymmetrized two-electron integrals in the MO basis. The energy sum $E_0^{(0)} + E_0^{(1)}$ corresponds to the Hartree Fock energy. Therefore, the first correction to the Hartree-Fock energy occurs at the second order of MPPT. Using the notation MP$n$ to used to refer to MPPT including perturbations up to the $n$th order, the second order energy reads
+\begin{equation}
+\begin{split}
+E_0^{(2)} = E_{MP2} = \frac{1}{4} \sum_{IJAB} \frac{\mid \sbra{IJ}\sket{AB}\mid^2}{\eps_I + \eps_J - \eps_A - \eps_B}
+\end{split} 
+\label{eq:UMP2}
+\end{equation}
+\noindent For a closed-shell molecule, using spin-separation similarly to how it was done in Section 1.4.3 for Hartree-Fock, the restricted MP2 energy is given as
+\begin{equation}
+\begin{split}
+E_{RMP2} &= \sum_{ijab} \frac{\cn{ia}{jb}\left[2\cn{ia}{jb} - \cn{ib}{ja} \right]}{\eps_i + \eps_j - \eps_a - \eps_b} \\
+&= \sum_{ijab} t_{iajb} \left[\cn{ia}{jb} - \cn{ib}{ja} \right]
+\end{split}
+\label{eq:RMP2}
+\end{equation}
+\noindent where $\mbf{t}$ are the MP2 amplitudes. Furthermore, the MP2 energy may be split into individual electron pair contributions, analogous to CC:
+\begin{equation}
+E_{MP2} = \sum_{ij} e_{ij}
+\end{equation}
+\noindent The energy expressions for MP3 and beyond will not be given here.
+
+\subsection{Convergence Behaviour of the MP$n$ series}
+
+MP2 is a computationally cheap correlated method that includes 80\% to 90\% of electron correlation method, scaling with $\ccpx{5}$ as a function of the system size $N$. Higher order variants like MP3 or MP4 are considerably less popular. 
+
+Ideally, the MP$n$ energy should converge monotonically towards the limit with increasing order of perturbation. However, such a behaviour is not guaranteed. Contrary to the CI enery, which is dtermined variationally and therefore has a lower bound, the same is not true for MPPT and the MP$n$ series may become divergent or oscillating for larger basis sets, especially if diffuse functions are used. MP2 improves on the HF wavefunction, but slightly overestimates correlation energy. MP3 underestimates electron correlation, and porperties computed at this level are often inferior to those computed at second order. MP4 again overestimates correlation effects, but is better than MP2.
+
+Due to the erratic convergence behaviour of MPPT, higher order variations like MP3 or MP4 have fallen somewhat out of favour in the recent years. Moreover, the requirement of the single-determinant HF wave function being a suitable starting guess makes MPPT ill-suited to describe static correlation effects.  
+
+\subsection{Spin-Component-Scaled M{\o}ller Plesset Perturbation Theory}
+
+With the rise pf density functional theory (DFT), even the computationally inexpensive MP2 method fell out of use in favour of DFT which often shows better performance and accuracy for the same molecular systems.
+
+In the early 2000s, MPPT again gained more popularity with the introdution of \emph{spin-component scaling} (SCS) by Grimme et al. (Gri2003,Gri2012) which greatly improves on the accuracy of MP2.
+
+Consider again the MP2 energy in the unrestricted case in Eqaution \ref{eq:RMP2}. The energy contributions can be split into same-spin (SS) and opposite spin (OS) components:
+\begin{align}
+E_{MP2-SS} &= \sum_{IJ} e_{IJ} + e_{\olI\olJ} \\
+E_{MP2-OS} &= \sum_{IJ} e_{I\olJ} 
+\end{align}
+\noindent with
+\begin{align}
+e_{IJ} &= \sum_{AB} t_{IAJB} (\cn{IA}{JB} - \cn{IB}{JA}) \\
+e_{\olI\olJ} &= \sum_{AB} t_{\olI\olA\olJ\olB} (\cn{\olI\olA}{\olJ\olB} - \cn{\olI\olB}{\olJ\olA}) \\
+e_{I\olJ} &= \sum_{AB} t_{IA\olJ\olB} \cn{IA}{\olJ\olB}  
+\end{align}
+The correlation effects in SS and OS are of different nature as discussed in Section .... Hartree-Fock accounts for Fermi correlation by the antisymmetry principle but does not fully account for Coulomb correlation. MP2 cannot fully rectify this deficiency in the starting guess. SCS-MP2 accounts for this behaviour by scaling down the SS components and scaling up the OS components
+\begin{equation}
+E_{SCS-MP2} = c_{os} E_{OS-MP2} + c_{ss} E_{SS-MP2}
+\end{equation}
+\noindent where the scaling factors are determined empricially by fitting to a data set, with $c_{ss}$ = 6/5 and $c_{os}$ = 1/3. In later iterations of SCS-MP2, the two parameters were unified by introducing the relationship
+\begin{equation}
+c_{ss} = 4 - 3c_{os}
+\end{equation}
+\noindent whith $c_{ss}$ and $c_{os}$ set to 0.4 and 1.3 respectively.
+
+SCS-MP2 gives considerable improvements to reaction energies (16), barrier heights (40,41), geometries and vibrational frequencies (42), comparable to QCISD(T) with errors on the order of 1.7 kcal/mol. Strictly speaking, SCS-MP2 is no longer an \emph{ab intio} method, but \emph{semi-empirical}. 
+
+SCS was initially an \emph{ad-hoc} improvement to the description of the wave function, but it is possible to justify its position in the theoretical framework of MPPT (23,28).  
+
+Over the years, many different variations of SCS-MP2 have been proposed (19,20,24,25). One variation is the so-called spin-opposite scaled (SOS) MP2 method (19), where the SS components are simply ignored:
+\begin{equation}
+E_{SOS-MP2} = c_{os} E_{OS-MP2}
+\end{equation}
+\noindent with $c_{os}$ set to 1.3 instead of 1.2 as in SCS-MP2. The method can be justified by observing that the SS already do not contribute a lot to the SCS-MP2 energy. SOS-MP2 has comparable or slightly worse accuarcy than SCS-MP2. The major advantage which makes SOS-MP2 one of the more attractive spin-component scaling variants is the reduced scaling $\ccpx{4}$ compared to $\ccpx{5}$ for (SCS)-MP2. 
+
+% Gri2003 Grimme S. Improved second-order Møller—Plesset perturbation theory by separate scaling of parallel- and antiparallel-spin pair correlation energies. J Chem  Phys 2003, 118: 9095—9102
+
+% Gri2012 WIREs Comput Mol Sci 2012. doi: 10.1002/wcms.1110
+
+% within that: 16, 40, 41, 42
+
+\subsection{Hybrid Coupled Cluster Methods}
+
+Perturbational approaches may also be used to obtain approximate hybrid coupled cluster methods. 
+
+Consider again the CCSD equations for the coupled cluster singles \ref{eq:CCSDEQSINGLES} and doubles amplitudes \ref{eq:CCSDEQDOUBLES}. Introducing the same partitioning of the Hamiltonian as in MP2 with
+\begin{equation}
+\hat{H} = \hat{F} + \hat{U}
+\end{equation}
+\noindent where $\hat{U}$ is also known as the \emph{fluctuation potential}, the coupled cluster singles doubles method by Christiansen et al. (ref) approximate the doubles amplitudes to first order only. The doubles equation \ref{eq:CCSDEQDOUBLES} thus becomes
+\begin{equation}
+\sbra{\mu_2} \left[ \hat{F}, \hat{T}_2\right] + \hat{\ovl{H}} \sket{HF} = 0
+\label{eq:CC2EQDOUBLES}
+\end{equation}
+\noindent Eqautions \ref{eq:CCSDEQSINGLES} and \ref{eq:CC2EQDOUBLES} define the so-called \emph{CC2} model. The doubles equations give an MP2-like closed expressions, and only the singles amplitudes need to be determined variationally.
+
+The CC2 energy has a similar accuracy and computational effort to MP2. Spin-component scaling has been generalized to CC2 as well (1,2), with similar improvements to its accuracy (3). 
+
+Higher order CC methods like CCSDT can be approximated in a similar way to obtain the approximate CC3 method (4), where triples contributions are approximated to second order. A related method is the coupled cluster singles doubles with perturbative triples method (5), abbreviated as CCSD(T), where triples contributions are treated perturbatively and \emph{added} to the CCSD model. CCSD(T) and CC3 have comparable accuracy and cost. 
+
+% 1 DOI: 10.1039/b803727b
+% 2 DOI: 10.1063/1.3584177 
+% 3 https://doi.org/10.1021/acs.jctc.9b00676
+% 4 https://doi.org/10.1063/1.473322
+% 5 K. Raghavachari, G. W. Trucks, J. A. Pople, and M. Head-Gordon, Chem. Phys. Lett. 157, 479 (1989)
+
+\section{Basis Sets}
+
+\section{Performance of Correlated Methods}
+
+The previous sections give insight into the most popular, single-determinant, correlated electronic structure methods. The methods vary widely in accuracy, computaional cost and convergence behaviour. 
+
+Table ... gives the formal computational scaling for some of the methods. The notation $\mathcal{O}()$, also known as \emph{Big O notation}, is the standard way of indicating the limiting behaviour of algorithms for increasing input size. $N$ is used as a measure of the molecular system size (e.g. number of atoms or basis functions). \emph{Formal} scaling means that factors like sparsity or locality are not considered.
+
+\begin{table}
+\centering
+\begin{tabular}{lllll} 
+\hline 
+Scaling & Non-correlated & CI methods & CC methods & MP methods \\ \hline
+$\ccpx{4}$ & HF &  & SOS-CC2 & SOS-MP2 \\
+$\ccpx{5}$ & & CIS & CC2, SCS-CC2 & MP2, SCS-MP2 \\
+$\ccpx{6}$ & & CISD & CCSD & MP3 \\
+$\ccpx{7}$ & & & CC3, CCSD(T) & MP4 \\
+$\ccpx{8}$ & & CISDT & MP5 & CCSDT \\
+\hline 
+\end{tabular}
+\caption{Table}
+\end{table}
+
+At the time of writing, on current work stations, $\ccpx{5}$ methods are limited to system sizes of around 100 atoms $\ccpx{6}$ to sizes of several tens of atoms. Models with $\ccpx{7}$ scaling and beyond are not used routinely. 
+
+In terms accuracy, the current trend is often observed (ref Frank):
+
+\begin{equation}
+HF << MP2 \approx CC2 < CCSD < MP4 < CCSD(T) 
+\end{equation}
+
+\noindent ..........
+
+%\subsection{Diagrammatic Perturbation Theory}
+
+\section{Green's Functions (?)}
+
+\section{Excited States}
+
+\section{Coupled Cluster Linear Repsonse}
+
+\section{Equation-of-Motion Coupled Cluster}
+
+\section{Algebraic Diagrammatic Construction}
