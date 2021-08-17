@@ -283,8 +283,8 @@ ax.legend(loc="best")
 fig.savefig("ldf.pdf")
 
 
-doc.close()
-exit(0)
+#doc.close()
+#exit(0)
 
 # =========================================================
 # ================= DENSITY MATRIX/CHOLESKY ===============
@@ -296,7 +296,7 @@ arrayDV = np.loadtxt('densityV.dat')
 arrayLV = np.loadtxt('choleskyV.dat')
 
 fig, ax = plt.subplots()
-im = ax.imshow(arrayDO)
+im = ax.imshow(arrayDO,cmap='Reds')
 fig.savefig("densityO.pdf")
 
 fig, ax = plt.subplots()

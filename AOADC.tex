@@ -569,166 +569,106 @@ Finally, Table \ref{AODFSOSADC2E} shows the construction of part 2E of the MVP. 
 
 Using the density fitting approximation, the four-index intermediates $u_{\mu\sigma\nu\lambda}$ from AO-SOS-ADC(2) can be avoided, and the procedure only depends on 3-index intermediates. 
 
-\begin{table}
-\begin{tabular}{p{0.8\textwidth}}
-\hline
-Step-by-step \\ \hline
-\begin{enumerate}
-\item Compute Laplace quadrature parameters $\{w\pa,t\pa\}$ for $\frac{1}{\eps_i + \eps_j - \eps_a - \eps_b}$
-\item If needed by the J,K or Z kernels, compute the cholesky decompositions of the occupied and virtual pseudo-density matrix 
-\item Compute the intermediate matrices $I_{ij}$ and $I_{ab}$
-\begin{algorithm}[H]
+\SetKwBlock{Substep}{}{}
+
+\begin{algorithm}
+Compute Laplace quadrature parameters $\{w\pa,t\pa\}$ for $(\eps_i + \eps_j - \eps_a - \eps_b)^{-1}$
+\\
+If needed by the J,K or Z kernels, compute the cholesky decompositions of the occupied and virtual pseudo-density matrix 
+Compute the intermediate matrices $I_{ij}$ and $I_{ab}$
+\\
 \For{\forcond}{
-	\begin{enumerate}
-		\itemR\label{GMATINTERMED}
 	$G\pa_{XY} \leftarrow M_{XR} \calZ\left\lbrace P\pa,Q\pa\right\rbrace_{RS} M_{SR}$
-	\itemR\label{IVVINTERMED}	
+	\\
 	$I_{ab} \leftarrow - \frac{c_{os}}{2} C_{\nu b} \sum_\alpha C_{\mu a} \mid w\pa \mid^{1/4} e^{-\eps_a t\pa} \calK\left\lbrace P\pa,G\pa\right\rbrace_{\mu\nu}$
-	\itemR\label{IOOINTERMED}
+	\\
 	$I_{ij} \leftarrow - \frac{c_{os}}{2} C_{\nu j} \sum_\alpha C_{\mu i} \mid w\pa \mid^{1/4} e^{ \eps_i t\pa} \calK\left\lbrace Q\pa,G\pa\right\rbrace_{\mu\nu}$ 
-	\end{enumerate}
 }
-\begin{enumerate}
-\setcounter{enumii}{\theISTEP}
-\item\label{AntisymIOO}
-Symmetrize: $I_{ij} \leftarrow I_{ji}$
-\item\label{AntisymIVV}
-Symmetrize: $I_{ab} \leftarrow I_{ba}$
-\end{enumerate}
-\end{algorithm}
-%
-\setcounter{ISTEP}{0}
-%
-\end{enumerate}
-\\ \hline
-\end{tabular}
-\caption{Intermediates}
+\Substep(\textbf{Symmetrize matrices}){
+$I_{ij} \leftarrow I_{ji}$
+\\ 
+$I_{ab} \leftarrow I_{ba}$
+}
+\caption{Pre-iterative steps for computing the ADC(2) intermediates}
 \label{AODFSOSADC2INTERMEDIATES}
-\end{table}
-%
-\begin{table}
-\begin{tabular}{p{0.8\textwidth}}
-\hline
-Step-by-step (2) \\ \hline
-\begin{enumerate}
-\item Compute the CIS Fock-like matrix
-\begin{enumerate}
-	\item\label{vecAO}
-	\begin{description}
-		\item if singlet: $U_{\mu\nu} \leftarrow C_{\mu i} u^S_{ia} C_{\nu a}$
-		\item if triplet: $U_{\mu\nu} \leftarrow C_{\mu i} u^T_{ia} C_{\nu a}$
-	\end{description}
-	
-	\item\label{FockCIS}
-	\begin{description}
-		\item if singlet: $F^{CIS}_{\mu\nu} \leftarrow 2 * \calJ\left\lbrace U,M \right\rbrace_{\nu\mu} - \calK\left\lbrace U,M \right\rbrace_{\nu\mu}$
-		\item if triplet: $F^{CIS}_{\mu\nu} \leftarrow - \calK\left\lbrace U,M \right\rbrace_{\nu\mu}$
-	\end{description}
-\end{enumerate}
-%
-\item  Add zero- and first-order terms
-\begin{enumerate}
-	\item\label{WorkADC0}
-	$r_{ia} \leftarrow (\eps_a - \eps_i) u_{ia}$
-	\item\label{WorkADC1}
-	$r_{ia} \leftarrow C_{\mu i} F^{CIS}_{\mu\nu} C_{\nu a}$
-\end{enumerate}
-%
-\item Compute part (A) and (B) of second-order term
-\begin{enumerate}
-\item $r_{ia} \leftarrow u_{ib} I_{ab}$
-\item $r_{ia} \leftarrow u_{ja} I_{ij}$
-\end{enumerate}
-%
-\item Compute part (C) of seond-order term
-
-\begin{algorithm}[H]
-\For{\forcond}{
-	\begin{enumerate}
-		\item\label{SIGMA2C_INTERMED}
-		\begin{description}
-			\item if singlet: $H\pa_{\mu\nu} \leftarrow P\pa_{\mu'\mu} Q\pa_{\nu'\nu} F^{CIS}_{\nu'\mu'}$
-			\item if triplet: $H\pa_{\mu\nu} \leftarrow - P\pa_{\mu'\mu} Q\pa_{\nu'\nu} F^{CIS}_{\nu'\mu'}$
-		\end{description}
-		\item\label{SIGMA2C}
-		$r_{ia} \leftarrow \frac{-c_{os}}{4} \mid w\pa \mid^{1/2} C_{\mu i} e^{\eps_i t\pa} C_{\nu a} e^{-\eps_a t\pa}  \calJ\left\lbrace H\pa,M \right\rbrace_{\mu\nu}$
-	\end{enumerate}
-}
 \end{algorithm}
 %
-\item Compute part (D) of second-order term
-
-\begin{algorithm}[H]
-\For{\forcond}{
-	\begin{enumerate}
-		\itemR\label{SIGMA2D_INTERMED0}
-		\begin{description}
-			\item if singlet: $U\pa_{\mu\nu} \leftarrow \mid w\pa \mid^{1/2} C_{\mu i} e^{\eps_i t\pa} C_{\nu a} e^{-\eps_a t\pa} u^S_{ia}$
-			\item if triplet: $U\pa_{\mu\nu} \leftarrow - \mid w\pa \mid^{1/2} C_{\mu i} e^{\eps_i t\pa} C_{\nu a} e^{-\eps_a t\pa} u^T_{ia}$
-		\end{description}
-		
-		\itemR\label{SIGMA2D_INTERMED1}
-		$T_{\mu\nu} \leftarrow \frac{1}{2} \sum_{\alpha} P\pa_{\mu\mu'} Q\pa_{\nu\nu'} \calJ\left\lbrace U\pa,M \right\rbrace_{\nu\mu}$
-	\end{enumerate}
+\begin{algorithm}
+\Substep(\textbf{Compute the CIS Fock matrices}){
+if singlet: $U_{\mu\nu} \leftarrow C_{\mu i} u^S_{ia} C_{\nu a}$
+\\
+if triplet: $U_{\mu\nu} \leftarrow C_{\mu i} u^T_{ia} C_{\nu a}$
+\\
+if singlet: $F^{CIS}_{\mu\nu} \leftarrow 2 * \calJ\left\lbrace U,M \right\rbrace_{\nu\mu} - \calK\left\lbrace U,M \right\rbrace_{\nu\mu}$
+\\
+if triplet: $F^{CIS}_{\mu\nu} \leftarrow - \calK\left\lbrace U,M \right\rbrace_{\nu\mu}$
 }
-\end{algorithm}
-\begin{enumerate}
-\setcounter{enumii}{\theISTEP}
-\item\label{SIGMA2D}
+
+\Substep(\textbf{Add zero- and first-order terms}){
+$r_{ia} \leftarrow (\eps_a - \eps_i) u_{ia}$
+\\
+$r_{ia} \leftarrow C_{\mu i} F^{CIS}_{\mu\nu} C_{\nu a}$
+}
+%
+\Substep(\textbf{Compute part (A) and (B) of second-order term}){
+$r_{ia} \leftarrow u_{ib} I_{ab}$
+\\
+$r_{ia} \leftarrow u_{ja} I_{ij}$
+}
+%
+\Substep(\textbf{Compute part (C) of seond-order term}){
+\For{\forcond}{
+if singlet: $H\pa_{\mu\nu} \leftarrow P\pa_{\mu'\mu} Q\pa_{\nu'\nu} F^{CIS}_{\nu'\mu'}$
+\\
+if triplet: $H\pa_{\mu\nu} \leftarrow - P\pa_{\mu'\mu} Q\pa_{\nu'\nu} F^{CIS}_{\nu'\mu'}$
+\\
+$r_{ia} \leftarrow \frac{-c_{os}}{4} \mid w\pa \mid^{1/2} C_{\mu i} e^{\eps_i t\pa} C_{\nu a} e^{-\eps_a t\pa}  \calJ\left\lbrace H\pa,M \right\rbrace_{\mu\nu}$
+} % end for
+} % end sub
+%
+\Substep(\textbf{Compute part (D) of second-order term}){
+\For{\forcond}{
+if singlet: $U\pa_{\mu\nu} \leftarrow \mid w\pa \mid^{1/2} C_{\mu i} e^{\eps_i t\pa} C_{\nu a} e^{-\eps_a t\pa} u^S_{ia}$
+\\
+if triplet: $U\pa_{\mu\nu} \leftarrow - \mid w\pa \mid^{1/2} C_{\mu i} e^{\eps_i t\pa} C_{\nu a} e^{-\eps_a t\pa} u^T_{ia}$
+\\
+$T_{\mu\nu} \leftarrow \frac{1}{2} \sum_{\alpha} P\pa_{\mu\mu'} Q\pa_{\nu\nu'} \calJ\left\lbrace U\pa,M \right\rbrace_{\nu\mu}$
+}
+%
 $r_{ia} \leftarrow -\frac{c_{os}}{2} C_{\mu i} C_{\nu a} \left[ 2\calJ\left\lbrace T,M \right\rbrace_{\mu\nu} - \calK\left\lbrace T,M \right\rbrace_{\mu\nu} \right]$
-\end{enumerate}
-\setcounter{ISTEP}{0}
-%
-\end{enumerate}
-\\ \hline
-\end{tabular}
+} % end substep
 \caption{Intermediates}
 \label{AODFSOSADC21D}
-\end{table}
-%
-\begin{table}
-
-\begin{tabular}{p{0.8\textwidth}}
-\hline
-Step-by-step (3) \\ \hline
-\begin{enumerate}
-\item Compute Laplace quadrature parameters $\{w\pt,t\pt\}$ for $\frac{1}{-\omega + \eps_i + \eps_j - \eps_a - \eps_b}$
-\item Compute part (E) of second-order contributions
-
-\begin{algorithm}[H]
-\For{\forcond}{
-	\begin{enumerate}
-		\itemR\label{SIGMA2E_CHOL}
-		Compute doubles pseudo-matrices $P\pt$ and $Q\pt$
-		\itemR\label{SIGMA2E_B}
-		$B_{X \ulgm \olgs}\pt \leftarrow P\pt_{\mu\mu'} B_{X \mu'\nu'} Q\pt_{\nu'\nu}$
-		\itemR\label{uhto}
-		$v_{\ulgm\olgs}^{(1)(\theta)} \leftarrow P\pt_{\mu\lambda} S_{\lambda\nu} u_{\ulgn\olgs}$
-		\itemR\label{uhtv}
-		$v_{\ulgm\olgs}^{(2)(\theta)} \leftarrow u_{\ulgm\olgg} S_{\gamma\lambda} Q\pt_{\lambda\sigma}$		
-		\itemR\label{SIGMA2E_R}
-		$R_{X \ulgm \olgs}\pt \leftarrow P_{\mu\lambda}\pt B_{X \lambda\nu} v_{\ulgn\olgs}^{(1)(\theta)} - v_{\ulgm\olgg}^{(2)(\theta)} B_{X \gamma\nu} Q\pt_{\nu\sigma}$
-		\itemR\label{SIGMA2E_FA}
-		$H_{XY}\pt \leftarrow B_{X \ulgm\olgs}\pt B_{Y \mu\sigma}$
-		\itemR\label{SIGMA2E_FB}
-		$G_{XY}\pt \leftarrow R_{X \ulgm\olgs}\pt B_{Y \mu\sigma}$
-		\itemR\label{SIGMA2E_D}
-		$D_{X \ulgm\olgs}\pt \leftarrow H_{XY}\pt R_{Y \ulgm\olgs}\pt  + G_{XY}\pt B_{Y \ulgm\olgs}$
-		\itemR\label{SIGMA2E_ILAPA}
-		$r^{(A)}_{ia}(\omega) \leftarrow \overline{C}_{\mu i} P_{\mu\mu'} \left[ D_{X \ulgn \olgs}\pt B_{X \nu\mu'} \right] \overline{C}_{\sigma a}$
-		\itemR\label{SIGMA2E_ILAPB}
-		$r^{(B)}_{ia}(\omega) \leftarrow \overline{C}_{\mu i} \left[ D_{X \ulgm \olgg}\pt B_{X \gamma\sigma'} \right] Q_{\sigma'\sigma} \overline{C}_{\sigma a}$
-		\itemR $r_{ia} += c_{os-coupling}^2 e^{\omega t\pa} \left[ - r^{(A)}_{ia}(\alpha,\omega) + r^{(B)}_{ia}(\alpha,\omega) \right]$
-	\end{enumerate}
-}
 \end{algorithm}
-\end{enumerate}
-%
-\\ \hline
-\end{tabular}
+
+\begin{algorithm}
+Compute Laplace quadrature parameters $\{w\pt,t\pt\}$ for $(-\omega + \eps_i + \eps_j - \eps_a - \eps_b)^{-1}$ \\
+\For{\forcond}{
+Compute doubles pseudo-matrices $P\pt$ and $Q\pt$
+\\
+$B_{X \ulgm \olgs}\pt \leftarrow P\pt_{\mu\mu'} B_{X \mu'\nu'} Q\pt_{\nu'\nu}$
+\\
+$v_{\ulgm\olgs}^{(1)(\theta)} \leftarrow P\pt_{\mu\lambda} S_{\lambda\nu} u_{\ulgn\olgs}$
+\\
+$v_{\ulgm\olgs}^{(2)(\theta)} \leftarrow u_{\ulgm\olgg} S_{\gamma\lambda} Q\pt_{\lambda\sigma}$		
+\\
+$R_{X \ulgm \olgs}\pt \leftarrow P_{\mu\lambda}\pt B_{X \lambda\nu} v_{\ulgn\olgs}^{(1)(\theta)} - v_{\ulgm\olgg}^{(2)(\theta)} B_{X \gamma\nu} Q\pt_{\nu\sigma}$
+\\
+$H_{XY}\pt \leftarrow B_{X \ulgm\olgs}\pt B_{Y \mu\sigma}$
+\\
+$G_{XY}\pt \leftarrow R_{X \ulgm\olgs}\pt B_{Y \mu\sigma}$
+\\
+$D_{X \ulgm\olgs}\pt \leftarrow H_{XY}\pt R_{Y \ulgm\olgs}\pt  + G_{XY}\pt B_{Y \ulgm\olgs}$
+\\
+$r^{(A)}_{ia}(\omega) \leftarrow \overline{C}_{\mu i} P_{\mu\mu'} \left[ D_{X \ulgn \olgs}\pt B_{X \nu\mu'} \right] \overline{C}_{\sigma a}$
+\\
+$r^{(B)}_{ia}(\omega) \leftarrow \overline{C}_{\mu i} \left[ D_{X \ulgm \olgg}\pt B_{X \gamma\sigma'} \right] Q_{\sigma'\sigma} \overline{C}_{\sigma a}$
+\\
+$r_{ia} += c_{os-coupling}^2 e^{\omega t\pa} \left[ - r^{(A)}_{ia}(\alpha,\omega) + r^{(B)}_{ia}(\alpha,\omega) \right]$
+}
 \caption{Algorithm for singlet-excitations}
 \label{AODFSOSADC2E}
-\end{table}
+\end{algorithm}
 
 Similarly to AO-MP2, the prefactor can be significantly lowered by virtue of the incomplete cholesky decomposition. Table \ref{AODFSOSADC2EOB} and \ref{AODFSOSADC2EOV} show how the intermediates in part 2E can be formed in a mixed pseudo-AO/MO basis ("OB" algorithm) or in a complete pseudo-MO basis ("OV" algorithm). While the fully transformed OV version has a lower memory footprint by reducing the dimension form $N_XN_{AO}^2$ to $N_XOV$, the overhead due to the additional cholesky decomposition of the virtual pseudo-density might outweigh the benefit: first, the virtual space may be quite large, especially if large basis sets are used, increasing the rank of the matrix and hence the computational effort of the Cholesky decomposition. Second, the decompositions need to be recomputed for each $\omega$, and foreach Laplace point. The OB version might offer a compromise between memory savings and additional overhead. 
 
@@ -736,91 +676,66 @@ It should be noted that the Cholesky decomposition can also be used in the Z-ker
 
 ... Cholesky in K of intermediates ???
 
-\begin{table}
-\begin{tabular}{p{0.8\textwidth}}
-\hline
-Step-by-step (3) \\ \hline
-\begin{enumerate}
-\item Compute Laplace quadrature parameters $\{w\pt,t\pt\}$ for $\frac{1}{-\omega + \eps_i + \eps_j - \eps_a - \eps_b}$
-\item Compute part (E) of second-order contributions
-
-\begin{algorithm}[H]
+\begin{algorithm}
+Compute Laplace quadrature parameters $\{w\pt,t\pt\}$ for $(-\omega + \eps_i + \eps_j - \eps_a - \eps_b)^{-1}$
+\\
 \For{\forcond}{
-	\begin{enumerate}
-		\itemR\label{SIGMA2E_CHOL}
-		Compute doubles pseudo-matrices $P\pt$ and $Q\pt$ and the cholesky decomposition $L_{\mu \uli}$
-		\itemR\label{SIGMA2E_B}
-		$B_{X \uli \olgs}\pt \leftarrow L\pt_{\mu\uli} B_{X \mu\nu} Q\pt_{\nu\sigma}$
-		\itemR\label{uhto}
-		$v_{\uli\olgs}^{(1)(\theta)} \leftarrow L\pt_{\mu\uli} S_{\mu\nu} u_{\ulgn\olgs}$
-		\itemR\label{uhtv}
-		$v_{\ulgm\olgs}^{(2)(\theta)} \leftarrow u_{\ulgm\olgg} S_{\gamma\lambda} Q\pt_{\lambda\sigma}$		
-		\itemR\label{SIGMA2E_R}
-		$R_{X \uli \olgs}\pt \leftarrow L_{\mu\uli}\pt B_{X \mu\nu} v_{\ulgn\olgs}^{(1)(\theta)} - v_{\uli\olgg}^{(2)(\theta)} B_{X \gamma\nu} Q\pt_{\nu\sigma}$
-		\itemR\label{SIGMA2E_FA}
-		$H_{XY}\pt \leftarrow L_{\mu \uli}\pt B_{X \uli\olgs}\pt B_{Y \mu\sigma}$
-		\itemR\label{SIGMA2E_FB}
-		$G_{XY}\pt \leftarrow L_{\mu \uli} R_{X \uli\olgs}\pt B_{Y \mu\sigma}$
-		\itemR\label{SIGMA2E_D}
-		$D_{X \uli\olgs}\pt \leftarrow H_{XY}\pt R_{Y \uli\olgs}\pt  + G_{XY}\pt B_{Y \uli\olgs}$
-		\itemR\label{SIGMA2E_ILAPA}
-		$r^{(A)}_{ia}(\omega) \leftarrow \overline{C}_{\lambda i} P_{\lambda\mu} \left[ D_{X \ulk \olgs}\pt B_{X \nu\mu} L_{\nu \ulk}\pt  \right] \overline{C}_{\sigma a}$
-		\itemR\label{SIGMA2E_ILAPB}
-		$r^{(B)}_{ia}(\omega) \leftarrow \overline{C}_{\mu i} L_{\mu \uli} \left[ D_{X \uli \olgg}\pt B_{X\sigma\gamma}  \right] Q_{\gamma\lambda} \overline{C}_{\lambda a}$
-		\itemR $r_{ia} += c_{os-coupling}^2 e^{\omega t\pa} \left[ - r^{(A)}_{ia}(\alpha,\omega) + r^{(B)}_{ia}(\alpha,\omega) \right]$
-	\end{enumerate}
+Compute doubles pseudo-matrices $P\pt$ and $Q\pt$ and the cholesky decomposition $L_{\mu \uli}$
+\\
+$B_{X \uli \olgs}\pt \leftarrow L\pt_{\mu\uli} B_{X \mu\nu} Q\pt_{\nu\sigma}$
+\\
+$v_{\uli\olgs}^{(1)(\theta)} \leftarrow L\pt_{\mu\uli} S_{\mu\nu} u_{\ulgn\olgs}$
+\\
+$v_{\ulgm\olgs}^{(2)(\theta)} \leftarrow u_{\ulgm\olgg} S_{\gamma\lambda} Q\pt_{\lambda\sigma}$		
+\\
+$R_{X \uli \olgs}\pt \leftarrow L_{\mu\uli}\pt B_{X \mu\nu} v_{\ulgn\olgs}^{(1)(\theta)} - v_{\uli\olgg}^{(2)(\theta)} B_{X \gamma\nu} Q\pt_{\nu\sigma}$
+\\
+$H_{XY}\pt \leftarrow L_{\mu \uli}\pt B_{X \uli\olgs}\pt B_{Y \mu\sigma}$
+\\
+$G_{XY}\pt \leftarrow L_{\mu \uli} R_{X \uli\olgs}\pt B_{Y \mu\sigma}$
+\\
+$D_{X \uli\olgs}\pt \leftarrow H_{XY}\pt R_{Y \uli\olgs}\pt  + G_{XY}\pt B_{Y \uli\olgs}$
+\\
+$r^{(A)}_{ia}(\omega) \leftarrow \overline{C}_{\lambda i} P_{\lambda\mu} \left[ D_{X \ulk \olgs}\pt B_{X \nu\mu} L_{\nu \ulk}\pt  \right] \overline{C}_{\sigma a}$
+\\
+$r^{(B)}_{ia}(\omega) \leftarrow \overline{C}_{\mu i} L_{\mu \uli} \left[ D_{X \uli \olgg}\pt B_{X\sigma\gamma}  \right] Q_{\gamma\lambda} \overline{C}_{\lambda a}$
+\\
+$r_{ia} += c_{os-coupling}^2 e^{\omega t\pa} \left[ - r^{(A)}_{ia}(\alpha,\omega) + r^{(B)}_{ia}(\alpha,\omega) \right]$
 }
-\end{algorithm}
-\end{enumerate}
-%
-\\ \hline
-\end{tabular}
 \caption{Algorithm for singlet-excitations}
 \label{AODFSOSADC2EOB}
-\end{table}
-
-\begin{table}
-\begin{tabular}{p{0.8\textwidth}}
-\hline
-Step-by-step (3) \\ \hline
-\begin{enumerate}
-\item Compute Laplace quadrature parameters $\{w\pt,t\pt\}$ for $\frac{1}{-\omega + \eps_i + \eps_j - \eps_a - \eps_b}$
-\item Compute part (E) of second-order contributions
-
-\begin{algorithm}[H]
-\For{\forcond}{
-	\begin{enumerate}
-		\itemR\label{SIGMA2E_CHOL}
-		Compute doubles pseudo-matrices $P\pt$ and $Q\pt$ and their cholesky decompositions $L_{\mu \uli}\pt$ and $L_{\sigma \ola}\pt$
-		\itemR\label{SIGMA2E_B}
-		$B_{X \uli \ola}\pt \leftarrow L\pt_{\mu\uli} B_{X \mu\nu} L\pt_{\nu\ola}$
-		\itemR\label{uhto}
-		$v_{\uli\olgs}^{(1)(\theta)} \leftarrow L\pt_{\mu\uli} S_{\mu\nu} u_{\ulgn\olgs}$
-		\itemR\label{uhtv}
-		$v_{\ulgm\ola}^{(2)(\theta)} \leftarrow u_{\ulgm\olgg} S_{\gamma\lambda} L\pt_{\lambda\ola}$		
-		\itemR\label{SIGMA2E_R}
-		$R_{X \uli \ola}\pt \leftarrow L_{\mu\uli}\pt B_{X \mu\nu} v_{\ulgn\olga}^{(1)(\theta)} - v_{\uli\olgg}^{(2)(\theta)} B_{X \gamma\nu} L\pt_{\nu\ola}$
-		\itemR\label{SIGMA2E_FA}
-		$H_{XY}\pt \leftarrow B_{X \uli\ola}\pt B_{Y \uli\ola}$
-		\itemR\label{SIGMA2E_FB}
-		$G_{XY}\pt \leftarrow R_{X \uli\ola}\pt B_{Y \uli\ola}$
-		\itemR\label{SIGMA2E_D}
-		$D_{X \uli\ola}\pt \leftarrow H_{XY}\pt R_{Y \uli\ola}\pt  + G_{XY}\pt B_{Y \uli\ola}$
-		\itemR\label{SIGMA2E_ILAPA}
-		$r^{(A)}_{ia}(\omega) \leftarrow \overline{C}_{\lambda i} P_{\lambda\mu} \left[ D_{X \ulk \ola}\pt B_{X \nu\mu} L_{\nu \ulk}  \right] L_{\sigma \ola} \overline{C}_{\sigma a}$
-		\itemR\label{SIGMA2E_ILAPB}
-		$r^{(B)}_{ia}(\omega) \leftarrow \overline{C}_{\mu i} L_{\mu \uli} \left[ D_{X \uli \olb}\pt B_{X \gamma\sigma} L_{\sigma \olb}  \right] Q_{\gamma\lambda} \overline{C}_{\lambda a}$
-		\itemR $r_{ia} += c_{os-coupling}^2 e^{\omega t\pa} \left[ - r^{(A)}_{ia}(\alpha,\omega) + r^{(B)}_{ia}(\alpha,\omega) \right]$
-	\end{enumerate}
-}
 \end{algorithm}
-\end{enumerate}
 %
-\\ \hline
-\end{tabular}
+\begin{algorithm}
+Compute Laplace quadrature parameters $\{w\pt,t\pt\}$ for $(-\omega + \eps_i + \eps_j - \eps_a - \eps_b)^{-1}$
+\\
+\For{\forcond}{
+Compute doubles pseudo-matrices $P\pt$ and $Q\pt$ and their cholesky decompositions $L_{\mu \uli}\pt$ and $L_{\sigma \ola}\pt$
+\\
+$B_{X \uli \ola}\pt \leftarrow L\pt_{\mu\uli} B_{X \mu\nu} L\pt_{\nu\ola}$
+\\
+$v_{\uli\olgs}^{(1)(\theta)} \leftarrow L\pt_{\mu\uli} S_{\mu\nu} u_{\ulgn\olgs}$
+\\
+$v_{\ulgm\ola}^{(2)(\theta)} \leftarrow u_{\ulgm\olgg} S_{\gamma\lambda} L\pt_{\lambda\ola}$		
+\\
+$R_{X \uli \ola}\pt \leftarrow L_{\mu\uli}\pt B_{X \mu\nu} v_{\ulgn\olga}^{(1)(\theta)} - v_{\uli\olgg}^{(2)(\theta)} B_{X \gamma\nu} L\pt_{\nu\ola}$
+\\
+$H_{XY}\pt \leftarrow B_{X \uli\ola}\pt B_{Y \uli\ola}$
+\\
+$G_{XY}\pt \leftarrow R_{X \uli\ola}\pt B_{Y \uli\ola}$
+\\
+$D_{X \uli\ola}\pt \leftarrow H_{XY}\pt R_{Y \uli\ola}\pt  + G_{XY}\pt B_{Y \uli\ola}$
+\\
+$r^{(A)}_{ia}(\omega) \leftarrow \overline{C}_{\lambda i} P_{\lambda\mu} \left[ D_{X \ulk \ola}\pt B_{X \nu\mu} L_{\nu \ulk}  \right] L_{\sigma \ola} \overline{C}_{\sigma a}$
+\\
+$r^{(B)}_{ia}(\omega) \leftarrow \overline{C}_{\mu i} L_{\mu \uli} \left[ D_{X \uli \olb}\pt B_{X \gamma\sigma} L_{\sigma \olb}  \right] Q_{\gamma\lambda} \overline{C}_{\lambda a}$
+\\
+$r_{ia} += c_{os-coupling}^2 e^{\omega t\pa} \left[ - r^{(A)}_{ia}(\alpha,\omega) + r^{(B)}_{ia}(\alpha,\omega) \right]$
+}
 \caption{Algorithm for singlet-excitations}
-\label{AODFSOSADC2EOV}
-\end{table}
+\label{AODFSOSADC2EOB}
+\end{algorithm}
+
 
 By using local density fitting, the inherent quadratic scaling of the AO-SOS-ADC(2) method also applies for AO-DF-SOS-ADC(2).
 
