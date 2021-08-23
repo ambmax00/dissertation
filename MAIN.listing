@@ -1,1 +1,5 @@
-\include{listings/vector_none.c}
+DO i = 1, N
+ DO j = 1, N
+  A(i,j) = A(i,j) + 2
+ ENDDO
+ENDDO

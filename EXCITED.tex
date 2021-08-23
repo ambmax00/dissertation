@@ -42,7 +42,7 @@ E_{0\rightarrow i} = E_i - E_0
 \end{equation} 
 \noindent Any ground state model discussed in the previous chapter can be used. This approach to excited states is known by different names, depending on which approximation is used. Generally, the greek letter $\Delta$ is just prepended to the method name, giving $\Delta$SCF or $\Delta$HF for Hartree-Fock (21,22,myself), $\Delta$KS (Kohn-Sham) or $\Delta$DFT for DFT (25,26,27), and so on. At the moment of writing, excitation energies are also routinely computed using $\Delta$MP$n$ (23), $\Delta$CI, $\Delta$MCSCF (24) and $\Delta$CC (23,a). From here on out, $\Delta$X will be used as an umbrella term to group all aforementioned terms. 
 
-Depsite the simplictly of the $\Delta$X methods, obtaining a solution to the KS or HF equations for higher energy states is non-trivial. By the variational principle, the SCF method finds the lowest energy solution. A HF type excited wavefunction may theroefore collapse to that lowest energy solution during the SCF procedure (variational collapse). This technical difficulty was one of reasons why $\Delta$X methods never gained much ground compared to more sphisticated methods.
+Depsite the simplictly of the $\Delta$X methods, obtaining a solution to the KS or HF equations for higher energy states is non-trivial. By the variational principle, the SCF method finds the lowest energy solution. A HF type excited wavefunction may theroefore collapse to that lowest energy solution during the SCF procedure (variational collapse). For small symmetric molecules, it is possible to converge excited states if they have a different spin multiplicity or spatial point group to the ground state....... states This technical difficulty was one of reasons why $\Delta$X methods never gained much ground compared to more sphisticated methods.
 
 In 2008, Gilbert et al. (ref) proposed a modification the SCF procedure that prevents variational collapse, known as the \emph{maximum overlap method} (MOM). On each iteration, the new guess orbitals are obtained by diagonalization of the Fock matrix which is constructed using the old coefficients
 \begin{equation}
@@ -62,13 +62,11 @@ account for the finite experimental resolution and  lifetime of the electron hol
 E_S = 2 E_{mixed} - E_T
 \end{equation}
 
-Despite these disadvantages, $\Delta$X has been shown to be an attractive and low-cost alternative to response and propagator methods.
+Despite these disadvantages, $\Delta$X is still an attractive and low-cost alternative to response and propagator methods.
 
 a doi:10.1021/acs.jctc.9b00568 
 
-\section{Time-depedenent stuff??}
-
-\section{The Algebraic Diagrammatic Construction Method}
+\section{(Propagator Methods?) The Algebraic Diagrammatic Construction Method}
 
 The algebraic diagrammatic construction (ADC) scheme is an excited state method originating from Green's functions. By diagrammtic perturbation expansion of electron propagators, ADC gives a hierarchy of methods which sytematically converge to the exact solution (Full CI).  
 
@@ -272,7 +270,7 @@ M^{(0)}_{ia,jb} = K_{ia,jb} = \delta_{ij}\delta_{ab} (\eps_i - \eps_a)
 \begin{equation}
 M^{(1)}_{ia,jb} = K_{ia,jb} + C_{ia,jb}^{(1)} = \delta_{ij}\delta_{ab} (\eps_i - \eps_a) - \sbra{ij}\sket{ab}
 \end{equation} 
-\noindent The ADC(2) matrix has addtional second order contributions to the p-h block, and approximates the 2h-1p, 1h-2p and 2p-2h contributions up to first order. 
+\noindent The ADC(2) matrix has addtional second order contributions to the p-h block, and approximates the 2h-1p, 1h-2p to first order and the 2p-2h to zeroth order. 
 \begin{align}
 C_{ijab}^{(2)} &= C_{ijab}^{(2)A} + C_{ijab}^{(2)B} + C_{ijab}^{(2)C} 
 \\
@@ -304,6 +302,15 @@ and the antisymmetrized MP2 amplitudes
 \label{fig:ADCMAT}
 \end{figure}
 
+Approximating the 2p-2h block to first order in the ADC(2) matrix gives the so-called extended ADC(2) scheme (ADC(2)-x). It is an \emph{ad-hoc} extension without rigoruous theoretical justification (54).  
+
+The eigenvalue problem ... is typically solved using the Davidson procedure to extract the first few eigenbalues, analgous to configuration interaction. Rather than constructing the whole ADC matrix, closed expressions are derived for the matrix-vector products of the different blocks with a general trial vector $\mbf{u}$. For computational puroposes, the matrix-vector product is split into its individual components, which in the case of ADC(2) and ADC(3), are limited to singles and doubles contributions:
+\begin{align}
+\mbf{r}_s &= \mbf{A}_{ss} \mbf{u}_s + \mbf{A}_{sd} \mbf{u}_d \\
+\mbf{r}_d &= \mbf{A}_{ds} \mbf{u}_d + \mbf{A}_{dd} \mbf{u}_{dd} 
+\end{align}
+\noindent The expressions of the ADC MVP will be discussed in more detail in Chapter ... .
+
 \subsection{Intermediate states}
 
 An alternative route to derive the ADC working eqautions is via the intermediate state representation (refs 55, 63, 77, 78 Andreas). 
@@ -326,19 +333,285 @@ M_{IJ} = -\sbra{\tPsi_I} \hat{H} - E_0 \sket{\tPsi_J}
 \end{equation}
 \noindent the intermediate states are obtained by a step-wise Gram-Schmidt orthogonalization of the CE states. The ground state $\sket{\Psi_0}$ is approximted by MPPT. Constructing the ISs from the MP$n$ ground state wave function and evaluating the matrix elements according to ... gives the $n$th order ADC matrix. For this reason, ADC is also known as "excited state method for M{\o}ller-Plesset". 
 
-\subsection{Variants}
+\subsection{Spin-Opposite Scaled ADC}
 
-\subsection{Performance}
+The spin-opposite scaling method previously applied to MP2 and CC2 can be expanded to ADC(2) as well.    There are two version of SOS-ADC(2): the version which will be referred to as "standard" SOS-ADC(2) derived from SOS-CC2 response (86), and ISR-SOS-ADC(2) derived from SOS-MP2 using the intermediate state representation (87). 
+
+Standard SOS-ADC(2) introduces the following modifications to the ADC(2) matrix:
+\begin{enumerate}
+\item The same-spin contributions of antisymmetrized MP2 amplitudes are ignored, and the opposite-spin components are scaled up:
+\begin{equation}
+\hat{t}_{IAJB??}^{SOS} = c_{os} \hat{t}_{iajb} \left( 1 - \delta _{\sigma (i) \sigma (j)} \right)
+\end{equation}
+where $\sigma (x)$ gives the spin of $x$, and with the amplitudes given by
+\begin{equation}
+\hat{t}_{iajb} = \frac{\bra{ij}{}\ket{ab}}{\epsilon_a + \epsilon_b - \epsilon_i - \epsilon_j}
+\end{equation}
+\item All same-spin entries of the 2p-1h and 1p-2h blocks of the ADC(2) matrix are deleted ($\alpha\alpha\alpha\alpha$ and $\beta\beta\beta\beta$), and the  remaining blocks are scaled up:
+\begin{equation}
+M_{ia,kcld} = c_{osc} \left( \bra{kl}{}\ket{id} \gd_{ac} - \bra{kl}{}\ket{ic} \delta_{ac} - \bra{al}{}\ket{cd} \delta_{ik} + \bra{ak}{}\ket{cd} \delta_{il} \right) \left( 1 - \delta_{\sigma (k) \sigma (l)} \right)
+\end{equation}
+\begin{equation}
+M_{iajb,kc} = c_{osc} \left( \bk{kb}{ij} \gd_{ac} - \bk{ka}{ij} \gd_{bc} - \bk{ab}{cj} \gd_{ik} + \bk{ab}{ci} \gd_{jk} \right) \left( 1 - \gd_{\gs (i) \gs (j)} \right)
+\end{equation}
+\noindent where $c_{osc}$ is the opposite-spin coupling constant, typcially set to 1.15 (ref article) or 1.17 (Phd thesis)
+\end{enumerate}
+
+\noindent For open-shell molecules, this drastically reduces the size of the matrix, reducing the prefactor of the method. By applying density fitting, the total scaling can be further reduced by an order of magnitude (85)
+
+ISR-SOS-ADC(2) does not modifiy the off-diagonal blocks of the ADC(2) and only replaces the amplitudes as in Eqaution ..., and therefore offers no substantial improvement. 
+
+% 85 https://www.sciencedirect.com/science/article/abs/pii/S030101041100423X
+% 86 https://aip.scitation.org/doi/abs/10.1063/1.4776675
+
+\subsection{Performance and Accuracy}
+
+Table \ref{tab:ADCSTATS} lists the formal scaling, mean errors and standard deviation of excitation energies for the ADC($n$) methods. ADC(2), similarly to MP2, offers a relatively economical way of computing excited state properties. ADC(2)-x and ADC(3) have the same scaling factor, but ADC(2)-x has a lower prefactor.  
+
+The ADC methods offer high accuracy on the order of tenths of eV and high precision. The SOS method can significantly reduce the errors, but it should be kept in mind that the spin coefficients were fitted to the benchmark set, and similar accuracy is not guaranteed for other systems.
+
+\begin{table}
+\centering
+\begin{tabular}{llll}
+\hline
+Method & Scaling & Singlets & Triplets \\ \hline
+ADC(2) & $\ccpx{5}$ & 0.22 $\pm$ 0.38 (62) & 0.12 $\pm$ 0.16 \\
+SOS-ADC(2) & $\ccpx{5}$ & 0.00 $\pm$ 0.15 (87) & 0.06 $\pm$ 0.10 (87) \\
+ADC(2)-x & $\ccpx{6}$ & -0.70 $\pm$ 0.37 (62) & -0.55 $\pm$ 0.20 (62) \\
+SOS-ADC(2)-x & $\ccpx{6}$ & -0.11 $\pm$ 0.18 (87) & -0.04 $\pm$ 0.12 (87) \\
+ADC(3) & $\ccpx{6}$ & 0.12 $\pm$ 0.28 (64) & -0.18 $\pm$ 0.16 (64) \\ \hline  
+\end{tabular}
+\caption{Closed Shell Molecules}
+\label{tab:ADCSTATS}
+\end{table}
+
+\subsection{RPA? }
+
+RPA and TDHF are equivalent for linear response
 
 \section{Response Theory}
 
-linear response theory, tddft, tdhf, RPA?
+Response theory is a popular tool similar to propagators that provides methods for computing the response of a molecule to an external, time-depedent perturbation, such as an electromagnetic field. It can be applied to different levels of theory, such as Hartree-Fock, DFT or Coupled Cluster, to gain information on various excited state properties.
 
-\subsection{Connection between CC2-LR and ADC}
+\subsection{Exact Response Theory}
 
-\section{Equation-of-Motion}
+Consider a molecular system described by the time-independent Hamiltonian $\hat{H}_0$ with eigenfunctions $\ket{\Psi_0}$ exposed to
+an external perturbation $\hat{V}$ given by (Koc1990)
+\begin{equation}
+\hat{V}(t) = \int_{-\infty}^{\infty} \hat{V}^{\omega} e^{i\omega t  } d\omega
+\end{equation}
+\noindent where $\hat{V}^{\omega}$ is the representation of the external perturbation in the frequency domain, and $\epsilon$ is a real positive infinitesimal. It has the role of slowly "switching on" the perturbation as time progresses. For $t\rightarrow -\infty$, the perturbation is zero, and at $t \rightarrow \infty$, the perturbation is fully applied. This slow gradual swithcing makes sure that the process is \emph{adiabatic}.
 
-\subsection{Connection between EOM and CCLR}
+The time-dependent wave function may be expanded in orders of the perturbation $\hat{V}(t)$ as
+\begin{equation}
+\sket{\Psi (t)} = \sket{\Psi_0} + \sket{\Psi^{(1)}(t)} + \sket{\Psi^{(2)}(t)} + \ldots
+\end{equation}
+\noindent which can be determined using Eherenfest's theorem. Using this wave function expansion, the expectation value of a time-indepedent operator $\hat{A}$ reads
+\begin{equation}
+\begin{split}
+\sbra{\Psi (t)} \hat{A} \sket{\Psi (t)} = & \sbra{\Psi_0} \hat{A} \sket{\Psi_0} + \int_{-\infty}^{\infty} 
+\underbrace{ \langle\langle \hat{A}; \hat{V}^{\omega_1}
+\rangle\rangle}_{\text{linear response}} 
+e^{(-i\omega_1 + \eps)t} d\omega_1 \\
+&+ \frac{1}{2} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty}
+\underbrace{ \langle\langle \hat{A}; \hat{V}^{\omega_1},\hat{V}^{\omega_2} \rangle\rangle 
+}_{\text{quadratic reponse}}
+e^{-i(\omega_1+\omega_2) + 2\eps)t} d\omega_1 d\omega_2  + \ldots
+\end{split}
+\label{eq:TIMEEXP}
+\end{equation}
+
+\noindent The expansion coefficients $\langle\langle \hat{A}; \cdot \rangle\rangle$ are known as \emph{response functions}. Different orders (linear, quadratic...) describe different processes. The linear response function may be used to describe single-photon absorption and polarizability, while the quadratic response function is needed to describe two-photon absorption and hyperpolarizability. 
+
+The spectral representation of the linear response function takes the form
+\begin{equation}
+\langle\langle \hat{A}; \hat{B}
+\rangle\rangle = \sum_k \frac{
+	\sbra{\Psi_0}\hat{A}\sket{\Psi_k} \sbra{\Psi_k} \hat{B} \sket{\Psi_0}
+}{
+	\omega - E_n + E_0
+} - \frac{ 
+	\sbra{\Psi_0}\hat{B}\sket{\Psi_k} \sbra{\Psi_k} \hat{A} \sket{\Psi_0}
+}{
+	\omega + E_n - E_0
+}
+\end{equation}
+
+\noindent and can be analyzed simlarly to the polarization propagator: the poles of the function give the excitation energy
+\begin{equation}
+\omega_i = E_i - E_0
+\end{equation}
+and the residues give information about the transition moments 
+\begin{equation}
+\lim_{\omega \rightarrow  \omega_i} (\omega - \omega_i) \langle\langle \hat{A}; \hat{B} \rangle \rangle = \sbra{\Psi_0}\hat{A}\sket{\Psi_i} \sbra{\Psi_i} \hat{B} \sket{\Psi_0}
+\end{equation}
+for the $i$th excited state. The linear response function and the polarization propagator are related by (ref book)
+\begin{equation}
+\langle\langle \hat{A}; \hat{B}
+\rangle\rangle = \sum_{rsr's'} A_{rs} \mbf{\Pi} B_{r's'}
+\end{equation}
+
+The expressions for response functions are exact, and need to be evaluated by introducing approximations. Similar to the ADC scheme, finding the poles and residues of the response function ultimately reduces to an eigenvalue problem of the form
+\begin{equation}
+\mbf{A}\mbf{v} = \mbf{v}\mbf{\Omega}
+\end{equation}
+\noindent where $\mbf{A}$ can be symmetric (HF,DFT) or non-symmetric (CC).
+
+\subsection{Time-Dependent Hartree-Fock}
+
+There are many different routes for deriving the expressions for the matrix elements of $\mbf{A}$ for linear response time-dependent Hartree-Fock (TDHF) (2,38,59,60,ref), which all lead to the same eigenvalue problem given by 
+\begin{equation}
+\begin{bmatrix}
+\mbf{A} & \mbf{B} \\
+\mbf{B}^* & \mbf{A}^* 
+\end{bmatrix} 
+\begin{bmatrix}
+\mbf{X} \\
+\mbf{Y} 
+\end{bmatrix}
+%= 
+%\begin{bmatrix}
+%\sbra{HF} \left[ \hat{q},\left[ \hat{H}_0, \hat{q}\pdg \right]\right] \sket{HF} & \sbra{HF} \left[ \hat{q},\left[ \hat{H}_0, \hat{q} \right] \right] \sket{HF}\\
+%\sbra{HF} \left[ \hat{q}\pdg,\left[ \hat{H}_0, \hat{q}\pdg \right]\right] \sket{HF} & \sbra{HF} \left[ \hat{q}\pdg,\left[ \hat{H}_0, \hat{q} \right]\right] \sket{HF}
+%\end{bmatrix}
+= 
+\omega 
+\begin{bmatrix}
+1 & 0 \\
+0 & -1
+\end{bmatrix}
+\begin{bmatrix}
+\mbf{X} \\
+\mbf{Y} 
+\end{bmatrix}
+\label{eq:TDSCF}
+\end{equation}
+\noindent where $\mbf{A}$ is the matrix of single excitations, and $\mbf{B}$ couples the excitations with the de-excitations. The matrix elements are given by
+\begin{align}
+A_{IA,JB} &= \delta_{IA,JB} (\eps_A - \eps_I) + \sket{IJ}{AB} \\
+B_{IA,JB} &= \sket{IJ}{AB}
+\end{align}
+\noindent Setting the coupling block $\mbf{B}$ to zero, the TDHF equations reduce to the CIS eqautions. Even if TDHF can therefore be seen as an extension to CIS, it does not give a considerable improvement. Over the years, it has fallen into disuse.
+
+Linear response TDHF is equivalent to the \emph{random phase approximation}. 
+
+% 2 McWeeny, R.; Sutcliffe, B. T. Methods of Molecular Quantum Mechanics; Academic Press: London, 1969
+% Fetter, A. L.; Walecka, J. D. Quantum Theory of Many-Particle Systems; McGraw-Hill: New York, 1971
+% Thouless, D. J. The Quantum Mechanics of Many Body Systems; Academic Press: New York, 1972.
+% Dreuw, Andreas; Head-Gordon, Martin (2005). Single-Reference ab Initio Methods for the Calculation of Excited States of Large Molecules. , 105(11), 4009–4037.         doi:10.1021/cr0505627     
+
+\subsection{Time-Dependent DFT}
+
+The foundations of time-dependent DFT  will not be discussed here. The reader is referred to (1) and references therein for more details. 
+
+The TDDFT linear response equations are similar in structure to TDHF, reducing to the same eigenvalue problem \ref{eq:TDSCF}, with two different blocks $\mbf{A}$ and $\mbf{B}$ given by
+\begin{align}
+A_{IA,JB} &= \delta_{IA,JB} (\eps_A - \eps_I) + \sbraket{IJ}{AB} +  \sbra{IJ}\hat{f}_{xc} \sket{AB}  \\
+B_{IA,JB} &= \sbraket{IJ}{AB} + \sbra{IJ}\hat{f}_{xc} \sket{AB}
+\end{align}
+\noindent Here, the exchange contributions are replaced by the so-called \emph{xc kernel}. In the adiabatic local density approximation (ALDA), the time dependent xc kernel is replaced by a time-independent kernel 
+\begin{equation}
+\sbra{IJ}\hat{f}_{xc} \sket{AB} = \int \phi^*_i(\mbf{r}) \phi_j(\mbf{r}') \frac{\partial^2 E_{xc}}{\partial\rho(\mbf{r})\rho(\mbf{r}')} \phi_a (\mbf{r}) \phi_b^*(\mbf{r}')
+\end{equation}
+\noindent which allows the use of standard xc functionals for the ground state. 
+
+Since its introduction, TDDFT has evolved to become the most prominent method for computing excited state energies and transition moments. It has a computational cost on the same order as CIS, with an error of $\approx$ 0.3 eV (2) for low-lying valence states. However TDDFT is not a panacea: excitation energies for Rydberg states, valence states of molecules with extended $\pi$-systems, doubly excited states and charge-transfer states exhibit errors on the order of several eV.
+
+% Dreuw, Andreas; Head-Gordon, Martin (2005). Single-Reference ab Initio Methods for the Calculation of Excited States of Large Molecules. , 105(11), 4009–4037.         doi:10.1021/cr0505627     
+
+% A. D. Laurent and D. Jacquemin, Int. J. Quantum Chem. , 2019 (2013)
+
+\subsection{Coupled Cluster}
+
+The derivation of the coupled cluster response equations is again a very lengthy and complex process (Koc1990,Chr1997). The most important steps will be summarized in this section.
+
+For a molecular system in the presence of a static external perturbation, such as a constant electric or magnetic field with strength parameter $\lambda$, the Hellmann-Feynman theorem relates the expectation value of $\hat{X}_{\lambda}$ to the energy derivative by
+\begin{equation}
+\frac{\partial E}{\partial \lambda_x} = \sbra{\Psi}\frac{\partial \hat{H}}{\partial \lambda_x} \sket{\Psi} = \sbra{\Psi}\hat{X} \sket{\Psi}
+\label{eq:HELLFEYN}
+\end{equation}
+\noindent By pertubration expansion of $\hat{X}$, the $n$th order property can then be related to the $n$th order deriveative of the wave function energy, which is in most cases is more readily evaluated than the expectation value. For time-dependent perturbations, the theorem can be reformulated as 
+\begin{equation}
+\frac{\partial \{Q\}_T}{\partial \lambda_x} = \sbra{\Psi(t)} \hat{X}(t) \sket{\Psi(t)} 
+\end{equation}
+\noindent where $\{Q\}_T$ is the time-averaged \emph{quasi-energy} given by
+\begin{equation}
+\{Q\}_T = \frac{1}{T} \int_0^T \sbra{\Psi(t)} (\hat{H} - i\frac{\partial}{\partial t})\sket{\Psi(t)}
+\label{eq:HELLFEYN2}
+\end{equation}
+\noindent which is the equivalent for the ground state energy for static perturbations in Equation \ref{eq:HELLFEYN}. Using the perturbation expansion \ref{eq:TIMEEXP} for the operator, the first, second, ... derivative of the quasi-energy can be related to the linear, quadratic ... response function. Similarly to the energy derivative, expressions for quasi-energy derivatives are more easily evaluated. The CC response eqautions are then obatined by fconstructing a Lagrangian of the CC quasi-energy. 
+
+Analysis of the CC response eqautions leads to the nonsymmetric eigenvalue problem
+\begin{align}
+\mbf{A}\mbf{R} &= \mbf{\Omega}\mbf{R} \\
+\mbf{L}\mbf{A} &= \mbf{R}\mbf{\Omega} 
+\end{align} 
+\noindent where $\mbf{R}$ and $\mbf{L}$ are the right and left eigenvectors respectively.
+
+Analogous to ground state calculations, a hierarchy of CC response methods is obtained by truncating the excitation operator $\hat{T}$ to singles, doubles, triples, ... to yield CCS-LR, CCSD-LR, CCSDT-LR. Approximate CC methods may also be used, such as CC2, CC3 or CCSD(T). The formal scalings are given in Table ....
+
+% https://pubs.acs.org/doi/pdf/10.1021/acs.jpclett.9b03652
+
+\subsection{Connection between ADC(2) and CC2-LR} 
+
+An interesting relationship can be established between ADC(2) and CC2-LR (Hat2005). Consider the expression for the CC2 Jacobian:
+\begin{equation}
+\mbf{A}^{CC2-LR} = \left( \begin{matrix}
+\sbra{\mu_1} \left[ (\hat{\bar{H}} + \left[ \smash{ \hat{\bar{H}},\hat{T}_2} \right]), \tau_{\nu_1} \right] \sket{HF} &  \sbra{\mu_1} \left[ \hat{\bar{H}}, \tau_{\nu_2} \right] \sket{HF} \\
+\sbra{\mu_2} \left[ \hat{\bar{H}}, \tau_{\nu_1} \right] \sket{HF} & \sbra{\mu_2} \left[ (\hat{\bar{H}} + \left[ \smash{ \hat{F},\hat{T}_2} \right]), \tau_{\nu_2} \right] \sket{HF}
+\end{matrix}
+\right)
+\end{equation}
+
+\noindent where $\mu_1$, $\mu_2$ are the single and double excitation manifolds. By replacing the similarity-transformed Hamiltoninan $\hat{\bar{H}}$ by the Hamiltonian itself, the CIS(D) matrix reads
+\begin{equation}
+\mbf{A}^{CIS(D)} = \left( \begin{matrix}
+\sbra{\mu_1} \left[ (\hat{\bar{H}} + \left[ \smash{ \hat{H},\hat{T}_2} \right]), \tau_{\nu_1} \right] \sket{HF} &  \sbra{\mu_1} \left[ \hat{H}, \tau_{\nu_2} \right] \sket{HF} \\
+\sbra{\mu_2} \left[ \hat{H}, \tau_{\nu_1} \right] \sket{HF} & \sbra{\mu_2} \left[ (\hat{H} + \left[ \smash{ \hat{F},\hat{T}_2} \right]), \tau_{\nu_2} \right] \sket{HF}
+\end{matrix}
+\right)
+\end{equation}
+
+\noindent CIS(D) is a second-order perturbative correction of CIS which includes doubles contributions (Hea1994) scaling with $\ccpx{5}$. The ADC(2) matrix is then obtained by symmetrization
+\begin{equation}
+\mbf{A}^{ADC(2)} = \frac{1}{2} \left(\mbf{A}^{CIS(D)} + (\mbf{A}^{CIS(D)})\pdg \right)
+\end{equation}
+\noindent This relationship is especially useful for easily deriving approximate methods for ADC(2) from CC2, such as SOS-ADC(2), or local ADC(2).
+
+% Koc1990 https://aip.scitation.org/doi/pdf/10.1063/1.458814
+% Chr1997 https://onlinelibrary.wiley.com/doi/epdf/10.1002/%28SICI%291097-461X%281998%2968%3A1%3C1%3A%3AAID-QUA1%3E3.0.CO%3B2-Z
+% Hat2005 https://www.sciencedirect.com/science/article/abs/pii/S0065327605500030?via%3Dihub
+% Hea1994 https://www.sciencedirect.com/science/article/abs/pii/0009261494000700?via%3Dihub
+
+\section{Equation-of-Motion Coupled Cluster}
+
+An alternative way for describing the molecular response to an external field using coupled cluster is via the equation-of-motion (EOM) ansatz (28-33). In the EOM approach, the target excited (R) and de-excited (L) wave functions are parametrized as 
+\begin{align}
+\sket{\Psi_R} &= e^{\hat{T}} \hat{R} \sket{\Psi_0} \\
+\sbra{\Psi_L} &= \sbra{\Phi_0} \hat{L} e^{-\hat{T}} 
+\end{align}
+\noindent with the excitation and de-excitation operators $\hat{R}$ and $\hat{L}$ 
+\begin{align}
+\hat{R} &= \sum r_{\mu} \hat{\tau}_{\mu} \\
+\hat{L} &= \sum l_{\mu} \hat{\tau}_{\mu}
+\end{align}
+\noindent where $r$ and $l$ are the excitation and de-excitation cluster amplitudes. The exact form of $\hat{R}$ and $\hat{L}$ depend on the nature of the reference and final states. The most common uses of EOM are for the calculation of excitation energies (EOM-EE30) and ionization potentials (EOM-IP31). In the case of EOM-EE, with $\Psi_0$ taken as the Hartree-Fock wave function, $\hat{R}$ and $\hat{L}$ conserve the number of electrons and are given as
+\begin{align}
+\hat{R}_{EE} &= r_0 + \sum_{IA} r_I^A a_A\pdg a_I + \frac{1}{4} \sum_{IAJB} r_{IJ}^{AB} a_A\pdg a_I a_B\pdg a_J + \ldots \\
+\hat{L}_{EE} &= l_0 + \sum_{IA} l_I^A a_I\pdg a_A + \frac{1}{4} \sum_{IAJB} l_{IJ}^{AB} a_I\pdg a_A a_J\pdg a_B + \ldots
+\end{align}
+The (de-)excitation operators can be truncated similar to T 
+to yield different approximations (EOM-CCS, EOM-CCSD...). The cluster amplitudes and the excitation energies are obtained 
+by solving the non-Hermitian eigenvalue problem 
+\begin{align}
+\sbra{\mu} \hat{\bar{H}} \hat{R} \sket{HF} &= 0 \\
+\sbra{HF \hat{L}} \hat{\bar{H}} - E \sket{HF} &= 0
+\end{align}
+Alternatively, EOM-CC can be formulated using a bivariational approach to arrive at the same eigenvalue 
+problem. 63 The excitation energies obtained by solving the LR-CC and EOM-CC eigenvalue problems are identical for pure CC models (CCSD, CCSDT...), but they give different results for transition moments and excited-state properties.
+
+The EOM-CC methods, alongside ADC and CC-LR, are among the most accurate methods available for excited states..... 
 
 
-\section{Time-dependent stuff?}
+
+

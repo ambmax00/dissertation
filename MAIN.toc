@@ -42,129 +42,158 @@
 \contentsline {chapter}{\numberline {2}Electronic Excited States}{29}{}%
 \contentsline {section}{\numberline {2.1}Nature of Excited States}{29}{}%
 \contentsline {section}{\numberline {2.2}Explicit Optimization of the Excited State Wavefunction}{30}{}%
-\contentsline {section}{\numberline {2.3}Time-depedenent stuff??}{32}{}%
-\contentsline {section}{\numberline {2.4}The Algebraic Diagrammatic Construction Method}{32}{}%
-\contentsline {subsection}{\numberline {2.4.1}Many-Body Green's Function}{32}{}%
+\contentsline {section}{\numberline {2.3}(Propagator Methods?) The Algebraic Diagrammatic Construction Method}{32}{}%
+\contentsline {subsection}{\numberline {2.3.1}Many-Body Green's Function}{32}{}%
 \contentsline {subsubsection}{One-electron Propagator}{33}{}%
 \contentsline {subsubsection}{Polarization Propagator}{34}{}%
 \contentsline {subsubsection}{Diagrammatic Perturbation}{35}{}%
-\contentsline {subsection}{\numberline {2.4.2}The ADC scheme}{35}{}%
-\contentsline {subsection}{\numberline {2.4.3}Structure of the ADC matrix}{36}{}%
-\contentsline {subsection}{\numberline {2.4.4}Intermediate states}{37}{}%
-\contentsline {subsection}{\numberline {2.4.5}Variants}{38}{}%
-\contentsline {subsection}{\numberline {2.4.6}Performance}{38}{}%
-\contentsline {section}{\numberline {2.5}Response Theory}{38}{}%
-\contentsline {subsection}{\numberline {2.5.1}Connection between CC2-LR and ADC}{38}{}%
-\contentsline {section}{\numberline {2.6}Equation-of-Motion}{38}{}%
-\contentsline {subsection}{\numberline {2.6.1}Connection between EOM and CCLR}{38}{}%
-\contentsline {section}{\numberline {2.7}Time-dependent stuff?}{38}{}%
-\contentsline {chapter}{\numberline {3}Local 0}{39}{}%
-\contentsline {section}{\numberline {3.1}Sparsity in Electronic Structure Theory}{40}{}%
-\contentsline {subsection}{\numberline {3.1.1}Element-Wise Sparsity of Electron Integrals}{40}{}%
-\contentsline {subsubsection}{Linear Scaling Overlap Integrals}{40}{}%
-\contentsline {subsubsection}{Quadratic Scaling Electron Repulsion Integrals}{42}{}%
-\contentsline {subsection}{\numberline {3.1.2}Element-Wise Sparsity of the Density Matrix}{43}{}%
-\contentsline {subsection}{\numberline {3.1.3}Diagrammatic Notation}{44}{}%
-\contentsline {subsection}{\numberline {3.1.4}Rank Sparsity}{45}{}%
-\contentsline {section}{\numberline {3.2}Density Fitting}{45}{}%
-\contentsline {subsection}{\numberline {3.2.1}Basics of Density Fitting}{45}{}%
-\contentsline {subsection}{\numberline {3.2.2}Scaling of the 3c2e Integrals}{47}{}%
-\contentsline {subsection}{\numberline {3.2.3}Local Density Fitting: Principles}{47}{}%
-\contentsline {subsection}{\numberline {3.2.4}LDF (I): Short-Range Metrics}{48}{}%
-\contentsline {subsection}{\numberline {3.2.5}LDF (II): Local Domains}{49}{}%
-\contentsline {subsubsection}{Atomic Resolution of the Identity}{49}{}%
-\contentsline {subsubsection}{Pair-Atomic Resolution of the Identity}{49}{}%
-\contentsline {subsubsection}{LDF using Local Molecular Orbitals}{50}{}%
-\contentsline {subsection}{\numberline {3.2.6}LDF (III): Quasi-Robust Density Fitting}{50}{}%
-\contentsline {subsubsection}{The QRDF Fitting Procedure}{51}{}%
-\contentsline {subsection}{\numberline {3.2.7}Auxiliary Basis Sets}{51}{}%
-\contentsline {section}{\numberline {3.3}Multipole Expansion of the Electron Integrals}{53}{}%
-\contentsline {subsection}{\numberline {3.3.1}Classical and Non-Classical Electron Integrals}{53}{}%
-\contentsline {subsection}{\numberline {3.3.2}Multipole Expansion}{53}{}%
-\contentsline {subsection}{\numberline {3.3.3}Fast Multipole Method}{54}{}%
-\contentsline {subsection}{\numberline {3.3.4}Continuous Fast Multipole Method}{55}{}%
-\contentsline {section}{\numberline {3.4}The ABCs of LMOs: Orbital Representations}{56}{}%
-\contentsline {subsection}{\numberline {3.4.1}Local Molecular Orbitals}{57}{}%
-\contentsline {subsection}{\numberline {3.4.2}LMOs by Reducing a Functional}{57}{}%
-\contentsline {subsection}{\numberline {3.4.3}Projected Atomic Orbitals}{57}{}%
-\contentsline {subsection}{\numberline {3.4.4}Subspace Projected Atomic Orbitals}{58}{}%
-\contentsline {subsection}{\numberline {3.4.5}Cholesky Molecular Orbitals}{59}{}%
-\contentsline {subsection}{\numberline {3.4.6}Natural Orbitals}{59}{}%
-\contentsline {subsection}{\numberline {3.4.7}Specific Virtual Orbitals}{62}{}%
-\contentsline {subsubsection}{Local Pair Natural Orbitals}{64}{}%
-\contentsline {section}{\numberline {3.5}Electron Pairs}{64}{}%
-\contentsline {chapter}{\numberline {4}Local Correlation: Ground State}{65}{}%
-\contentsline {section}{\numberline {4.1}Low-Scaling Self-Consistent Field Methods}{65}{}%
-\contentsline {subsection}{\numberline {4.1.1}The Coulomb Matrix}{65}{}%
-\contentsline {subsection}{\numberline {4.1.2}The Exchange Matrix}{66}{}%
-\contentsline {subsubsection}{Exact Exchange}{66}{}%
-\contentsline {subsubsection}{Density Fitting}{67}{}%
-\contentsline {subsubsection}{Local Density Fitting}{68}{}%
-\contentsline {subsubsection}{Other}{69}{}%
-\contentsline {subsection}{\numberline {4.1.3}The SCF Procdure}{69}{}%
-\contentsline {section}{\numberline {4.2}Local Ground State Correlation Methods: MP2}{70}{}%
-\contentsline {subsection}{\numberline {4.2.1}Atomic Orbital MP2}{70}{}%
-\contentsline {subsubsection}{The Laplace Transform}{70}{}%
-\contentsline {subsubsection}{AO MP2 Equations}{71}{}%
-\contentsline {subsubsection}{Quadratic Scaling AO-MP2}{72}{}%
-\contentsline {subsubsection}{Linear Scaling AO-MP2}{73}{}%
-\contentsline {subsubsection}{Cholesky Decomposition of Pseudo-Densities}{74}{}%
-\contentsline {subsubsection}{Density Fitting in AO-MP2}{75}{}%
-\contentsline {subsubsection}{SOS-AO-DF-MP2}{75}{}%
-\contentsline {subsection}{\numberline {4.2.2}Local Molecular Orbital MP2}{76}{}%
-\contentsline {subsubsection}{Laplace LMP2}{76}{}%
-\contentsline {subsubsection}{Orbital Invariant MP2}{77}{}%
-\contentsline {subsubsection}{Quadratic Scaling LMP2}{78}{}%
-\contentsline {subsubsection}{Linear Scaling LMP2}{79}{}%
-\contentsline {subsubsection}{Density Fitting for LMP2}{80}{}%
-\contentsline {subsection}{\numberline {4.2.3}Atomic Orbital CC2}{80}{}%
-\contentsline {subsection}{\numberline {4.2.4}Atomic Orbital CCSD: PAO or AO?}{81}{}%
-\contentsline {subsection}{\numberline {4.2.5}Local Coupled Cluster}{82}{}%
-\contentsline {subsection}{\numberline {4.2.6}FNO Coupled Cluster ??}{82}{}%
-\contentsline {section}{\numberline {4.3}Critical Stance on AO vs LMO}{82}{}%
-\contentsline {chapter}{\numberline {5}Local Correlation: Excited State}{83}{}%
-\contentsline {section}{\numberline {5.1}Low Scaling ADC, CCLR and EOM-CC using Molcular Orbitals}{83}{}%
-\contentsline {subsection}{\numberline {5.1.1}Orbital Invariant ADC/CCLR/EOM-CCSD}{83}{}%
-\contentsline {subsection}{\numberline {5.1.2}State Specificity for Local Molecular Orbitals}{85}{}%
-\contentsline {subsection}{\numberline {5.1.3}State Specificity for Natural Orbitals}{86}{}%
-\contentsline {subsection}{\numberline {5.1.4}State Specificity for Pair Natural Orbitals}{87}{}%
-\contentsline {subsection}{\numberline {5.1.5}State Specificity for Natural Transition Orbitals}{88}{}%
-\contentsline {section}{\numberline {5.2}Atomic Orbital Configuration Interaction Singles}{89}{}%
-\contentsline {chapter}{\numberline {6}The Spin-Opposite Scaled Algebraic Diagrammatic Construction Method in the Atomic Orbital Basis}{91}{}%
-\contentsline {section}{\numberline {6.1}Working Equations for Restricted ADC with Doubles-Folding}{91}{}%
-\contentsline {section}{\numberline {6.2}Working Equations for Restricted SOS-ADC(2) with Doubles-Folding}{95}{}%
-\contentsline {section}{\numberline {6.3}Working Equations For Restricted AO-SOS-ADC(2) with Doubles-Folding}{97}{}%
-\contentsline {subsection}{\numberline {6.3.1}First Order}{98}{}%
-\contentsline {subsection}{\numberline {6.3.2}Second Order: Part 2A and 2B}{98}{}%
-\contentsline {subsection}{\numberline {6.3.3}Second Order: Part 2C}{100}{}%
-\contentsline {subsection}{\numberline {6.3.4}Second Order: Part 2D}{100}{}%
-\contentsline {subsection}{\numberline {6.3.5}Second Order: Part 2E}{101}{}%
-\contentsline {subsection}{\numberline {6.3.6}Potential Linear Scaling Formulation}{104}{}%
-\contentsline {subsection}{\numberline {6.3.7}Summary}{104}{}%
-\contentsline {section}{\numberline {6.4}Working Equations for Restricted AO-DF-SOS-ADC(2) with Doubles-Folding}{105}{}%
-\contentsline {chapter}{\numberline {7}Benchmarking AO-DF-SOS-ADC(2)}{109}{}%
-\contentsline {section}{\numberline {7.1}Computational Details}{109}{}%
-\contentsline {section}{\numberline {7.2}Molecular Test Systems}{109}{}%
-\contentsline {section}{\numberline {7.3}Ground-State Prerequisites}{111}{}%
-\contentsline {subsection}{\numberline {7.3.1}Hartree-Fock}{111}{}%
-\contentsline {subsection}{\numberline {7.3.2}MP2}{111}{}%
-\contentsline {section}{\numberline {7.4}Excited-State}{111}{}%
-\contentsline {chapter}{\numberline {8}Parallel Computing}{116}{}%
-\contentsline {section}{\numberline {8.1}Moore's Law}{116}{}%
-\contentsline {section}{\numberline {8.2}Benefits and Limits of Parallel Computing}{117}{}%
-\contentsline {section}{\numberline {8.3}Types of Parallelism and Memory Hierarchy}{118}{}%
-\contentsline {section}{\numberline {8.4}Vectorization}{120}{}%
-\contentsline {subsection}{\numberline {8.4.1}Parallel SAXPY using vectorization}{120}{}%
-\contentsline {section}{\numberline {8.5}Thread-based Parallelism}{124}{}%
-\contentsline {subsection}{\numberline {8.5.1}SAXPY using OpenMP}{124}{}%
-\contentsline {section}{\numberline {8.6}Process-based Parallelism}{126}{}%
-\contentsline {subsection}{\numberline {8.6.1}SAXPY using MPI}{127}{}%
-\contentsline {subsection}{\numberline {8.6.2}MPI and Shared Memory}{129}{}%
-\contentsline {section}{\numberline {8.7}Stream Processing}{130}{}%
-\contentsline {subsection}{\numberline {8.7.1}GPU Architecture}{130}{}%
-\contentsline {subsection}{\numberline {8.7.2}GPU Programming Model}{130}{}%
-\contentsline {subsection}{\numberline {8.7.3}When to Use GPUs}{133}{}%
-\contentsline {chapter}{\numberline {9}Into The Matrix}{134}{}%
-\contentsline {chapter}{\numberline {10}MEGALOchem: User Guide}{135}{}%
-\contentsline {chapter}{\numberline {11}MEGALOchem: Developer's Guide}{136}{}%
-\contentsline {chapter}{\numberline {12}Annex}{137}{}%
+\contentsline {subsection}{\numberline {2.3.2}The ADC scheme}{35}{}%
+\contentsline {subsection}{\numberline {2.3.3}Structure of the ADC matrix}{36}{}%
+\contentsline {subsection}{\numberline {2.3.4}Intermediate states}{37}{}%
+\contentsline {subsection}{\numberline {2.3.5}Spin-Opposite Scaled ADC}{38}{}%
+\contentsline {subsection}{\numberline {2.3.6}Performance and Accuracy}{39}{}%
+\contentsline {subsection}{\numberline {2.3.7}RPA? }{39}{}%
+\contentsline {section}{\numberline {2.4}Response Theory}{39}{}%
+\contentsline {subsection}{\numberline {2.4.1}Exact Response Theory}{39}{}%
+\contentsline {subsection}{\numberline {2.4.2}Time-Dependent Hartree-Fock}{41}{}%
+\contentsline {subsection}{\numberline {2.4.3}Time-Dependent DFT}{41}{}%
+\contentsline {subsection}{\numberline {2.4.4}Coupled Cluster}{41}{}%
+\contentsline {subsection}{\numberline {2.4.5}Connection between ADC(2) and CC2-LR}{42}{}%
+\contentsline {section}{\numberline {2.5}Equation-of-Motion Coupled Cluster}{43}{}%
+\contentsline {chapter}{\numberline {3}Local 0}{44}{}%
+\contentsline {section}{\numberline {3.1}Sparsity in Electronic Structure Theory}{45}{}%
+\contentsline {subsection}{\numberline {3.1.1}Element-Wise Sparsity of Electron Integrals}{45}{}%
+\contentsline {subsubsection}{Linear Scaling Overlap Integrals}{45}{}%
+\contentsline {subsubsection}{Quadratic Scaling Electron Repulsion Integrals}{47}{}%
+\contentsline {subsection}{\numberline {3.1.2}Element-Wise Sparsity of the Density Matrix}{48}{}%
+\contentsline {subsection}{\numberline {3.1.3}Diagrammatic Notation}{49}{}%
+\contentsline {subsection}{\numberline {3.1.4}Rank Sparsity}{50}{}%
+\contentsline {section}{\numberline {3.2}Density Fitting}{50}{}%
+\contentsline {subsection}{\numberline {3.2.1}Basics of Density Fitting}{50}{}%
+\contentsline {subsection}{\numberline {3.2.2}Scaling of the 3c2e Integrals}{52}{}%
+\contentsline {subsection}{\numberline {3.2.3}Local Density Fitting: Principles}{52}{}%
+\contentsline {subsection}{\numberline {3.2.4}LDF (I): Short-Range Metrics}{53}{}%
+\contentsline {subsection}{\numberline {3.2.5}LDF (II): Local Domains}{54}{}%
+\contentsline {subsubsection}{Atomic Resolution of the Identity}{54}{}%
+\contentsline {subsubsection}{Pair-Atomic Resolution of the Identity}{54}{}%
+\contentsline {subsubsection}{LDF using Local Molecular Orbitals}{55}{}%
+\contentsline {subsection}{\numberline {3.2.6}LDF (III): Quasi-Robust Density Fitting}{55}{}%
+\contentsline {subsubsection}{The QRDF Fitting Procedure}{56}{}%
+\contentsline {subsection}{\numberline {3.2.7}Auxiliary Basis Sets}{56}{}%
+\contentsline {section}{\numberline {3.3}Multipole Expansion of the Electron Integrals}{58}{}%
+\contentsline {subsection}{\numberline {3.3.1}Classical and Non-Classical Electron Integrals}{58}{}%
+\contentsline {subsection}{\numberline {3.3.2}Multipole Expansion}{58}{}%
+\contentsline {subsection}{\numberline {3.3.3}Fast Multipole Method}{59}{}%
+\contentsline {subsection}{\numberline {3.3.4}Continuous Fast Multipole Method}{60}{}%
+\contentsline {section}{\numberline {3.4}The ABCs of LMOs: Orbital Representations}{61}{}%
+\contentsline {subsection}{\numberline {3.4.1}Local Molecular Orbitals}{62}{}%
+\contentsline {subsection}{\numberline {3.4.2}LMOs by Reducing a Functional}{62}{}%
+\contentsline {subsection}{\numberline {3.4.3}Projected Atomic Orbitals}{62}{}%
+\contentsline {subsection}{\numberline {3.4.4}Subspace Projected Atomic Orbitals}{63}{}%
+\contentsline {subsection}{\numberline {3.4.5}Cholesky Molecular Orbitals}{64}{}%
+\contentsline {subsection}{\numberline {3.4.6}Natural Orbitals}{64}{}%
+\contentsline {subsection}{\numberline {3.4.7}Specific Virtual Orbitals}{67}{}%
+\contentsline {subsubsection}{Local Pair Natural Orbitals}{69}{}%
+\contentsline {section}{\numberline {3.5}Electron Pairs}{69}{}%
+\contentsline {chapter}{\numberline {4}Local Correlation: Ground State}{70}{}%
+\contentsline {section}{\numberline {4.1}Low-Scaling Self-Consistent Field Methods}{70}{}%
+\contentsline {subsection}{\numberline {4.1.1}The Coulomb Matrix}{70}{}%
+\contentsline {subsection}{\numberline {4.1.2}The Exchange Matrix}{71}{}%
+\contentsline {subsubsection}{Exact Exchange}{71}{}%
+\contentsline {subsubsection}{Density Fitting}{72}{}%
+\contentsline {subsubsection}{Local Density Fitting}{73}{}%
+\contentsline {subsubsection}{Other}{74}{}%
+\contentsline {subsection}{\numberline {4.1.3}The SCF Procdure}{74}{}%
+\contentsline {section}{\numberline {4.2}Local Ground State Correlation Methods: MP2}{75}{}%
+\contentsline {subsection}{\numberline {4.2.1}Atomic Orbital MP2}{75}{}%
+\contentsline {subsubsection}{The Laplace Transform}{75}{}%
+\contentsline {subsubsection}{AO MP2 Equations}{76}{}%
+\contentsline {subsubsection}{Quadratic Scaling AO-MP2}{77}{}%
+\contentsline {subsubsection}{Linear Scaling AO-MP2}{78}{}%
+\contentsline {subsubsection}{Cholesky Decomposition of Pseudo-Densities}{79}{}%
+\contentsline {subsubsection}{Density Fitting in AO-MP2}{80}{}%
+\contentsline {subsubsection}{SOS-AO-DF-MP2}{80}{}%
+\contentsline {subsection}{\numberline {4.2.2}Local Molecular Orbital MP2}{81}{}%
+\contentsline {subsubsection}{Laplace LMP2}{81}{}%
+\contentsline {subsubsection}{Orbital Invariant MP2}{82}{}%
+\contentsline {subsubsection}{Quadratic Scaling LMP2}{83}{}%
+\contentsline {subsubsection}{Linear Scaling LMP2}{84}{}%
+\contentsline {subsubsection}{Density Fitting for LMP2}{85}{}%
+\contentsline {subsection}{\numberline {4.2.3}Atomic Orbital CC2}{85}{}%
+\contentsline {subsection}{\numberline {4.2.4}Atomic Orbital CCSD: PAO or AO?}{86}{}%
+\contentsline {subsection}{\numberline {4.2.5}Local Coupled Cluster}{87}{}%
+\contentsline {subsection}{\numberline {4.2.6}FNO Coupled Cluster ??}{87}{}%
+\contentsline {section}{\numberline {4.3}Critical Stance on AO vs LMO}{87}{}%
+\contentsline {chapter}{\numberline {5}Local Correlation: Excited State}{88}{}%
+\contentsline {section}{\numberline {5.1}Low Scaling ADC, CCLR and EOM-CC using Molcular Orbitals}{88}{}%
+\contentsline {subsection}{\numberline {5.1.1}Orbital Invariant ADC/CCLR/EOM-CCSD}{88}{}%
+\contentsline {subsection}{\numberline {5.1.2}State Specificity for Local Molecular Orbitals}{90}{}%
+\contentsline {subsection}{\numberline {5.1.3}State Specificity for Natural Orbitals}{91}{}%
+\contentsline {subsection}{\numberline {5.1.4}State Specificity for Pair Natural Orbitals}{92}{}%
+\contentsline {subsection}{\numberline {5.1.5}State Specificity for Natural Transition Orbitals}{93}{}%
+\contentsline {section}{\numberline {5.2}Atomic Orbital Configuration Interaction Singles}{94}{}%
+\contentsline {section}{\numberline {5.3}Thouless}{96}{}%
+\contentsline {chapter}{\numberline {6}The Spin-Opposite Scaled Algebraic Diagrammatic Construction Method in the Atomic Orbital Basis}{97}{}%
+\contentsline {section}{\numberline {6.1}Working Equations for Restricted ADC with Doubles-Folding}{97}{}%
+\contentsline {section}{\numberline {6.2}Working Equations for Restricted SOS-ADC(2) with Doubles-Folding}{101}{}%
+\contentsline {section}{\numberline {6.3}Working Equations For Restricted AO-SOS-ADC(2) with Doubles-Folding}{103}{}%
+\contentsline {subsection}{\numberline {6.3.1}First Order}{104}{}%
+\contentsline {subsection}{\numberline {6.3.2}Second Order: Part 2A and 2B}{104}{}%
+\contentsline {subsection}{\numberline {6.3.3}Second Order: Part 2C}{106}{}%
+\contentsline {subsection}{\numberline {6.3.4}Second Order: Part 2D}{106}{}%
+\contentsline {subsection}{\numberline {6.3.5}Second Order: Part 2E}{107}{}%
+\contentsline {subsection}{\numberline {6.3.6}Potential Linear Scaling Formulation}{110}{}%
+\contentsline {subsection}{\numberline {6.3.7}Summary}{110}{}%
+\contentsline {section}{\numberline {6.4}Working Equations for Restricted AO-DF-SOS-ADC(2) with Doubles-Folding}{111}{}%
+\contentsline {chapter}{\numberline {7}Scaling and Accuracy of atomic-orbital based SOS-ADC(2)}{115}{}%
+\contentsline {section}{\numberline {7.1}Computational Details}{115}{}%
+\contentsline {section}{\numberline {7.2}Ground-state Prerequisites}{115}{}%
+\contentsline {subsection}{\numberline {7.2.1}Molecular Test Systems}{115}{}%
+\contentsline {subsection}{\numberline {7.2.2}Illustrating the Scaling}{116}{}%
+\contentsline {subsection}{\numberline {7.2.3}Integral Evaluation}{117}{}%
+\contentsline {subsection}{\numberline {7.2.4}Hartree-Fock}{118}{}%
+\contentsline {subsubsection}{Scaling: Coulomb Matrix}{118}{}%
+\contentsline {subsubsection}{Scaling: Exchange Matrix}{120}{}%
+\contentsline {subsubsection}{Accuracy}{121}{}%
+\contentsline {subsection}{\numberline {7.2.5}MP2}{124}{}%
+\contentsline {subsubsection}{Scaling}{124}{}%
+\contentsline {subsubsection}{Accuracy}{124}{}%
+\contentsline {section}{\numberline {7.3}Atomic Orbital ADC}{124}{}%
+\contentsline {subsection}{\numberline {7.3.1}Molecular Test Systems}{124}{}%
+\contentsline {subsection}{\numberline {7.3.2}Scaling}{126}{}%
+\contentsline {subsection}{\numberline {7.3.3}Accuracy}{128}{}%
+\contentsline {section}{\numberline {7.4}Summary and Outlook}{131}{}%
+\contentsline {chapter}{\numberline {8}Parallel Computing}{134}{}%
+\contentsline {section}{\numberline {8.1}Moore's Law}{134}{}%
+\contentsline {section}{\numberline {8.2}Benefits and Limits of Parallel Computing}{135}{}%
+\contentsline {section}{\numberline {8.3}Types of Parallelism and Memory Hierarchy}{136}{}%
+\contentsline {section}{\numberline {8.4}Vectorization}{138}{}%
+\contentsline {subsection}{\numberline {8.4.1}Parallel SAXPY using vectorization}{138}{}%
+\contentsline {section}{\numberline {8.5}Thread-based Parallelism}{142}{}%
+\contentsline {subsection}{\numberline {8.5.1}SAXPY using OpenMP}{142}{}%
+\contentsline {section}{\numberline {8.6}Process-based Parallelism}{144}{}%
+\contentsline {subsection}{\numberline {8.6.1}SAXPY using MPI}{145}{}%
+\contentsline {subsection}{\numberline {8.6.2}MPI and Shared Memory}{147}{}%
+\contentsline {section}{\numberline {8.7}Stream Processing}{148}{}%
+\contentsline {subsection}{\numberline {8.7.1}GPU Architecture}{148}{}%
+\contentsline {subsection}{\numberline {8.7.2}GPU Programming Model}{148}{}%
+\contentsline {subsection}{\numberline {8.7.3}When to Use GPUs}{151}{}%
+\contentsline {chapter}{\numberline {9}Into The Matrix}{152}{}%
+\contentsline {section}{\numberline {9.1}Linear Algebra}{152}{}%
+\contentsline {subsection}{\numberline {9.1.1}Matrices}{152}{}%
+\contentsline {section}{\numberline {9.2}Matrix Storage Formats}{154}{}%
+\contentsline {subsection}{\numberline {9.2.1}Dense Storage}{154}{}%
+\contentsline {subsection}{\numberline {9.2.2}Sparse Storage}{154}{}%
+\contentsline {subsubsection}{Coordinate Format}{155}{}%
+\contentsline {subsubsection}{Compressed Sparse Row}{155}{}%
+\contentsline {subsubsection}{Compressed Sparse Column}{155}{}%
+\contentsline {subsection}{\numberline {9.2.3}Block Compressed Sparse Row}{156}{}%
+\contentsline {subsection}{\numberline {9.2.4}Distributed Storage}{156}{}%
+\contentsline {section}{\numberline {9.3}Matrix Libraries}{156}{}%
+\contentsline {section}{\numberline {9.4}Tensors}{156}{}%
+\contentsline {section}{\numberline {9.5}Tensor Storage Orders}{156}{}%
+\contentsline {section}{\numberline {9.6}Tensor Libraries}{156}{}%
+\contentsline {chapter}{\numberline {10}MEGALOchem: User Guide}{157}{}%
+\contentsline {section}{\numberline {10.1}HELLO}{157}{}%
+\contentsline {chapter}{\numberline {11}MEGALOchem: Developer's Guide}{158}{}%
+\contentsline {chapter}{\numberline {12}Annex}{159}{}%

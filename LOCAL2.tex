@@ -4,6 +4,10 @@ The previous chapter demonstrated how it is possible to achieve low to linear co
 
 % Bau2017 CornFlex https://aip.scitation.org/doi/pdf/10.1063/1.4984820
 
+(Linear scaling TDHF and TDDFT?)
+% Linear‐scaling self‐consistent field methods for large molecules
+% https://aip.scitation.org/doi/pdf/10.1063/1.2961039
+
 \section{Low Scaling ADC, CCLR and EOM-CC using Molcular Orbitals}
 
 Virtually all existing low-scaling implementations of ADC, CCLR and EOM-CCSD use some form of local or compact molecular orbital representation, to varying degrees of success. The major problem that these methods face is the non-locality of certain excited states such as charge transfer states (Figure ...), which can involve occupied and virtually orbitals which are localized on entirely different parts in the system. Clearly, truncating virtual orbitals spatially is no longer a valid option, and makes a straight-forward extension of LMO-methods difficult, becuase they cut out far-away contributions. Similarly, the excited state is often not properly described by the electronic ground state (pair-)densities and their associated (pair) natural representation. Over the years, various strategies have been proposed to adapt exisiting LMO, NO and PNO schemes to excited states as well. 
@@ -186,7 +190,7 @@ The CornFLEX method constructs a set of CIS(D)-like NTOs (CIS(D')-NTOs) which is
 
 The methods presented in the previous section all work similarly. They first start by approximating the targeted excited states with a lower level of theory using CIS or CIS(D). They then solve higher order equations in the basis obtained from that approximation and may also dynamically augment the correlation domain while optimizing the excitation energies. The methods work on the principle of orbital \emph{compactness} rather than sparsity
 
-At the moment of writing, CIS is the only excited state method which is traditionally evaluated in the AO basis. While CIS does not give qualitatively good results, it is still a very important stepping stone for higher order methods, as was demonstrated in the previous section. Omitting the zero-order contributions, the CIS working equations are given by
+At the moment of writing, CIS is the only excited state method which is routinely evaluated in the AO basis. While CIS does not give qualitatively good results, it is still a very important stepping stone for higher order methods, as was demonstrated in the previous section. Omitting the zero-order contributions, the CIS working equations are given by
 \begin{equation}
 u_{ia} = \left[ 2 \cn{ia}{jb} - \cn{ib}{ja} \right] u_{jb}
 \end{equation}
@@ -204,7 +208,7 @@ F_{\mu\nu} = J_{\mu\nu} + K_{\mu\nu}
 \begin{equation}
 u_{ia} = C_{\mu i} F_{\mu\nu} C_{\mu a}  
 \end{equation}
-\noindent For localized excitations, the AO transition density is sparse (Figure ...), and similar approximation can be used as in Hartree Fock, e.g. LinK, CFMM, or LDF. CIS can therefore be evaluated with $\mathcal{O}(N)$ computational effort. 
+\noindent For localized excitations, the AO transition density is sparse (Figure ...), and similar approximation can be used as in Hartree Fock, e.g. LinK, CFMM, or LDF. CIS can therefore be evaluated with $\mathcal{O}(N)$ computational effort. Strictly speaking, it is not a "pure" AO formulation, because the AO intermediates still need to be transformed to the MO basis.
 
 \begin{figure}
 \centering
@@ -238,3 +242,8 @@ $\Longrightarrow$
 % Hel2013 PNO-CC2 https://aip.scitation.org/doi/10.1063/1.4819071
 
 % Hel2014 PNO-ADC2 https://www.sciencedirect.com/science/article/pii/S2210271X14001194?via%3Dihub
+
+PURE AO FORMULATION THOULESS INTEGRAL
+PROBLEM: MO ENERGIES ARE NEEDED. if a pure ao algorithm, most likely a whole other approach that tries to get "density metrix perturbation"
+
+\section{Thouless}

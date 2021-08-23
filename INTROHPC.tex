@@ -93,7 +93,7 @@ y \leftarrow \alpha x + y
 \end{equation}
 \noindent where $y$, $x$ are vectors of equal length, and $\alpha$ is a scaling factor. The vector operation \ref{DAXPY} is also known as "saxpy" for single precision, and "daxpy" for double precision. A naive implementation of the saxpy-kernel is given in Listing \ref{lst:SAXPYNOPARA} for vector size $N$  
 
-\cppcode{Parallelization-unaware implementation of saxpy \label{lst:SAXPYNOPARA}}{saxpy_nopara.c}
+\cppcode{Parallelization-unaware implementation of saxpy \label{lst:SAXPYNOPARA}}{listings/saxpy_nopara.c}
 
 \noindent Two arrays are allocated, x and y, and all their entries set to 1 and 2 respectively. Each element is updated individually in the for loop. There are several possibilities to introduce vectorization:
 \begin{enumerate}
@@ -109,17 +109,17 @@ saxpy_nopara.c:9:3: optimized: loop vectorized using 32 byte vectors
 \noindent which indicates that the vectors are loaded and operated on in 32 byte chunks, or 8 floats at once. The flag "-ftree-vectorize" (or alternatively "-O3") activates auto-vectorization and "-fopt-info-vec" generates the report. To make sure that the C compiler uses the right vectorization relase, the flag "-march=native" is needed, or else the comiler might fall back to SSE. 
 
 In some cases, auto-vectorization cannot take place because the compiler did not recognize that the loop can be vectorized. It can then be beneficial to use \emph{intrinsic functions}. Intrinsic functions are compiler-dependent functions that map to processor operations. When targeting an AVX architecture with 256-bit registers, the saxpy kernel can be rewritten as
-\cppcode{SAXPY using intrinsics \label{lst:SAXPYINTRINSICS}}{saxpy_intrinsic.c}
+\cppcode{SAXPY using intrinsics \label{lst:SAXPYINTRINSICS}}{listings/saxpy_intrinsic.c}
 \noindent It is apparent that using intrinsics makes the program much more complex. The arrays cannot be fed directly to the functions, but need to be loaded into vectors of type \texttt{\_\_mm256}, using "set" or "load" functions. Furthermore, the data needs to be aligned correctly using \texttt{\_\_attribute\_\_ ((aligned(...)))}. The arrays are then loaded in chunks into the registers and given to the vector functions for multiplying and adding. 
 
 The major problem with using intrinsic functions, besides increased complexity, is \emph{portability}. The code in \ref{lst:SAXPYINTRINSICS} does not compile on machines that do not support AVX, and is limited to 256-bit registers even on AVX-512 machines. Portable alternatives include using compiler directives or optimized libraries.
 
 Directives (or "pragmas") are hints that can be given to the compiler that suggest that the loop might be vectorizeable. By far the most popular set of compiler directives that provide vectorization capabilities is undoubtedly included in the OpenMP application programming interface (API). The OpenMP API is standardized accross all compilers, making it highly portable. The OpenMP directives greatly simplify the SAXPY program:
-\cppcode{SAXPY using compiler directives \label{lst:SAXPYDIRECTIVES}}{saxpy_simd.c}
+\cppcode{SAXPY using compiler directives \label{lst:SAXPYDIRECTIVES}}{listings/saxpy_simd.c}
 \noindent Simply plopping the directive in front of the for loop takes care of generating the appropriate machine code for the targeted architecture. 
 
 The last way to introduce vectorization is via external programs, such as the basic linear algebra subprograms (BLAS) library. It provides a set of specific functions for performing basic vector and matrix operations. Similar to OpenMP, it only provides spcifications, and the direct implementation is compiler-dependent. In the BLAS routines, there is a saxpy functions available that can be called directly. It has the advantage of completely removing the loop and clearly states what operation is performed.
-\cppcode{SAXPY using BLAS \label{lst:SAXPYBLAS}}{saxpy_blas.c}
+\cppcode{SAXPY using BLAS \label{lst:SAXPYBLAS}}{listings/saxpy_blas.c}
 \noindent External libraries can however be associated with a steeper learning curve depending on the complexity of function signatures.
 
 \section{Thread-based Parallelism}
@@ -138,9 +138,9 @@ A process spawns one or more \emph{threads} (Figure \ref{fig:shared}). A thread 
 \subsection{SAXPY using OpenMP}
 
 The most popular standard for thread-based parallelism (or \emph{shared-memory parallelism}) is OpenMP, which was briefly discussed in the previous section. OpenMP was originally introduced to parallelize highly regular loops, but the standard has since then been greatly expanded and includes vectorization directives as well. Using pragmas, multiple threads can be spawned that execute the code within the parallel region. Lising ... shows an OpenMP parallel version of SAXPY. Each thread in the parallel region has a unique number associated with it which is used to divide up the arrays. Caution needs to be taken that threads do not operate on the same region at once, as this can lead to undefined behaviour ("race conditions").  
-\cppcode{SAXPY using OpenMP \label{lst:SAXPYOMP}}{saxpy_omp.c}
+\cppcode{SAXPY using OpenMP \label{lst:SAXPYOMP}}{listings/saxpy_omp.c}
 \noindent Alternatively, the code may be more easily expressed by using a single compiler directive:
-\cppcode{SAXPY using OpenMP \label{lst:SAXPYOMP2}}{saxpy_omp2.c}
+\cppcode{SAXPY using OpenMP \label{lst:SAXPYOMP2}}{listings/saxpy_omp2.c}
 \noindent The \texttt{omp parallel for} directive also offers different scheduling tatctics which may be difficult to programm by hand. Listing \ref{lst:SAXPYOMP} is an example of \emph{static scheduling} the work is divided equally among threads \emph{a priori}. However, in the case where each step requires different computational cost, \emph{dynamic scheduling} offers a more balanced approach, although with a somewhat higher prefactor. Threads request tasks, or a chunk of multiple tasks, from the main thread, which distributes work on a first-come first-serve basis. There are many more directives available in the OpenMP standard with a lot of options for fine-tuning. For further details, the reader is referred to the official specifications (ref)
 % (ref) https://www.openmp.org/specifications/
 
@@ -167,7 +167,7 @@ All processes are characterized by their \emph{rank}, a unique, portable identif
 Modifiying programs to exploit distrubuted parallelism requires significant effort, the most crucial point being how data is distributed over the processes. Consider again the SAXPY kernel. There are two memory models: either every process has a copy of the whole array, or the arrays are distrubuted in chunks over all processes. If data is duplicated on every rank, this can quickly exhaust memory resources for large datasets. On the other hand, if data is distributed in a non-ideal way, communation may incur major overhead. A programmer has to outweigh the benefits of data duplication and network communication. 
 
 Listing \ref{lst:SAXPYMPI} shows a distributed memory approach to the SAXPY kernel
-\cppcode{SAXPY using MPI \label{lst:SAXPYMPI}}{saxpy_mpi.c}
+\cppcode{SAXPY using MPI \label{lst:SAXPYMPI}}{listings/saxpy_mpi.c}
 \noindent The program starts by initializing the executing environment using \texttt{MPI{\_}Init}, and defining the communicator handle. The communicator that groups all processes is called \texttt{MPI{\_}COMM{\_}WORLD}, and is a macro defined in the header \texttt{<mpi.h>}. If the programm is stand-alone, it is safe to use as the primary communicator. When writing a library that is used in combination with other MPI libraries, it is crucial to use a communicator that is passed from the main program. There are two reasons for this: (1) the user may want to use a subcommunicator, rather than the whole process group, and (2) MPI messages have a unique identifier (integer) and if another library uses the same identifier, erroneous communication can take place. In this example, the global communicator is suffcient.
 
 Each process then allocates a local array of size \texttt{num{\_}local} $<$ \texttt{ARRAY{\_}SIZE}. In this example, the main data is intialized on rank 0, which is then split into equal chunks and send to the other processes' local array using \texttt{MPI{\_}Scatter}. Each process then only needs to perform the SAXPY operation on its local chunk. Afterwards, the results are collected on rank 0 using the routine \texttt{MPI{\_}Gather}. Data is then available on rank 0 to be further manipulated, written to console, etc. 
@@ -214,13 +214,13 @@ The rise of GPGPU programming has given rise to a plethora of different programm
 Low level languages all operate on a similar programming model which allow the programmer to define special functions called \emph{kernels}, which, when called on a GPU, are executed $N$ times in parallel by $N$ GPU threads. Rather than using for loops, kernels oparate on a whole range of data at once, known as a \emph{grid} or NDRange. A grid can be one, two or three-dimensional to allow a more intuitive view of the data at hand. Each grid is subdivided into blocks or work groups which can be executed independently. The maximum size of a block is given by the number of threads in a CU. "Good" values are generally 128, 256 or 512, but the optimal size depends on the hardware and the problem addressed. Threads in a block share memory which is useful in case data from neighbouring subblocks is needed. Information on grid and block dimensions are needed by the kernels for distributing work over the GPU.
 
 As an example, consider the SAXPY function using the CUDA programming language:
-\cppcode{SAXPY using CUDA \label{lst:SAXPYCUDA}}{saxpy_cuda.cu}
+\cppcode{SAXPY using CUDA \label{lst:SAXPYCUDA}}{listings/saxpy_cuda.cu}
 \noindent CPU and GPU do not share memory. The first steps therefore involve allocating memory using \texttt{cudaMalloc} and copying data from CPU ("Host") to GPU ("Device") with \texttt{cudaMemcpy}. The arrays can then be passed to the kernel. The kernel function is indicated by the identifier \texttt{\_\_ global\_\_}, and is executed at the same time by all threads in a block. Each thread has a unique block and thread id which indicate its position in the work group. This information is used to make sure that the thread is operating on the correct portions of the array. The GPU threads do not have any information of the loop extent, and it is the user's responsibility to make sure that threads do not write past the allocated memory window by introduing boundary checks (\texttt{if (i < N)}).
 
 In this example for a 1D array, the kernel takes two launch parameters: the number of blocks, and the block size which are put between \texttt{<<< .... >>>} after the function call. Afterwards, the data can be copied back to the CPU for further processing. 
 
 The concept of operating relative to thread coordinates rather than using a for loop with a single index can be quite confusing. Nowadays, there are directive-based compiler extensions, that allow to easily offload work to accelerators, such as OpenMP and OpenACC (Open ACCelerators). Listing \ref{lst:SAXPYACC} shows how a for loop can be easily modified using OpenACC
-\cppcode{SAXPY using OpenACC \label{lst:SAXPYACC}}{saxpy_acc.c}
+\cppcode{SAXPY using OpenACC \label{lst:SAXPYACC}}{listings/saxpy_acc.c}
 \noindent OpenACC offers several pragmas for allocating and copying arrays to GPUs and back. By only adding two directives, the SAXPY code is easily ported to GPUs. 
 
 \subsection{When to Use GPUs}

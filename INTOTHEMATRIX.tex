@@ -1,3 +1,187 @@
 \chapter{Into The Matrix}
 
-An overview of matrix algebra libraries
+At its core, computational chemistry is basically matrix algebra applied to molecular systems. The performance of an algorithm, in other words its scaling, memory footprint and even accuracy, is intimately linked to how matrix operations and storage are handled internally. While the earliest implementations of molecular electronic structure methods often used hand-coded loops running over matrix indices, over the years, a whole ecosystem of matrix and tensor libraries has emerged in an attempt to lessen the burden of programmers, to various degrees of success, each with their strong and weak points. Choosing the best library for an algorithm is a non-trivial task, and depends on various factors: if memory is the bottle-neck, a sparse matrix library might be able to sufficiently compress data into a smaller space. If speed is the greatest concern, using targeting different archituectures like distributed memory systems, accelerators, or both, might be the solution. -.... The modern theoretical chemist needs to be aware of the possibilities ....
+
+This chapter introduces basic concepts of matrix and tensor algebra, with a focus on storage orders. After introducing the core concepts, an (incomplete) list of matrix libraries is provided with small examples on how to use them. 
+
+\section{Linear Algebra}
+
+Linear algebra is a crucial tool in many areas of computational science, such as image processing, machine learning, computational physics, computational biology and of course computational chemistry. The most important concepts are discussed in this section, and generalized to tensors. Until mentioned otherwise, zero-based indexing is assumed. 
+
+\subsection{Matrices}
+
+A matrix is a rectangular, 2-dimensional array of dimension $M$ by $N$, containing a set of complex or real numbers $\{a_{ij}\}$ with ordered subscripts $i = 0,1,2,...M$ and $j = 0,1,2,...,N$, of the form
+\begin{equation}
+\mbf{A} = \begin{pmatrix}
+a_{00} & a_{01} & \ldots & a_{0N} \\
+a_{10} & a_{11} & \ldots & a_{1N} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{M0} & a_{M1} & \ldots & a_{MN}
+\end{pmatrix}
+\end{equation}
+\noindent with $M$ \emph{rows} and $N$ \emph{columns}. \emph{Row vectors} and \emph{column vectors} are a type of matrix that contain only one row or one column, respectively. 
+
+Matrix multiplication is only defined between matrices of dimension $M$ by $K$ and $K$ by $N$. The product yields an $M$ by $N$ matrix
+\begin{align}
+\mbf{C}_{M\times N} &= \mbf{A}_{M\times K} \mbf{B}_{K\times N} \\
+c_{ij} = \sum_k a_{ik} b_{kj}
+\end{align}
+
+A matrix with an equal number of rows and columns is called a \emph{square matrix}. There a different types of square matrices:
+\begin{enumerate}
+\item \emph{Diagonal matrices} only have non-zero entries on the diagonal
+\begin{equation}
+a_{ij} = a_{ii} \delta_{ij}
+\end{equation}
+
+\item If all entries below the diagonal are zero, the matrix is \emph{lower triangular}. Similarly, if all elements above the diagonal are zero, the matrix is \emph{upper triangular}. Furthermore, if the diagional entries are all equal to 1, the matrix is \emph{unit triangular}.
+
+\item The \emph{identity} or \emph{unit} matrix $\mbf{1}$ is defined as
+\begin{align}
+\mbf{A} \mbf{1} &= \mbf{1} \mbf{A} \\
+\mbf{1}_{ij} = \delta_{ij}
+\end{align} 
+
+\item The \emph{inverse} of a matrix $\mbf{A}$ is defined as
+\begin{equation}
+\mbf{A}^{-1} \mbf{A} = \mbf{1}
+\end{equation} 
+\noindent It only exists for matrices with a non-zero determinant. If a matrix is non-invertible, it is also called \emph{singular}. 
+
+\item A matrix is \emph{unitary}, if its inverse is equal to its conjugate transpose 
+\begin{equation}
+\mbf{A}^{-1} = \mbf{A}\pdg
+\end{equation}
+\noindent A real unitary matrix is called \emph{orthogonal}
+
+\item A \emph{hermititan} matrix is its own conugate transpose
+\begin{align}
+\mbf{A} &= \mbf{A}\pdg \\
+a_{ij} = (a_{ji})^*
+\end{align}
+\noindent A real hermitian matrix is called \emph{symmetric}
+
+\item A hermitian matrix is said to be \emph{positive definite} if all of its eigenvalues are positive, and \emph{negative definite} if all eigenvalues are negative. \emph{Semi-definite} matrices additionally have some eigenvalues which are equal to zero.   
+\end{enumerate}
+
+Decompositions?
+
+\section{Matrix Storage Formats}
+
+The main memory in a computer, i.e. DRAM, is a linear address space and can be seen as a single, contiguous, one-dimensional array. Two-dimensional arrays like matrices need to be \emph{mapped} to this linear space by the compiler. This mapping depends on whether a dense or sparse view of the matrix is desired. 
+
+\subsection{Dense Storage}
+
+There are two ways to map a dense matrix to memory: row-major ordering and column-major ordering. The two storage orders differ by the order inwhich the individual elements are stored in memory (Figure ...). For an $M$ by $N$ matrix stored in a linear array $a$ in row-major format, the address offset of an element $a_{ij}$ compared to element $a_{00}$ is given by
+\begin{equation}
+A(i,j) \rightarrow \text{a[i * N + j]}
+\end{equation}
+\noindent and in column-major format by
+\begin{equation}
+A(i,j) \rightarrow \text{a[i + j * M]}
+\end{equation}
+Neither storage order has any advantages or disadvantes over the other one. It is only a matter of convention, and depend on the library and programming language. Fortran arrays are column-major, while C/C++ arrays are row-major. 
+
+However, algorithms optimized for column-major access might not give the same performance for row-major formats and vice-versa. Consider a simple loop over matrix elements in the Fortran programming language
+\begin{fortran}{Matrix Loop}
+DO i = 1, N
+ DO j = 1, N
+  A(i,j) = A(i,j) + 2
+ ENDDO
+ENDDO
+\end{fortran}
+\noindent By first looping over the rows, and then over the columns, the elements in the column-major matrix are accessed in a \emph{non-contiguous} manner. This prevents efficient optimizations like vectorization due to cache misses. By swapping the loops, the inner loop can be vectorized. Therefore, if algorithms assume a certain ordering, it is important to pass matrices of the same ordering.
+
+Column-major ordering is by far the most common in scientifc computing. Matrix algebra routines like the QR, Eigenvalue or Cholesky decompositions are most intuitively written using column operations rather than row operations. Examples include the LAPACK and Eigen matrix libraries. 
+
+\subsection{Sparse Storage}
+
+A matrix is called \emph{sparse} if "most" of its elements are zero. The threshold between sparse and dense is ill-defined, and range anywhere between 1\% and 10\%. Sparse matrices are encountered in many fields of computational science in systems with few pair-wise interactions. By storing and looping over the siginifcant elements only, the memory footprint and the scaling of matrix multilications or decompositions can be significantly reduced. There are several different sparse matrix formats available. The following sections will demonstrate how the matrix
+\begin{equation*}
+\begin{pmatrix}
+3 & 5 & 0 & 0 \\
+0 & 4 & 0 & 0 \\
+0 & 0 & 1 & 2 \\
+0 & 0 & 6 & 7 
+\end{pmatrix}
+\end{equation*}
+\noindent may be represented using some of these formats.
+
+\subsubsection{Coordinate Format}
+
+The coordinate format (COO) is one of the simplest storage schemes for sparse matrices. The matrix is stored using three arrays of lenghth $NNZ$ (number of non-zero elements) containing the row indices, column indices and matrix entries. The above matrix reduces to 
+\begin{equation*}
+COO: \left\lbrace
+\begin{matrix}
+\textrm{idx\_i} &= &\left[ 0, 0, 1, 2, 3, 2, 3 \right] \\
+\textrm{idx\_j} &= &\left[ 0, 1, 1, 2, 2, 3, 3 \right] \\
+\textrm{val}   &= &\left[ 3, 5, 4, 1, 6, 2, 7 \right] \\
+\end{matrix}
+\right.
+\end{equation*}
+\noindent The values do not need to be necessarily ordered. The COO format has the advantage that it is very easy to insert elements and change the sparsity pattern with low overhead. COO is generally not used for algebra due to slow random access of elements if elments are not in order. Rather, COO is an intermediate format for incremental construction of sparse matrices in the CSR or CSC format.
+
+\subsubsection{Compressed Sparse Row}
+
+The compressed sparse row format (CSR) is similar to COO, but compresses the rows. A CSR matrix is represented by three arrays: the extent of rows, the coulmn indices and non-zero matrix entries, with dimension $M$, $NNZ$ and $NNZ$ respectively. For the example matrix above, the CSR format gives
+\begin{equation*}
+CSR: \left\lbrace
+\begin{array}{lll}
+\textrm{row\_ext} &= &\left[ 0, 2, 3, 5 \right] \\
+\textrm{col\_idx} &= &\left[ 0, 1, 1, 2, 2, 3, 3 \right] \\
+\textrm{val}  &= &\left[ 3, 5, 4, 1, 2, 6, 7 \right] \\
+\end{array}
+\right.
+\end{equation*}
+\noindent The $i$th entry of the row extents contains the offset to the first non-zero element in the array \textrm{val} in the $i$th row. The entries in \textrm{col\_idx} are the associated column indices. Compared to COO, accessing elements is much faster, and the memory prefactor is reduced from $3NNZ$ to $2NNZE+M$. Matrix-vector products are very fast to compute, but CSR in not well suited for column slicing.
+
+\subsubsection{Compressed Sparse Column}
+
+The compressed sparse column format is the "column-major" analog to the CSR format. Instead of compressing the rows, it compresses the columns. The matrix in the CSC format is represented as
+
+\begin{equation*}
+CSC: \left\lbrace
+\begin{array}{lll}
+\textrm{col\_ext} &= &\left[ 0, 1, 3, 5 \right] \\
+\textrm{row\_idx} &= &\left[ 0, 0, 1, 2, 2, 3, 3 \right] \\
+\textrm{val}  &= &\left[ 3, 5, 4, 1, 6, 2, 7 \right] \\
+\end{array}
+\right.
+\end{equation*}
+
+CSC has similar performance to CSR, but is better suited for column slicing.
+
+\subsection{Block Compressed Sparse Row}
+
+The block-compressed sparse row (BCSR or BSR) format is a generalization of CSR. BCSR is ideal for matrices which are \emph{block-sparse}, i.e. matrices with few dense submatrices. For a constant block size $n$ by $m$, let the number of row and column blocks be $M_{blk}$ and $N_{blk}$. A matrix is then represented by three arrays containing the row block offsets, column block indices, and non-zero indices. For blocks of size 2 by 2, the matrix above in the BCSR format yields
+
+\begin{equation*}
+BCSR: \left\lbrace
+\begin{array}{lll}
+\textrm{rowblk\_ext} &= &\left[ 0, 1 \right] \\
+\textrm{colblk\_idx} &= &\left[ 0, 1 \right] \\
+\textrm{val}  &= &\left[ 3, 0, 5, 4, 1, 6, 2, 7 \right] \\
+\end{array}
+\right.
+\end{equation*}
+
+\noindent The matrix is therefore split into two non-zero blocks of size 2-by-2 each, with elements $\{3,0,5,4\}$ and $\{1,6,2,7\}$ using column-major ordering. The BCSR format can further reduce the storage prefactor for block-sparse matrices. Smaller block-sizes can account for a higher degree of sparsity, but lead to a higher prefactor fr matrix operations (see libxsmm). Large block sizes have lower prefactor, but capture less of the sparsity. Figure ... shows the BCSR format for different split factors. The block sizes do not need to be the same, although a constant block size is best suited for load balancing. 
+
+\subsection{Distributed Storage}
+
+\section{Matrix Libraries}
+
+rank, semi-definiteness etc ....
+
+Storage: dense (shared), dense (dist), sparse (shared), sparse (dist)
+
+Libraries: LAPACK, Eigen, ScaLAPACK
+
+\section{Tensors}
+
+\section{Tensor Storage Orders}
+
+\section{Tensor Libraries}
+
+ libtensor, ctf, 
+ TA, dbcsr, libxsmm 

@@ -11,6 +11,7 @@
 \usepackage{physics}
 \usepackage{url}
 \usepackage{xcolor}
+\usepackage[smartEllipses]{markdown}
 \usepackage{inconsolata}
 \usepackage{listings}
 \usepackage{etoolbox}
@@ -207,16 +208,39 @@
 	sharp corners, 
     fonttitle=\bfseries, 
     colframe=gray, listing only, 
-    size=minimal,
-    width=0.7\textwidth,
+    	breakable,
+    	center,
+    	boxrule=0pt,
+    	width=1.0\textwidth,
     listing options={
-		breaklines=true,		
-		basicstyle=\small\ttfamily,
-		language=C++	
-	}, 
+    		frame=none,
+    		numbers=left,
+    		xleftmargin=1em,
+    		breaklines=true,
+    		numberstyle=\scriptsize,
+    		basicstyle=\small\ttfamily,
+    		language=C++
+    	}, 
     title=Listing \thetcbcounter: #2, #1}
 
-\lstset{inputpath=listings}
+\newtcblisting{fortran}[2][]{
+	sharp corners, 
+    fonttitle=\bfseries, 
+    colframe=gray, listing only, 
+    	breakable,
+    	center,
+    	boxrule=0pt,
+    	width=1.0\textwidth,
+    listing options={
+    		frame=none,
+    		numbers=left,
+    		xleftmargin=1em,
+    		breaklines=true,
+    		numberstyle=\scriptsize,
+    		basicstyle=\small\ttfamily,
+    		language=Fortran
+    	}, 
+    title=Listing \thetcbcounter: #2, #1}
 
 \newtcbinputlisting[auto counter,number within=section]{cppcode}[3][]{
 	sharp corners, 
@@ -228,13 +252,14 @@
     	boxrule=0pt,
     	width=1.0\textwidth,
     listing options={
-    frame=none,
-    	numbers=left,
-    	xleftmargin=1em,
-    	breaklines=true,
-    	numberstyle=\scriptsize,
-    	basicstyle=\small\ttfamily,
-    	language=C++}, 
+    		frame=none,
+    		numbers=left,
+    		xleftmargin=1em,
+    		breaklines=true,
+    		numberstyle=\scriptsize,
+    		basicstyle=\small\ttfamily,
+    		language=C++
+    	}, 
     title=Listing \thetcbcounter: #2 (\texttt{\detokenize{#3}}), #1}
 
 % rest of document ...
