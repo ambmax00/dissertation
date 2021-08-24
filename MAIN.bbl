@@ -1,0 +1,337 @@
+\begin{thebibliography}{10}
+
+\bibitem{Jen2017}
+Frank Jensen.
+\newblock {\em {Introduction to Computational Chemistry, 3rd Edition}}.
+\newblock Wiley, Hoboken, NJ, USA, Feb 2017.
+
+\bibitem{Sch2018}
+Jochen Schirmer.
+\newblock {\em {Many-Body Methods for Atoms, Molecules and Clusters}}.
+\newblock Springer International Publishing, Cham, Switzerland, 2018.
+
+\bibitem{Har2014}
+Philipp H.~P. Harbach, Michael Wormit, and Andreas Dreuw.
+\newblock {The third-order algebraic diagrammatic construction method (ADC(3))
+  for the polarization propagator for closed-shell molecules: Efficient
+  implementation and benchmarking}.
+\newblock {\em J. Chem. Phys.}, 141(6):064113, Aug 2014.
+
+\bibitem{Kra2013}
+Caroline~M. Krauter, Markus Pernpointner, and Andreas Dreuw.
+\newblock {Application of the scaled-opposite-spin approximation to algebraic
+  diagrammatic construction schemes of second order}.
+\newblock {\em J. Chem. Phys.}, 138(4):044107, Jan 2013.
+
+\bibitem{Tro2006}
+A.~B. Trofimov, I.~L. Krivdina, J.~Weller, and J.~Schirmer.
+\newblock {Algebraic-diagrammatic construction propagator approach to molecular
+  response properties}.
+\newblock {\em Chem. Phys.}, 1-3(329):1--10, 2006.
+
+\bibitem{Sza1996}
+Attila Szabo and Neil~S. Ostlund.
+\newblock {\em {Modern Quantum Chemistry: Introduction to Advanced Electronic
+  Structure Theory}}.
+\newblock Courier Corporation, Jul 1996.
+
+\bibitem{Hel2000}
+Trygve Helgaker, Poul J{\o}rgensen, and Jeppe Olsen.
+\newblock {\em {Molecular Electronic{-}Structure Theory}}.
+\newblock Wiley, Aug 2000.
+
+\bibitem{Nor2018}
+Patrick Norman, Kenneth Ruud, and Trond Saue.
+\newblock {\em {Principles and Practices of Molecular Properties: Theory,
+  Modeling, and Simulations}}.
+\newblock Wiley, Hoboken, NJ, USA, Mar 2018.
+
+\bibitem{You2004}
+D.~Young.
+\newblock {\em {Computational Chemistry}}.
+\newblock Wiley, Chichester, England, UK, 2004.
+
+\bibitem{Gri2003}
+Stefan Grimme.
+\newblock {Improved second-order M{\o}ller{\textendash}Plesset perturbation
+  theory by separate scaling of parallel- and antiparallel-spin pair
+  correlation energies}.
+\newblock {\em J. Chem. Phys.}, 118(20):9095--9102, May 2003.
+
+\bibitem{Gri2012}
+Stefan Grimme, Lars Goerigk, and Reinhold~F. Fink.
+\newblock {Spin-component-scaled electron correlation methods}.
+\newblock {\em WIREs Comput. Mol. Sci.}, 2(6):886--906, Nov 2012.
+
+\bibitem{Gou2004}
+T.~P.~M. Goumans, Andreas~W. Ehlers, Koop Lammertsma, Ernst-Ulrich
+  W{\ifmmode\ddot{u}\else\"{u}\fi}rthwein, and Stefan Grimme.
+\newblock {Improved Reaction and Activation Energies of [4+2] Cycloadditions,
+  [3,3] Sigmatropic Rearrangements and Electrocyclizations with the
+  Spin-Component-Scaled MP2 Method}.
+\newblock {\em Chemistry {\textendash} A European Journal}, 10(24):6468--6475,
+  Dec 2004.
+
+\bibitem{Bul2004}
+Rosa~E. Bulo, Helen Jansen, Andreas~W. Ehlers, Fransiscus J.~J. de~Kanter,
+  Marius Schakel, Martin Lutz, Anthony~L. Spek, and Koop Lammertsma.
+\newblock {The Circumambulation of a Phosphirane: Taking
+  9-Phenyl-9-phosphabicyclo[6.1.0]nona-2,4,6-triene for a
+  {\textquotedblleft}Walk{\textquotedblright}}.
+\newblock {\em Angew. Chem.}, 116(6):732--735, Jan 2004.
+
+\bibitem{Ger2004}
+Mareike Gerenkamp and Stefan Grimme.
+\newblock {Spin-component scaled second-order M{\o}ller{\textendash}Plesset
+  perturbation theory for the calculation of molecular geometries and harmonic
+  vibrational frequencies}.
+\newblock {\em Chem. Phys. Lett.}, 392(1):229--235, Jul 2004.
+
+\bibitem{Sza2006}
+{\ifmmode\acute{A}\else\'{A}\fi}gnes Szabados.
+\newblock {Theoretical interpretation of Grimme{'}s spin-component-scaled
+  second order M{\o}ller-Plesset theory}.
+\newblock {\em J. Chem. Phys.}, 125(21):214105, Dec 2006.
+
+\bibitem{Fin2010}
+Reinhold~F. Fink.
+\newblock {Spin-component-scaled M{\o}ller{\textendash}Plesset (SCS-MP)
+  perturbation theory: A generalization of the MP approach with improved
+  properties}.
+\newblock {\em J. Chem. Phys.}, 133(17):174113, Nov 2010.
+
+\bibitem{Jun2004}
+Yousung Jung, Rohini~C. Lochan, Anthony~D. Dutoi, and Martin Head-Gordon.
+\newblock {Scaled opposite-spin second order M{\o}ller-Plesset correlation
+  energy: an economical electronic structure method}.
+\newblock {\em J. Chem. Phys.}, 121(20):9793--9802, Nov 2004.
+
+\bibitem{Loc2005}
+Rohini~C. Lochan, Yousung Jung, and Martin Head-Gordon.
+\newblock {Scaled opposite spin second order M{\o}ller-Plesset theory with
+  improved physical description of long-range dispersion interactions}.
+\newblock {\em J. Phys. Chem. A}, 109(33):7598--7605, Aug 2005.
+
+\bibitem{Dis2007}
+Robert~A. Distasio J.~R.. and Martin Head-Gordon.
+\newblock {Optimized spin-component scaled second-order M{\o}ller-Plesset
+  perturbation theory for intermolecular interaction energies}.
+\newblock {\em Mol. Phys.}, 105(8):1073--1083, Apr 2007.
+
+\bibitem{Hil2007}
+J.~Grant Hill and James~A. Platts.
+\newblock {Spin-Component Scaling Methods for Weak and Stacking Interactions}.
+\newblock {\em J. Chem. Theory Comput.}, 3(1):80--85, Jan 2007.
+
+\bibitem{Chr1995}
+Ove Christiansen, Henrik Koch, and Poul J{\o}rgensen.
+\newblock {The second-order approximate coupled cluster singles and doubles
+  model CC2}.
+\newblock {\em Chem. Phys. Lett.}, 243(5):409--418, Sep 1995.
+
+\bibitem{Hel2008}
+Arnim Hellweg, Sarah~A. Gr{\ifmmode\ddot{u}\else\"{u}\fi}n, and Christof
+  H{\ifmmode\ddot{a}\else\"{a}\fi}ttig.
+\newblock {Benchmarking the performance of spin-component scaled CC2 in ground
+  and electronically excited states}.
+\newblock {\em Phys. Chem. Chem. Phys.}, 10(28):4119--4127, Jul 2008.
+
+\bibitem{Win2011}
+Nina O.~C. Winter and Christof H{\ifmmode\ddot{a}\else\"{a}\fi}ttig.
+\newblock {Scaled opposite-spin CC2 for ground and excited states with fourth
+  order scaling computational costs}.
+\newblock {\em J. Chem. Phys.}, 134(18):184101, May 2011.
+
+\bibitem{Taj2019}
+Attila Tajti and P{\ifmmode\acute{e}\else\'{e}\fi}ter~G. Szalay.
+\newblock {Accuracy of Spin-Component-Scaled CC2 Excitation Energies and
+  Potential Energy Surfaces}.
+\newblock {\em J. Chem. Theory Comput.}, 15(10):5523--5531, Oct 2019.
+
+\bibitem{Koc1997}
+Henrik Koch, Ove Christiansen, Poul Jo/rgensen, Alfredo~M. Sanchez~de
+  Mer{\ifmmode\acute{a}\else\'{a}\fi}s, and Trygve Helgaker.
+\newblock {The CC3 model: An iterative coupled cluster approach including
+  connected triples}.
+\newblock {\em J. Chem. Phys.}, 106(5):1808--1818, Feb 1997.
+
+\bibitem{Rag1989}
+Krishnan Raghavachari, Gary~W. Trucks, John~A. Pople, and Martin Head-Gordon.
+\newblock {A fifth-order perturbation comparison of electron correlation
+  theories}.
+\newblock {\em Chem. Phys. Lett.}, 157(6):479--483, May 1989.
+
+\bibitem{Gon2012}
+Leticia Gonz{\ifmmode\acute{a}\else\'{a}\fi}lez, Daniel Escudero, and Luis
+  Serrano-Andr{\ifmmode\acute{e}\else\'{e}\fi}s.
+\newblock {Progress and Challenges in the Calculation of Electronic Excited
+  States}.
+\newblock {\em ChemPhysChem}, 13(1):28--51, Jan 2012.
+
+\bibitem{Nor2018a}
+Patrick Norman and Andreas Dreuw.
+\newblock {Simulating X-ray Spectroscopies and Calculating Core-Excited States
+  of Molecules}.
+\newblock {\em Chem. Rev.}, 118(15):7208--7248, Aug 2018.
+
+\bibitem{Mig2008}
+Annapaola Migani, Llu{\ifmmode\acute{\imath}\else\'{\i}\fi}s Blancafort,
+  Michael~A. Robb, and Anthony~D. DeBellis.
+\newblock {An Extended Conical Intersection Seam Associated with a Manifold of
+  Decay Paths: Excited-State Intramolecular Proton Transfer in
+  O-Hydroxybenzaldehyde}.
+\newblock {\em J. Am. Chem. Soc.}, 130(22):6932--6933, Jun 2008.
+
+\bibitem{Mat2011}
+Spiridoula Matsika and Pascal Krause.
+\newblock {Nonadiabatic Events and Conical Intersections}.
+\newblock {\em Annu. Rev. Phys. Chem.}, 62(1):621--643, Mar 2011.
+
+\bibitem{Kim2015}
+Jaehee Kim, Hongli Tao, Todd~J. Martinez, and Phil Bucksbaum.
+\newblock {Ab initio multiple spawning on laser-dressed states: a study of
+  1,3-cyclohexadiene photoisomerization via light-induced conical
+  intersections}.
+\newblock {\em J. Phys. B: At. Mol. Opt. Phys.}, 48(16):164003, Jul 2015.
+
+\bibitem{Zhu2016}
+Xiaolei Zhu and David~R. Yarkony.
+\newblock {Non-adiabaticity: the importance of conical intersections}.
+\newblock {\em Mol. Phys.}, 114(13):1983--2013, Jul 2016.
+
+\bibitem{Bag1965}
+P.~S. Bagus.
+\newblock {Self-Consistent-Field Wave Functions for Hole States of Some Ne-Like
+  and Ar-Like Ions}.
+\newblock {\em Phys. Rev.}, 139(3A):A619--A634, Aug 1965.
+
+\bibitem{Deu1976}
+P.~W. Deutsch and L.~A. Curtiss.
+\newblock {Ab initio calculation of the K-shell excitation and ionization
+  energies of CH4, NH3, H2O, and HF}.
+\newblock {\em Chem. Phys. Lett.}, 39(3):588--592, May 1976.
+
+\bibitem{Amb2019}
+Maximilien~A. Ambroise and Frank Jensen.
+\newblock {Probing Basis Set Requirements for Calculating Core Ionization and
+  Core Excitation Spectroscopy by the {$\Delta$} Self-Consistent-Field
+  Approach}.
+\newblock {\em J. Chem. Theory Comput.}, 15(1):325--337, Jan 2019.
+
+\bibitem{Tri1999}
+L.~Triguero, O.~Plashkevych, L.~G.~M. Pettersson, and H.~{\AA}gren.
+\newblock {Separate state vs. transition state Kohn-Sham calculations of X-ray
+  photoelectron binding energies and chemical shifts}.
+\newblock {\em J. Electron Spectrosc. Relat. Phenom.}, 1-3(104):195--207, 1999.
+
+\bibitem{Tak2003}
+Yuji Takahata and Delano~P. Chong.
+\newblock {DFT calculation of core-electron binding energies}.
+\newblock {\em J. Electron Spectrosc. Relat. Phenom.}, 133(1):69--76, Nov 2003.
+
+\bibitem{Bes2009}
+Nicholas~A. Besley, Andrew T.~B. Gilbert, and Peter M.~W. Gill.
+\newblock {Self-consistent-field calculations of core excited states}.
+\newblock {\em J. Chem. Phys.}, 130(12):124308, Mar 2009.
+
+\bibitem{Hol2011}
+Alf Holme, Knut~J. B{\o}rve, Leif~J. S{\ae}thre, and T.~Darrah Thomas.
+\newblock {Accuracy of Calculated Chemical Shifts in Carbon 1s Ionization
+  Energies from Single-Reference ab Initio Methods and Density Functional
+  Theory}.
+\newblock {\em J. Chem. Theory Comput.}, 7(12):4104--4114, Dec 2011.
+
+\bibitem{Sch2015}
+Luca Schio, Cui Li, Susanna Monti, Peter Sal{\ifmmode\acute{e}\else\'{e}\fi}n,
+  Vasyl Yatsyna, Raimund Feifel, Michele Alagia, Robert Richter, Stefano
+  Falcinelli, Stefano Stranges, Vitali Zhaunerchyk, and Vincenzo Carravetta.
+\newblock {NEXAFS and XPS studies of nitrosyl chloride}.
+\newblock {\em Phys. Chem. Chem. Phys.}, 17(14):9040--9048, Mar 2015.
+
+\bibitem{Zhe2019}
+Xuechen Zheng and Lan Cheng.
+\newblock {Performance of Delta-Coupled-Cluster Methods for Calculations of
+  Core-Ionization Energies of First-Row Elements}.
+\newblock {\em J. Chem. Theory Comput.}, 15(9):4945--4955, Sep 2019.
+
+\bibitem{Gil2008}
+Andrew T.~B. Gilbert, Nicholas~A. Besley, and Peter M.~W. Gill.
+\newblock {Self-consistent field calculations of excited states using the
+  maximum overlap method (MOM)}.
+\newblock {\em J. Phys. Chem. A}, 112(50):13164--13171, Dec 2008.
+
+\bibitem{Dav1964}
+Ernest~R. Davidson.
+\newblock {Single{-}Configuration Calculations on Excited States of Helium}.
+\newblock {\em J. Chem. Phys.}, 41(3):656--658, Aug 1964.
+
+\bibitem{Dav1965}
+Ernest~R. Davidson.
+\newblock {Single{-}Configuration Calculations on Excited States of Helium.
+  II}.
+\newblock {\em J. Chem. Phys.}, 42(12):4199--4200, Jun 1965.
+
+\bibitem{Gro2008}
+Akio~Kotani Frank~de Groot.
+\newblock {\em {Core Level Spectroscopy of Solids}}.
+\newblock Taylor {\&} Francis, Andover, England, UK, Mar 2008.
+
+\bibitem{Zie1977}
+Tom Ziegler, Arvi Rauk, and Evert~J. Baerends.
+\newblock {On the calculation of multiplet energies by the hartree-fock-slater
+  method}.
+\newblock {\em Theor. Chim. Acta}, 43(3):261--271, Sep 1977.
+
+\bibitem{Sch1982}
+Jochen Schirmer.
+\newblock {Beyond the random-phase approximation: A new approximation scheme
+  for the polarization propagator}.
+\newblock {\em Phys. Rev. A}, 26(5):2395--2416, Nov 1982.
+
+\bibitem{Bay1962}
+Gordon Baym.
+\newblock {Self-Consistent Approximations in Many-Body Systems}.
+\newblock {\em Phys. Rev.}, 127(4):1391--1401, Aug 1962.
+
+\bibitem{Nam1950}
+Yoichiro Nambu.
+\newblock {Force Potentials in Quantum Field Theory}.
+\newblock {\em Prog. Theor. Phys.}, 5(4):614--633, Jul 1950.
+
+\bibitem{Sal1951}
+E.~E. Salpeter and H.~A. Bethe.
+\newblock {A Relativistic Equation for Bound-State Problems}.
+\newblock {\em Phys. Rev.}, 84(6):1232--1242, Dec 1951.
+
+\bibitem{Fey1966}
+Richard~P. Feynman.
+\newblock {The Development of the Space-Time View of Quantum Electrodynamics}.
+\newblock {\em Science}, 153(3737):699--708, Aug 1966.
+
+\bibitem{Tro1995}
+A.~B. Trofimov and J.~Schirmer.
+\newblock {An efficient polarization propagator approach to valence electron
+  excitation spectra}.
+\newblock {\em J. Phys. B: At. Mol. Opt. Phys.}, 28(12):2299--2324, Jun 1995.
+
+\bibitem{Sch1991}
+Jochen Schirmer.
+\newblock {Closed-form intermediate representations of many-body propagators
+  and resolvent matrices}.
+\newblock {\em Phys. Rev. A}, 43(9):4647--4659, May 1991.
+
+\bibitem{Sch2004}
+J.~Schirmer and A.~B. Trofimov.
+\newblock {Intermediate state representation approach to physical properties of
+  electronically excited molecules}.
+\newblock {\em J. Chem. Phys.}, 120(24):11449--11464, Jun 2004.
+
+\bibitem{Kni2012}
+S.~Knippenberg, D.~R. Rehn, M.~Wormit, J.~H. Starcke, I.~L. Rusakova, A.~B.
+  Trofimov, and A.~Dreuw.
+\newblock {Calculations of nonlinear response properties using the intermediate
+  state representation and the algebraic-diagrammatic construction polarization
+  propagator approach: two-photon absorption spectra}.
+\newblock {\em J. Chem. Phys.}, 136(6):064107., Feb 2012.
+
+\end{thebibliography}
