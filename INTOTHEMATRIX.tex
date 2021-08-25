@@ -149,11 +149,11 @@ CSC: \left\lbrace
 \right.
 \end{equation*}
 
-CSC has similar performance to CSR, but is better suited for column slicing.
+CSC has similar performance to CSR, but is better suited for column slicing and therefore column-oriented matrix decomposition.
 
 \subsection{Block Compressed Sparse Row}
 
-The block-compressed sparse row (BCSR or BSR) format is a generalization of CSR. BCSR is ideal for matrices which are \emph{block-sparse}, i.e. matrices with few dense submatrices. For a constant block size $n$ by $m$, let the number of row and column blocks be $M_{blk}$ and $N_{blk}$. A matrix is then represented by three arrays containing the row block offsets, column block indices, and non-zero indices. For blocks of size 2 by 2, the matrix above in the BCSR format yields
+The block-compressed sparse row (BCSR or BSR) format is a generalization of CSR. BCSR is ideal for matrices which are \emph{block-sparse}, i.e. matrices with few dense submatrices. For a constant block size $n$ by $m$, let the number of row and column blocks be $M_{blk}$ and $N_{blk}$, and $NNZ_{blk}$ the number of significant blocks. A matrix is then represented by three arrays containing the row block offsets, column block indices, and non-zero indices with size $M_{blk}$, $NNZ_{blk}$ and $NNZ_{blk}mn$. For blocks of size 2 by 2, the matrix above in the BCSR format yields
 
 \begin{equation*}
 BCSR: \left\lbrace
@@ -165,9 +165,32 @@ BCSR: \left\lbrace
 \right.
 \end{equation*}
 
-\noindent The matrix is therefore split into two non-zero blocks of size 2-by-2 each, with elements $\{3,0,5,4\}$ and $\{1,6,2,7\}$ using column-major ordering. The BCSR format can further reduce the storage prefactor for block-sparse matrices. Smaller block-sizes can account for a higher degree of sparsity, but lead to a higher prefactor fr matrix operations (see libxsmm). Large block sizes have lower prefactor, but capture less of the sparsity. Figure ... shows the BCSR format for different split factors. The block sizes do not need to be the same, although a constant block size is best suited for load balancing. 
+\noindent The matrix is therefore split into two non-zero blocks of size 2-by-2 each, with elements $\{3,0,5,4\}$ and $\{1,6,2,7\}$ using column-major ordering. The BCSR format can further reduce the storage prefactor for block-sparse matrices. Smaller block-sizes can account for a higher degree of sparsity, but lead to a higher prefactor. Large block sizes have lower prefactor, but capture less of the sparsity. Figure ... shows the BCSR format for different split factors. The block sizes do not need to be the same, although a constant block size is best suited for load balancing. 
 
 \subsection{Distributed Storage}
+
+In distributed memory parallelism, processes do no longer have access to the whole matrix. The question then arises how to distribute data over multiple nodes or processes. Distribution can be \emph{blocked} or \emph{cyclic}. In the block representation, the matrix is distributed by dividing rows, columns (or both) by the number of processes, and distributing them sequentially over the processes. On the other hand, the cyclic representation distributes each individual row, column or matrix element over the set of processes and wrapping over them until all elements are assigned to a processor. The cyclic data layout achieves great load balancing by evenly distributing the matrix elements, but is not suitable for row or column manipulations due to a high communication overhead. A blocked representation can reduce this overhead, but load-balancing is more difficult to achieve if the number of elements is not evenly divisible by the number of processes. 
+
+The most commonly used format for distributed matrix storage is the \emph{block-cyclic} representation (Figure ...). It combines the best of both worlds, with good load-balancing and low communication overhead for matrix algebra. Communication is most efficient by arranging processes into a 2-dimensional rectangular grid with $N_{proc} = N_{row} \times N_{col}$, such that each process is uniquely identifies by its coordinates $(i,j)$. A 4-by-2 grid therefore has 4 \emph{process rows} and 2 \emph{process columns}. With MPI, this is most easily achieved by using \emph{Cartesian grids}. In Cartesian grids, processes can only communicate with their nearest neighbor. 
+
+Each process has a local array which can be packed in different ways. The ScaLAPACK library keeps the original ordering of the matrix elements (Figure ...), while other matrix libraries like DBCSR store the individual blocks sequentially in memory instead. 
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.25]{Pics/DISTSTOR1.pdf}
+\caption{Caption}
+\label{fig:DISTSTOR1}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.25]{Pics/DISTSTOR2.pdf}
+\caption{Caption}
+\label{fig:DISTSTOR2}
+\end{figure}
+
+¨libxsmm?
+The block size has a major impact on the performance of distributed linear algebra algorithms. Consider the multiplication of two matrices. Multiplication can be reformulated in terms of individual multiplications of sub-blocks. 
 
 \section{Matrix Libraries}
 

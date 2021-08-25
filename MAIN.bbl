@@ -1,4 +1,4 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{100}
 
 \bibitem{Jen2017}
 Frank Jensen.
@@ -333,5 +333,455 @@ S.~Knippenberg, D.~R. Rehn, M.~Wormit, J.~H. Starcke, I.~L. Rusakova, A.~B.
   state representation and the algebraic-diagrammatic construction polarization
   propagator approach: two-photon absorption spectra}.
 \newblock {\em J. Chem. Phys.}, 136(6):064107., Feb 2012.
+
+\bibitem{Koc1990}
+Henrik Koch and Poul Jo/rgensen.
+\newblock {Coupled cluster response functions}.
+\newblock {\em J. Chem. Phys.}, 93(5):3333--3344, Sep 1990.
+
+\bibitem{Dre2005}
+Andreas Dreuw and Martin Head-Gordon.
+\newblock {Single-Reference ab Initio Methods for the Calculation of Excited
+  States of Large Molecules}.
+\newblock {\em Chem. Rev.}, 105(11):4009--4037, Nov 2005.
+
+\bibitem{Lau2013}
+Ad{\ifmmode\grave{e}\else\`{e}\fi}le~D. Laurent and Denis Jacquemin.
+\newblock {TD-DFT benchmarks: A review}.
+\newblock {\em Int. J. Quantum Chem.}, 113(17):2019--2039, Sep 2013.
+
+\bibitem{Chr1998}
+Ove Christiansen, Poul J{\o}rgensen, and Christof
+  H{\ifmmode\ddot{a}\else\"{a}\fi}ttig.
+\newblock {Response functions from Fourier component variational perturbation
+  theory applied to a time-averaged quasienergy}.
+\newblock {\em Int. J. Quantum Chem.}, 68(1):1--52, Jan 1998.
+
+\bibitem{Loo2020}
+Pierre-Fran{\ifmmode\mbox{\c{c}}\else\c{c}\fi}ois Loos and Denis Jacquemin.
+\newblock {Is ADC(3) as Accurate as CC3 for Valence and Rydberg Transition
+  Energies?}
+\newblock {\em J. Phys. Chem. Lett.}, 11(3):974--980, Feb 2020.
+
+\bibitem{Hf2005}
+Christof H{\ifmmode\ddot{a}\else\"{a}\fi}ttig.
+\newblock {Structure Optimizations for Excited States with Correlated
+  Second-Order Methods: CC2 and ADC(2)}.
+\newblock In {\em {Advances in Quantum Chemistry}}, volume~50, pages 37--60.
+  Academic Press, Cambridge, MA, USA, Jan 2005.
+
+\bibitem{Hea1994}
+Martin Head-Gordon, Rudolph~J. Rico, Manabu Oumi, and Timothy~J. Lee.
+\newblock {A doubles correction to electronic excited states from configuration
+  interaction in the space of single substitutions}.
+\newblock {\em Chem. Phys. Lett.}, 219(1):21--29, Mar 1994.
+
+\bibitem{Gee1989}
+Jan Geertsen, Magnus Rittby, and Rodney~J. Bartlett.
+\newblock {The equation-of-motion coupled-cluster method: Excitation energies
+  of Be and CO}.
+\newblock {\em Chem. Phys. Lett.}, 164(1):57--62, Dec 1989.
+
+\bibitem{EMr1981}
+K.~Emrich.
+\newblock {An extension of the coupled cluster formalism to excited states
+  (I)}.
+\newblock {\em Nucl. Phys. A}, 351(3):379--396, Jan 1981.
+
+\bibitem{Sta1993}
+John~F. Stanton and Rodney~J. Bartlett.
+\newblock {The equation of motion coupled{-}cluster method. A systematic
+  biorthogonal approach to molecular excitation energies, transition
+  probabilities, and excited state properties}.
+\newblock {\em J. Chem. Phys.}, 98(9):7029--7039, May 1993.
+
+\bibitem{Sta1994}
+John~F. Stanton and J{\ifmmode\ddot{u}\else\"{u}\fi}rgen Gauss.
+\newblock {Analytic energy derivatives for ionized states described by the
+  equation{-}of{-}motion coupled cluster method}.
+\newblock {\em J. Chem. Phys.}, 101(10):8938--8944, Nov 1994.
+
+\bibitem{Kry2008}
+Anna~I. Krylov.
+\newblock {Equation-of-Motion Coupled-Cluster Methods for Open-Shell and
+  Electronically Excited Species: The Hitchhiker's Guide to Fock Space}.
+\newblock {\em Annu. Rev. Phys. Chem.}, 59(1):433--462, Apr 2008.
+
+\bibitem{Roo1951}
+C.~C.~J. Roothaan.
+\newblock {New Developments in Molecular Orbital Theory}.
+\newblock {\em Rev. Mod. Phys.}, 23(2):69--89, Apr 1951.
+
+\bibitem{Hf1989}
+Marco H{\ifmmode\ddot{a}\else\"{a}\fi}ser and Reinhart Ahlrichs.
+\newblock {Improvements on the direct SCF method}.
+\newblock {\em J. Comput. Chem.}, 10(1):104--111, Jan 1989.
+
+\bibitem{Koh1959}
+W.~Kohn.
+\newblock {Analytic Properties of Bloch Waves and Wannier Functions}.
+\newblock {\em Phys. Rev.}, 115(4):809--821, Aug 1959.
+
+\bibitem{Ism1999}
+Sohrab Ismail-Beigi and T.~A. Arias.
+\newblock {Locality of the Density Matrix in Metals, Semiconductors, and
+  Insulators}.
+\newblock {\em Phys. Rev. Lett.}, 82(10):2127--2130, Mar 1999.
+
+\bibitem{Goe1994}
+S.~Goedecker and L.~Colombo.
+\newblock {Efficient Linear Scaling Algorithm for Tight-Binding Molecular
+  Dynamics}.
+\newblock {\em Phys. Rev. Lett.}, 73(1):122--125, Jul 1994.
+
+\bibitem{Goe1998}
+S.~Goedecker.
+\newblock {Decay properties of the finite-temperature density matrix in
+  metals}.
+\newblock {\em Phys. Rev. B}, 58(7):3501--3502, Aug 1998.
+
+\bibitem{Tar2002}
+S.~N. Taraskin, P.~A. Fry, Xiaodong Zhang, D.~A. Drabold, and S.~R. Elliott.
+\newblock {Spatial decay of the single-particle density matrix in tight-binding
+  metals: Analytic results in two dimensions}.
+\newblock {\em Phys. Rev. B}, 66(23):233101, Dec 2002.
+
+\bibitem{Hol2017}
+David~S. Hollman, Henry~F. Schaefer, and Edward~F. Valeev.
+\newblock {Fast construction of the exchange operator in an atom-centred basis
+  with concentric atomic density fitting}.
+\newblock {\em Mol. Phys.}, 115(17-18):2065--2076, Sep 2017.
+
+\bibitem{Nee2009}
+Frank Neese, Frank Wennmohs, Andreas Hansen, and Ute Becker.
+\newblock {Efficient, approximate and parallel Hartree{\textendash}Fock and
+  hybrid DFT calculations. A {`}chain-of-spheres{'} algorithm for the
+  Hartree{\textendash}Fock exchange}.
+\newblock {\em Chem. Phys.}, 356(1):98--109, Feb 2009.
+
+\bibitem{Whi1973}
+J.~L. Whitten.
+\newblock {Coulombic potential energy integrals and approximations}.
+\newblock {\em J. Chem. Phys.}, 58(10):4496--4501, May 1973.
+
+\bibitem{Bae1973}
+E.~J. Baerends, D.~E. Ellis, and P.~Ros.
+\newblock {Self-consistent molecular
+  Hartree{\ifmmode---\else\textemdash\fi}Fock{\ifmmode---\else\textemdash\fi}Slater
+  calculations I. The computational procedure}.
+\newblock {\em Chem. Phys.}, 2(1):41--51, Sep 1973.
+
+\bibitem{Vah1993}
+O.~Vahtras, J.~Alml{\ifmmode\ddot{o}\else\"{o}\fi}f, and M.~W. Feyereisen.
+\newblock {Integral approximations for LCAO-SCF calculations}.
+\newblock {\em Chem. Phys. Lett.}, 213(5):514--518, Oct 1993.
+
+\bibitem{Sky2000}
+C.-K. Skylaris, L.~Gagliardi, N.~C. Handy, A.~G. Ioannou, S.~Spencer, and
+  A.~Willetts.
+\newblock {On the resolution of identity Coulomb energy approximation in
+  density functional theory}.
+\newblock {\em J. Mol. Struct. THEOCHEM}, 501-502:229--239, Apr 2000.
+
+\bibitem{Dun2000}
+B.~I. Dunlap.
+\newblock {Robust variational fitting:
+  G{\ifmmode\acute{a}\else\'{a}\fi}sp{\ifmmode\acute{a}\else\'{a}\fi}r's
+  variational exchange can accurately be treated analytically}.
+\newblock {\em J. Mol. Struct. THEOCHEM}, 501-502:221--228, Apr 2000.
+
+\bibitem{Hol2015}
+David~S. Hollman, Henry~F. Schaefer, and Edward~F. Valeev.
+\newblock {A tight distance-dependent estimator for screening three-center
+  Coulomb integrals over Gaussian basis functions}.
+\newblock {\em J. Chem. Phys.}, 142(15):154106, Apr 2015.
+
+\bibitem{Tew2018}
+David~P. Tew.
+\newblock {Communication: Quasi-robust local density fitting}.
+\newblock {\em J. Chem. Phys.}, 148(1):011102, Jan 2018.
+
+\bibitem{Jun2005}
+Yousung Jung, Alex Sodt, Peter M.~W. Gill, and Martin Head-Gordon.
+\newblock {Auxiliary basis expansions for large-scale electronic structure
+  calculations}.
+\newblock {\em Proc. Natl. Acad. Sci. U.S.A.}, 102(19):6692--6697, May 2005.
+
+\bibitem{Gil2005}
+P.~M.~W. Gill, A.~T.~B. Gilbert, S.~W. Taylor, G.~Friesecke, and
+  M.~Head-Gordon.
+\newblock {Decay behavior of least-squares coefficients in auxiliary basis
+  expansions}.
+\newblock {\em J. Chem. Phys.}, 123(6):061101, Aug 2005.
+
+\bibitem{Rei2008}
+Simen Reine, Erik Tellgren, Andreas Krapp, Thomas Kj{\ae}rgaard, Trygve
+  Helgaker, Branislav Jansik, Stinne H{\o}st, and Pawe{\l} Salek.
+\newblock {Variational and robust density fitting of four-center two-electron
+  integrals in local metrics}.
+\newblock {\em J. Chem. Phys.}, 129(10):104101, Sep 2008.
+
+\bibitem{Sod2008}
+Alex Sodt and Martin Head-Gordon.
+\newblock {Hartree-Fock exchange computed using the atomic resolution of the
+  identity approximation}.
+\newblock {\em J. Chem. Phys.}, 128(10):104106, Mar 2008.
+
+\bibitem{Man2015}
+Samuel~F. Manzer, Evgeny Epifanovsky, and Martin Head-Gordon.
+\newblock {Efficient Implementation of the Pair Atomic Resolution of the
+  Identity Approximation for Exact Exchange for Hybrid and Range-Separated
+  Density Functionals}.
+\newblock {\em J. Chem. Theory Comput.}, 11(2):518--527, Feb 2015.
+
+\bibitem{For2020}
+Arno F{\ifmmode\ddot{o}\else\"{o}\fi}rster, Mirko Franchini, Erik van Lenthe,
+  and Lucas Visscher.
+\newblock {A Quadratic Pair Atomic Resolution of the Identity Based SOS-AO-MP2
+  Algorithm Using Slater Type Orbitals}.
+\newblock {\em J. Chem. Theory Comput.}, 16(2):875--891, Feb 2020.
+
+\bibitem{Wei2002}
+Florian Weigend.
+\newblock {A fully direct RI-HF algorithm: Implementation, optimised auxiliary
+  basis sets, demonstration of accuracy and efficiency}.
+\newblock {\em Phys. Chem. Chem. Phys.}, 4(18):4285--4291, Sep 2002.
+
+\bibitem{Wei1998}
+Florian Weigend, Marco H{\ifmmode\ddot{a}\else\"{a}\fi}ser, Holger Patzelt, and
+  Reinhart Ahlrichs.
+\newblock {RI-MP2: optimized auxiliary basis sets and demonstration of
+  efficiency}.
+\newblock {\em Chem. Phys. Lett.}, 294(1):143--152, Sep 1998.
+
+\bibitem{Ber1998}
+David~E. Bernholdt and Robert~J. Harrison.
+\newblock {Fitting basis sets for the RI-MP2 approximate second-order many-body
+  perturbation theory method}.
+\newblock {\em J. Chem. Phys.}, 109(5):1593--1600, Aug 1998.
+
+\bibitem{Aqu2007}
+Francesco Aquilante, Roland Lindh, and Thomas Bondo~Pedersen.
+\newblock {Unbiased auxiliary basis sets for accurate two-electron integral
+  approximations}.
+\newblock {\em J. Chem. Phys.}, 127(11):114107, Sep 2007.
+
+\bibitem{Aqu2009}
+Francesco Aquilante, Laura Gagliardi, Thomas~Bondo Pedersen, and Roland Lindh.
+\newblock {Atomic Cholesky decompositions: A route to unbiased auxiliary basis
+  sets for density fitting approximation with tunable accuracy and efficiency}.
+\newblock {\em J. Chem. Phys.}, 130(15):154107, Apr 2009.
+
+\bibitem{Gre1987}
+L.~Greengard and V.~Rokhlin.
+\newblock {A fast algorithm for particle simulations}.
+\newblock {\em J. Comput. Phys.}, 73(2):325--348, Dec 1987.
+
+\bibitem{Gre1994}
+Leslie Greengard.
+\newblock {Fast Algorithms for Classical Physics}.
+\newblock {\em Science}, 265(5174):909--914, Aug 1994.
+
+\bibitem{Din1992}
+Hong-Qiang Ding, Naoki Karasawa, and William~A. Goddard.
+\newblock {Atomic level simulations on a million particles: The cell multipole
+  method for Coulomb and London nonbond interactions}.
+\newblock {\em J. Chem. Phys.}, 97(6):4309--4315, Sep 1992.
+
+\bibitem{Whi1996}
+Christopher~A. White, Benny~G. Johnson, Peter M.~W. Gill, and Martin
+  Head-Gordon.
+\newblock {Linear scaling density functional calculations via the continuous
+  fast multipole method}.
+\newblock {\em Chem. Phys. Lett.}, 253(3):268--278, May 1996.
+
+\bibitem{Boy1960}
+S.~F. Boys.
+\newblock {Construction of Some Molecular Orbitals to Be Approximately
+  Invariant for Changes from One Molecule to Another}.
+\newblock {\em Rev. Mod. Phys.}, 32(2):296--299, Apr 1960.
+
+\bibitem{Pip1989}
+J{\ifmmode\acute{a}\else\'{a}\fi}nos Pipek and Paul~G. Mezey.
+\newblock {A fast intrinsic localization procedure applicable for ab initio and
+  semiempirical linear combination of atomic orbital wave functions}.
+\newblock {\em J. Chem. Phys.}, 90(9):4916--4926, May 1989.
+
+\bibitem{Sub2004}
+Joseph~E. Subotnik, Yihan Shao, WanZhen Liang, and Martin Head-Gordon.
+\newblock {An efficient method for calculating maxima of homogeneous functions
+  of orthogonal matrices: Applications to localized occupied orbitals}.
+\newblock {\em J. Chem. Phys.}, 121(19):9220--9229, Nov 2004.
+
+\bibitem{Aqu2006}
+Francesco Aquilante, Thomas Bondo~Pedersen, Alfredo
+  S{\ifmmode\acute{a}\else\'{a}\fi}nchez~de
+  Mer{\ifmmode\acute{a}\else\'{a}\fi}s, and Henrik Koch.
+\newblock {Fast noniterative orbital localization for large molecules}.
+\newblock {\em J. Chem. Phys.}, 125(17):174101, Nov 2006.
+
+\bibitem{Sub2005}
+Joseph~E. Subotnik, Anthony~D. Dutoi, and Martin Head-Gordon.
+\newblock {Fast localized orthonormal virtual orbitals which depend smoothly on
+  nuclear coordinates}.
+\newblock {\em J. Chem. Phys.}, 123(11):114108, Sep 2005.
+
+\bibitem{Sae1993}
+S.~Saebo and P.~Pulay.
+\newblock {Local Treatment of Electron Correlation}.
+\newblock {\em Annu. Rev. Phys. Chem.}, 44(1):213--236, Oct 1993.
+
+\bibitem{Chr2006}
+Ove Christiansen, Pekka Manninen, Poul J{\o}rgensen, and Jeppe Olsen.
+\newblock {Coupled-cluster theory in a projected atomic orbital basis}.
+\newblock {\em J. Chem. Phys.}, 124(8):084103, Feb 2006.
+
+\bibitem{Low1956}
+Per-Olov L{\ifmmode\ddot{o}\else\"{o}\fi}wdin and Harrison Shull.
+\newblock {Natural Orbitals in the Quantum Theory of Two-Electron Systems}.
+\newblock {\em Phys. Rev.}, 101(6):1730--1739, Mar 1956.
+
+\bibitem{Ree1983}
+Alan~E. Reed and Frank Weinhold.
+\newblock {Natural bond orbital analysis of near{-}Hartree{\textendash}Fock
+  water dimer}.
+\newblock {\em J. Chem. Phys.}, 78(6):4066--4073, Mar 1983.
+
+\bibitem{Wei2001}
+Frank Weinhold and Clark~R. Landis.
+\newblock {NATURAL BOND ORBITALS AND EXTENSIONS OF LOCALIZED BONDING CONCEPTS}.
+\newblock {\em Chem. Educ. Res. Pract.}, 2(2):91--104, May 2001.
+
+\bibitem{Bar1970}
+Tery~L. Barr and Ernest~R. Davidson.
+\newblock {Nature of the Configuration-Interaction Method in Ab Initio
+  Calculations. I. Ne Ground State}.
+\newblock {\em Phys. Rev. A}, 1(3):644--658, Mar 1970.
+
+\bibitem{Sos1989}
+Carlos Sosa, Jan Geertsen, Gary~W. Trucks, Rodney~J. Bartlett, and James~A.
+  Franz.
+\newblock {Selection of the reduced virtual space for correlated calculations.
+  An application to the energy and dipole moment of H2O}.
+\newblock {\em Chem. Phys. Lett.}, 159(2):148--154, Jul 1989.
+
+\bibitem{Tau2005}
+Andrew~G. Taube and Rodney~J. Bartlett.
+\newblock {Frozen Natural Orbitals: Systematic Basis Set Truncation for
+  Coupled-Cluster Theory}.
+\newblock {\em Collect. Czech. Chem. Commun.}, 70(6):837--850, 2005.
+
+\bibitem{Tau2008}
+Andrew~G. Taube and Rodney~J. Bartlett.
+\newblock {Frozen natural orbital coupled-cluster theory: Forces and
+  application to decomposition of nitroethane}.
+\newblock {\em J. Chem. Phys.}, 128(16):164101, Apr 2008.
+
+\bibitem{Luz1976}
+A.~V. Luzanov, A.~A. Sukhorukov, and V.~{\ifmmode\acute{E}\else\'{E}\fi}.
+  Umanskii.
+\newblock {Application of transition density matrix for analysis of excited
+  states}.
+\newblock {\em Theor. Exp. Chem.}, 10(4):354--361, Jul 1976.
+
+\bibitem{Mar2003}
+Richard~L. Martin.
+\newblock {Natural transition orbitals}.
+\newblock {\em J. Chem. Phys.}, 118(11):4775--4777, Mar 2003.
+
+\bibitem{Bau2017}
+Pablo Baudin and Kasper Kristensen.
+\newblock {Correlated natural transition orbital framework for low-scaling
+  excitation energy calculations (CorNFLEx)}.
+\newblock {\em J. Chem. Phys.}, 146(21):214114, Jun 2017.
+
+\bibitem{Sen2011}
+Robert Send, Ville R.~I. Kaila, and Dage Sundholm.
+\newblock {Reduction of the virtual space for coupled-cluster excitation
+  energies of large molecules and embedded systems}.
+\newblock {\em J. Chem. Phys.}, 134(21):214114, Jun 2011.
+
+\bibitem{Sae1985}
+Svein S{\ae}b{\o} and Peter Pulay.
+\newblock {Local configuration interaction: An efficient approach for larger
+  molecules}.
+\newblock {\em Chem. Phys. Lett.}, 113(1):13--18, Jan 1985.
+
+\bibitem{Edm1965}
+C.~Edmiston and M.~Krauss.
+\newblock {Configuration{-}Interaction Calculation of H3 and H2}.
+\newblock {\em J. Chem. Phys.}, 42(3):1119--1120, Feb 1965.
+
+\bibitem{Mey1971}
+Wilfried Meyer.
+\newblock {Ionization energies of water from PNO-CI calculations}.
+\newblock {\em Int. J. Quantum Chem.}, 5(S5):341--348, Jan 1971.
+
+\bibitem{Mey1973}
+Wilfried Meyer.
+\newblock {PNO{\textendash}CI Studies of electron correlation effects. I.
+  Configuration expansion by means of nonorthogonal orbitals, and application
+  to the ground state and ionized states of methane}.
+\newblock {\em J. Chem. Phys.}, 58(3):1017--1035, Feb 1973.
+
+\bibitem{Kra2012}
+Christine Krause and Hans-Joachim Werner.
+\newblock {Comparison of explicitly correlated local coupled-cluster methods
+  with various choices of virtual orbitals}.
+\newblock {\em Phys. Chem. Chem. Phys.}, 14(21):7591--7604, May 2012.
+
+\bibitem{Sch1999}
+Martin Sch{\ifmmode\ddot{u}\else\"{u}\fi}tz, Georg Hetzer, and Hans-Joachim
+  Werner.
+\newblock {Low-order scaling local electron correlation methods. I. Linear
+  scaling local MP2}.
+\newblock {\em J. Chem. Phys.}, 111(13):5691--5705, Oct 1999.
+
+\bibitem{Sch2001}
+Martin Sch{\ifmmode\ddot{u}\else\"{u}\fi}tz and Hans-Joachim Werner.
+\newblock {Low-order scaling local electron correlation methods. IV. Linear
+  scaling local coupled-cluster (LCCSD)}.
+\newblock {\em J. Chem. Phys.}, 114(2):661--681, Jan 2001.
+
+\bibitem{Sch2000}
+Martin Sch{\ifmmode\ddot{u}\else\"{u}\fi}tz and Hans-Joachim Werner.
+\newblock {Local perturbative triples correction (T) with linear cost scaling}.
+\newblock {\em Chem. Phys. Lett.}, 318(4):370--378, Feb 2000.
+
+\bibitem{Bou1993}
+James~W. Boughton and Peter Pulay.
+\newblock {Comparison of the boys and Pipek{\textendash}Mezey localizations in
+  the local correlation approach and automatic virtual basis selection}.
+\newblock {\em J. Comput. Chem.}, 14(6):736--740, Jun 1993.
+
+\bibitem{Mat2008}
+Ricardo~A. Mata, Hans-Joachim Werner, Stephan Thiel, and Walter Thiel.
+\newblock {Toward accurate barriers for enzymatic reactions: QM/MM case study
+  on p-hydroxybenzoate hydroxylase}.
+\newblock {\em J. Chem. Phys.}, 128(2):025104, Jan 2008.
+
+\bibitem{Nee2009a}
+Frank Neese, Andreas Hansen, and Dimitrios~G. Liakos.
+\newblock {Efficient and accurate approximations to the local coupled cluster
+  singles doubles method using a truncated pair natural orbital basis}.
+\newblock {\em J. Chem. Phys.}, 131(6):064103, Aug 2009.
+
+\bibitem{Nee2009b}
+Frank Neese, Frank Wennmohs, and Andreas Hansen.
+\newblock {Efficient and accurate local approximations to coupled-electron pair
+  approaches: An attempt to revive the pair natural orbital method}.
+\newblock {\em J. Chem. Phys.}, 130(11):114108, Mar 2009.
+
+\bibitem{Han2011}
+Andreas Hansen, Dimitrios~G. Liakos, and Frank Neese.
+\newblock {Efficient and accurate local single reference correlation methods
+  for high-spin open-shell molecules using pair natural orbitals}.
+\newblock {\em J. Chem. Phys.}, 135(21):214102., Dec 2011.
+
+\bibitem{Rip2013}
+Christoph Riplinger and Frank Neese.
+\newblock {An efficient and near linear scaling pair natural orbital based
+  local coupled cluster method}.
+\newblock {\em J. Chem. Phys.}, 138(3):034106, Jan 2013.
 
 \end{thebibliography}
