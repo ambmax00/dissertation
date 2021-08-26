@@ -401,7 +401,7 @@ The simplest example of a domain is one that includes a single atom. The atomic 
 
 \subsubsection{Pair-Atomic Resolution of the Identity}
 
-A more popular and simple variant of atomic density fitting is the pair-atomic resolution of the identity (PARI) method \cite{Mar2013}. As the name implies, the domains include atom \emph{pairs} rather than a single atom. Again expressing it in terms of the fitting procedure
+A more popular and simple variant of atomic density fitting is the pair-atomic resolution of the identity (PARI) method \cite{Mer2013}. As the name implies, the domains include atom \emph{pairs} rather than a single atom. Again expressing it in terms of the fitting procedure
 \begin{equation}
 \cn{P}{\mu\nu} = \sum_{Q \in A \cup B} \cn{P}{Q} C^Q_{\mu\nu} \quad \forall P \in A \cup B
 \end{equation}
@@ -465,7 +465,7 @@ Auxiliary basis sets generally need more higher angular momentum functions than 
 
 Auxiliary basis sets have the drawback of being method-specific. There are two categories: auxiliary basis sets for density fitted Hartree-Fock (DF-HF) and for density fitted correlated methods (e.g. DF-MP2, DF-CCSD, DF-ADC(2)). Auxiliary basis sets for DF-HF not only need to reproduce Hartree Fock energies, but also need to minimize negative impact on post-Hartree methods. An ill-suited auxiliary basis set leads to a deterioration of the virtual orbital space, and hence an increased error for correlated methods. 
 
-Optimization procedures often try to minimize the energy differences between the standard method and its density fitting approximation in a series of atomic calculations. For example, the jkfit family of basis sets (cc-pVXZ-JKFIT \cite{Wei2002}, def-XVP-JKFIT \cite{Wei2007}) minimize the error
+Optimization procedures often try to minimize the energy differences between the standard method and its density fitting approximation in a series of atomic calculations. For example, the jkfit family of basis sets (cc-pVXZ-JKFIT \cite{Wei2002}, def-XVP-JKFIT \cite{Wei2008}) minimize the error
 \begin{equation}
 \Delta E_{HF} = E_{HF} - E_{DF-HF}
 \end{equation}
@@ -516,7 +516,7 @@ cos \theta = \frac{\Delta \mathbf{r}_{12}^l \mathcal{R}_{QP}}{\Delta r_{12} R_{Q
 \begin{equation}
 \Delta \mathbf{r}_{12} = \mathbf{r}_{1P} \mathbf{r}_{2Q}
 \end{equation}
-\noindent where $\mathbf{r}_{1P}$ and $\mathbf{r}_{2Q}$ are the distance between electron 1,2 and the centers $P$,$Q$. Equation \ref{eq:PARTIALWAVE} is also known as the partial-wave expansion of the coulomb operator \cite{Arf1970}. Plugging Equation \ref{eq:PARTIALWAVE} into the expression for the two-electron repulsion integrals gives the bipolar multipole expansion of the two-electron integrals
+\noindent where $\mathbf{r}_{1P}$ and $\mathbf{r}_{2Q}$ are the distance between electron 1,2 and the centers $P$,$Q$. Equation \ref{eq:PARTIALWAVE} is also known as the partial-wave expansion of the coulomb operator \cite{Arf2012}. Plugging Equation \ref{eq:PARTIALWAVE} into the expression for the two-electron repulsion integrals gives the bipolar multipole expansion of the two-electron integrals
 \begin{equation}
 g_{abcd} = \sum_{l=0}^{\infty} \sum_{m=-l}^l \sum_{j=0}^{\infty} \sum_{k=-j}^{j} M_{ab}^{lm}(P) T_{lm,jk} M_{cd}^{jk}
 \end{equation}
@@ -593,7 +593,7 @@ There are two significant types of molecular representations besides CMOs: local
 
 \subsection{Local Molecular Orbitals}
 
-In contrast to canonical molecular orbitals, which are generally delocalized over the whole molecule, local molecular orbitals are confined to a relatively small volume and span only a few atoms (except in large conjugated systems). LMOs are well suited for a qualitative description of chemical reaction in terms of molecular bonds, lone pairs and $\pi$ systems \cite{Set2019}. Moreover, they are often used in local correlation methods due to their reduced orbital span. There are several different ways for generating LMOs.
+In contrast to canonical molecular orbitals, which are generally delocalized over the whole molecule, local molecular orbitals are confined to a relatively small volume and span only a few atoms (except in large conjugated systems). LMOs are well suited for a qualitative description of chemical reaction in terms of molecular bonds, lone pairs and $\pi$ systems \cite{Ste2019}. Moreover, they are often used in local correlation methods due to their reduced orbital span. There are several different ways for generating LMOs.
 
 \subsubsection{LMOs by Reducing a Functional}
 % (0) https://aip.scitation.org/doi/full/10.1063/1.2360264
@@ -619,7 +619,7 @@ Functional localization methods are most often used for rotating occupied MOs. V
 
 % EXAMPLES!! Ethylene (?)
 
-\subsubsection{Projected Atomic Orbitals}
+\subsubsection{Projected Atomic Orbitals \label{sec:PAO}}
 % (0) https://www.annualreviews.org/doi/10.1146/annurev.pc.44.100193.001241
 % (1) https://aip.scitation.org/doi/full/10.1063/1.2173249
 
@@ -736,7 +736,7 @@ In Hartree Fock theory, natural orbitals are mostly reserved for qualitative pop
 
 Natural atomic orbitals (NAOs) are computed by diagonalizing the blocks $P_{\mu_A\nu_A}$ of the atomic density matrix, where ${\mu_A}$, ${\nu_A}$ are basis functions centred on atom $A$. NAOs are optimal for describing the electron density around individual atom centres. NAOs are also useful for obtaining a set of guess orbitals from densitiy matrices formed from the superposition of atomic densities (SAD) guess (Annex \ref{app:SCFGUESS}). 
 
-Furthermore, NAOs serve as the starting point for obtaining natural hybrid orbitals (NHOs), which in turn are used for constructing natural bond orbitals (NBOs). NBOs are a useful orbital representation for  analyzing molecular bonds (e.g. bond order, bond polarity). They are conceptually close to the traditional Lewis structure of a molecule \cite{Ree1983,Wei2001,Gle2011}.
+Furthermore, NAOs serve as the starting point for obtaining natural hybrid orbitals (NHOs), which in turn are used for constructing natural bond orbitals (NBOs). NBOs are a useful orbital representation for  analyzing molecular bonds (e.g. bond order, bond polarity). They are conceptually close to the traditional Lewis structure of a molecule \cite{Ree1983,Wei2001,Gle2012}.
 
 % (ref: https://pubs.acs.org/doi/pdf/10.1021/ja00544a007)
 % NBOs https://aip.scitation.org/doi/pdf/10.1063/1.445134
@@ -785,7 +785,7 @@ Consider the CIS eigenvalue problem for finding the excitation energies $\omega_
 
 The matrices $\mathbf{R}_n$ contain $n_{occ}n_{vir}$ expansion coefficients $c_{ia}$ which show how much an orbital-virtual MO pair $ia$ contributes to the excitation $n$. The number of non-negligible coefficients can be far from zero, making interpretations of the computed results difficult for some systems.
 
-Natural transition orbitals (NTOs) were introduced to facilitate the qualititative description of an excited state and finding connections to experimental spectra \cite{Luz1976, Mar2003, Mar2008}. NTOs are typically obtained by computing the singular value decomposition (SVD) of the state densities $\mathbf{R}_n$
+Natural transition orbitals (NTOs) were introduced to facilitate the qualitative description of an excited state and finding connections to experimental spectra \cite{Luz1976, Mar2003}. NTOs are typically obtained by computing the singular value decomposition (SVD) of the state densities $\mathbf{R}_n$
 
 \begin{equation}
 \mathbf{R} = \mathbf{U} \mathbf{\Sigma} \mathbf{V}^{\dagger}  
@@ -878,7 +878,9 @@ t_{ij}^{ab} = \frac{\cn{ia}{jb}}{\eps_a + \eps_b - f_{ii} - f_{jj}}
 
 \noindent where $f_{ii}$ are the diagonal entries of the Fock matrix in the LMO basis. The pair domains $[ij]$ are chosen by keeping the PNOs with an occupation number larger than a threshold $\tau_{PAO}$. Therefore, accuracy is controlled by a single, distance-independent parameter, which is an advantage over other methods like DSVOs. 
 
-However, computing the PNOs requires a full MP2 calculation, and with density fitting scales with $\ccpx{5}$. Moreover, even if the PNO basis is compact, the fact that each LMO pair has its own virtual orbital basis may lead to a prohibitively large number of PNOs for large molecules 
+However, computing the PNOs requires a full MP2 calculation, and with density fitting scales with $\ccpx{5}$. Moreover, even if the PNO basis is compact, the fact that each LMO pair has its own virtual orbital basis may lead to a prohibitively large number of PNOs for large molecules.
+
+The concept of PNOs can be combined with the domain-based approach using LMOs, in what is known as local pair-natural orbitals (LPNOs) \cite{Rip2013}. 
 
 % CA F. Neese, F. Wennmohs and A. Hansen, J. Chem. Phys., 2009, 130, 114108 CrossRef .
 % CB F. Neese, A. Hansen and D. G. Liakos, J. Chem. Phys., 2009, 131, 064103 CrossRef .
@@ -905,7 +907,7 @@ Instead of reducing the density matrix, one can just diagonalize $\mathbf{t}^{ij
 
 OSVs have the advantage that the can be constructed with $\ccpx{3}$ scaling provided that density fitting is used. However, OSVs are less compact than PNOs.
 
-OSVs can be used to lower the computational complexity to construct PNOs. Several hybrid OSV-PNO schemes have been proposed whith a computaional complexity of $\ccpx{4}$ \cite{Kra2012, Hat2012}, $\ccpx{3}$ \cite{Sch2013} and finally $\mathcal{O}(N)$ \cite{Rip2013}.
+OSVs can be used to lower the computational complexity to construct PNOs. Several hybrid OSV-PNO schemes have been proposed whith a computaional complexity of $\ccpx{4}$ \cite{Kra2012}, $\ccpx{3}$ \cite{Sch2013} and finally $\mathcal{O}(N)$ \cite{Rip2013}.
 
 %\subsubsection{Local Pair Natural Orbitals}
 

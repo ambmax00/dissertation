@@ -29,56 +29,47 @@ Reallocating 'name_of_file' (item size: 1) to 6 items.
 The style file: unsrt.bst
 Reallocating 'name_of_file' (item size: 1) to 4 items.
 Database file #1: ref.bib
-Warning--I didn't find a database entry for "Bar2011"
-Warning--I didn't find a database entry for "Mar2013"
-Warning--I didn't find a database entry for "Wei2007"
-Warning--I didn't find a database entry for "Arf1970"
-Warning--I didn't find a database entry for "Set2019"
-Warning--I didn't find a database entry for "Gle2011"
-Warning--I didn't find a database entry for "Mar2008"
-Warning--I didn't find a database entry for "Hof2017"
-Warning--I didn't find a database entry for "Yan2011"
-Warning--I didn't find a database entry for "Hat2012"
-Warning--I didn't find a database entry for "Sch2013"
-You've used 130 entries,
+Warning--empty title in Sac2021
+Warning--empty note in Sac2021
+You've used 190 entries,
             1791 wiz_defined-function locations,
-            1342 strings with 27633 characters,
-and the built_in function-call counts, 32006 in all, are:
-= -- 2969
-> -- 1250
+            1638 strings with 38055 characters,
+and the built_in function-call counts, 46979 in all, are:
+= -- 4359
+> -- 1843
 < -- 2
-+ -- 470
-- -- 340
-* -- 2858
-:= -- 5018
-add.period$ -- 391
-call.type$ -- 130
-change.case$ -- 123
++ -- 691
+- -- 501
+* -- 4227
+:= -- 7361
+add.period$ -- 570
+call.type$ -- 190
+change.case$ -- 181
 chr.to.int$ -- 0
-cite$ -- 130
-duplicate$ -- 1188
-empty$ -- 3140
-format.name$ -- 340
-if$ -- 6845
+cite$ -- 192
+duplicate$ -- 1724
+empty$ -- 4597
+format.name$ -- 501
+if$ -- 10034
 int.to.chr$ -- 0
-int.to.str$ -- 130
-missing$ -- 137
-newline$ -- 653
-num.names$ -- 130
-pop$ -- 170
+int.to.str$ -- 190
+missing$ -- 197
+newline$ -- 952
+num.names$ -- 190
+pop$ -- 237
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 434
+skip$ -- 628
 stack$ -- 0
-substring$ -- 3101
-swap$ -- 138
+substring$ -- 4616
+swap$ -- 197
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 0
-while$ -- 350
-width$ -- 133
-write$ -- 1433
-(There were 11 warnings)
+warning$ -- 2
+while$ -- 513
+width$ -- 193
+write$ -- 2088
+(There were 2 warnings)

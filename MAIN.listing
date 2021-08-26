@@ -1,5 +1,5 @@
-DO i = 1, N
- DO j = 1, N
-  A(i,j) = A(i,j) + 2
- ENDDO
+DO k = 1, nk
+  DO l = 1, nl
+    C(i,j,m) = A(i,k,j,l) * B(l,k,m)
+  ENDDO
 ENDDO

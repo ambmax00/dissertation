@@ -89,6 +89,7 @@ DO i = 1, N
   A(i,j) = A(i,j) + 2
  ENDDO
 ENDDO
+\label{FORTRAN1}
 \end{fortran}
 \noindent By first looping over the rows, and then over the columns, the elements in the column-major matrix are accessed in a \emph{non-contiguous} manner. This prevents efficient optimizations like vectorization due to cache misses. By swapping the loops, the inner loop can be vectorized. Therefore, if algorithms assume a certain ordering, it is important to pass matrices of the same ordering.
 
@@ -165,27 +166,29 @@ BCSR: \left\lbrace
 \right.
 \end{equation*}
 
-\noindent The matrix is therefore split into two non-zero blocks of size 2-by-2 each, with elements $\{3,0,5,4\}$ and $\{1,6,2,7\}$ using column-major ordering. The BCSR format can further reduce the storage prefactor for block-sparse matrices. Smaller block-sizes can account for a higher degree of sparsity, but lead to a higher prefactor. Large block sizes have lower prefactor, but capture less of the sparsity. Figure ... shows the BCSR format for different split factors. The block sizes do not need to be the same, although a constant block size is best suited for load balancing. 
+\noindent The matrix is therefore split into two non-zero blocks of size 2-by-2 each, with elements $\{3,0,5,4\}$ and $\{1,6,2,7\}$ using column-major ordering. The BCSR format can further reduce the storage prefactor for block-sparse matrices. Smaller block-sizes can account for a higher degree of sparsity, but lead to a higher prefactor. Large block sizes have lower prefactor, but capture less of the sparsity. Figure \ref{fig:DISTSTOR2} shows the BCSR format for different split factors. The block sizes do not need to be the same, although a constant block size is best suited for load balancing. 
 
 \subsection{Distributed Storage}
 
-In distributed memory parallelism, processes do no longer have access to the whole matrix. The question then arises how to distribute data over multiple nodes or processes. Distribution can be \emph{blocked} or \emph{cyclic}. In the block representation, the matrix is distributed by dividing rows, columns (or both) by the number of processes, and distributing them sequentially over the processes. On the other hand, the cyclic representation distributes each individual row, column or matrix element over the set of processes and wrapping over them until all elements are assigned to a processor. The cyclic data layout achieves great load balancing by evenly distributing the matrix elements, but is not suitable for row or column manipulations due to a high communication overhead. A blocked representation can reduce this overhead, but load-balancing is more difficult to achieve if the number of elements is not evenly divisible by the number of processes. 
+In distributed memory parallelism, processes do no longer have access to the whole matrix. The question then arises how to distribute data over multiple nodes or processes. Distribution can be \emph{blocked} or \emph{cyclic} (Figure \ref{fig:DISTSTOR1}). In the block representation, the matrix is distributed by dividing rows, columns (or both) by the number of processes, and distributing them sequentially over the processes. On the other hand, the cyclic representation distributes each individual row, column or matrix element over the set of processes and wrapping over them until all elements are assigned to a processor. The cyclic data layout achieves great load balancing by evenly distributing the matrix elements, but is not suitable for row or column manipulations due to a high communication overhead. A blocked representation can reduce this overhead, but load-balancing is more difficult to achieve if the number of elements is not evenly divisible by the number of processes. 
 
-The most commonly used format for distributed matrix storage is the \emph{block-cyclic} representation (Figure ...). It combines the best of both worlds, with good load-balancing and low communication overhead for matrix algebra. Communication is most efficient by arranging processes into a 2-dimensional rectangular grid with $N_{proc} = N_{row} \times N_{col}$, such that each process is uniquely identifies by its coordinates $(i,j)$. A 4-by-2 grid therefore has 4 \emph{process rows} and 2 \emph{process columns}. With MPI, this is most easily achieved by using \emph{Cartesian grids}. In Cartesian grids, processes can only communicate with their nearest neighbor. 
+The most commonly used format for distributed matrix storage is the \emph{block-cyclic} representation (Figure \ref{fig:DISTSTOR2}). It combines the best of both worlds, with good load-balancing and low communication overhead for matrix algebra. Communication is most efficient by arranging processes into a 2-dimensional rectangular grid with $N_{proc} = N_{row} \times N_{col}$, such that each process is uniquely identifies by its coordinates $(i,j)$. A 4-by-2 grid therefore has 4 \emph{process rows} and 2 \emph{process columns}. With MPI, this is most easily achieved by using \emph{Cartesian grids}. In Cartesian grids, processes can only communicate with their nearest neighbor. 
 
-Each process has a local array which can be packed in different ways. The ScaLAPACK library keeps the original ordering of the matrix elements (Figure ...), while other matrix libraries like DBCSR store the individual blocks sequentially in memory instead. 
+Each process has a local array which can be packed in different ways. The ScaLAPACK library keeps the original ordering of the matrix elements, while other matrix libraries like DBCSR store the individual blocks sequentially in memory. Blocks do not necessarily need to be equal in size. Matrices like DBCSR also support heterogeneous block sizes.
+
+Sparse matrices
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.25]{Pics/DISTSTOR1.pdf}
-\caption{Caption}
+\caption{There are two distinct ways to distribute rows, column or elements along processes, namely cyclic and block. Each color represents a processor (4 in total).}
 \label{fig:DISTSTOR1}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.25]{Pics/DISTSTOR2.pdf}
-\caption{Caption}
+\caption{In the block-cyclic distribution, the matrix is divided into blocks which are distributed over a processor grid, in this case 2 $\times$ 2.}
 \label{fig:DISTSTOR2}
 \end{figure}
 
@@ -193,6 +196,16 @@ Each process has a local array which can be packed in different ways. The ScaLAP
 The block size has a major impact on the performance of distributed linear algebra algorithms. Consider the multiplication of two matrices. Multiplication can be reformulated in terms of individual multiplications of sub-blocks. 
 
 \section{Matrix Libraries}
+
+\subsection{BLAS}
+
+\subsection{LAPACK}
+
+\subsection{Eigen}
+
+\subsection{ScaLAPACK}
+
+\subsection{DBCSR}
 
 rank, semi-definiteness etc ....
 
@@ -202,9 +215,68 @@ Libraries: LAPACK, Eigen, ScaLAPACK
 
 \section{Tensors}
 
-\section{Tensor Storage Orders}
+\subsection{Definitions}
 
-\section{Tensor Libraries}
+Tensors are multi-dimensional arrays and can be seen as a generalization of matrix objects to higher dimensions, containing a set of complex or real values $\{a_{ijk...}\}$ with the ordered indices $i = 0,1,2,...N_0$, $j = 0,1,2,...N_1$, $k = 0,1,2,...N_2$ etc. The total number of indices required to identify an element in a tensor corresponds to its \emph{dimension}, also called \emph{rank}, \emph{order} or \emph{degree}. It should be stressed that tensor rank is different from the concept of a matrix rank. 
+
+Tensors are important quantities in various scientific fields, especially in physics and quantum chemistry. Examples of tensor are the 4-dimensional MP2-amplitudes $t_{iajb}$ or the 3-dimensional 3c2e electron integrals. Matrices can be seen as 2-dimensional tensors. 
+
+The analog of matrix multiplication is \emph{tensor contraction}, nd involves the summation over one or multiple indices. Consider for example the tensor contraction
+\begin{equation}
+C_{ijm} = \sum_{kl} A_{ikjl} B_{lkm}
+\end{equation}
+\noindent Here, the summation runs over the indices $kl$. Alternatively, the expression above can be abbreviated as
+\begin{equation}
+C_{ijm} = A_{ikjl} B_{lkm}
+\label{eq:TENEX}
+\end{equation}
+\noindent which is known as  \emph{Einstein summation}, a notational convention used to simplify tensor expressions. Indices appearing on the right but not on the left are implicitly summed over. 
+
+\subsection{Tensor Storage and Mapping}
+
+Mapping multi-dimensional to the linear main memory is non-trivial. Tensors may follow a generalized column or row major storage such that
+\begin{align}
+A(i_0,i_1,...,i_n) &\rightarrow \sum_{k=0} \left( \prod_{l=k+1}^{N_{dim}} n_l \right) i_k \qquad \textrm{row-major} \\
+A(i_0,i_1,...,i_n) &\rightarrow \sum_{k=0} \left( \prod_{l=0}^{k-1} n_l \right) i_k \qquad \textrm{column-major} 
+\end{align} 
+\noindent where $N_{dim}$ is the dimension of the tensor, and $n_k$ is the size of dimension $k$.
+
+Consider again the tensor contraction \ref{eq:TENEX}. It can be computed by setting up two loops running over the indices $kl$:
+\begin{fortran}{Tensor Loop}
+DO k = 1, nk
+  DO l = 1, nl
+    C(i,j,m) = A(i,k,j,l) * B(l,k,m) MMOOORE LOOPS!!
+  ENDDO
+ENDDO
+\end{fortran}
+\noindent Similarly to Example \ref{FORTRAN1} which loops over matrix elements, efficient parallelization by means of vectorization is a major concern when coding tensor contractions by hand. Ideally, tensor contractions should be offloaded to a specialized library. However, writing a general tensor library is a complex task, as the optimal "kernel" is dependent on the nature of the tensor contraction, i.e. number of indices involved, tensor dimensions and memory mapping. Whereas the \textrm{dgemm} BLAS routine only needs to know whether the matrices are transposed or not, the rapidly increasing number of parameters makes it very difficult to write optimized code for arbitrary tensor contractions.  
+
+Many tensor libraries solve this problem by mapping tensors to matrices which can then be multiplied. Consider the tensor $A_{ikjl}$. By introducing the \emph{super-indices} $P$ and $Q$, the tensor can be mapped to a matrix with $n_i n_k$ rows and $n_j n_l$ columns with
+\begin{align}
+P(i,k) &= i + k*n_i \\
+Q(j,l) &= j + l*n_j
+\end{align}
+\noindent The individual tensor elements are then accessed by
+\begin{equation}
+A(i,k,j,l) \rightarrow P(i,k) + Q(j,l)  (n_i  n_j)
+\end{equation}
+\noindent using column-major storage for both the indices and super-indices. This corresponds to mapping $ik$ to the rows and $jl$ to the columns of a large matrix, which may also be written in a condensed notation as $\cn{01}{23}$. The notation $\cn{02}{13}$ would then indicate that the indices $ij$ are mapped to rows, and $kl$ are mapped to columns. Alternatively, the mapping can be indicated by using upper or lower indices. $\cn{01}{23}$ corresponds to $A_{ik}^{jl}$ and $\cn{02}{13}$ to $A_{ij}^{kl}$. The lower indices are also known as \emph{covariant} indices, and the upper indices as \emph{contravariant} indices. From here on out, only the notation $\cn{\cdot}{\cdot}$ will be used.
+
+Coming back to the tensor contraction in \ref{eq:TENEX}, mapping the tensors according to $A_{ikjl}^{\cn{02}{13}}$, $B_{lkm}^{\cn{10}{2}}$ and $C_{ijm}^{\cn{01}{2}}$, the contraction can be reformulated as a simple matrix multiplication:
+\begin{equation}
+\mbf{C} = \mbf{A} \mbf{B}
+\end{equation}
+\noindent and optimized matrix libraries can be used to perform the tensor contraction. It is also possible to choose the mapping $B_{lkm}^{\cn{2}{10}}$, and the tensor contraction may be expressed as
+\begin{equation}
+\mbf{C} = \mbf{A} \mbf{B}^T
+\end{equation}
+\noindent by taking the transpose of $\mbf{B}$. In general, any tensor contraction can be reformulated as a matrix multiplication by mapping the indices which are summed over to either the row or column of a matrix, and the indices which are not involved to the remaining dimension. 
+
+Major drawback: rearranging if involved in multiple contractions
+
+\subsection{Tensor Libraries}
+
+Just a paragraph
 
  libtensor, ctf, 
  TA, dbcsr, libxsmm 
