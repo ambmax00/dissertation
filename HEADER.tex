@@ -68,16 +68,16 @@
 \newcommand{\olc}{\overline{c}}
 \newcommand{\old}{\overline{d}}
 
-\newcommand{\ooli}{\overline{\overline{i}}}
-\newcommand{\oolj}{\overline{\overline{j}}}
-\newcommand{\oolk}{\overline{\overline{k}}}
-\newcommand{\ooll}{\overline{\overline{l}}}
-\newcommand{\oola}{\overline{\overline{a}}}
-\newcommand{\oolb}{\overline{\overline{b}}}
-\newcommand{\oolc}{\overline{\overline{c}}}
-\newcommand{\oold}{\overline{\overline{d}}}
+\newcommand{\ooli}{\overline{i}}
+\newcommand{\oolj}{\overline{j}}
+\newcommand{\oolk}{\overline{k}}
+\newcommand{\ooll}{\overline{l}}
+\newcommand{\oola}{\overline{a}}
+\newcommand{\oolb}{\overline{b}}
+\newcommand{\oolc}{\overline{c}}
+\newcommand{\oold}{\overline{d}}
 
-\newcommand{\ool}[1]{\overline{\overline{#1}}}
+\newcommand{\ool}[1]{\overline{#1}}
 
 \newcommand{\eps}{\epsilon}
 
@@ -247,6 +247,17 @@
     		language=Fortran
     	}, 
     title=Listing \thetcbcounter: #2, #1}
+
+\lstnewenvironment{flisting}{
+	\lstset{
+		language=Fortran,
+		basicstyle=\ttfamily,
+		numbers=left, 
+		backgroundcolor=\color{light-gray}
+		xleftmargin=1em,
+    		breaklines=true,
+    		numberstyle=\scriptsize,
+}}{}
 
 \newtcbinputlisting[auto counter,number within=section]{cppcode}[3][]{
 	sharp corners, 

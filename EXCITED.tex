@@ -313,12 +313,34 @@ and the anti-symmetrized MP2 amplitudes
 
 Approximating the 2p-2h block to first order in the ADC(2) matrix, i.e. swapping the 2p-2h block with the one from the ADC(3) matrix, gives the so-called extended ADC(2) scheme (ADC(2)-x). It is an \emph{ad-hoc} extension without rigoruous theoretical justification \cite{Tro1995}.  
 
-The eigenvalue problem \ref{eq:ADCEVAL} is typically solved using the Davidson procedure to extract the first few eigenvalues, analogous to configuration interaction. Rather than constructing the whole ADC matrix, closed expressions are derived for the matrix-vector products of the different blocks with a general trial vector $\mbf{u}$. For computational considerations, the matrix-vector product is split into its individual components, which in the case of ADC(2) and ADC(3), are limited to singles and doubles contributions:
+\subsubsection{Solving the Eigenvalue Problem \label{sec:ADC_DAV}}
+
+The eigenvalue problem \ref{eq:ADCEVAL} is typically solved using the Davidson procedure to extract the first few eigenvalues, analogous to configuration interaction. Rather than constructing the whole ADC matrix, closed expressions are derived for the matrix-vector products of the different blocks with a general trial vector $\mbf{u}$. For computational considerations, the matrix-vector product is split into its individual components which are then multiplied by the sub-blocks of the ADC matrix. In the case of ADC(2) and ADC(3), the components are limited to singles and doubles contributions:
 \begin{align}
-\mbf{r}_s &= \mbf{A}_{ss} \mbf{u}_s + \mbf{A}_{sd} \mbf{u}_d \\
-\mbf{r}_d &= \mbf{A}_{ds} \mbf{u}_d + \mbf{A}_{dd} \mbf{u}_{dd} 
+r_{ia} &= A_{ia,jb} u_{jb} + A_{ia,jbkc} u_{jbkc} \\
+r_{iajb} &= A_{iajb,kc} u_{kc} + A_{iajb,kcld} u_{kcld} 
 \end{align}
-\noindent The expressions of the ADC MVP will be discussed in more detail in Chapter \ref{cha:AOADC}.
+
+While the Davidson procedure allows to circumvent storing the whole ADC matrix, the storage of the trial vectors can still be a major memory bottle-neck for ADC(2) and beyond. At second and third order, the doubles part of the vectors scale with $n_{occ}^2n_{vir}^2$, and take up as much space as the MP2 amplitudes. As the Davidson subspace grows, so does the number of trial vectors. Techniques such as \emph{subspace collapse} (Section \ref{sec:DAV}) impose a maximum to the number of trial vectors held in memory, which helps to better estimate the total storage size needed by an ADC calculation, although it increases the total number of iterations to convergence.
+
+An alternative technique to reduce the memory footprint of the Davdison diagonalization is \emph{doubles-folding}. Consider the doubles part of the MVP which is computed as
+\begin{align}
+r_{iajb} &= A_{iajb,kc} u_{kc} + A_{iajb,kcld} u_{kcld} = \omega u_{iajb}
+\end{align}
+\noindent By refactoring the above expression, the doubles component of $\mbf{u}$ can be reformulated in terms of its singles component as
+\begin{equation}
+u_{iajb} = \frac{A_{iajb,kc} u_{kc}}{\omega - A_{iajb,iajb}} 
+\label{eq:DS}
+\end{equation}
+\noindent This technique is limited to ADC(2) only, where the doubles-doubles block is diagonal. Substituting \ref{eq:DS} into the singles expression of the MVP, and using the explicit formulas for the doubles-doubles block gives
+\begin{equation}
+r_{ia} = A_{ia,jb} u_{jb} + A_{ia,jbkc} \frac{A_{jbkc,ld} u_{ld}}{\omega - \eps_j - \eps_k + \eps_b + \eps_c} 
+\end{equation}
+\noindent The doubles part of the MVP is computed on-the-fly and does not need to be explicitly stored, reducing the overall memory requirements of the Davdison diagonalization to $n_{occ}n_{vir}$. Doubles-folding corresponds to a multiplication of the singles vectors with an \emph{effective} ADC matrix which depends on the eigenvalue $\omega$
+\begin{equation}
+\mbf{r}_{\mu_1} = \mbf{A}(\omega)_{\mu_1\nu_1} \mbf{u}_{\nu_1} 
+\end{equation}
+\noindent One drawback of doubles-folding is that a modified Davidson procedure is necessary to solve this \emph{pseudo} eigenvalue problem (see \ref{seq:DAV}) due to the dependence on the excitation energy $\omega$.
 
 \subsection{Intermediate states}
 
@@ -345,7 +367,7 @@ M_{IJ} = -\sbra{\tPsi_I} \hat{H} - E_0 \sket{\tPsi_J}
 \end{equation}
 \noindent the intermediate states are obtained by a step-wise Gram-Schmidt orthogonalization of the CE states. The ground state $\sket{\Psi_0}$ is approximated by MPPT. Constructing the intermediate states from the MP$n$ ground state wave function and evaluating the matrix elements according to \ref{eq:ISMATELE} gives the $n$th order ADC matrix. For this reason, ADC is also known as "excited state method for M{\o}ller-Plesset". 
 
-\subsection{Spin-Opposite Scaled ADC}
+\subsection{Spin-Opposite Scaled ADC \label{sec:SOSADC}}
 
 The spin-opposite scaling method previously applied to MP2 and CC2 can be expanded to ADC(2) as well.    There are two version of SOS-ADC(2): the version which will be referred to as "standard" SOS-ADC(2) derived from the SOS-CC2 linear response equations \cite{Win2011}, and ISR-SOS-ADC(2) derived from SOS-MP2 using the intermediate state representation \cite{Kra2013}. Standard SOS-ADC(2) introduces the following modifications to the ADC(2) matrix:
 \begin{enumerate}

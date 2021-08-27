@@ -1,6 +1,6 @@
 \chapter{The Spin-Opposite Scaled Algebraic Diagrammatic Construction Method in the Atomic Orbital Basis \label{cha:AOADC}}
 
-The Algebraic Diagrammatic Construction method can be considered as M{\o}ller Plesset for excited states. It is therefore not surprising that local correlation method for MP can also be applied to MP. In chapter ..., it has been shown that local approximations for the ground state can be grouped into 3 categories: atomic orbitals, local orbitals and natural orbitals. Only the latter two have been used in the context of ADC as discussed in chapter .... An atomic orbital representation of ADC has not yet been considered in literature, and will be the subject of this chapter. First, the restricted doubles-folded ADC working equations are derived. Then the SOS approximation is applied. Finally, the restricted SOS-ADC working equations are derived in the AO basis, with and without density fitting. 
+The Algebraic Diagrammatic Construction method can be considered as M{\o}ller Plesset for excited states. It is therefore not surprising that local correlation method for MP can also be applied to MP. In chapter 4, it has been shown that local approximations for the ground state can be grouped into 3 categories: atomic orbitals, local orbitals and natural orbitals. Only the latter two have been used in the context of ADC as discussed in chapter 6. An atomic orbital representation of ADC has not yet been considered in literature, and will be the subject of this chapter. First, the restricted doubles-folded ADC working equations are derived. Then the SOS approximation is applied. Finally, the restricted SOS-ADC working equations are derived in the AO basis, with and without density fitting. 
 
 \section{Working Equations for Restricted ADC with Doubles-Folding}
 
@@ -16,20 +16,30 @@ The eigenvalue problem in the algebraic diagrammatic construction method truncat
 \end{bmatrix}
 \mathbf{\Omega}
 \end{equation}
-\noindent where $\mathbf{A}$ is the symmetric Jacobian ADC matrix with the singles-singles (SS), doubles-singles (DS), singles-doubles (SD) and doubles-doubles (DD) sub-blocks, with the eigenvectors $\mathbf{v}$ and the diagonal eigenvalue matrix $\Omega$. The eigenvalue problem in Equation ... is generally solved using the Davidson diagonalization procedure (A2) to extract the first few lowest eigenvalues. Rather than constructing the entire Jacobian matrix which scales as $\ccpx{8}$ using Equations ... to ..., the Davidson method computes the matrix-vector products $\mathbf{r} = \mathbf{A} \mathbf{u}$ with the current trial vectors $\mathbf{u}$ using a closed-form expression, which reduces the computational complexity to $\ccpx{5}$. The MVPs can be expressed in block-form as
+\noindent where $\mathbf{A}$ is the symmetric ADC matrix with the singles-singles (SS), doubles-singles (DS), singles-doubles (SD) and doubles-doubles (DD) sub-blocks, with the eigenvectors $\mathbf{v}$ and the diagonal eigenvalue matrix $\Omega$. The eigenvalue problem is generally solved using the Davidson diagonalization procedure to extract the first few lowest eigenvalues. Rather than constructing the entire Jacobian matrix which scales as $\ccpx{8}$, the Davidson method computes the matrix-vector products $\mathbf{r} = \mathbf{A} \mathbf{u}$ with the current trial vectors $\mathbf{u}$ using a closed-form expression, which reduces the computational complexity to $\ccpx{5}$. The MVPs can be expressed in block-form as
 \begin{equation}
 \begin{split}
 \mathbf{r}_{S} = \mathbf{A}_{SS} \mathbf{u}_{S} + \mathbf{A}_{SD} \mathbf{u}_{D} \\
 \mathbf{r}_{D} = \mathbf{A}_{DS} \mathbf{u}_{S} + \mathbf{A}_{DD} \mathbf{u}_{D}
 \end{split} 
 \end{equation}
-\noindent The trial vector space in the Davidson diagonalization scales with fourth order as $o^2v^2$, and can quickly become a memory bottle-neck for large molecules. As shown in the previous chapter, one can recompute the doubles-part of the MVP on-the-fly using \emph{doubles-folding}
+\noindent The trial vector space in the Davidson diagonalization scales with fourth order as $o^2v^2$, and can quickly become a memory bottle-neck for large molecules. As shown in chapter 2, one can recompute the doubles-part of the MVP on-the-fly using \emph{doubles-folding}
 \begin{equation}
 \mathbf{r}_S(\omega) = \mathbf{A}_{SS} \mathbf{u}_{S} + \frac{\mathbf{A}_{SD}}{\omega - \mathbf{DD}} \mathbf{u}_{S} 
 \end{equation} 
-\noindent This trick is only possible for ADC(2)-s where the doubles-doubles block of the ADC matrix is diagonal. While the memory footprint for the diagonalization is reduced from $o^2v^2$ to $ov$, the MVP becomes dependent on the eigenvalue $\omega$ and a modified Davidson procedure needs to be used to solve this \emph{pseudo}-eigenvalue value (A...). 
-
-The above expression is valid in the case of unrestriced ADC(2) where molecular \emph{spin}-orbitals are assumed, rather than \emph{spatial} orbitals. The working equations for standard ADC(2) and doubles-folded ADC(2) are given in Table ... . Implementations such as adcman in Q-Chem can use these formulae directly by delegating any considerations of spin-symmetry to a special tensor library called libtensor, which programmatically keeps track of the non-vanishing spin block components and reduces the expressions to the restricted ADC(2) equations for closed-shell molecules (Figure ...).
+\noindent This trick is only possible for ADC(2)-s where the doubles-doubles block of the ADC matrix is diagonal. While the memory footprint for the diagonalization is reduced from $o^2v^2$ to $ov$, the MVP becomes dependent on the eigenvalue $\omega$ and a modified Davidson procedure needs to be used to solve this \emph{pseudo}-eigenvalue problem. The working equations for the folded ADC(2) matrix-vector product is given by \cite{Wor2009}
+\begin{align}
+\begin{split}
+r_{ia} &= \sum_b u_{ib} f_{ab} - \sum_j f_{ij} u_{jb} + \sum_{jb} \sbra{ja}\sket{ib} u_{jb} + \left[ \sum_b I^{(1)}_{ab} u_{ib} + \sum_j I^{(2)}_{ij} u_{ja}\right] \\
+&- \frac{1}{2} \left[ \sum_{jb} t_{ijab} I^{(3)}_{jb} - \sum_{jb} \sbra{ij}\sket{ab} I^{(4)}_{jb} \right] \\
+&+ \left[\sum_{jkb} \sbra{jk}\sket{ib} u_{jkab}(\omega) + \sum_{jbc} u_{ijbc}(\omega) \sket{ja}\sbra{bc}\right]
+\end{split}
+\end{align}
+\noindent where the doubles part is computed as
+\begin{align}
+u_{iajb}(\omega) &= \frac{1}{2} \frac{\left[sum_k \sbra{ij}\sket{kb}u_{ka} - \sbra{ij}{ka} u_{kb}\right] + \sum_c u_{ic} \sbra{jc}\sket{ab} - u_{jc} \sbra{ic}\sket{ab}}{\omega + \eps_i + \eps_j - \eps_a - \eps_b}
+\end{align}
+\noindent and with the intermediates $I^{(1)}$, $I^{(2)}$, $I^{(3)}$ and $I^{(4)}$ as given in \cite{Wor2009}. Until now, only spin molecular orbitals were assumed. Implementations such as adcman in Q-Chem \cite{Sha2006} can use these formulae directly by delegating any considerations of spin-symmetry to a special tensor library called libtensor \cite{Epi2013}, which programmatically keeps track of the non-vanishing spin block components and reduces the expressions to the restricted ADC(2) equations for closed-shell molecules.
 
 If no special block tensor library is used, it is numerically advantageous to split the ADC(2) matrix-vector products into their spin-components, and compute each block individually. Using a double-bar notation to indicate MOs with opposite spin $\sigma(i) \neq \sigma(\ool{i})$, the matrix-vector product can be written as
 \begin{equation}
@@ -61,7 +71,7 @@ I_{ia}^{(1)} = \sum_{jb} \left[ \cn{jb}{ia} - \cn{ja}{ib} \right] u_{jb} + \sum_
 \begin{equation}
 I_{ia}^{(2)} = \sum_{jb} \left[ t_{iajb} - t_{jaib} \right] u_{jb} + \sum_{\ool{jb}} t_{ia\ool{jb}} u_{\ool{jb}}
 \end{equation}
-\noindent The doubles components are computed on-the-fly and read
+\noindent The doubles spin components are computed on-the-fly and read
 \begin{equation}
 \begin{split}
 u_{iajb}(\omega) &= \frac{1}{\omega - \eps_a - \eps_b + \eps_i + \eps_j} \left\lbrace \sum_k \left[ u_{ka} \cn{ki}{bj} - u_{ka} \cn{kj}{bi} - u_{kb} \cn{ki}{aj} \right. \right. \\
@@ -74,74 +84,64 @@ u_{ia\ool{jb}}(\omega) = \frac{1}{\omega - \eps_a - \eps_b + \eps_i + \eps_j} \l
 \end{split}
 \end{equation}
 \noindent The expression for the MVP for beta electrons ($r_{\ool{ia}})$ is obtained by replacing alpha orbitals ($i$) by beta orbitals ($\ool{i}$) and vice-versa in the expressions above. The off-diagonal blocks $r_{i\oola}$, i.e. the spins-flip states will not be considered here and are set to zero. For closed-shell molecules, the complexity of the formulas can be drastically reduced by introducing the following spin-symmetry relationships:
-\begin{equation}
-\begin{split}
-t_{iajb} = t_{ia\ool{jb}} = t_{\ool{ia}jb} = t_{\ool{iajb}} \\
-\cn{ia}{jb} = \cn{ia}{\ool{jb}} = \cn{\ool{ia}}{jb} = \cn{\ool{ia}}{\ool{jb}} 
-\end{split}
-\end{equation}
-\begin{equation}
-\begin{split}
-u_{ia} &= u_{\ool{ia}} \qquad \textrm{if singlet} \\
-u_{ia} &= - u_{\ool{ia}} \qquad \textrm{if triplet} 
-\end{split}
-\end{equation}
+\begin{align}
+t_{iajb} &= t_{ia\ool{jb}} = t_{\ool{ia}jb} = t_{\ool{iajb}}   \label{eq:SPIN1}\\
+\cn{ia}{jb} &= \cn{ia}{\ool{jb}} = \cn{\ool{ia}}{jb} = \cn{\ool{ia}}{\ool{jb}} \label{eq:SPIN2} \\
+u_{ia} &= u_{\ool{ia}} \qquad \textrm{if singlet} \label{eq:SPIN3} \\
+u_{ia} &= - u_{\ool{ia}} \qquad \textrm{if triplet} \label{eq:SPIN4}
+\end{align}
 \noindent One then obtains two separate expressions for restricted ADC(2), depending on whether singlet or triplet states are addressed
-\begin{equation}
+\begin{align}
 \begin{split}
 r_{ia}^S(\omega) &= (\eps_a - \eps_i) u_{ia} - \sum_{jb} \left[ 2\cn{ia}{jb} - \cn{ij}{ab} \right] u_{jb}^S + \sum_b I_{ab} u_{ib} + \sum_j u_{ja}^S I_{ij} \\
 &- \frac{1}{2} \sum_{jb} \left[2t_{iajb} - t_{ibja}\right] I^{(1)S}_{jb} - \frac{1}{2} sum_{jb} \left[ 2 \cn{ia}{jb} - \cn{ib}{ja} \right] I^{(2)S}_{jb} \\
 &+ \sum_{kcl} \cn{ik}{lc} \left( 2 u_{kalc}^S(\omega) - u_{lakc}^S(\omega) \right) + \sum_{ckd} \left( 2 u^S_{ickd}(\omega) - u^S_{kcid}(\omega) \right) \cn{kd}{ac}  
 \end{split}
-\end{equation} 
-\begin{equation}
+\label{eq:SPINADCS}
+\\
 \begin{split}
 r_{ia}^T(\omega) &= (\eps_a - \eps_i) u_{ia}^T - \sum_{jb} \cn{ij}{ab} u_{jb}^T + \sum_b I_{ab} u_{ib}^T + \sum_j I_{ij} u_{ja}^T \\
 &+ \frac{1}{2} \sum_{jb} t_{ibja} I^{(1)T}_{jb} + \frac{1}{2} \sum_{jb} \cn{ib}{ja} I^{(2)T}_{jb} \\
 +& \sum_{kcl} \cn{ik}{lc} u^T_{kalc}(\omega) + \sum_{ckd} \left[ 2 u^T_{ickd}(\omega) - u^T_{idkc}(\omega) - u^T_{kcid}(\omega) \right] 
 \end{split}
-\end{equation}
+\label{eq:SPINADCT}
+\end{align}
 \noindent with the singlet and triplet doubles intermediates
-\begin{equation}
+\begin{align}
 \begin{split}
-u^{S,SOS}_{iajb}(\omega) = \frac{c_{osc}}{\omega - \eps_a + \eps_i - \eps_b + \eps_j} \left\lbrace \sum_k \left[ u^S_{ka} \cn{ki}{jb} + u^S_{kb} \cn{kj}{ai} \right] \right. \\
-\left. - \sum_c \left[ u^S_{ic} \cn{jb}{ac} - u^S_{jc} \cn{ib}{ac} \right] \right\rbrace
+u^{S,SOS}_{iajb}(\omega) &= \frac{c_{osc}}{\omega - \eps_a + \eps_i - \eps_b + \eps_j} \left\lbrace \sum_k \left[ u^S_{ka} \cn{ki}{jb} + u^S_{kb} \cn{kj}{ai} \right] \right. \\
+&\left. - \sum_c \left[ u^S_{ic} \cn{jb}{ac} - u^S_{jc} \cn{ib}{ac} \right] \right\rbrace
 \end{split} 
-\end{equation}
-\begin{equation}
-u^T_{iajb}(\omega) = \frac{1}{\omega - \eps_a + \eps_i - \eps_b + \eps_j} \left\lbrace \sum_k u^T_{ka} \cn{ki}{bj} - \sum_c u^T_{ic} \cn{ac}{jb} \right\rbrace
-\end{equation}
+\\
+u^T_{iajb}(\omega) &= \frac{1}{\omega - \eps_a + \eps_i - \eps_b + \eps_j} \left\lbrace \sum_k u^T_{ka} \cn{ki}{bj} - \sum_c u^T_{ic} \cn{ac}{jb} \right\rbrace
+\end{align}
 \noindent The pre-iteration intermediates are given by
-\begin{equation}
+\begin{align}
 \begin{split}
 I_{ab} &= \frac{1}{2} \sum_{kcl} \left[ \left( 2t_{kalc} - t_{kcla}\right) \cn{kb}{lc} + \left( 2t_{kblc} - t_{kclb} \right) \cn{ka}{lc} \right] \\
 &= \frac{1}{2} \left[ \sum_{kcl} \left( 2t_{kalc} - t_{kcla}\right) \cn{kb}{lc} \right]\sym{a}{b}
 \end{split}
-\end{equation}
-\begin{equation}
+\\
 \begin{split}
 I_{ij} &= \frac{1}{2} \sum_{ckd} \left[ \left( 2t_{ickd} - t_{idkc}\right) \cn{jc}{kd} + \left( 2t_{jckd} - t_{jdkc} \right) \cn{ic}{kd} \right] \\
 &= \frac{1}{2} \left[ \sum_{ckd} \left( 2t_{ickd} - t_{idkc}\right) \cn{jc}{kd} \right]\sym{i}{j}
 \end{split}
-\end{equation}
+\end{align}
 \noindent and are the same for both singlet and triplet expressions. The iterative intermediates however are split:
-\begin{equation}
-I^{(1)S}_{ia} = \sum_{jb} \left( 2\cn{ia}{jb} - \cn{ib}{ja} \right) u_{jb}^S
-\end{equation}
-\begin{equation}
-I^{(2)S}_{ia} = \sum_{jb} \left( 2t_{iajb} - t_{ibja}\right) u_{jb}^S
-\end{equation}
-\begin{equation}
-I^{(1)T}_{ia} = - \sum_{jb} \cn{ib}{ja} u_{jb}^T
-\end{equation}
-\begin{equation}
-I^{(2)T}_{ia} = - \sum_{jb} t_{ibja} u_{jb}^T
-\end{equation}
-\noindent For the restricted equations ... to ..., the indices $ijkl...$ and $abcd...$  represent the occupied and virtual spin-integrated \emph{spatial} molecular orbitals. 
+\begin{align}
+I^{(1)S}_{ia} &= \sum_{jb} \left( 2\cn{ia}{jb} - \cn{ib}{ja} \right) u_{jb}^S
+\\
+I^{(2)S}_{ia} &= \sum_{jb} \left( 2t_{iajb} - t_{ibja}\right) u_{jb}^S
+\\
+I^{(1)T}_{ia} &= - \sum_{jb} \cn{ib}{ja} u_{jb}^T
+\\
+I^{(2)T}_{ia} &= - \sum_{jb} t_{ibja} u_{jb}^T
+\end{align}
+%\noindent For the restricted equations ... to ..., the indices $ijkl...$ and $abcd...$  represent the occupied and virtual spin-integrated \emph{spatial} molecular orbitals. 
 
 \section{Working Equations for Restricted SOS-ADC(2) with Doubles-Folding}
 
-In the restricted ADC expressions for the matrix-vector product, the 4-index intermediates $u_{iajb}(\omega)$ need to be evaluated and temporarily stored, even if the density fitting approximation is used. This memory-intensive step can be avoided by using spin-opposite scaling (Section ...). Consider again the approximations introduced by the SOS method for the unrestricted ADC(2) matrix equations
+In the restricted ADC expressions for the matrix-vector product, the 4-index intermediates $u_{iajb}(\omega)$ need to be evaluated and temporarily stored, even if the density fitting approximation is used. This memory-intensive step can be avoided by using spin-opposite scaling (Section \ref{sec:SOSADC}). Consider again the approximations introduced by the SOS method for the unrestricted ADC(2) matrix equations
 \begin{itemize}
 \item In the spin-amplitudes $\hat{t}_{iajb}$ the same-spin contributions are nulled and the opposite-spin contributions are scales by $c_os$
 \begin{equation}
@@ -156,7 +156,7 @@ C_{iajb,kc} = c_{osc} \left[ \sbk{kb}{ij} \delta_{ac} - \sbk{ka}{ij} \delta_{bc}
 \end{equation}
 \noindent Here, the function $\sigma(x)$ returns the spin of orbital $x$.
 \end{itemize}
-Applying the above constraints to Equation ... gives the spin components of the SOS-ADC(2) matrix-vector product with doubles-folding 
+Applying the above constraints to the MVP expressions \ref{eq:SPINADCS} (shown for singles only) gives the spin components of the SOS-ADC(2) matrix-vector product:
 \begin{equation}
 \begin{split}
 r_{ia}^{SOS}( \omega) = &(\eps_a - \eps_i) u_{ia} - \sum_{jb} \left[ \cn{ij}{ab} - \cn{ia}{jb} \right] u_{jb} + \sum_{\ool{jb}} \cn{ia}{\ool{jb}} u_{\ool{jb}} \\
@@ -164,79 +164,75 @@ r_{ia}^{SOS}( \omega) = &(\eps_a - \eps_i) u_{ia} - \sum_{jb} \left[ \cn{ij}{ab}
 &- \frac{1}{2} \left[\cn{ia}{jb} - \cn{ja}{ib} \right] I_{jb}^{(2)SOS} \\
 &+ c_{osc} \left\lbrace \sum_{k\ool{cl}} u_{ka\ool{lc}}(\omega) \cn{ik}{\ool{cl}} - \sum_{c\ool{kd}} \cn{ac}{\ool{kd}} u_{ic\ool{kd}}(\omega) \right\rbrace
 \end{split}
+\label{SPINSOSADC2S}
 \end{equation}  
 \noindent with the SOS pre-iteration intermediates 
-\begin{equation}
+\begin{align}
 \begin{split}
 I_{ab}^{SOS} &= \frac{1}{2} \sum_{k\ool{cl}} \left[ t_{ka\ool{lc}} \cn{kb}{\ool{lc}} + \cn{ak}{\ool{cl}} t_{kb\ool{lc}} \right]
 \end{split}
-\end{equation}
-\begin{equation}
+\\
 \begin{split}
 I_{ij}^{SOS} &= \frac{1}{2} \sum_{c\ool{kd}} \left[ t_{ic\ool{kd}} \cn{jc}{\ool{kd}} + \cn{ci}{\ool{dk}} t_{jc\ool{kd}} \right]  
 \end{split}
-\end{equation}
-\noindent and the SOS iteration intermediates
-\begin{equation}
-I_{ia}^{(1)SOS} = \sum_{jb} \left[ \cn{jb}{ia} - \cn{ja}{ib} \right] u_{jb} + \sum_{\ool{jb}} \cn{\ool{jb}}{ia} u_{\ool{jb}}
-\end{equation}
-\begin{equation}
-I_{ia}^{(2)SOS} = \sum_{\ool{jb}} t_{ia\ool{jb}} u_{\ool{jb}}
-\end{equation}
+\end{align}
+\noindent and the singlet SOS iteration intermediates
+\begin{align}
+I_{ia}^{(1)SOS} &= \sum_{jb} \left[ \cn{jb}{ia} - \cn{ja}{ib} \right] u_{jb} + \sum_{\ool{jb}} \cn{\ool{jb}}{ia} u_{\ool{jb}}
+\\
+I_{ia}^{(2)SOS} &= \sum_{\ool{jb}} t_{ia\ool{jb}} u_{\ool{jb}}
+\end{align}
 \noindent Only the opposite-spin components of the doubles components are needed:
 \begin{equation}
 \begin{split}
 u_{ia\ool{jb}}^{SOS}(\omega) = \frac{c_{osc}}{\omega - \eps_a - \eps_b + \eps_i + \eps_j} \left\lbrace \sum_k u_{ka} \cn{ki}{\ool{bj}} + \sum_{\ool{k}} u_{\ool{kb}} \cn{\ool{kj}}{ai} \right. \\ - \sum_c u_ic \cn{ac}{\ool{bj}} - \left. \sum_{\ool{c}} u_{\ool{jc}} \cn{\ool{bc}}{ai} \right\rbrace
 \end{split}
 \end{equation}
-\noindent Finally, for closed-shell molecules, the matrix vector products for singlet and triplet excitations for restricted SOS-ADC(2) can be obtained by inserting the spin-symmetry relationships (...) into Equation (...)
-\begin{myframe}{EQUATION}
-\begin{equation}
+\noindent Finally, for closed-shell molecules, the matrix vector products for singlet and triplet excitations for restricted SOS-ADC(2) can be obtained by inserting the spin-symmetry relationships \ref{eq:SPIN1} to \ref{eq:SPIN4} into Equation \ref{SPINSOSADC2S}, and performing a similar manipulation for the triplet expression:
+%\begin{myframe}{EQUATION}
+\begin{align}
 \begin{split}
 r_{ia}^{S,SOS}(\omega) &= (\eps_a - \eps_i) u_{ia}^S - \sum_{jb} \left[ 2\cn{ia}{jb} - \cn{ij}{ab} \right] u_{jb}^S + \sum_b I^{SOS}_{ab} u_{ib} + \sum_j u_{ja}^S I^{SOS}_{ij} \\
 &- \frac{1}{2} \sum_{jb} t_{iajb}I^{(1)S,SOS}_{jb} - \frac{1}{2} \sum_{jb} \left[ 2\cn{ia}{jb} - \cn{ib}{ja} \right] I^{(2)S,SOS}_{jb} \\
 &+ c_{osc} \left\lbrace \sum_{kcl} \cn{ik}{lc} u^{S,SOS}_{kalc}(\omega) - \sum_{ckd} u^{S,SOS}_{ickd}(\omega) \cn{kd}{ac} \right\rbrace
 \end{split}
-\end{equation} 
-\end{myframe}
-\begin{equation}
+\label{eq:SOSRADC2S}
+\\
 \begin{split}
 r_{ia}^{T,SOS}(\omega) &= (\eps_a - \eps_i) u_{ia}^S - \sum_{jb} \cn{ij}{ab} u_{jb}^T + \sum_b I^{SOS}_{ab} u_{ib} + \sum_j u_{ja}^S I^{SOS}_{ij} \\
 &- \frac{1}{2} \sum_{jb} t_{iajb}I^{(1)T,SOS}_{jb} + \frac{1}{2} \sum_{jb} \cn{ib}{ja} I^{(2)T,SOS}_{jb} \\
 &+ c_{osc} \left\lbrace \sum_{kcl} \cn{ik}{lc} u^{T,SOS}_{kalc}(\omega) - \sum_{ckd} u^{T,SOS}_{ickd}(\omega) \cn{kd}{ac} \right\rbrace
 \end{split}
-\end{equation} 
-\begin{equation}
+\label{eq:SOSRADC2T}
+\end{align}
+\noindent with the on-the-fly doubles
+\begin{align}
 \begin{split}
-u_{iajb}^{S,SOS}(\omega) = \frac{c_{osc}}{\omega - \eps_a - \eps_b + \eps_i + \eps_j} \left\lbrace \sum_k u_{ka} \cn{ki}{bj} + \sum_{k} u_{kb} \cn{kj}{ai} \right. \\ - \sum_c u_ic \cn{ac}{bj} - \left. \sum_{c} u_{jc} \cn{bc}{ai} \right\rbrace
+u_{iajb}^{S,SOS}(\omega) &= \frac{c_{osc}}{\omega - \eps_a - \eps_b + \eps_i + \eps_j} \left\lbrace \sum_k u_{ka} \cn{ki}{bj} + \sum_{k} u_{kb} \cn{kj}{ai} \right. \\ 
+&- \sum_c u_ic \cn{ac}{bj} - \left. \sum_{c} u_{jc} \cn{bc}{ai} \right\rbrace
 \end{split}
-\end{equation}
-\begin{equation}
+\\
 \begin{split}
-u_{iajb}^{T,SOS}(\omega) = \frac{c_{osc}}{\omega - \eps_a - \eps_b + \eps_i + \eps_j} \left\lbrace \sum_k u_{ka} \cn{ki}{bj} - \sum_{k} u_{kb} \cn{kj}{ai} \right. \\ - \sum_c u_ic \cn{ac}{bj} + \left. \sum_{c} u_{jc} \cn{bc}{ai} \right\rbrace
+u_{iajb}^{T,SOS}(\omega) &= \frac{c_{osc}}{\omega - \eps_a - \eps_b + \eps_i + \eps_j} \left\lbrace \sum_k u_{ka} \cn{ki}{bj} - \sum_{k} u_{kb} \cn{kj}{ai} \right. \\ 
+&- \sum_c u_ic \cn{ac}{bj} + \left. \sum_{c} u_{jc} \cn{bc}{ai} \right\rbrace
 \end{split}
-\end{equation}
-\noindent with the the intermediates
-\begin{equation}
-I_{ab}^{SOS} = \frac{c_os}{2} \left[ \sum_{kcl} t_{kalc} \cn{kb}{lc} \right]\sym{a}{b}
-\end{equation}
-\begin{equation}
-I_{ij}^{SOS} = \frac{c_os}{2} \left[ \sum_{ckd} t_{ickd} \cn{jc}{kd} \right]\sym{i}{j}
-\end{equation}
-\begin{equation}
-I^{(1)S,SOS}_{ia} = \sum_{jb} \left( 2\cn{ia}{jb} - \cn{ib}{ja} \right) u_{jb}^S
-\end{equation}
-\begin{equation}
-I^{(2)S,SOS}_{ia} = c_{os} \sum_{jb} t_{iajb} u_{jb}^S
-\end{equation}
-\begin{equation}
-I^{(1)T,SOS}_{ia} = - \sum_{jb} \cn{ib}{ja} u_{jb}^T
-\end{equation}
-\begin{equation}
-I^{(2)T,SOS}_{ia} = - c_{os} \sum_{jb} t_{iajb} u_{jb}^T
-\end{equation}
+\end{align}
+\noindent and the intermediates
+\begin{align}
+I_{ab}^{SOS} &= \frac{c_os}{2} \left[ \sum_{kcl} t_{kalc} \cn{kb}{lc} \right]\sym{a}{b}
+\\
+I_{ij}^{SOS} &= \frac{c_os}{2} \left[ \sum_{ckd} t_{ickd} \cn{jc}{kd} \right]\sym{i}{j}
+\\
+I^{(1)S,SOS}_{ia} &= \sum_{jb} \left( 2\cn{ia}{jb} - \cn{ib}{ja} \right) u_{jb}^S
+\\
+I^{(2)S,SOS}_{ia} &= c_{os} \sum_{jb} t_{iajb} u_{jb}^S
+\\
+I^{(1)T,SOS}_{ia} &= - \sum_{jb} \cn{ib}{ja} u_{jb}^T
+\\
+I^{(2)T,SOS}_{ia} &= - c_{os} \sum_{jb} t_{iajb} u_{jb}^T
+\end{align}
 
-\section{Working Equations For Restricted AO-SOS-ADC(2) with Doubles-Folding}
+\section{Working Equations For Restricted SOS-ADC(2) with Doubles-Folding in an Atomic Orbital Basis}
 
 The goal of an atomic orbital based formulation of ADC(2) is to compute the matrix-vector product in an intermediate AO basis and transform it back to the MO basis (or alternatively an LMO basis) for the Davidson procedure, similarly to how it is done for CIS:
 \begin{equation}
@@ -246,7 +242,7 @@ r_{ia} = C_{\mu i} r_{\ulgm \olgn} C_{\nu a}
 \begin{equation}
 r_{ia}(\omega) = r_{ia}^{CIS} + r_{ia}^{2A} + r_{ia}^{2B} + r_{ia}^{2C} + r_{ia}^{2D} + r_{ia}^{2E}(\omega)
 \end{equation}
-\noindent In the next sections, using Equations ... and ... as starting points, the working equations for restricted AO-SOS-ADC(2) will be derived and discussed in detail. 
+\noindent In the next sections, using Equations \ref{eq:SOSRADC2S} and \ref{eq:SOSRADC2T} as starting points, the working equations for restricted AO-SOS-ADC(2) will be derived and discussed in detail. 
 
 \subsection{First Order}
 
@@ -271,7 +267,7 @@ r_{ia}^{T,CIS,AO} &= (\eps_a - \eps_i) u^T_{ia} - \sum_{ia} C_{\mu i} C_{\sigma 
 \begin{equation}
 u_{\ulgm\olgs} = C_{\mu i} u_{ia} C_{\olgs a}
 \end{equation}
-\noindent The zero order terms (i.e. the molecular orbital energy differences) do not need to be formulated in an AO basis, because the computation time is negligeable. Similarly, transforming $\mathbf{\tilde{J}}$ and $\mathbf{\tilde{K}}$ to the MO basis formerly scales as $\ccpx{3}$ but has very low overhead and does not influence the overall scaling of AO-SOS-ADC(2). The time-determining steps are the computataion of the J-kernel, which scales as $ccpx{2}$ (or $\mathcal{O}(N)$ if the continuous fast multipole method is used) and the K-kernel, which scales as $\mathcal{O}(N)$ in limit of large systems. For triplet excitations, the scaling is reduced to linear due to the absence of coulomb contributions.
+\noindent The zero order terms (i.e. the molecular orbital energy differences) do not need to be formulated in an AO basis, because the computation time is negligeable. Similarly, transforming $\mathbf{\tilde{J}}$ and $\mathbf{\tilde{K}}$ to the MO basis formerly scales as $\ccpx{3}$ but has very low overhead and does not influence the overall scaling of AO-SOS-ADC(2). The time-determining steps are the computataion of the J-kernel, which scales as $\ccpx{2}$ and the K-kernel, which scales as $\mathcal{O}(N)$ in limit of large systems. For triplet excitations, the scaling is reduced to linear due to the absence of coulomb contributions.
 
 \subsection{Second Order: Part 2A and 2B}
 
@@ -280,7 +276,7 @@ The expressions for component 2A and 2B read
 r_{ia}^{S,SOS,2A} = \sum_b I^{SOS}_{ab} u^S_{ib} + \sum_j I^{SOS}_{ij} u^S_{ja} \\
 r_{ia}^{T,SOS,2A} = \sum_b I^{SOS}_{ab} u^T_{ia} + \sum_j I^{SOS}_{ij} u^T_{ja} 
 \end{align}
-\noindent with the intermediates as defined in Equation ....  and .... Rather than casting the whole expression into the AO basis, it is more convenient to evaluate only the non-symmetrized intermediates $I^{SOS,ns}_ab$ and $I^{SOS,ns}_{ij}$ in the AO basis.
+\noindent with the intermediates as defined in the previous section. Rather than casting the whole expression into the AO basis, it is more convenient to evaluate only the non-symmetrized intermediates $I^{SOS,ns}_ab$ and $I^{SOS,ns}_{ij}$ in the AO basis.
 The expressions for the intermediates involve the t-amplitudes, and to obtain an orbital-invariant formulation, it is necessary to use the Laplace transform
 \begin{equation}
 \frac{1}{\eps_a - \eps_i + \eps_b - \eps_j} = \sum^{nlap}_{\alpha} |w\pa| e^{-\eps_a t\pa} e^{\eps_i t\pa} e^{-\eps_b t\pa} e^{\eps_j t\pa} 

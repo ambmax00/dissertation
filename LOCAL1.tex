@@ -1,6 +1,6 @@
 \chapter{Local Correlation Methods (II): Ground State \label{cha:LOCAL1}}
 
-Since the seminal work of S{\ae}b{\o} and Pulay \ref{Pul1983,Sae1985,Sae1993} which demonstrated how the computational effort of correlated methods can be reduced using a local treatment of electron correlation via LMOs and PAOs, the concept of locality has been applied to Hartree-Fock, M{\o}ller-Plesset and Coupled-Cluster methods. Over the years, pure LMO methods have somewhat fallen out of use, in favor for an atomic orbital or natural orbital treatment. This chapter summarizes how the tools and concepts of local electron correlation presented in the previous chapter can be used to reduce the scaling of electronic structure methods. The focus will mainly be on Hartree-Fock and M{\o}ller-Plesset, with some words on Coupled-Cluster as well.
+Since the seminal work of S{\ae}b{\o} and Pulay \ref{Pul1983,Sae1985,Sae1993}, demonstrating how the computational effort of electronic structure methods may be reduced via a local treatment of electron correlation using LMOs and PAOs, the concept of locality has been applied to Hartree-Fock, M{\o}ller-Plesset and Coupled-Cluster methods. Over the years, pure LMO methods have somewhat fallen out of use, in favor for an atomic orbital or (local) natural orbital treatment. This chapter summarizes how the tools and concepts of sparsity and local electron correlation presented in the previous chapter can be used to reduce the scaling of electronic structure methods. The focus will mainly be on Hartree-Fock and M{\o}ller-Plesset, with some words on Coupled-Cluster as well.
 
 \section{Low-Scaling Self-Consistent Field Methods}
 
@@ -245,7 +245,7 @@ Routine application of density matrix purification or minimization has been main
 
 Second-Order M{\o}ller Plesset is one of the simplest post-Hartree Fock methods available, but still scales as $\ccpx{5}$. Attempts to reduce computational complexity can generally be grouped into two categories: AO-MP2, LMO-MP2. Independent on which method is used, they share two problems. 
 
-First, the energy denominator in the MP2-amplitudes $t$ make it difficult to transform the MP2 energy expressions into a different basis. AO-MP2 and LMO-MP2 take different approaches: AO-MP2 solves the problem using the Laplace quadrature, while LMO-MP2 methods usually use an orbital-invariant formulation of MP2 using the Hylleraas functional. %NO methods can alternatively use canonicalization (Annex \ref{app:CANON}) to use the canonical MP2 expressions. 
+First, the energy denominator in the MP2-amplitudes $t$ make it difficult to transform the MP2 energy expressions into a different basis. AO-MP2 and LMO-MP2 take different approaches to an \emph{orbital-invariant} formulation of the MP2 energy expressions: AO-MP2 solves the problem using the Laplace quadrature, while LMO-MP2 methods generally use the Hylleraas functional. %NO methods can alternatively use canonicalization (Annex \ref{app:CANON}) to use the canonical MP2 expressions. 
 
 Second, steps involving the transformation of the AO 2-electron integrals to the Pseudo-AO or LMO basis still remain a major bottle-neck, even with sparsity involved. Both AO- and LMO-MP2 use screening criteria, additional domain restrictions, density fitting or similar methods to lower the cost of integral transformation. These additional procedures are crucial if one wishes to achieve a truly linear scaling MP2 method with a reduced overhead. 
 
@@ -600,9 +600,9 @@ B_{\olgm\olgn}\pa = \sum_a \bar{C}_{\mu a} |w\pa|^{1/4} e^{-\eps_a t\pa} \bar{C}
 
 % Kat2008 https://pubs.rsc.org/en/content/articlepdf/2008/cp/b802993h
 
-\subsubsection{Orbital Invariant MP2}
+\subsubsection{Hylleraas Functional}
 
-Alternatively, the local MP2 amplitudes can be determined iteratively via an \emph{orbital-invariant} formulation of the MP2 energy expression. Orbital-invariant MP2 predates LT-MP2 by a decade and is based on the \emph{Hylleraas functional} \cite{Hyl1929,Pul1986}. The  Hylleraas functional form of the energy is given by minimizing 
+Alternatively, the local MP2 amplitudes can be determined iteratively via an orbital-invariant formulation of the MP2 energy expression based on the \emph{Hylleraas functional} \cite{Hyl1929,Pul1986}. The  Hylleraas functional form of the energy is given by minimizing 
 \begin{equation}
 E^{(2)} = min \left[ 2\bra{\Psi^{(1)}} \mathbf{H} - E_0  \ket{Psi^{(0}} - \bra{\Psi^{(1)}} \mathbf{H}_0 - E_0 \ket{\Psi^{(1)}} \right]
 \label{eq:HYLMIN}
@@ -621,7 +621,8 @@ R_{iajb} = \bra{ij} {} \ket{ab} + \sum_c \left(t_{ijab} f_{cb} + f_{ac} t_{iacb}
 \end{split}
 \label{eq:MP2RES}
 \end{equation}
-\noindent where $\mathbf{R}$ is the residual. The amplitudes $\mathbf{t}$ are then no longer computed directly by a closed expression, but iteratively by solving the system of equations, in a similar vein to coupled cluster. This method is said to be orbital invariant, because any molecular orbital representation can be used. For a set of orthogonal MOs $\uli$ and $\ola$, the quantities in Equation \ref{eq:MP2RES} are simply replaced by their local equivalent. Analogous to LT-LMP2, if PAOs are to be used for the virtual orbital space, the non-orthogonality needs to be taken into consideration. For a mixed LMO-PAO basis, the MP2 residual reads
+\noindent where $\mathbf{R}$ is the residual. The amplitudes $\mathbf{t}$ are then no longer computed directly by a closed expression, but iteratively by solving the system of equations, in a similar vein to coupled cluster. %This method is said to be orbital invariant, because any molecular orbital representation can be used. 
+For a set of orthogonal MOs $\uli$ and $\ola$, the quantities in Equation \ref{eq:MP2RES} are simply replaced by their local equivalent. Analogous to LT-LMP2, if PAOs are to be used for the virtual orbital space, the non-orthogonality needs to be taken into consideration. For a mixed LMO-PAO basis, the MP2 residual reads
 \begin{equation}
 \begin{split}
 R_{\uli \olgm \ulj \olgn} = & \bra{\uli\ulj}{}\ket{\olgm\olgn} + \sum_{\olgs\olgl} \left( f_{\olgm\olgs} t_{\uli \olgs \ulj \olgl} S_{\olgl\olgn} + S_{\olgm\olgs} t_{\uli \olgs \ulj \olgl} f_{\olgl\olgn} \right) \\
@@ -759,13 +760,15 @@ B^{X}_{\uli\ola} = \sum_{Y \in [i]_{fit} \cup [j]_{fit}} \cn{X}{Y}^{-1/2} \cn{Y}
 
 \subsection{Natural Orbitals}
 
-Pure natural orbital techniques are generally not used in the context of MP2, given that MP2 is traditionally used as a guess density to obtain the natural orbitals. Rather, NOs are more popular in the context of coupled cluster methods like CCSD and CCSD(T) (see below), though there have been some application in the context of PNOs \cite{Fra2017,Sch2013} and domain-based local PNOs (DLPNO) \cite{Wer2015,Pin2018}. The latter combines the compact virtual representation of PNOs with the local electron-pair treatment of LMOs   described in the previous sections. 
+Pure natural orbital techniques are generally not used in the context of MP2, given that MP2 is also used as a guess density to obtain the natural orbitals. Rather, NOs are more popular in the context of coupled cluster methods like CCSD and CCSD(T), though there have been some application in the context of PNOs \cite{Fra2017,Sch2013} and domain-based local PNOs (DLPNO) \cite{Wer2015,Pin2018}. The latter combines the compact virtual representation of PNOs with the local electron-pair treatment of LMOs   described in the previous sections. 
+
+As was previously explained, the main idea of NOs is to truncate the virtual space by omitting all orbitals with an occupation number below a certain threshold. The MO integrals in the truncated NO basis can then be plugged into one of the orbital-invariant formulations of the MP2 energy expressions, or they can be canonicalized to be used in the standard MP2 expressions.
 
 \section{Coupled Cluster}
 
-Virtually all of the concepts introduced in the previous section can also be applied in the context of coupled cluster. Local MP2 and local CC evaluate the MO integrals in the same exact manner, either using LMOs \cite{Sch2001, Sch2002, Sch2000a, Sch2000b,Sch2001}, natural orbitals \cite{Tau2008,Nag2018,Rol2013} or pair-natural orbitals \cite{Nee2009a,Guo2018,Sch2017,Rip2013}, reducing the virtual space and thus speeding up the evaluation of the coupled-cluster amplitudes. 
+Virtually all of the concepts introduced in the previous section can also be applied in the context of coupled cluster. Local MP2 and local CC evaluate the MO integrals in the same exact manner, either using LMOs \cite{Sch2001, Sch2002, Sch2000a, Sch2000b,Sch2001}, natural orbitals \cite{Tau2008,Nag2018,Rol2013} or pair-natural orbitals \cite{Nee2009a,Guo2018,Sch2017,Rip2013}. The orbital-invariant CC amplitude equations can then be directly solved at a reduced cost by plugging in the truncated MO integrals.
 
-An atomic orbital formulation of the coupled cluster equations is possible \cite{Scu1999}, but has never been pursued further. Again, the AO-CCSD method as presented by Scuseria et al. is not really a pure AO-method, but rather a PAO-like approach similar to PAO-CCSD later proposed by Christiansen and Koch \cite{Chr2006}. The reason why PAO coupled cluster methods have not been popular is likely due to the very high prefactor for larger basis sets, which are often crucial for obtaining accurate correlation energies. Moreover, in contrast to MP$n$ amplitudes, the coupled cluster amplitudes do not have closed expressions, which in turn inhibits any further factorizations to reduce the overhead like in CD-MP2, with the exception of CC2 \cite{Sac2021}.
+An atomic orbital formulation of the coupled cluster equations is possible \cite{Scu1999}, but has never been pursued further. Again, the AO-CCSD method as presented by Scuseria et al. is not really a pure AO-method, but rather a PAO-like approach similar to PAO-CCSD later proposed by Christiansen and Koch \cite{Chr2006}. The reason why AO/PAO coupled cluster methods have not been popular is likely due to the very high prefactor for larger basis sets, which are often crucial for obtaining accurate correlation energies. Moreover, in contrast to MP$n$ amplitudes, the coupled cluster amplitudes do not have closed expressions, which in turn inhibits any further factorizations of coefficient matrices to reduce the overhead like in Cholesky decomposed MP2, with the exception of hybrid methods like CC2 \cite{Sac2021}.
 
 %AO: Scu1999
 %LNO: Nag2018 (CCSD(T)) Rol2013 (CCSD(T), 

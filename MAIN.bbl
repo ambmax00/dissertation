@@ -17,6 +17,15 @@ Martin Sch{\ifmmode\ddot{u}\else\"{u}\fi}tz, Georg Hetzer, and Hans-Joachim
   scaling local MP2}.
 \newblock {\em J. Chem. Phys.}, 111(13):5691--5705, Oct 1999.
 
+\bibitem{Mes2019}
+D{\ifmmode\acute{a}\else\'{a}\fi}vid Mester,
+  P{\ifmmode\acute{e}\else\'{e}\fi}ter~R. Nagy, and
+  Mih{\ifmmode\acute{a}\else\'{a}\fi}ly K{\ifmmode\acute{a}\else\'{a}\fi}llay.
+\newblock {Reduced-Scaling Correlation Methods for the Excited States of Large
+  Molecules: Implementation and Benchmarks for the Second-Order
+  Algebraic-Diagrammatic Construction Approach}.
+\newblock {\em J. Chem. Theory Comput.}, 15(11):6111--6126, Nov 2019.
+
 \bibitem{Har2014}
 Philipp H.~P. Harbach, Michael Wormit, and Andreas Dreuw.
 \newblock {The third-order algebraic diagrammatic construction method (ADC(3))
@@ -1150,5 +1159,95 @@ Gunnar Schmitz and Christof H{\ifmmode\ddot{a}\else\"{a}\fi}ttig.
 \bibitem{Sac2021}
 Filippo Sacchetta and Christian Ochsenfeld.
 \newblock 2021.
+
+\bibitem{Kor2003}
+Tatiana Korona and Hans-Joachim Werner.
+\newblock {Local treatment of electron excitations in the EOM-CCSD method}.
+\newblock {\em J. Chem. Phys.}, 118(7):3006--3019, Feb 2003.
+
+\bibitem{Cra2002}
+T.~Daniel Crawford and Rollin~A. King.
+\newblock {Locally correlated equation-of-motion coupled cluster theory for the
+  excited states of large molecules}.
+\newblock {\em Chem. Phys. Lett.}, 366(5):611--622, Dec 2002.
+
+\bibitem{Kat2009}
+Danylo Kats and Martin Sch{\ifmmode\ddot{u}\else\"{u}\fi}tz.
+\newblock {A multistate local coupled cluster CC2 response method based on the
+  Laplace transform}.
+\newblock {\em J. Chem. Phys.}, 131(12):124117, Sep 2009.
+
+\bibitem{Mes2017}
+D{\ifmmode\acute{a}\else\'{a}\fi}vid Mester,
+  P{\ifmmode\acute{e}\else\'{e}\fi}ter~R. Nagy, and
+  Mih{\ifmmode\acute{a}\else\'{a}\fi}ly K{\ifmmode\acute{a}\else\'{a}\fi}llay.
+\newblock {Reduced-cost linear-response CC2 method based on natural orbitals
+  and natural auxiliary functions}.
+\newblock {\em J. Chem. Phys.}, 146(19):194102, May 2017.
+
+\bibitem{Lan2010}
+Arie Landau, Kirill Khistyaev, Stanislav Dolgikh, and Anna~I. Krylov.
+\newblock {Frozen natural orbitals for ionized states within equation-of-motion
+  coupled-cluster formalism}.
+\newblock {\em J. Chem. Phys.}, 132(1):014109, Jan 2010.
+
+\bibitem{Kum2017}
+Ashutosh Kumar and T.~Daniel Crawford.
+\newblock {Frozen Virtual Natural Orbitals for Coupled-Cluster Linear-Response
+  Theory}.
+\newblock {\em J. Phys. Chem. A}, 121(3):708--716, Jan 2017.
+
+\bibitem{Mes2018}
+D{\ifmmode\acute{a}\else\'{a}\fi}vid Mester,
+  P{\ifmmode\acute{e}\else\'{e}\fi}ter~R. Nagy, and
+  Mih{\ifmmode\acute{a}\else\'{a}\fi}ly K{\ifmmode\acute{a}\else\'{a}\fi}llay.
+\newblock {Reduced-cost second-order algebraic-diagrammatic construction method
+  for excitation energies and transition moments}.
+\newblock {\em J. Chem. Phys.}, 148(9):094111, Mar 2018.
+
+\bibitem{Hel2011}
+Benjamin Helmich and Christof H{\ifmmode\ddot{a}\else\"{a}\fi}ttig.
+\newblock {Local pair natural orbitals for excited states}.
+\newblock {\em J. Chem. Phys.}, 135(21):214106, Dec 2011.
+
+\bibitem{Hel2013}
+Benjamin Helmich and Christof H{\ifmmode\ddot{a}\else\"{a}\fi}ttig.
+\newblock {A pair natural orbital implementation of the coupled cluster model
+  CC2 for excitation energies}.
+\newblock {\em J. Chem. Phys.}, 139(8):084114, Aug 2013.
+
+\bibitem{Hel2014}
+Benjamin Helmich and Christof H{\ifmmode\ddot{a}\else\"{a}\fi}ttig.
+\newblock {A pair natural orbital based implementation of ADC(2)-x:
+  Perspectives and challenges for response methods for singly and doubly
+  excited states in large molecules}.
+\newblock {\em Comput. Theor. Chem.}, 1040-1041:35--44, Jul 2014.
+
+\bibitem{Fra2018}
+Marius~S. Frank and Christof H{\ifmmode\ddot{a}\else\"{a}\fi}ttig.
+\newblock {A pair natural orbital based implementation of CCSD excitation
+  energies within the framework of linear response theory}.
+\newblock {\em J. Chem. Phys.}, 148(13):134102, Apr 2018.
+
+\bibitem{Cra2019}
+T.~Daniel Crawford, Ashutosh Kumar, Alexandre~P.
+  Bazant{\ifmmode\acute{e}\else\'{e}\fi}, and Roberto Di~Remigio.
+\newblock {Reduced-scaling coupled cluster response theory: Challenges and
+  opportunities}.
+\newblock {\em WIREs Comput. Mol. Sci.}, 9(4):e1406, Jul 2019.
+
+\bibitem{Dut2016}
+Achintya~Kumar Dutta, Frank Neese, and R{\ifmmode\acute{o}\else\'{o}\fi}bert
+  Izs{\ifmmode\acute{a}\else\'{a}\fi}k.
+\newblock {Towards a pair natural orbital coupled cluster method for excited
+  states}.
+\newblock {\em J. Chem. Phys.}, 145(3):034102, Jul 2016.
+
+\bibitem{Bau2016}
+Pablo Baudin and Kasper Kristensen.
+\newblock {LoFEx {\ifmmode---\else\textemdash\fi} A local framework for
+  calculating excitation energies: Illustrations using RI-CC2 linear response
+  theory}.
+\newblock {\em J. Chem. Phys.}, 144(22):224106, Jun 2016.
 
 \end{thebibliography}

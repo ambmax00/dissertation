@@ -83,13 +83,12 @@ A(i,j) \rightarrow \text{a[i + j * M]}
 Neither storage order has any advantages or disadvantes over the other one. It is only a matter of convention, and depend on the library and programming language. Fortran arrays are column-major, while C/C++ arrays are row-major. 
 
 However, algorithms optimized for column-major access might not give the same performance for row-major formats and vice-versa. Consider a simple loop over matrix elements in the Fortran programming language
-\begin{fortran}{Matrix Loop}
+\begin{fortran}{Matrix Loop \label{FORTRAN1}}
 DO i = 1, N
  DO j = 1, N
   A(i,j) = A(i,j) + 2
  ENDDO
 ENDDO
-\label{FORTRAN1}
 \end{fortran}
 \noindent By first looping over the rows, and then over the columns, the elements in the column-major matrix are accessed in a \emph{non-contiguous} manner. This prevents efficient optimizations like vectorization due to cache misses. By swapping the loops, the inner loop can be vectorized. Therefore, if algorithms assume a certain ordering, it is important to pass matrices of the same ordering.
 
@@ -166,7 +165,7 @@ BCSR: \left\lbrace
 \right.
 \end{equation*}
 
-\noindent The matrix is therefore split into two non-zero blocks of size 2-by-2 each, with elements $\{3,0,5,4\}$ and $\{1,6,2,7\}$ using column-major ordering. The BCSR format can further reduce the storage prefactor for block-sparse matrices. Smaller block-sizes can account for a higher degree of sparsity, but lead to a higher prefactor. Large block sizes have lower prefactor, but capture less of the sparsity. Figure \ref{fig:DISTSTOR2} shows the BCSR format for different split factors. The block sizes do not need to be the same, although a constant block size is best suited for load balancing. 
+\noindent The matrix is therefore split into two non-zero blocks of size 2-by-2 each, with elements $\{3,0,5,4\}$ and $\{1,6,2,7\}$ using column-major ordering. The BCSR format can further reduce the storage prefactor for block-sparse matrices. Smaller block-sizes can account for a higher degree of sparsity, but lead to a higher prefactor. Large block sizes have lower prefactor, but capture less of the sparsity. Figure \ref{fig:DISTSTOR2} shows the BCSR format for different split factors. The block sizes do not need to be the same, although a constant block size is best suited for load balancing. Whether a block is significant or not depends on the matrix norm that is chosen as a criterion for filtering. Popular choices include the Frobenius norm or the max norm. 
 
 \subsection{Distributed Storage}
 
@@ -176,7 +175,7 @@ The most commonly used format for distributed matrix storage is the \emph{block-
 
 Each process has a local array which can be packed in different ways. The ScaLAPACK library keeps the original ordering of the matrix elements, while other matrix libraries like DBCSR store the individual blocks sequentially in memory. Blocks do not necessarily need to be equal in size. Matrices like DBCSR also support heterogeneous block sizes.
 
-Sparse matrices
+All the sparse storage schemes discussed in the previous sections can also be applied to distributed matrices. DBCSR uses a block-sparse row format which distributes the significant blocks over the processors in a row-major format (Figure \ref{fig:DISTSTOR3}). 
 
 \begin{figure}
 \centering
@@ -192,26 +191,15 @@ Sparse matrices
 \label{fig:DISTSTOR2}
 \end{figure}
 
-¨libxsmm?
-The block size has a major impact on the performance of distributed linear algebra algorithms. Consider the multiplication of two matrices. Multiplication can be reformulated in terms of individual multiplications of sub-blocks. 
+\begin{figure}
+\centering
+\includegraphics[scale=0.25]{Pics/DBCSR.pdf}
+\caption{The DBCSR library distributes the significant blocks over the processor grid in row-major format.}
+\label{fig:DISTSTOR2}
+\end{figure}
 
-\section{Matrix Libraries}
-
-\subsection{BLAS}
-
-\subsection{LAPACK}
-
-\subsection{Eigen}
-
-\subsection{ScaLAPACK}
-
-\subsection{DBCSR}
-
-rank, semi-definiteness etc ....
-
-Storage: dense (shared), dense (dist), sparse (shared), sparse (dist)
-
-Libraries: LAPACK, Eigen, ScaLAPACK
+%¨libxsmm?
+%The block size has a major impact on the performance of distributed linear algebra algorithms. Consider the multiplication of two matrices. Multiplication can be reformulated in terms of individual multiplications of sub-blocks. 
 
 \section{Tensors}
 
@@ -241,28 +229,34 @@ A(i_0,i_1,...,i_n) &\rightarrow \sum_{k=0} \left( \prod_{l=0}^{k-1} n_l \right) 
 \end{align} 
 \noindent where $N_{dim}$ is the dimension of the tensor, and $n_k$ is the size of dimension $k$.
 
-Consider again the tensor contraction \ref{eq:TENEX}. It can be computed by setting up two loops running over the indices $kl$:
-\begin{fortran}{Tensor Loop}
-DO k = 1, nk
-  DO l = 1, nl
-    C(i,j,m) = A(i,k,j,l) * B(l,k,m) MMOOORE LOOPS!!
+Consider again the tensor contraction \ref{eq:TENEX}.  loops running over the indices $kl$:
+\begin{fortran}{Tensor Loop \label{lst:TLOOP}}
+DO i = 1, ndim_i
+  DO j = 1, ndim_j
+    DO m = 1, ndim_m
+      DO k = 1, ndim_k
+        DO l = 1, ndim_l
+          C(i,j,m) = A(i,k,j,l) * B(l,k,m)
+        ENDDO
+      ENDDO
+    ENDDO
   ENDDO
 ENDDO
 \end{fortran}
-\noindent Similarly to Example \ref{FORTRAN1} which loops over matrix elements, efficient parallelization by means of vectorization is a major concern when coding tensor contractions by hand. Ideally, tensor contractions should be offloaded to a specialized library. However, writing a general tensor library is a complex task, as the optimal "kernel" is dependent on the nature of the tensor contraction, i.e. number of indices involved, tensor dimensions and memory mapping. Whereas the \textrm{dgemm} BLAS routine only needs to know whether the matrices are transposed or not, the rapidly increasing number of parameters makes it very difficult to write optimized code for arbitrary tensor contractions.  
+\noindent Similarly to Example \ref{FORTRAN1} which loops over matrix elements, efficient parallelization by means of vectorization is a major concern when coding tensor contractions by hand. Ideally, tensor contractions should be offloaded to a specialized library. However, writing a general tensor library is a complex task, as the optimal kernel is dependent on the nature of the tensor contraction, i.e. number of indices involved, tensor dimensions and memory mapping. Whereas the \textrm{dgemm} BLAS routine only needs to know whether the matrices are transposed or not, the rapidly increasing number of parameters and loops makes it very difficult to write optimized code for arbitrary tensor contractions. For the example above, there are already $5!$ = $120$ different ways to arrange the loops.  
 
-Many tensor libraries solve this problem by mapping tensors to matrices which can then be multiplied. Consider the tensor $A_{ikjl}$. By introducing the \emph{super-indices} $P$ and $Q$, the tensor can be mapped to a matrix with $n_i n_k$ rows and $n_j n_l$ columns with
+Many tensor libraries solve this problem by mapping tensors to matrices so that existing code for optimized matrix-matrix multiplication can be used instead. Consider the tensor $A_{ikjl}$. By introducing the \emph{super-indices} $P$ and $Q$, the tensor can be mapped to a matrix with $N_P$ = $n_i n_k$ rows and $N_Q$ = $n_j n_l$ columns with
 \begin{align}
 P(i,k) &= i + k*n_i \\
 Q(j,l) &= j + l*n_j
 \end{align}
 \noindent The individual tensor elements are then accessed by
 \begin{equation}
-A(i,k,j,l) \rightarrow P(i,k) + Q(j,l)  (n_i  n_j)
+A(i,k,j,l) \rightarrow P(i,k) + Q(j,l) N_P
 \end{equation}
-\noindent using column-major storage for both the indices and super-indices. This corresponds to mapping $ik$ to the rows and $jl$ to the columns of a large matrix, which may also be written in a condensed notation as $\cn{01}{23}$. The notation $\cn{02}{13}$ would then indicate that the indices $ij$ are mapped to rows, and $kl$ are mapped to columns. Alternatively, the mapping can be indicated by using upper or lower indices. $\cn{01}{23}$ corresponds to $A_{ik}^{jl}$ and $\cn{02}{13}$ to $A_{ij}^{kl}$. The lower indices are also known as \emph{covariant} indices, and the upper indices as \emph{contravariant} indices. From here on out, only the notation $\cn{\cdot}{\cdot}$ will be used.
+\noindent using column-major storage for both the indices and super-indices. This corresponds to mapping $ik$ to the rows and $jl$ to the columns of a large matrix, which may also be written in a condensed notation as $\cn{01}{23}$, where $0,1,...$ indicate the mapping of the first, second, ... index of the tensor. As another example, consider the mapping $\cn{0}{213}$: this indicates that the index $i$ is mapped to rows, and $jkl$ are mapped to the columns. Alternatively, the mapping can be indicated by using upper or lower indices. $\cn{01}{23}$ corresponds to $A_{ik}^{jl}$ and $\cn{0}{213}$ to $A_{i}^{jkl}$. The lower indices are also known as \emph{covariant} indices, and the upper indices as \emph{contravariant} indices. From here on out, only the notation $\cn{\cdot}{\cdot}$ will be used.
 
-Coming back to the tensor contraction in \ref{eq:TENEX}, mapping the tensors according to $A_{ikjl}^{\cn{02}{13}}$, $B_{lkm}^{\cn{10}{2}}$ and $C_{ijm}^{\cn{01}{2}}$, the contraction can be reformulated as a simple matrix multiplication:
+Coming back to the tensor contraction in \ref{eq:TENEX}, mapping the tensors according to $A_{ikjl}^{\cn{02}{13}}$, $B_{lkm}^{\cn{10}{2}}$ and $C_{ijm}^{\cn{01}{2}}$, the contraction can be reformulated as a simple matrix multiplication
 \begin{equation}
 \mbf{C} = \mbf{A} \mbf{B}
 \end{equation}
@@ -272,11 +266,26 @@ Coming back to the tensor contraction in \ref{eq:TENEX}, mapping the tensors acc
 \end{equation}
 \noindent by taking the transpose of $\mbf{B}$. In general, any tensor contraction can be reformulated as a matrix multiplication by mapping the indices which are summed over to either the row or column of a matrix, and the indices which are not involved to the remaining dimension. 
 
-Major drawback: rearranging if involved in multiple contractions
+There are two drawbacks to this approach: first, tensors which are participating in different types of tensor contractions may need to be reordered. Reordering can take up a significant amount of time and add overhead to the tensor contraction, and it effectively doubles the amount of space needed by the tensor. Second, standard matrix libraries may not be optimized to handle tall-and-skinny (TAS) matrices. TAS matrices are matrices where one dimension is much larger then the other one, which is often the case for tensors with uneven mappings. Consider the tensor  $B_{lkm}^{\cn{10}{2}}$. It maps to a matrix with $n_kn_l$ rows and $n_m$ columns. If this matrix is distributed over an MPI grid, the process columns have much more work to perform than the process rows, which may lead to load imbalances. This problem can be addressed by dividing the TAS matrices up into multiple square chunks to improve load balancing, but adds further complexity during implementations.
 
-\subsection{Tensor Libraries}
+\section{Matrix Libraries}
 
-Just a paragraph
+\subsection{BLAS}
 
- libtensor, ctf, 
- TA, dbcsr, libxsmm 
+\subsection{LAPACK}
+
+\subsection{Eigen}
+
+\subsection{ScaLAPACK}
+
+canons algorithm
+
+\subsection{DBCSR}
+
+layers: cannon, rec, scheduler, small mm, gpus, etc.
+
+rank, semi-definiteness etc ....
+
+Storage: dense (shared), dense (dist), sparse (shared), sparse (dist)
+
+Libraries: LAPACK, Eigen, ScaLAPACK
