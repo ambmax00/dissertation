@@ -39,8 +39,6 @@ Licensing
 
 \newpage
 
-(empty)
-
 \newpage
 
 \noindent {\Large \bfseries Notation for Orbital Representations}
@@ -54,10 +52,15 @@ $i$, $j$, $k$, $l$, ... & occupied molecular orbitals \\
 $a$, $b$, $c$, $d$, ... & virtual molecular orbitals \\
 $\uli$, $\ulj$, $\ulk$, $\ull$, ... & local occupied molecular orbitals \\
 $\ola$, $\olb$, $\olc$, $\old$, ... & local virtual molecular orbitals \\
-$I$, $J$, $K$, $L$, ... & occupied projected atomic orbitals \\
-$A$, $B$, $C$, $D$, ... & virtual projected atomic orbitals \\
+$I$, $J$, $K$, $L$, ... & occupied molecular spin orbitals \\
+$A$, $B$, $C$, $D$, ... & virtual molecular spin orbitals \\
+$\ulgm$, $\ulgn$, $\ulgl$, $\ulgs$, ... & occupied projected atomic orbitals \\
+$\olgm$, $\olgn$, $\olgl$, $\olgs$, ... & virtual projected atomic orbitals
 \end{tabular}
 \end{table}
+
+\noindent {\Large \bfseries Abbreviations}
+
 
 
 \newpage
@@ -74,16 +77,18 @@ $A$, $B$, $C$, $D$, ... & virtual projected atomic orbitals \\
 
 \newpage
 
-\lstlistoflistings
-
-\newpage
-
 \pagenumbering{arabic}
 
 \chapter*{Introduction}
 
 This is the introduction. Talk about sparsity. Show sparse matrix. How does sparsity arise, what can we do with it, where else does it emerge?
 State of arts: adc now, adc in the future
+
+Exact solution: three body problem
+Helium: cannot be solved exactly: approximate methods. finite grid, finite basis
+solutions
+ground state excited state
+computational resources
 
 \begin{figure}
 \centering
@@ -94,42 +99,7 @@ State of arts: adc now, adc in the future
 
 \newpage
 
-%\begin{figure}
-%\centering
-%\begin{tikzpicture}
-%
-%\def\xZero{0}
-%\def\yZero{0}
-%\def\xOne{2}
-%\def\yOne{0}
-%\def\dist{1}
-%\def\hdist{0.5}
-%\def\hZero{2}
-%
-%% zero order diagram
-%\node [] (T00) at (\xZero+0,\yZero-\hZero) {};
-%\node [] (T01) at (\xZero+0,\yZero+\hZero) {};
-%\node [] (T10) at (\xZero+\dist,\yZero-\hZero) {};
-%\node [] (T11) at (\xZero+\dist,\yZero+\hZero) {};
-%
-%\draw (T00.center) -- (T01.center) node [currarrow,sloped,midway] {};
-%\draw (T11.center) -- (T10.center) node [currarrow,sloped,midway] {};
-%\draw[dotted] (T00.center) -- (T10.center) node () {};
-%\draw[dotted] (T01.center) -- (T11.center) node () {};
-%
-%% first order diagram
-%\node [] (S00) at (\xOne+0,\yOne-\hZero) {};
-%\node [] (S01) at (\xOne+0,\yOne+\hZero) {};
-%\node [] (S10) at (\xOne+\dist,\yOne-\hZero) {};
-%\node [] (S11) at (\xOne+\dist,\yOne+\hZero) {};
-%\node [] (C00) at (\xOne+0.5\dist,\yOne) {};
-%
-%\draw (S00) to[out=90,in=-120] (C00) node [currarrow,sloped,midway] {};
-%
-%\end{tikzpicture}
-%\caption{Feynman}
-%\label{This}
-%\end{figure}
+\part{}
 
 \include{BASICS.tex}
 
@@ -145,6 +115,8 @@ State of arts: adc now, adc in the future
 
 \include{RESULTS.tex}
 
+\part{}
+
 \include{INTROHPC.tex}
 
 \include{INTOTHEMATRIX.tex}
@@ -152,6 +124,10 @@ State of arts: adc now, adc in the future
 \include{MEGALOCHEM1.tex}
 
 \include{MEGALOCHEM2.tex}
+
+\include{ALGO.tex}
+
+\chapter{Conclusion and Outlook}
 
 \include{ANNEX.tex}
 

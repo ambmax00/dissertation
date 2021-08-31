@@ -220,7 +220,7 @@ C_{ijm} = A_{ikjl} B_{lkm}
 \end{equation}
 \noindent which is known as  \emph{Einstein summation}, a notational convention used to simplify tensor expressions. Indices appearing on the right but not on the left are implicitly summed over. 
 
-\subsection{Tensor Storage and Mapping}
+\subsection{Tensor Storage and Mapping \label{sec:tenstor}}
 
 Mapping multi-dimensional to the linear main memory is non-trivial. Tensors may follow a generalized column or row major storage such that
 \begin{align}
@@ -266,26 +266,68 @@ Coming back to the tensor contraction in \ref{eq:TENEX}, mapping the tensors acc
 \end{equation}
 \noindent by taking the transpose of $\mbf{B}$. In general, any tensor contraction can be reformulated as a matrix multiplication by mapping the indices which are summed over to either the row or column of a matrix, and the indices which are not involved to the remaining dimension. 
 
-There are two drawbacks to this approach: first, tensors which are participating in different types of tensor contractions may need to be reordered. Reordering can take up a significant amount of time and add overhead to the tensor contraction, and it effectively doubles the amount of space needed by the tensor. Second, standard matrix libraries may not be optimized to handle tall-and-skinny (TAS) matrices. TAS matrices are matrices where one dimension is much larger then the other one, which is often the case for tensors with uneven mappings. Consider the tensor  $B_{lkm}^{\cn{10}{2}}$. It maps to a matrix with $n_kn_l$ rows and $n_m$ columns. If this matrix is distributed over an MPI grid, the process columns have much more work to perform than the process rows, which may lead to load imbalances. This problem can be addressed by dividing the TAS matrices up into multiple square chunks to improve load balancing, but adds further complexity during implementations.
+There are two drawbacks to this approach: first, tensors which are participating in different types of tensor contractions may need to be reordered. Reordering can take up a significant amount of time and add overhead to the tensor contraction, and it effectively doubles the amount of space needed by the tensor. Second, standard matrix libraries may not be optimized to handle tall-and-skinny (TAS) matrices. TAS matrices are matrices where one dimension is much larger then the other one, which is often the case for tensors with uneven mappings. Consider the tensor  $B_{lkm}^{\cn{10}{2}}$. It maps to a matrix with $n_kn_l$ rows and $n_m$ columns. If this matrix is distributed over an MPI grid, the process columns have much more work to perform than the process rows, which may lead to load imbalances. This problem can be addressed by dividing the TAS matrices into multiple square submatrices to improve load balancing, but at the cost of adding further complexity to the code.
 
 \section{Matrix Libraries}
 
+This section briefly describes the different matrix libraries that are used in MEGALOchem.
+
 \subsection{BLAS}
+
+Basic Linear Algebra Subroutines (BLAS) is a \emph{specification} that describes a set of fundamental operations on vectors and matrices which serve as building blocks for higher level algebraic functionality \ref{BLAS2021}. The subroutines are grouped into different \emph{levels}. BLAS 1 provides vector-vector operations, BLAS 2 performs matrix-vector operations, and BLAS 3 provides matrix-matrix operations. Implementations of the BLAS library are often optimized for a certain type of processor, such as Intel's math kernel library (MKL) or the BLAS-like instantiation software (BLIS) which are optimized for Intel and AMD processors respectively. By providing a general interface, BLAS-based code is highly portable and should be preferred over processor-dependent, intrinsic functions. 
 
 \subsection{LAPACK}
 
+The linear algebra package (LAPACK) provides routines for matrix factorizations such as the QR decomposition, eigenvalue decomposition or singular value decomposition \cite{LAP2021}. It also includes functions for solving systems of linear equations and linear least squares problems. The official Netlib LAPACK implementation is based on BLAS and therefore highly portable, and simply linking the corresponding BLAS library that is optimized for the targeted architecture is sufficient. However, processor-specific re-implementations of LAPACK such as Intel MKL also exist.
+
+LAPACK can handle dense matrices only. 
+
 \subsection{Eigen}
+
+Eigen is a C++ template library that provides basic and advanced matrix algebra routines, including numerical solvers and matrix decompositions \cite{Gue2010}. Compared to LAPACK, Eigen offers a more user-friendly interface with an API that is closer in form to to standard algebraic notation. A matrix multiplication with addtion is as simple as writing
+\begin{cpp}{Eigen Matrix Multiplication}
+Eigen::MatrixXd A, B, C;
+// initialize matrices
+A = A + B * C;
+\end{cpp}
+\noindent Matrix manipulations, such as row, column or block operations are also much more intuitive, which is its primary use in MEGALOchem.
+
+\subsection{PBLAS}
+
+PBLAS (Parallel BLAS) is a generalization of the BLAS specification to distributed memory environments \cite{PBLAS2021}. It uses BLACS (basic linear algebra subprograms) as the message passing interface, typically built on MPI, and optimized for 2D grid communication. Matrices and vectors use a block-cyclic distribution with homogeneous block sizes across processor rows and columns. Similarly to BLAS, it provides a general interface and several different implementations exist (Netlib, Intel MKL, IBM, Cray). It closely mimics the function signature of BLAS, but matrices have an additional \emph{array descriptor} which holds all parameters of the matrix distribution.
+
+Matrix multiplication is performed using Cannon's algorithm \cite{Can1969}.
 
 \subsection{ScaLAPACK}
 
-canons algorithm
+Scalable LAPACK (ScaLAPACK) is LAPACK's analog for distributed memory systems \cite{Sca2021}. It provides highly optimized, advanced linear algebra routines based on the PBLAS interface.  It solves linear least squares, eigenvalue and singular value decomposition problems, among others. Again, while the specification is general, processor optimized implementations are often encountered, which are even more crucial in the context of high-performance computing. 
+
+Compared to LAPACK, ScaLAPACK does not support many matrix decompositions with pivoting. Pivoting incurs a very high overhead due to the increased communication between nodes.
 
 \subsection{DBCSR}
 
-layers: cannon, rec, scheduler, small mm, gpus, etc.
+DBCSR (distributed block compressed sparse row) is a Fortran library designed for efficient sparse matrix multiplication in distributed memory environments \ref{Bor2014,DBCSR2020}. It is OpenMP and MPI parallel and can explot Nvidia and AMD GPUs via Cuda and HIP. It uses a sparse block-cyclic matrix storage format (Figure \ref{fig:DISTSTOR2}) and was originally developed for linear-scaling self-consistent field calculations within CP2K, a quantum chemistry and solid state physics software package \cite{Hut2014,Sch2016}. 
 
-rank, semi-definiteness etc ....
+The DBCSR matrix multiplication architecture is divided into several layers managing data transfer, data access and offloading. Figure \ref{fig:ARCH} shows a schematic representation of the layers. The top-most layer manages the parallelization of the matrix multiplication over multiple nodes, and subdivides the matrix into large sparse sub-matrices, or \emph{panels}, which contain approximately the same number of blocks. A block-generalized version of Cannon's algorithm \ref{Can1969} is used to communicate the panels to different processes in a regular and ordered fashion. At each "tick" of Canon's algorithm, each process  sends and receives panels which it then multiplies and adds to the local blocks. 
 
-Storage: dense (shared), dense (dist), sparse (shared), sparse (dist)
+The multiplication of the panels is handled by the multrec layer, which subdivides panels \emph{recursively} along the longest dimension until the submatrices are small enough to fit into cache size.
 
-Libraries: LAPACK, Eigen, ScaLAPACK
+The CSR layer then determines which blocks need to be multiplied from the sparsity pattern of the matrices. It generates a list of needed block-multiplications, called \emph{stacks} and passes this information to the scheduler. The scheduler receives the stacks and arranges them for processing by handing them off to different drivers. Stacks can be processed either by the host (CPU) or the device (GPU). Both drivers support standard matrix multiplication by using (cu/hip)-BLAS, as well as small matrix multiplication (SMM) which are handled by specialized SMM libraries optimized for CPU (libxsmm) or GPU (libsmm\_acc). 
+
+For a multiplication of matrices with dimension $N$ by $K$ and $K$ by $M$, a problem size suitable for SMM libraries approximately falls within $(MNK)^{1/3} < 64$. Block-sparse matrices in quantum chemistry often have very small block sizes. However, standard libraries like BLAS are most often optimized for very large matrices, and SMM libraries are often crucial to reduce the overhead when using small block sizes. 
+
+In 2019, the DBCSR library  was extended to handle tensor contractions using the TAS matrix mapping discussed above \cite{Siv2019}. It is an \emph{ad-hoc} extension of the DBCSR matrix machinery, and still somewhat experimental. Memory issues are commonly encountered (see chapter 7).
+
+A C-interface to the DBCSR library was written as part of this PhD project \cite{Amb2020}.
+
+OTHER POSSIBILTY: https://arxiv.org/abs/1607.00291
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.9]{Pics/DBCSRARCH}
+\caption{Code architecture of the DBCSR library.}
+\label{fig:ARCH}
+\end{figure}
+
+
+

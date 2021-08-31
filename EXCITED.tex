@@ -313,7 +313,7 @@ and the anti-symmetrized MP2 amplitudes
 
 Approximating the 2p-2h block to first order in the ADC(2) matrix, i.e. swapping the 2p-2h block with the one from the ADC(3) matrix, gives the so-called extended ADC(2) scheme (ADC(2)-x). It is an \emph{ad-hoc} extension without rigoruous theoretical justification \cite{Tro1995}.  
 
-\subsubsection{Solving the Eigenvalue Problem \label{sec:ADC_DAV}}
+\subsection{Solving the Eigenvalue Problem \label{sec:ADC_DAV}}
 
 The eigenvalue problem \ref{eq:ADCEVAL} is typically solved using the Davidson procedure to extract the first few eigenvalues, analogous to configuration interaction. Rather than constructing the whole ADC matrix, closed expressions are derived for the matrix-vector products of the different blocks with a general trial vector $\mbf{u}$. For computational considerations, the matrix-vector product is split into its individual components which are then multiplied by the sub-blocks of the ADC matrix. In the case of ADC(2) and ADC(3), the components are limited to singles and doubles contributions:
 \begin{align}

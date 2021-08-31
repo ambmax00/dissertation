@@ -19,6 +19,7 @@
 \usepackage{etoolbox}
 %\usepackage{mathabx}
 \usepackage[linesnumbered, ruled, vlined]{algorithm2e}
+\usepackage{setspace}
 \usepackage[most,skins]{tcolorbox}
 \usepackage{subcaption} 
 \usetikzlibrary{positioning,calc}
@@ -59,6 +60,8 @@
 
 \newcommand{\ovl}{\overline}
 \newcommand{\unl}{\underline}
+\newcommand{\sovl}[1]{\overline{#1}} % \smash{#1}\vphantom{a}}}
+\newcommand{\sunl}[1]{\underline{#1}} %\smash{#1}\vphantom{a}}}
 \newcommand{\oli}{\overline{i}}
 \newcommand{\olj}{\overline{j}}
 \newcommand{\olk}{\overline{k}}
@@ -114,19 +117,20 @@
 \newcommand{\ulm}{\underline{m}}
 \newcommand{\uln}{\underline{n}}
 
-\newcommand{\ulgm}{\underline{\mu}}
-\newcommand{\olgm}{\overline{\mu}}
-\newcommand{\ulgn}{\underline{\nu}}
-\newcommand{\olgn}{\overline{\nu}}
-\newcommand{\ulgk}{\underline{\kappa}}
-\newcommand{\ulgt}{\underline{\tau}}
-\newcommand{\ulgl}{\underline{\lambda}}
-\newcommand{\olgl}{\overline{\lambda}} % use for b
-\newcommand{\olga}{\overline{\alpha}}
-\newcommand{\olgb}{\overline{\beta}}
-\newcommand{\olgs}{\overline{\sigma}} % use for a
-\newcommand{\olgg}{\overline{\gamma}} 
-\newcommand{\olgd}{\overline{\delta}}
+\newcommand{\ulgm}{\sunl{\mu}}
+\newcommand{\olgm}{\sovl{\mu}}
+\newcommand{\ulgn}{\sunl{\nu}}
+\newcommand{\olgn}{\sovl{\nu}}
+\newcommand{\ulgk}{\sunl{\kappa}}
+\newcommand{\ulgt}{\sunl{\tau}}
+\newcommand{\ulgl}{\sunl{\lambda}}
+\newcommand{\olgl}{\sovl{\lambda}} % use for b
+\newcommand{\olga}{\sovl{\alpha}}
+\newcommand{\olgb}{\sovl{\beta}}
+\newcommand{\ulgs}{\sunl{\sigma}}
+\newcommand{\olgs}{\sovl{\sigma}} % use for a
+\newcommand{\olgg}{\sovl{\gamma}} 
+\newcommand{\olgd}{\sovl{\delta}}
 
 \newcommand{\gm}{\mu}
 \newcommand{\gn}{\nu}
@@ -164,6 +168,7 @@
 \newcommand{\xlr}[1]{\xleftrightarrow{#1}}
 \newcommand{\wpa}{\left\lvert w\pa \right\rvert}
 \newcommand{\tPsi}{\smash{\widetilde{\Psi}}}
+\newcommand{\vnorm}[1]{\left\lVert #1 \right\rVert}
 
 \newcommand{\bk}[2]{\bra{#1} \ket{#2}}
 \newcommand{\sbk}[2]{\bra{#1} {} \ket{#2}}
@@ -210,7 +215,7 @@
 
 \definecolor{light-gray}{gray}{0.95}
 
-\newtcbinputlisting[auto counter, number within=section]{cpp}[2][]{
+\newtcblisting[auto counter, number within=section]{cpp}[2][]{
 	sharp corners, 
     fonttitle=\bfseries, 
     colframe=gray, listing only, 
@@ -229,7 +234,7 @@
     	}, 
     title=Listing \thetcbcounter: #2, #1}
 
-\newtcblisting{fortran}[2][]{
+\newtcblisting[auto counter, number within=section]{fortran}[2][]{
 	sharp corners, 
     fonttitle=\bfseries, 
     colframe=gray, listing only, 

@@ -1,11 +1,3 @@
-DO i = 1, ndim_i
-  DO j = 1, ndim_j
-    DO m = 1, ndim_m
-      DO k = 1, ndim_k
-        DO l = 1, ndim_l
-          C(i,j,m) = A(i,k,j,l) * B(l,k,m)
-        ENDDO
-      ENDDO
-    ENDDO
-  ENDDO
-ENDDO
+Eigen::MatrixXd A, B, C;
+// initialize matrices
+A = A + B * C;

@@ -23,11 +23,14 @@ Reallocating 'name_of_file' (item size: 1) to 16 items.
 A level-1 auxiliary file: MEGALOCHEM1.aux
 Reallocating 'name_of_file' (item size: 1) to 16 items.
 A level-1 auxiliary file: MEGALOCHEM2.aux
+Reallocating 'name_of_file' (item size: 1) to 9 items.
+A level-1 auxiliary file: ALGO.aux
 Reallocating 'name_of_file' (item size: 1) to 10 items.
 A level-1 auxiliary file: ANNEX.aux
 Reallocating 'name_of_file' (item size: 1) to 6 items.
 The style file: unsrt.bst
 Reallocating 'name_of_file' (item size: 1) to 4 items.
+Reallocating 'field_info' (item size: 4) to 10336 items.
 Database file #1: ref.bib
 Warning--I didn't find a database entry for "Kats2009"
 Warning--I didn't find a database entry for "Kat2003"
@@ -36,45 +39,46 @@ Warning--I didn't find a database entry for "Pen2018"
 Warning--I didn't find a database entry for "Cun2021"
 Warning--empty title in Sac2021
 Warning--empty note in Sac2021
-You've used 205 entries,
+Warning--empty booktitle in Amb2020
+You've used 227 entries,
             1791 wiz_defined-function locations,
-            1724 strings with 40827 characters,
-and the built_in function-call counts, 50497 in all, are:
-= -- 4670
-> -- 1987
-< -- 2
-+ -- 744
-- -- 539
-* -- 4542
-:= -- 7921
-add.period$ -- 615
-call.type$ -- 205
-change.case$ -- 196
+            1844 strings with 46533 characters,
+and the built_in function-call counts, 56455 in all, are:
+= -- 5146
+> -- 2376
+< -- 6
++ -- 884
+- -- 657
+* -- 5036
+:= -- 8874
+add.period$ -- 681
+call.type$ -- 227
+change.case$ -- 216
 chr.to.int$ -- 0
-cite$ -- 207
-duplicate$ -- 1859
-empty$ -- 4947
-format.name$ -- 539
-if$ -- 10791
+cite$ -- 230
+duplicate$ -- 2087
+empty$ -- 5469
+format.name$ -- 657
+if$ -- 12079
 int.to.chr$ -- 0
-int.to.str$ -- 205
-missing$ -- 212
-newline$ -- 1027
-num.names$ -- 205
-pop$ -- 252
+int.to.str$ -- 227
+missing$ -- 230
+newline$ -- 1134
+num.names$ -- 224
+pop$ -- 330
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 682
+skip$ -- 793
 stack$ -- 0
-substring$ -- 4924
-swap$ -- 212
-text.length$ -- 2
+substring$ -- 5299
+swap$ -- 268
+text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 2
-while$ -- 548
-width$ -- 208
-write$ -- 2253
-(There were 7 warnings)
+warning$ -- 3
+while$ -- 598
+width$ -- 230
+write$ -- 2487
+(There were 8 warnings)

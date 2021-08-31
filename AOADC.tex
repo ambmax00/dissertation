@@ -210,12 +210,12 @@ r_{ia}^{T,SOS}(\omega) &= (\eps_a - \eps_i) u_{ia}^S - \sum_{jb} \cn{ij}{ab} u_{
 \begin{split}
 u_{iajb}^{S,SOS}(\omega) &= \frac{c_{osc}}{\omega - \eps_a - \eps_b + \eps_i + \eps_j} \left\lbrace \sum_k u_{ka} \cn{ki}{bj} + \sum_{k} u_{kb} \cn{kj}{ai} \right. \\ 
 &- \sum_c u_ic \cn{ac}{bj} - \left. \sum_{c} u_{jc} \cn{bc}{ai} \right\rbrace
-\end{split}
+\end{split} \label{eq:SOSU2S}
 \\
 \begin{split}
 u_{iajb}^{T,SOS}(\omega) &= \frac{c_{osc}}{\omega - \eps_a - \eps_b + \eps_i + \eps_j} \left\lbrace \sum_k u_{ka} \cn{ki}{bj} - \sum_{k} u_{kb} \cn{kj}{ai} \right. \\ 
 &- \sum_c u_ic \cn{ac}{bj} + \left. \sum_{c} u_{jc} \cn{bc}{ai} \right\rbrace
-\end{split}
+\end{split} \label{eq:SOSU2T}
 \end{align}
 \noindent and the intermediates
 \begin{align}
@@ -251,7 +251,7 @@ The first order part of the MVP is identical in both ADC(2) and SOS-ADC(2)
 r_{ia}^{S,CIS} &= (\eps_a - \eps_i) u^S_{ia} + \sum_{jb} \left[ 2\cn{ia}{jb} - \cn{ij}{ab}\right] u^S_{jb} \\
 r_{ia}^{T,CIS} &= (\eps_a - \eps_i) u^T_{ia} - \sum_{jb} \cn{ij}{ab} u^T_{jb} 
 \end{align}
-\noindent An AO formulation is obtained in an indentical manner to AO-CIS by factoring out the coefficient matrices to obtain Hartree-Fock-like expressions:
+\noindent An AO formulation is obtained in an identical manner to AO-CIS by factoring out the coefficient matrices to obtain Hartree-Fock-like expressions:
 \begin{align}
 \begin{split}
 r_{ia}^{S,CIS,AO} &= (\eps_a - \eps_i) u^S_{ia} + \sum_{ia} C_{\mu i} C_{\sigma a} \left[ \left( 2\cn{\mu\sigma}{\nu\lambda} - \cn{\mu\nu}{\sigma\lambda} \right) u^S_{\ulgn \olgl} \right] \\
@@ -267,7 +267,7 @@ r_{ia}^{T,CIS,AO} &= (\eps_a - \eps_i) u^T_{ia} - \sum_{ia} C_{\mu i} C_{\sigma 
 \begin{equation}
 u_{\ulgm\olgs} = C_{\mu i} u_{ia} C_{\olgs a}
 \end{equation}
-\noindent The zero order terms (i.e. the molecular orbital energy differences) do not need to be formulated in an AO basis, because the computation time is negligeable. Similarly, transforming $\mathbf{\tilde{J}}$ and $\mathbf{\tilde{K}}$ to the MO basis formerly scales as $\ccpx{3}$ but has very low overhead and does not influence the overall scaling of AO-SOS-ADC(2). The time-determining steps are the computataion of the J-kernel, which scales as $\ccpx{2}$ and the K-kernel, which scales as $\mathcal{O}(N)$ in limit of large systems. For triplet excitations, the scaling is reduced to linear due to the absence of coulomb contributions.
+\noindent The zero order terms (i.e. the molecular orbital energy differences) do not need to be formulated in an AO basis, because the computation time is negligible. Similarly, transforming $\mathbf{\tilde{J}}$ and $\mathbf{\tilde{K}}$ to the MO basis formerly scales as $\ccpx{3}$ but has very low overhead and does not influence the overall scaling of AO-SOS-ADC(2). The time-determining steps are the computation of the J-kernel, which scales as $\ccpx{2}$ and the K-kernel, which scales as $\mathcal{O}(N)$ in limit of large systems. For triplet excitations, the scaling is reduced to linear due to the absence of coulomb contributions.
 
 \subsection{Second Order: Part 2A and 2B}
 
@@ -304,7 +304,7 @@ I_{ij}^{AO-SOS,ns} &= \frac{c_{os}}{2} \sum_{\alpha} \sum_{ckd} \wpa e^{\Delta_{
 I^{AO-SOS}_{ab} &= I^{AO-SOS,ns}_{ab} + I^{AO-SOS,ns}_{ba} \\
 I^{AO-SOS}_{ij} &= I^{AO-SOS,ns}_{ij} + I^{AO-SOS,ns}_{ji}
 \end{align}
-The time-determining step for both intermediates is the computation of the Laplace intermediates $\mathbf{A}\pa$ and $\mathbf{B}\pa$. The subsequent multiplication with the coefficient matrices is again negligeable. Consider now the sparsity diagram for the Laplace intermediate $\mathbf{A}\pa$:
+The time-determining step for both intermediates is the computation of the Laplace intermediates $\mathbf{A}\pa$ and $\mathbf{B}\pa$. The subsequent multiplication with the coefficient matrices is again negligible. Consider now the sparsity diagram for the Laplace intermediate $\mathbf{A}\pa$:
 \begin{center}
 \begin{tikzpicture}
 
@@ -341,7 +341,8 @@ r_{ia}^{T,SOS,2C} &= -\frac{c_{os}}{2} \sum_{jb} t_{iajb} I^{(1)T,SOS}_{jb}
 \begin{align}
 \begin{split}
 r_{ia}^{S,AO-SOS,2C} &= -\frac{c_{os}}{2} \sum_{jb} \sum_{alpha} \wpa e^{\Delta_{iajb}t\pa} \cn{ia}{jb} \left[\sum_{kc} \left(2\cn{jb}{kc} - \cn{jc}{kb} \right) u_{kc}^S \right] \\
-&=  -\frac{c_{os}}{2} \sum_{alpha} \sum_{ia} \wpa^{1/2} C_{\mu i} e^{\eps_i t\pa} C_{\sigma a} e^{-\eps_a t\pa} \left\lbrace \sum_{\nu\lambda} \cn{\mu\alpha}{\ulgn\olgl}\pa \left[ \sum_{\kappa\gamma}  \left( 2\cn{\nu\lambda}{\kappa\gamma} - \cn{\nu\gamma}{\kappa\lambda}\right) u^S_{\ulgk\olgg} \right] \right\rbrace \\
+&=  -\frac{c_{os}}{2} \sum_{alpha} \sum_{ia} \wpa^{1/2} C_{\mu i} e^{\eps_i t\pa} C_{\sigma a} e^{-\eps_a t\pa} \\
+&\left\lbrace \sum_{\nu\lambda} \cn{\mu\alpha}{\ulgn\olgl}\pa \left[ \sum_{\kappa\gamma}  \left( 2\cn{\nu\lambda}{\kappa\gamma} - \cn{\nu\gamma}{\kappa\lambda}\right) u^S_{\ulgk\olgg} \right] \right\rbrace \\
 &=   -\frac{c_{os}}{2} \sum_{alpha} \sum_{ia} \wpa^{1/2} C_{\mu i} e^{\eps_i t\pa} C_{\sigma a} e^{-\eps_a t\pa} \left\lbrace \sum_{\nu\lambda} \cn{\mu\alpha}{\ulgn\olgl}\pa \left[ 2\tilde{J}_{\lambda\nu} - \tilde{K}_{\lambda\nu} \right] \right\rbrace \\
 &= -\frac{c_{os}}{2} \sum_{alpha} \sum_{ia} \wpa^{1/2} C_{\mu i} e^{\eps_i t\pa} C_{\sigma a} e^{-\eps_a t\pa} I^{(1)(\alpha)S,AO-SOS}_{\mu \sigma}
 \end{split} 
@@ -380,11 +381,11 @@ r_{ia}^{T,AO-SOS,2C} &= \frac{c_{os}}{2} \sum_{alpha} \sum_{ia} \wpa^{1/2} C_{\m
 Now consider part 2D
 \begin{align}
 \begin{split}
-r_{ia}^{S,SOS,2D} &= -\frac{1}{2}\sum_{jb} \left[ 2\cn{ia}{jb} \cn{ib}{ja} \right] I_{jb}^{(2)S,SOS} \\
+r_{ia}^{S,SOS,2D} &= -\frac{1}{2}\sum_{jb} \left[ 2\cn{ia}{jb} - \cn{ib}{ja} \right] I_{jb}^{(2)S,SOS} \\
 &= -\frac{1}{2}\sum_{jb} K_{iajb} I_{jb}^{(2)S,SOS}
 \end{split}
 \\
-r_{ia}^{T,SOS,2D} = \frac{1}{2}\sum_{jb} \cn{ib}{ja} I_{jb}^{(2)T,SOS}
+r_{ia}^{T,SOS,2D} &= \frac{1}{2}\sum_{jb} \cn{ib}{ja} I_{jb}^{(2)T,SOS}
 \end{align}
 
 \noindent Applying the Laplace transform gives the singlet expression
@@ -398,7 +399,7 @@ r_{ia}^{S,AO-SOS,2D} &= -\frac{c_{os}}{2} \sum_{jb} K_{iajb} \sum_{kc} \sum_{\al
 Similarly, the triplet expressions
 \begin{align}
 \begin{split}
-r_{ia}^{T,AO-SOS,2D} &= \frac{c_{os}}{2} \sum_{jb} \cn{ia}{jb} \sum_{kc} \sum_{\alpha} \wpa e^{\Delta_{iajb}tpa} \cn{jb}{kc} u_{kc}^T \\
+r_{ia}^{T,AO-SOS,2D} &= \frac{c_{os}}{2} \sum_{jb} \cn{ia}{jb} \sum_{kc} \sum_{\alpha} \wpa e^{\Delta_{iajb}t\pa} \cn{jb}{kc} u_{kc}^T \\
 &= \frac{c_{os}}{2} \sum_{ia} C_{\mu i} C_{\sigma a} \left[  \cn{\mu\sigma}{\nu\lambda} \left( \sum_{\alpha} \cn{\ulgn\olgl}{\kappa\gamma}\pa u^{(\alpha)T}_{\ulgk\olgg} \right) \right] \\
 &= \frac{c_{os}}{2} \sum_{ia} C_{\mu i} C_{\sigma a} I^{(2)T,AO-SOS}_{\mu\sigma} 
 \end{split}
@@ -419,20 +420,21 @@ I^{(2)SOS-AO}_{\mu\sigma} &= \sum_{\alpha} \left[2 \cn{\mu\sigma}{\nu\lambda} - 
 
 The final part is given by
 \begin{align}
-r_{ia}^{S,SOS,2E}(\omega) &= c_{osc} \left\lbrace \sum_{kcl} \cn{ik}{lc} u^{S,SOS}_{kalc}(\omega) - \sum_{ckd} u^{S,SOS}_{ickd}(\omega) \cn{kd}{ac} \right\rbrace  \\
+r_{ia}^{S,SOS,2E}(\omega) &= c_{osc} \left\lbrace \sum_{kcl} \cn{ik}{lc} u^{S,SOS}_{kalc}(\omega) - \sum_{ckd} u^{S,SOS}_{ickd}(\omega) \cn{kd}{ac} \right\rbrace  \label{eq:SIGMA2ES}\\
 r_{ia}^{T,SOS,2E}(\omega) &= c_{osc} \left\lbrace \sum_{kcl} \cn{ik}{lc} u^{T,SOS}_{kalc}(\omega) - \sum_{ckd} u^{T,SOS}_{ickd}(\omega) \cn{kd}{ac} \right\rbrace
+\label{eq:SIGMA2ET}
 \end{align}
-\noindent With the doubles intermediates as given in Equation ... and .... The Laplace transform needs to be applied to the energy denominator present in these intermediates. The optimal Laplace parameters are however different from the ones used for the t-amplitudes, due to the additional factor of the excitation energy $\omega$. For each different excitation energy $\omega$, a new Laplace quadrature needs to be computed, alongside a new set of pseudo-density matrices $\mathbf{P}$ and $\mathbf{Q}$. The additional time is however negligebale for the standard number of qudrature points ($n_{lap}$ $<$ 10). The symbol $\theta$ is used to designate the Laplace quadrature for the doubles denominator to differentiate them from the ones for the t-amplitudes. 
+\noindent With the doubles intermediates as given in Equation \ref{eq:SOSU2S} and \ref{eq:SOSU2T}. The Laplace transform needs to be applied to the energy denominator present in these intermediates. The optimal Laplace parameters are however different from the ones used for the t-amplitudes, due to the additional factor of the excitation energy $\omega$. For each different excitation energy $\omega$, a new Laplace quadrature needs to be computed, alongside a new set of pseudo-density matrices $\mathbf{P}$ and $\mathbf{Q}$. The additional time is however negligible for the standard number of quadrature points ($n_{lap}$ $<$ 10). The symbol $\theta$ is used to designate the Laplace quadrature for the doubles denominator to differentiate them from the ones for the t-amplitudes. 
 
 First, an AO formulation of the doubles amplitudes will be derived such that
 \begin{equation}
 u_{iajb}(\omega) = C_{\mu i} C_{\sigma a} u_{\mu\sigma\nu\lambda} C_{\nu j} C_{\lambda b}
 \end{equation}
-\noindent For qunatities like the MO integrals $\cn{ia}{jb}$, this is straight-forwardly done by factoring out the coefficient matrices. However, the situation is more complex in the doubles intermediates, due to the presence of terms like $u_{ka}\cn{ki}{bj}$. For the MO transition densties, the non-orthogonality of the AO basis needs to be taken into consideration. The MO coefficient matrices are factored out by a PAO backtransform (cf. Eqaution ...)
+\noindent For quantities like the MO integrals $\cn{ia}{jb}$, this is straight-forwardly done by factoring out the coefficient matrices. However, the situation is more complex in the doubles intermediates, due to the presence of terms like $u_{ka}\cn{ki}{bj}$. For the MO transition densities, the non-orthogonality of the AO basis needs to be taken into consideration. The MO coefficient matrices are factored out by a PAO backtransform:
 \begin{equation}
 u_{ia} = C_{\mu i} S_{\mu\mu'} u_{\ulgm'\olgs'} S_{\sigma'\sigma} C_{\sigma a}
 \end{equation}
-The doubles intermediates can then be expressed as (shown for singlet only)
+The doubles intermediates can then be expressed as
 \begin{equation}
 \begin{split}
 u_{iajb}^{S/T}(\omega) &= - c_{osc} \sum_{\theta} \sum_{\mu\sigma\nu\lambda} |w\pt| e^{\left(\omega - \eps_a - \eps_b + \eps_i + \eps_j\right)t\pt} C_{\mu i} C_{\sigma a} C_{\nu j} C_{\lambda b} \left\lbrace \vphantom{\sum_i} \right. \\
@@ -440,10 +442,11 @@ u_{iajb}^{S/T}(\omega) &= - c_{osc} \sum_{\theta} \sum_{\mu\sigma\nu\lambda} |w\
 &\left. - \sum_{\gamma} \left[ S_{\mu\mu'} u^{S/T}_{\ulgm'\olgs} \cn{\nu\lambda}{\sigma\gamma} \pm S_{\nu\nu'} u^{S/T}_{\ulgn'\olgg} \cn{\mu\sigma}{\gamma\lambda} \right]   \right\rbrace \\
 &= - \sum_{\theta} \sum_{\mu\sigma\nu\lambda} |w\pt| e^{\left(\omega - \eps_a - \eps_b + \eps_i + \eps_j\right)t\pt} C_{\mu i} C_{\sigma a} u_{\mu\sigma\nu\lambda}^{S/T} C_{\nu j} C_{\lambda b}
 \end{split}
+\label{eq:AODOUBLES}
 \end{equation}
-\noindent Note the additional minus sign in front of the Laplace summation. After the Laplace transform, the sign of the denominator is swapped, i.e. $\frac{1}{\pm x} \rightarrow exp(\mp x t\pt)$. For large negative occupied molecular orbital energies $\eps_i$ or large postive virtual molecular orbital energies $\eps_a$, this would lead to very large values and numerical instabilities. For this reason, the minus sign is factored out to reverse the sign in the exponent. 
+\noindent Note the additional minus sign in front of the Laplace summation. After the Laplace transform, the sign of the denominator is swapped, i.e. $\frac{1}{\pm x} \rightarrow exp(\mp x t\pt)$. For large negative occupied molecular orbital energies $\eps_i$ or large positive virtual molecular orbital energies $\eps_a$, this would lead to very large values and numerical instabilities. For this reason, the minus sign is factored out to reverse the sign in the exponent. 
 
-Inserting the above expression into Eqaution ... gives the expression for part 2E constructed via AO intermediates:
+Inserting \ref{eq:AODOUBLES} into Equations \ref{eq:SIGMA2ES} and \ref{eq:SIGMA2ET} gives the expression for part 2E constructed via AO intermediates:
 \begin{equation}
 \begin{split}
 r_{ia}^{S/T,AO-SOS,2E}(\omega) &= - c_{osc}^2 \sum_{\theta} e^{\omega t\pt} \left\lbrace C_{\mu i} |w\pt|^{1/4} C_{\sigma a} e^{-\eps_a t\pt} \left[ \sum_{\kappa\gamma\tau} \cn{\mu\ulgk}{\ulgt\olgg}\pt u_{\kappa\sigma\tau\gamma}^{S/T} \right] \right. \\
@@ -451,12 +454,13 @@ r_{ia}^{S/T,AO-SOS,2E}(\omega) &= - c_{osc}^2 \sum_{\theta} e^{\omega t\pt} \lef
 &= - c_{osc}^2 \sum_{\theta} e^{\omega t\pt} \left\lbrace C_{\mu i} |w\pt|^{1/4} C_{\sigma a} e^{-\eps_a t\pt} R^{(\theta)(1)S/T}_{\mu\olgs} \right. \\
 & \left. - |w\pt|^{1/4} C_{\mu i} e^{\eps_i t\pt} C_{\sigma a} R^{(\theta)(2)S/T}_{\ulgm\sigma} \right\rbrace
 \end{split}
+\label{eq:SIG2EAO1}
 \end{equation}
 \noindent Similarly to previous expressions, the AO electron repulsion integrals are not completely transformed into the pseudo-AO basis, but only three-quarter transformed integrals are obtained. To obtain fully-transformed integrals, it is beneficial to perform the following transformation:
 \begin{equation}
 r_{ia} =  \bar{C}_{\mu i'} r_{\mu \sigma} \bar{C}_{\sigma a'} = \bar{C}_{\mu i'} C_{\mu i} r_{ia} C_{\sigma a} \bar{C}_{\sigma a'}
 \end{equation} 
-\noindent Inserting this expression into Equation ... yields
+\noindent Inserting this expression into Equation \ref{eq:SIG2EAO1} yields
 \begin{equation}
 \begin{split}
 r_{ia}^{S/T,AO-SOS,2E}(\omega) &= - c_{osc}^2 \sum_{\theta} e^{\omega t\pt} \left\lbrace \bar{C}_{\mu i} P_{\mu \nu} \bar{C}_{\sigma a} \left[ \sum_{\kappa\gamma\tau} \cn{\ulgn\ulgk}{\ulgt\olgg}\pt u_{\kappa\sigma\tau\gamma}^{S/T} \right] \right. \\
@@ -464,9 +468,9 @@ r_{ia}^{S/T,AO-SOS,2E}(\omega) &= - c_{osc}^2 \sum_{\theta} e^{\omega t\pt} \lef
 &= - c_{osc}^2 \sum_{\theta} e^{\omega t\pt} \left\lbrace \bar{C}_{\mu i} \bar{C}_{\sigma a} R^{(\theta)(1)S/T}_{\ulgm\olgs} - \bar{C}_{\mu i} \bar{C}_{\sigma a} R^{(\theta)(2)S/T}_{\ulgm\olgs} \right\rbrace 
 \end{split}
 \end{equation} 
-\noindent which gives fully transformed integrals. This step is necessary to get a obtain a better factorization for part 2E in the density fitting approximation. Note that there are other cases of non-fully transformed integrals in the previous parts - however a full transformation does not give any significant advantage for a DF formulation, so they are left unchanged.  
+\noindent which gives fully transformed integrals. This step is necessary to obtain a better factorization for part 2E in the density fitting approximation. Note that there are other cases of non-fully transformed integrals in the previous parts - however a full transformation does not give any significant advantage for a DF formulation, so they are left unchanged.  
 
-The time-determining step is the formation of the $\mathbf{R}$ intermediates, which in turn depend on the AO doubles intermediates. Consider the sparsity diagram for the following term encountered in Equation ... :
+The time-determining step is the formation of the $\mathbf{R}$ intermediates, which in turn depend on the AO doubles intermediates. Consider the sparsity diagram for the following term encountered in Equation \ref{eq:AODOUBLES}:
 
 \begin{equation}
 u_{\ulgk\olgs'} S_{\sigma'\sigma} \cn{\kappa \mu}{\nu\lambda}
@@ -489,9 +493,9 @@ u_{\ulgk\olgs'} S_{\sigma'\sigma} \cn{\kappa \mu}{\nu\lambda}
 
 \end{tikzpicture}
 \end{center}
-\noindent Similar diagrams can be derived for the other three contractions in Equation .... This shows an overall quadratic scaling in computational effort and number of non-zero elements for the AO doubles intermediates $u_{\mu\sigma\nu\lambda}$. The indices $\mu$/$\sigma$ and $\nu$/$\lambda$ are connected by either an S/P junction, but no sparsity relationship can be established between those pairs, similar to the AO electron integrals.  
+\noindent Similar diagrams can be derived for the other three contractions in Equation \ref{eq:AODOUBLES}. This shows an overall quadratic scaling in computational effort and number of non-zero elements for the AO doubles intermediates $u_{\mu\sigma\nu\lambda}$. The indices $\mu$/$\sigma$ and $\nu$/$\lambda$ are connected by either an S/P junction, but no sparsity relationship can be established between those pairs, similar to the AO electron integrals.  
 
-This information can be used to find the scaling of the $\mathbf{R}$ intermediates. For example, the sparsity digram for $\mathbf{R}_{\ulgm\olgs}^{(1)} = \cn{\ulgm\ulgk}{\ulgt\olgg}\pt u_{\kappa\sigma\tau\gamma}$ reads
+This information can be used to find the scaling of the $\mathbf{R}$ intermediates. For example, the sparsity diagram for $\mathbf{R}_{\ulgm\olgs}^{(1)} = \cn{\ulgm\ulgk}{\ulgt\olgg}\pt u_{\kappa\sigma\tau\gamma}$ reads
 \begin{center}
 \begin{tikzpicture}
 \snode{MU}{-4,0}{\mu};
@@ -517,8 +521,6 @@ This information can be used to find the scaling of the $\mathbf{R}$ intermediat
 \end{center}
 \noindent and a similar diagram can be drawn for $\mathbf{R}^{(2)}$, which again shows quadratic scaling. 
 
-\subsection{Potential Linear Scaling Formulation}
-
 \subsection{Summary}
 
 The SOS-ADC(2) matrix-vector product is finally computed as
@@ -539,7 +541,7 @@ r_{ia}^{T,AO-DF-SOS}(\omega) &= (\eps_a - \eps_i) u_{ia}^T + \sum_{\mu\nu} C_{\m
 & - c_{osc}^2 \sum_{\theta} e^{\omega t\pt} \left\lbrace \bar{C}_{\mu i} \bar{C}_{\sigma a} R^{(\theta)(1)T}_{\ulgm\olgs} - \bar{C}_{\mu i} \bar{C}_{\sigma a} R^{(\theta)(2)T}_{\ulgm\olgs} \right\rbrace
 \end{split}
 \end{align}
-\noindent where the intermediates are evaluated as presented in the previous sections. The 2-index intermediates still need to be transformed back to the canonical MO basis for the Davidson procedure, but the computational effort required is negligeable. The overall cost of the AO-SOS-ADC(2) scales quadratically both in time and memory requirements.
+\noindent where the intermediates are evaluated as presented in the previous sections. The 2-index intermediates still need to be transformed back to the canonical MO basis for the Davidson procedure, but the computational effort required is negligible. The overall cost of the AO-SOS-ADC(2) scales quadratically both in time and memory requirements.
 
 It is expected that AO-SOS-ADC(2) has the same drawback as LinK or AO-MP2, namely a late onset of the low-scaling regime for larger basis sets. This additional overhead is even worse for AO-ADC due to the complexity of the formulas which involve many more tensor contractions than the ground state, and more S and P junctions which makes the method much more dependent on basis set size. This is further aggravated by the fact that diffuse basis functions are essential to obtain accurate excitation energies as opposed to ground state correlation energies.
 
@@ -559,9 +561,9 @@ To lower the steep scaling associated with increasing basis set size, the densit
 
 The working equations for AO-DF-SOS-ADC(2) are given in Tables \ref{AODFSOSADC2INTERMEDIATES}, \ref{AODFSOSADC21D} and \ref{AODFSOSADC2E}. Table \ref{AODFSOSADC2INTERMEDIATES} shows the pre-iteration steps, that is, the computation of the Laplace parameters and the intermediates $I_{ij}$ and $I_{ab}$. The construction of the intermediates can be formulated in terms of the Z- and K-kernels. In the K-kernel, the metric matrix $\mbf{M}$ is replaced by the Laplace matrix $\mbf{G}$ formed by the Z-kernel. The contraction of $\mbf{G}$ with $B_{X\mu\nu}$ in the K-kernel is the most expensive step in the pre-iteration procedure. The resulting tensor can be computed on-the-fly as it is not needed for any other contraction.
 
-Table \ref{AODFSOSADC21D} shows the steps to form part 1 and 2A-2D of the matrix-vector product. The steps are listed for both singlet and triplet. First the CIS Fock-like matrix $\mbf{F}^{CIS}$ is formed (1a-b), as it represents an important intermediate for the subsequent steps. This is easily done using the J/K-kernels. Zero and first order (2a+b) contributions, as well as part 2A and 2B (3a+b) of the second order contributions are formed trivially afterwards using the intermediates. Part 2C is most conveniently computed using the J-kernel where the density matrix is replaced by a pseudo-density matrix $\mbf{H}$ (4b) formed by contracting with a pseudo-AO CIS matrix (4a). Part 2D is a bit more involved. First, the matrix $\mbf{T}$ is formed by looping over the laplace points and using the J-kernel (5a+b). Then, this matrix is used in a fock-like construction scheme (5c) to get the final result.
+Table \ref{AODFSOSADC21D} shows the steps to form part 1 and 2A-2D of the matrix-vector product. The steps are listed for both singlet and triplet. First the CIS Fock-like matrix $\mbf{F}^{CIS}$ is formed, as it represents an important intermediate for the subsequent steps. This is easily done using the J/K-kernels. Zero and first order contributions, as well as part 2A and 2B of the second order contributions are formed trivially afterwards using the intermediates. Part 2C is most conveniently computed using the J-kernel where the density matrix is replaced by a pseudo-density matrix $\mbf{H}$ formed by contracting with a pseudo-AO CIS matrix. Part 2D is a bit more involved. First, the matrix $\mbf{T}$ is formed by looping over the Laplace points and using the J-kernel. Then, this matrix is used in a fock-like construction scheme to get the final result.
 
-Finally, Table \ref{AODFSOSADC2E} shows the construction of part 2E of the MVP. This is the most expensive step of the whole procedure. First, the Laplace parameters are (re-)computed for the current excitation energy $\omega$. The algorithm then enters the Laplace loop in step 2. First, the intermediate tensors $B_{X\ulgm\olgn}$ (2b) and $R_{X\ulgm\ulgn}$ (2c-2e) are formed and stored. They are then used in step 2f and 2g to form two intermediate matrices in the auxiliary basis. The final intermediate $D_{X\ulgm\olgn}$ is formed in step (2h). After two major contraction steps (2i+j), the contributions are added to part 2E in (2k). 
+Finally, Table \ref{AODFSOSADC2E} shows the construction of part 2E of the MVP. This is the most expensive step of the whole procedure. First, the Laplace parameters are (re-)computed for the current excitation energy $\omega$. The algorithm then enters the Laplace loop in step 2. First, the intermediate tensors $B_{X\ulgm\olgn}$ and $R_{X\ulgm\ulgn}$ are formed and stored. They are then used in step 2f and 2g to form two intermediate matrices in the auxiliary basis. The final intermediate $D_{X\ulgm\olgn}$ is formed in step. After two major contraction steps, the contributions are added to part 2E. 
 
 Using the density fitting approximation, the four-index intermediates $u_{\mu\sigma\nu\lambda}$ from AO-SOS-ADC(2) can be avoided, and the procedure only depends on 3-index intermediates. 
 
@@ -570,7 +572,7 @@ Using the density fitting approximation, the four-index intermediates $u_{\mu\si
 \begin{algorithm}
 Compute Laplace quadrature parameters $\{w\pa,t\pa\}$ for $(\eps_i + \eps_j - \eps_a - \eps_b)^{-1}$
 \\
-If needed by the J,K or Z kernels, compute the cholesky decompositions of the occupied and virtual pseudo-density matrix 
+If needed by the J,K or Z kernels, compute the Cholesky decompositions of the occupied and virtual pseudo-density matrix 
 Compute the intermediate matrices $I_{ij}$ and $I_{ab}$
 \\
 \For{\forcond}{
@@ -585,7 +587,7 @@ $I_{ij} \leftarrow I_{ji}$
 \\ 
 $I_{ab} \leftarrow I_{ba}$
 }
-\caption{Pre-iterative steps for computing the ADC(2) intermediates}
+\caption{Pre-iterative steps for computing the AO-ADC(2) intermediates}
 \label{AODFSOSADC2INTERMEDIATES}
 \end{algorithm}
 %
@@ -612,7 +614,7 @@ $r_{ia} \leftarrow u_{ib} I_{ab}$
 $r_{ia} \leftarrow u_{ja} I_{ij}$
 }
 %
-\Substep(\textbf{Compute part (C) of seond-order term}){
+\Substep(\textbf{Compute part (C) of second-order term}){
 \For{\forcond}{
 if singlet: $H\pa_{\mu\nu} \leftarrow P\pa_{\mu'\mu} Q\pa_{\nu'\nu} F^{CIS}_{\nu'\mu'}$
 \\
@@ -633,7 +635,7 @@ $T_{\mu\nu} \leftarrow \frac{1}{2} \sum_{\alpha} P\pa_{\mu\mu'} Q\pa_{\nu\nu'} \
 %
 $r_{ia} \leftarrow -\frac{c_{os}}{2} C_{\mu i} C_{\nu a} \left[ 2\calJ\left\lbrace T,M \right\rbrace_{\mu\nu} - \calK\left\lbrace T,M \right\rbrace_{\mu\nu} \right]$
 } % end substep
-\caption{Intermediates}
+\caption{Steps for computing the singles part of the MVP of AO-ADC(2)}
 \label{AODFSOSADC21D}
 \end{algorithm}
 
@@ -662,15 +664,17 @@ $r^{(B)}_{ia}(\omega) \leftarrow \overline{C}_{\mu i} \left[ D_{X \ulgm \olgg}\p
 \\
 $r_{ia} += c_{os-coupling}^2 e^{\omega t\pa} \left[ - r^{(A)}_{ia}(\alpha,\omega) + r^{(B)}_{ia}(\alpha,\omega) \right]$
 }
-\caption{Algorithm for singlet-excitations}
+\caption{Steps for computing the doubles part of the MVP of AO-ADC(2)}
 \label{AODFSOSADC2E}
 \end{algorithm}
 
-Similarly to AO-MP2, the prefactor can be significantly lowered by virtue of the incomplete cholesky decomposition. Table \ref{AODFSOSADC2EOB} and \ref{AODFSOSADC2EOV} show how the intermediates in part 2E can be formed in a mixed pseudo-AO/MO basis ("OB" algorithm) or in a complete pseudo-MO basis ("OV" algorithm). While the fully transformed OV version has a lower memory footprint by reducing the dimension form $N_XN_{AO}^2$ to $N_XOV$, the overhead due to the additional cholesky decomposition of the virtual pseudo-density might outweigh the benefit: first, the virtual space may be quite large, especially if large basis sets are used, increasing the rank of the matrix and hence the computational effort of the Cholesky decomposition. Second, the decompositions need to be recomputed for each $\omega$, and foreach Laplace point. The OB version might offer a compromise between memory savings and additional overhead. 
+Similarly to AO-MP2, the prefactor can be significantly lowered by virtue of the incomplete Cholesky decomposition which yields the CD-DF-SOS-ADC(2) method. Table \ref{AODFSOSADC2EOB} and \ref{AODFSOSADC2EOV} show how the intermediates in part 2E can be formed in a mixed pseudo-AO/MO basis ("OB" algorithm) or in a complete pseudo-MO basis ("OV" algorithm). While the fully transformed OV version has a lower memory footprint by reducing the dimension from $N_XN_{AO}^2$ to $N_XOV$, the overhead due to the additional Cholesky decomposition of the virtual pseudo-density might outweigh the benefit: first, the virtual space may be quite large, especially if large basis sets are used, increasing the rank of the matrix and hence the computational effort of the Cholesky decomposition. Second, the decompositions need to be recomputed for each $\omega$, and for each Laplace point. The OB version might offer a compromise between memory savings and additional overhead. 
 
-It should be noted that the Cholesky decomposition can also be used in the Z-kernels in steps 3a of Table \ref{AODFSOSADC2INTERMEDIATES} to reduce its prefactor as well. 
+It should be noted that the Cholesky decomposition can also be used in the Z-kernels in Table \ref{AODFSOSADC2INTERMEDIATES} to reduce its prefactor as well. 
 
-... Cholesky in K of intermediates ???
+By using local density fitting, the inherent quadratic scaling of the AO-SOS-ADC(2) method also applies for AO-DF-SOS-ADC(2) and CD-DF-SOS-ADC(2).
+
+%... Cholesky in K of intermediates ???
 
 \begin{algorithm}
 Compute Laplace quadrature parameters $\{w\pt,t\pt\}$ for $(-\omega + \eps_i + \eps_j - \eps_a - \eps_b)^{-1}$
@@ -698,7 +702,7 @@ $r^{(B)}_{ia}(\omega) \leftarrow \overline{C}_{\mu i} L_{\mu \uli} \left[ D_{X \
 \\
 $r_{ia} += c_{os-coupling}^2 e^{\omega t\pa} \left[ - r^{(A)}_{ia}(\alpha,\omega) + r^{(B)}_{ia}(\alpha,\omega) \right]$
 }
-\caption{Algorithm for singlet-excitations}
+\caption{Steps for computing the doubles part of the MVP of AO-ADC(2), with Cholesky decomposition of occupied densities}
 \label{AODFSOSADC2EOB}
 \end{algorithm}
 %
@@ -728,11 +732,8 @@ $r^{(B)}_{ia}(\omega) \leftarrow \overline{C}_{\mu i} L_{\mu \uli} \left[ D_{X \
 \\
 $r_{ia} += c_{os-coupling}^2 e^{\omega t\pa} \left[ - r^{(A)}_{ia}(\alpha,\omega) + r^{(B)}_{ia}(\alpha,\omega) \right]$
 }
-\caption{Algorithm for singlet-excitations}
-\label{AODFSOSADC2EOB}
+\caption{Steps for computing the doubles part of the MVP of AO-ADC(2), with Cholesky decomposition of occupied and virtual densities}
+\label{AODFSOSADC2EOV}
 \end{algorithm}
 
-
-By using local density fitting, the inherent quadratic scaling of the AO-SOS-ADC(2) method also applies for AO-DF-SOS-ADC(2).
-
-???? DAVIDSON ???? 
+%???? DAVIDSON ???? 

@@ -1250,4 +1250,157 @@ Pablo Baudin and Kasper Kristensen.
   theory}.
 \newblock {\em J. Chem. Phys.}, 144(22):224106, Jun 2016.
 
+\bibitem{Wor2009}
+Michael Wormit.
+\newblock {\em Development and Application of Reliable Methods for the
+  Calculation of Excited States: From Light-Harvesting Complexes to
+  Medium-Sized Molecules}.
+\newblock PhD thesis, Johann Wolfgang Goethe–Universitaet Frankfurt, 2009.
+
+\bibitem{Sha2006}
+Yihan Shao, Laszlo~Fusti Molnar, Yousung Jung,
+  J{\ifmmode\ddot{o}\else\"{o}\fi}rg Kussmann, Christian Ochsenfeld, Shawn~T.
+  Brown, Andrew T.~B. Gilbert, Lyudmila~V. Slipchenko, Sergey~V. Levchenko,
+  Darragh~P. O{'}Neill, A.~DiStasio~Robert, Jr., Rohini~C. Lochan, Tao Wang,
+  Gregory J.~O. Beran, Nicholas~A. Besley, John~M. Herbert, Ching Yeh~Lin, Troy
+  Van~Voorhis, Siu Hung~Chien, Alex Sodt, Ryan~P. Steele, Vitaly~A. Rassolov,
+  Paul~E. Maslen, Prakashan~P. Korambath, Ross~D. Adamson, Brian Austin, Jon
+  Baker, Edward F.~C. Byrd, Holger Dachsel, Robert~J. Doerksen, Andreas Dreuw,
+  Barry~D. Dunietz, Anthony~D. Dutoi, Thomas~R. Furlani, Steven~R. Gwaltney,
+  Andreas Heyden, So~Hirata, Chao-Ping Hsu, Gary Kedziora, Rustam~Z.
+  Khalliulin, Phil Klunzinger, Aaron~M. Lee, Michael~S. Lee, WanZhen Liang,
+  Itay Lotan, Nikhil Nair, Baron Peters, Emil~I. Proynov, Piotr~A. Pieniazek,
+  Young Min~Rhee, Jim Ritchie, Edina Rosta, C.~David~Sherrill, Andrew~C.
+  Simmonett, Joseph~E. Subotnik, H.~Lee Woodcock~Iii, Weimin Zhang, Alexis~T.
+  Bell, Arup~K. Chakraborty, Daniel~M. Chipman, Frerich~J. Keil, Arieh Warshel,
+  Warren~J. Hehre, Henry~F. Schaefer~Iii, Jing Kong, Anna~I. Krylov, Peter
+  M.~W. Gill, and Martin Head-Gordon.
+\newblock {Advances in methods and algorithms in a modern quantum chemistry
+  program package}.
+\newblock {\em Phys. Chem. Chem. Phys.}, 8(27):3172--3191, Jul 2006.
+
+\bibitem{Epi2013}
+Evgeny Epifanovsky, Michael Wormit, Tomasz Ku{\ifmmode\acute{s}\else\'{s}\fi},
+  Arie Landau, Dmitry Zuev, Kirill Khistyaev, Prashant Manohar, Ilya Kaliman,
+  Andreas Dreuw, and Anna~I. Krylov.
+\newblock {New implementation of high-level correlated methods using a general
+  block tensor library for high-performance electronic structure calculations}.
+\newblock {\em J. Comput. Chem.}, 34(26):2293--2309, Oct 2013.
+
+\bibitem{Kat2007}
+Danylo Kats, Tatiana Korona, and Martin Sch{\ifmmode\ddot{u}\else\"{u}\fi}tz.
+\newblock {Transition strengths and first-order properties of excited states
+  from local coupled cluster CC2 response theory with density fitting}.
+\newblock {\em J. Chem. Phys.}, 127(6):064107, Aug 2007.
+
+\bibitem{LAP2021}
+{LAPACK{\hspace{0.167em}}{\ifmmode---\else\textemdash\fi}{\hspace{0.167em}}Linear
+  Algebra PACKage}, Aug 2021.
+\newblock [Online; accessed 28. Aug. 2021].
+
+\bibitem{Gue2010}
+Ga\"{e}l Guennebaud, Beno\^{i}t Jacob, et~al.
+\newblock Eigen v3.
+\newblock http://eigen.tuxfamily.org, 2010.
+
+\bibitem{PBLAS2021}
+{PBLAS}, Mar 1995.
+\newblock [Online; accessed 28. Aug. 2021].
+
+\bibitem{Can1969}
+Lynn~Elliot Cannon.
+\newblock {A cellular computer to implement the Kalman filter algorithm}.
+\newblock {\em Montana State University - Bozeman, College of Engineering},
+  pages 1--229, 1969.
+
+\bibitem{Sca2021}
+{ScaLAPACK{\hspace{0.167em}}{\ifmmode---\else\textemdash\fi}{\hspace{0.167em}}Scalable
+  Linear Algebra PACKage}, Apr 2021.
+\newblock [Online; accessed 28. Aug. 2021].
+
+\bibitem{Hut2014}
+J{\ifmmode\ddot{u}\else\"{u}\fi}rg Hutter, Marcella Iannuzzi, Florian
+  Schiffmann, and Joost VandeVondele.
+\newblock {cp2k: atomistic simulations of condensed matter systems}.
+\newblock {\em WIREs Comput. Mol. Sci.}, 4(1):15--25, Jan 2014.
+
+\bibitem{Sch2016}
+Ole Sch{\ifmmode\ddot{u}\else\"{u}\fi}tt, Peter Messmer,
+  J{\ifmmode\ddot{u}\else\"{u}\fi}rg Hutter, and Joost VandeVondele.
+\newblock {GPU-Accelerated Sparse Matrix{\textendash}Matrix Multiplication for
+  Linear Scaling Density Functional Theory}.
+\newblock In {\em {Electronic Structure Calculations on Graphics Processing
+  Units}}, pages 173--190. John Wiley {\&} Sons, Ltd, Chichester, England, UK,
+  Mar 2016.
+
+\bibitem{Siv2019}
+Ilia Sivkov, Alfio Lazzaro, and Juerg Hutter.
+\newblock {DBCSR: A Library for Dense Matrix Multiplications on Distributed
+  GPU-Accelerated Systems}.
+\newblock {\em arXiv}, Oct 2019.
+
+\bibitem{Amb2020}
+Maximilien Ambroise.
+\newblock Designing a modern c++/fortran interface by example.
+\newblock Presented at FortranCon 2020, University of Zurich, Switzerland,
+  2020.
+
+\bibitem{Pul1980}
+P{\ifmmode\acute{e}\else\'{e}\fi}ter Pulay.
+\newblock {Convergence acceleration of iterative sequences. the case of scf
+  iteration}.
+\newblock {\em Chem. Phys. Lett.}, 73(2):393--398, Jul 1980.
+
+\bibitem{Dav1975}
+Ernest~R. Davidson.
+\newblock {The iterative calculation of a few of the lowest eigenvalues and
+  corresponding eigenvectors of large real-symmetric matrices}.
+\newblock {\em J. Comput. Phys.}, 17(1):87--94, Jan 1975.
+
+\bibitem{Cor2012}
+Sonia Coriani, Thomas Fransson, Ove Christiansen, and Patrick Norman.
+\newblock {Asymmetric-Lanczos-Chain-Driven Implementation of Electronic
+  Resonance Convergent Coupled-Cluster Linear Response Theory}.
+\newblock {\em J. Chem. Theory Comput.}, 8(5):1616--1628, May 2012.
+
+\bibitem{Ols1990}
+Jeppe Olsen, Poul J{\o}rgensen, and Jack Simons.
+\newblock {Passing the one-billion limit in full configuration-interaction
+  (FCI) calculations}.
+\newblock {\em Chem. Phys. Lett.}, 169(6):463--472, Jun 1990.
+
+\bibitem{Mor1990}
+Ronald~B. Morgan.
+\newblock {Davidson's method and preconditioning for generalized eigenvalue
+  problems}.
+\newblock {\em J. Comput. Phys.}, 89(1):241--245, Jul 1990.
+
+\bibitem{Liu1978}
+C.~B. Moler, I.~Shavitt, and Lawrence Berkeley {\relax Laboratory}. National
+  Resource for~Computation In~Chemistry.
+\newblock {\em {Report on the Workshop Numerical Algorithms in Chemistry:
+  Algebraic Methods: August 9-11, 1978}}.
+\newblock Lawrence Berkeley Laboratory, University of California, Berkeley, CA,
+  USA, 1978.
+
+\bibitem{But1976}
+W.~Butscher and W.~E. Kammer.
+\newblock {Modification of Davidson's method for the calculation of eigenvalues
+  and eigenvectors of large real-symmetric matrices: {\textquotedblleft}root
+  homing procedure{\textquotedblright}}.
+\newblock {\em J. Comput. Phys.}, 20(3):313--325, Mar 1976.
+
+\bibitem{Xia2016}
+Jianwei Xiao and Ming Gu.
+\newblock {Spectrum-Revealing Cholesky Factorization for Kernel Methods}.
+\newblock In {\em {2016 IEEE 16th International Conference on Data Mining
+  (ICDM)}}, pages 1293--1298. IEEE, Dec 2016.
+
+\bibitem{Xia2017}
+Jianwei Xiao, Ming Gu, and Julien Langou.
+\newblock {Fast Parallel Randomized QR with Column Pivoting Algorithms for
+  Reliable Low-Rank Matrix Approximations}.
+\newblock In {\em {2017 IEEE 24th International Conference on High Performance
+  Computing (HiPC)}}, pages 233--242. IEEE, Dec 2017.
+
 \end{thebibliography}
