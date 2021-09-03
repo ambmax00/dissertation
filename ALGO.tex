@@ -321,9 +321,66 @@ The Laplace transformation is  a crucial step for formulating an orbital invaria
 
 All calculations in this report use the robust minimax approximation as proposed by Helmich-Paris and Visscher \cite{Hel2016}. They have published their source code on Github (github.com/bhelmichparis/laplace-minimax), which was in turn incorporated into the MEGALOchem software.
 
-\section{Reverse Cuthill-McKee}
+\section{Cuthill-McKee}
 
+The Cuthill-McKee (CM) algorithm finds a permutation $P$ of a sparse, symmetric matrix that minimizes its \emph{bandwidth} \cite{Cut1969}. A banded matrix is a matrix that has all significant elements clustered around the main diagonal. The bandwidth $k$ is defined as the smallest positive index for which
+\begin{equation}
+\min_k \left\lvert A(k,k) \right\rvert = 0 \qquad k \in [0,N]
+\end{equation}
+\noindent The CM algorithm reduces the bandwidth of a matrix by reordering the nodes of the corresponding adjacency or connectivity matrix $\mbf{C}$ (Algorithm \ref{algo:CM}). For a $N$-by-$N$ matrix, there are $N$ nodes. Node $i$ and $j$ are connected if the entry $(i,j)$ of the connectivity matrix is 1, and not connected if the entry is 0. Here, the \emph{degree} of a node is defined by the total number of connections, i.e. the row or column sum
+\begin{equation}
+degree(i) = \sum_j^N C(i,j)
+\end{equation}
+In the context of quantum chemistry, the nodes correspond to atoms in a molecule, and the connections to bonds. Reordering the indexing of the atoms based on the connectivity matrix of a molecule allows to significantly reduce the number of blocks needed to store quantities like the overlap matrix, density matrix or 2-electron repulsion integrals when using block-sparse matrix algebra by grouping close atoms together. Figure \ref{fig:RCM} shows how the connectivity matrix is reordered for the FW144 system using the reverse CM algorithm. Two atoms are "connected", if their are within 5 $a_0$ of each other.
 
+\begin{figure}
+\centering
+\begin{minipage}{0.45\textwidth}
+\centering
+\includegraphics[width=\textwidth]{Pics/FW144_UNORDERED}
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+\centering
+\includegraphics[width=\textwidth]{Pics/FW144_ORDERED}
+\end{minipage}
+\caption{Connectivity matrix of FW144 before reordering (left), and connectivity matrix after applying the reverse Cuthill-McKee algorithm (right). Reducing the bandwidth allows to compress matrices and tensors in the AO basis into a much smaller space when using the block-sparse format.}
+\label{fig:RCM}
+\end{figure}
+
+\begin{algorithm}
+\setstretch{1.1}
+\KwIn{Sparse symmetric matrix $\mbf{A}$ with dimension $N$ by $N$}
+\KwOut{Reordered matrix $\mbf{A}$ with minimized bandwidth.}
+
+Form the binary connectivity matrix $\mbf{C}$ of the input matrix
+\\
+Instantiate empty queue $Q$ and result array $R$
+\\
+\While{true} {
+	Find node $p$ with minimum degree that is not yet in $R$, and put it into $R$
+	\\
+	Add all nodes to the queue that are connected to $p$
+	\\
+	\While{length of $Q \neq 0$}{
+		Get fist node $q$ in queue, and pop it from queue
+		\\
+		\uIf{$q$ in $R$}{
+		 	skip to next loop
+		}
+		\Else{
+			add $q$ to $R$
+		}
+		Append all nodes connected to $q$ not yet in $R$ both to $R$ and $Q$
+	} % end while q
+	\uIf{size of $R = N$}{
+		break
+	}
+} % end while R
+Reorder the rows and columns of $\mbf{A}$ according to $R$ (standard Cuthill-McKee) or the reverse order of $R$ (reverse Cuthill-McKee)
+
+\caption{(Reverse) Cuthill-McKee algorithm.}
+\label{algo:CM}
+\end{algorithm}
 
 %\section{Quasi-Robust Density Fitting}
 

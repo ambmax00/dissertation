@@ -215,6 +215,17 @@
 
 \definecolor{light-gray}{gray}{0.95}
 
+\lstnewenvironment{code}
+{\lstset{backgroundcolor=\color{light-gray},breaklines=true,basicstyle=\small\ttfamily}}{}
+
+\lstnewenvironment{cppinline}
+{\lstset{
+	backgroundcolor=\color{light-gray},
+	language=C++,
+	breaklines=true,
+	basicstyle=\small\ttfamily}
+}{}
+
 \newtcblisting[auto counter, number within=section]{cpp}[2][]{
 	sharp corners, 
     fonttitle=\bfseries, 
@@ -283,6 +294,8 @@
     		language=C++
     	}, 
     title=Listing \thetcbcounter: #2 (\texttt{\detokenize{#3}}), #1}
+
+\newcommand{\mchem}{{\texttt{MEGALOchem}}}
 
 % rest of document ...
 

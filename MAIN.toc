@@ -194,19 +194,36 @@
 \contentsline {subsection}{\numberline {9.4.4}PBLAS}{166}{}%
 \contentsline {subsection}{\numberline {9.4.5}ScaLAPACK}{166}{}%
 \contentsline {subsection}{\numberline {9.4.6}DBCSR}{166}{}%
-\contentsline {chapter}{\numberline {10}MEGALOchem: User Guide}{168}{}%
-\contentsline {section}{\numberline {10.1}HELLO}{168}{}%
-\contentsline {chapter}{\numberline {11}MEGALOchem: Developer's Guide}{169}{}%
-\contentsline {chapter}{\numberline {12}Algorithms}{170}{}%
-\contentsline {section}{\numberline {12.1}Direct Inversion of The Iterative Subspace }{170}{}%
-\contentsline {section}{\numberline {12.2}Davidson Diagonalization }{171}{}%
-\contentsline {subsection}{\numberline {12.2.1}Davidson-Liu Method}{172}{}%
-\contentsline {subsection}{\numberline {12.2.2}Modified Davidson Method for the Pseudo-Eigenvalue Problem}{173}{}%
-\contentsline {section}{\numberline {12.3}Incomplete Cholesky Decomposition }{173}{}%
-\contentsline {subsubsection}{Comments}{176}{}%
-\contentsline {section}{\numberline {12.4}Laplace Transformation }{177}{}%
-\contentsline {section}{\numberline {12.5}Reverse Cuthill-McKee}{178}{}%
-\contentsline {chapter}{\numberline {13}Conclusion and Outlook}{179}{}%
-\contentsline {chapter}{\numberline {A}Second Quantization}{180}{}%
-\contentsline {chapter}{\numberline {B}Hartree-Fock Starting Guesses }{181}{}%
-\contentsline {chapter}{\numberline {C}Linear Dependency in Basis Sets }{182}{}%
+\contentsline {chapter}{\numberline {10}The {\texttt {MEGALOchem}}Program Package}{168}{}%
+\contentsline {section}{\numberline {10.1}Motivation}{168}{}%
+\contentsline {section}{\numberline {10.2}Software Architecture}{169}{}%
+\contentsline {section}{\numberline {10.3}Parallel Runtime Environment}{170}{}%
+\contentsline {section}{\numberline {10.4}JSON interface }{171}{}%
+\contentsline {section}{\numberline {10.5}Design Patterns}{172}{}%
+\contentsline {section}{\numberline {10.6}Libraries sec:LIBS}{174}{}%
+\contentsline {subsection}{\numberline {10.6.1}\texttt {dbcsrx}}{174}{}%
+\contentsline {subsection}{\numberline {10.6.2}\texttt {math}}{176}{}%
+\contentsline {subsection}{\numberline {10.6.3}\texttt {ints}}{176}{}%
+\contentsline {subsection}{\numberline {10.6.4}\texttt {fock}}{177}{}%
+\contentsline {subsection}{\numberline {10.6.5}\texttt {hf}}{178}{}%
+\contentsline {subsection}{\numberline {10.6.6}\texttt {mp}}{178}{}%
+\contentsline {subsection}{\numberline {10.6.7}\texttt {adc}}{178}{}%
+\contentsline {subsection}{\numberline {10.6.8}\texttt {locorb}}{178}{}%
+\contentsline {chapter}{\numberline {11}Algorithms}{179}{}%
+\contentsline {section}{\numberline {11.1}Direct Inversion of The Iterative Subspace }{179}{}%
+\contentsline {section}{\numberline {11.2}Davidson Diagonalization }{180}{}%
+\contentsline {subsection}{\numberline {11.2.1}Davidson-Liu Method}{181}{}%
+\contentsline {subsection}{\numberline {11.2.2}Modified Davidson Method for the Pseudo-Eigenvalue Problem}{182}{}%
+\contentsline {section}{\numberline {11.3}Incomplete Cholesky Decomposition }{182}{}%
+\contentsline {subsubsection}{Comments}{185}{}%
+\contentsline {section}{\numberline {11.4}Laplace Transformation }{186}{}%
+\contentsline {section}{\numberline {11.5}Cuthill-McKee}{187}{}%
+\contentsline {chapter}{\numberline {12}Conclusion and Outlook}{190}{}%
+\contentsline {chapter}{\numberline {A}Second Quantization}{191}{}%
+\contentsline {chapter}{\numberline {B}Hartree-Fock Starting Guesses }{192}{}%
+\contentsline {section}{\numberline {B.1}Superposition of Atomic Densities}{192}{}%
+\contentsline {subsection}{\numberline {B.1.1}Partial Occupation Hartree-Fock}{192}{}%
+\contentsline {section}{\numberline {B.2}Projection Methods}{193}{}%
+\contentsline {chapter}{\numberline {C}Removing Linear Dependencies in Basis Sets }{194}{}%
+\contentsline {section}{\numberline {C.1}Canonical Orthogonalization}{194}{}%
+\contentsline {section}{\numberline {C.2}Cholesky Decomposition}{194}{}%
