@@ -24,11 +24,21 @@ der Ruprecht-Karls-Universität Heidelberg \\}
 {\large aus Differdingen, Luxemburg}\\
 %----------------------------------------------------------------
 \vspace{2cm}
-{Juli 2021} \\[5pt]
+{September 2021} \\[5pt]
 \vspace{2cm}
-{\bfseries Gutachter: \\}
-{Prof. Dr. Andreas Dreuw \\ ...}\\
 \end{center}
+
+\begin{tabular}{ll}
+{\bfseries Gutachter:} & Prof. Dr. Andreas Dreuw \\
+ & Prof. Dr. Oriol Vendrell
+\end{tabular}
+
+\vspace{0.5cm}
+
+\begin{tabular}{ll}
+{\bfseries Tag der mündlichen Prüfung:} & {Sometime this year}
+\end{tabular}
+
 \end{titlepage}
 
 \pagenumbering{roman}
@@ -43,10 +53,10 @@ Licensing
 
 \noindent {\Large \bfseries Notation for Orbital Representations}
 
-\begin{table}[h]
+{
 \setlength{\tabcolsep}{14pt}
 \renewcommand{\arraystretch}{1.5}
-\begin{tabular}{ll}
+\begin{longtable}[l]{ll}
 $\mu$, $\nu$, $\gamma$, $\lambda$, ... & atomic orbitals \\
 $i$, $j$, $k$, $l$, ... & occupied molecular orbitals \\
 $a$, $b$, $c$, $d$, ... & virtual molecular orbitals \\
@@ -56,12 +66,30 @@ $I$, $J$, $K$, $L$, ... & occupied molecular spin orbitals \\
 $A$, $B$, $C$, $D$, ... & virtual molecular spin orbitals \\
 $\ulgm$, $\ulgn$, $\ulgl$, $\ulgs$, ... & occupied projected atomic orbitals \\
 $\olgm$, $\olgn$, $\olgl$, $\olgs$, ... & virtual projected atomic orbitals
-\end{tabular}
-\end{table}
+\end{longtable}
+}
 
+\vspace{0.5cm}
 \noindent {\Large \bfseries Abbreviations}
 
+{
+\setlength{\tabcolsep}{14pt}
+\renewcommand{\arraystretch}{1.5}
+\begin{longtable}[l]{ll}
+\input{abbr.tex}
+\end{longtable}
+}
 
+\noindent {\Large \bfseries Mathematical Notation}
+
+{
+\setlength{\tabcolsep}{14pt}
+\renewcommand{\arraystretch}{1.5}
+\begin{longtable}[l]{ll}
+$\mbf{A}$ & matrix \\
+$\hat{A}$ & operator \\
+\end{longtable}
+}
 
 \newpage
 
@@ -80,25 +108,7 @@ $\olgm$, $\olgn$, $\olgl$, $\olgs$, ... & virtual projected atomic orbitals
 
 \pagenumbering{arabic}
 
-\chapter*{Introduction}
-
-This is the introduction. Talk about sparsity. Show sparse matrix. How does sparsity arise, what can we do with it, where else does it emerge?
-State of arts: adc now, adc in the future
-
-Exact solution: three body problem
-Helium: cannot be solved exactly: approximate methods. finite grid, finite basis
-solutions
-ground state excited state
-computational resources
-
-\begin{figure}
-\centering
-\includegraphics[scale=0.05]{Pics/fock.pdf}
-\caption{Adenine-guanine fock matrix Hartree FOck cc-pVTZ}
-\label{SparseExample}
-\end{figure}
-
-\newpage
+\include{INTRO.tex}
 
 \part{}
 
@@ -126,7 +136,7 @@ computational resources
 
 \include{ALGO.tex}
 
-\chapter{Conclusion and Outlook}
+\include{CONCLUSION.tex}
 
 \include{ANNEX.tex}
 
