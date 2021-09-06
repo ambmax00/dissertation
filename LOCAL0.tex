@@ -50,7 +50,7 @@ Consider a model system consisting of $n$ hydrogen atoms arranged in a line, wit
 
 \subsubsection{Linear Scaling Overlap Integrals}
 
-While the overlap integrals formerly scale with $\ccpx{2}$, it can be shown that the number of significant elements scales \emph{linearly}. First, consider the product of two 1s GTOSs $\chi_{A}$ and $\chi_{B}$, centered at $\mathbf{A}$ and $\mathbf{B}$, with exponents $\alpha$ and $\beta$. The Gaussian product theorem (GPT) states that the result is itself also a (scaled) Gaussian function
+While the overlap integrals formerly scale with $\ccpx{2}$, it can be shown that the number of significant elements scales \emph{linearly}. First, consider the product of two 1s GTOs $\chi_{A}$ and $\chi_{B}$, centered at $\mathbf{A}$ and $\mathbf{B}$, with exponents $\alpha$ and $\beta$. The Gaussian product theorem (GPT) states that the result is itself also a (scaled) Gaussian function
 \begin{equation}
 \chi(A,\alpha) \chi(B,\beta) = e^{-\alpha \left\lvert \mathbf{r} - \mathbf{A} \right\rvert^2} e^{-\beta \left\lvert \mathbf{r} - \mathbf{B} \right\rvert^2} = \kappa \chi(P,\alpha+\beta)  
 \end{equation}
@@ -70,7 +70,7 @@ S_{AB} = \int \kappa \chi_{P} dr = \kappa \left(\frac{\pi}{\alpha + \beta}\right
 \begin{equation}
 d_s = \sqrt{\alpha^{-1} ln \left[ \left( \frac{\pi}{2\alpha}\right)^3 \eps^{-1/2} \right]}
 \end{equation} 
-\noindent Which in our case is equal to 6.9 $a_0$. Each hydrogen atom therefore only has significant overlap with a finite number $n_{max}$ of other centers. For atom chains with $n > n_{max}$, the number of non-zero elements in the overlap matrix will no longer scale as $n^2$, but \emph{linearly} with $n_{max}$. For more realistic, three-dimnensional molecular systems, the crossover is less clearly defined due to the non-uniform distribution of atoms and different GTO exponents. Nonetheless, if a system grows sufficiently large, the overlap integrals still scale linearly. Similar arguments can be brought forth for the kinetic-energy integrals as well. 
+\noindent Which in our case is equal to 6.9 $a_0$. Each hydrogen atom therefore only has significant overlap with a finite number $n_{max}$ of other centers. For atom chains with $n > n_{max}$, the number of non-zero elements in the overlap matrix will no longer scale as $n^2$, but \emph{linearly} with $n_{max}$. For more realistic, three-dimensional molecular systems, the crossover is less clearly defined due to the non-uniform distribution of atoms and different GTO exponents. Nonetheless, if a system grows sufficiently large, the overlap integrals still scale linearly. Similar arguments can be brought forth for the kinetic-energy integrals as well. 
 
 \subsubsection{Quadratic Scaling Electron Repulsion Integrals} 
 
@@ -113,7 +113,7 @@ F_n(x) \leq \frac{(2n-1)!!}{2^{n+1}}\sqrt{\frac{\pi}{x^{2n+1}}} \quad \textrm{fo
 g_{ABCD} \leq min \left\lbrace \sqrt{\frac{4\eta}{\pi}} S_{AB} S_{CD}, \frac{S_{AB} S_{CD}}{\left\lvert \mathbf{P} - \mathbf{Q} \right\rvert} \right\rbrace
 \end{equation}
 \noindent The left-hand upper bound represents the short-range limit of the Boys function, and the right-hand one the long-range limit. In the short-range limit, i.e. for increasing distance $R_{AB}$ or $R_{CD}$, the magnitude of $g$ decreases \emph{exponentially}. As shown in the previous section, the non-zero elements of the overlap integrals $S_{AB}$ and $S_{CD}$ scale linearly with system size, and therefore the number of significant electron repulsion integrals scales with $N^2$ in total. 
-It should be noted, that in the long-range limit with increasing distance $R_{PQ}$ between product densities, the number of elements in $g$ will eventually scale linearly. However, the \emph{algebraic} $1/R$ decay of the long-range interactions is so slow that it practically useless for the size of molecules that can be tackled with current technologies. In the case of the hydrogen atom chain, the integrals $\cn{\mu\mu}{\nu\nu}$ only fall below 1e-10 for $R_{PQ}$ greater than 10$^{10}$ $a_0$. While the long-range decay is impractical for use in the case of the electron repulsion integrals, there are instances such as in tomic orbital MP2 (see Chapter $\ref{cha:LOCAL1}$) where \emph{bra} and \emph{ket} decay as $1/R^4$.
+It should be noted, that in the long-range limit with increasing distance $R_{PQ}$ between product densities, the number of elements in $g$ will eventually scale linearly. However, the \emph{algebraic} $1/R$ decay of the long-range interactions is so slow that it practically useless for the size of molecules that can be tackled with current technologies. In the case of the hydrogen atom chain, the integrals $\cn{\mu\mu}{\nu\nu}$ only fall below 1e-10 for $R_{PQ}$ greater than 10$^{10}$ $a_0$. While the long-range decay is impractical for use in the case of the electron repulsion integrals, there are instances such as in atomic orbital MP2 (see Chapter $\ref{cha:LOCAL1}$) where \emph{bra} and \emph{ket} decay as $1/R^4$.
 Knowing that the electron repulsion integrals are sparse is only the first step. One also has to develop a \emph{screening} method to avoid computing small integrals, by finding a general upper bound. It has been shown \cite{Roo1951} that $g$ is positive-definite, and fulfills the relationship
 \begin{equation}
 \sum_{abcd} c_{ab} g_{abcd} c_{cd} > 0
@@ -126,7 +126,7 @@ Knowing that the electron repulsion integrals are sparse is only the first step.
 
 \subsection{Element-Wise Sparsity of the Density Matrix}
 
-The decaying behavior of the density matrix has been extensively studied in solids for atom-centred Bloch and Wannier functions \cite{Koh1959,Ism1999,Goe1994,Goe1998,Tar2002}. It was shown that for insulators, i.e. systems with large band-gaps, the contributions $P_{\mu\nu}$ decay exponentially with increasing distance $R_{\mu\nu}$, while for systems with small or no band gaps, such as metals, the elements decay algebraically. This is also known as Kohn's conjecture \cite{Koh1959}.  
+The decaying behavior of the density matrix has been extensively studied in solids for atom-centered Bloch and Wannier functions \cite{Koh1959,Ism1999,Goe1994,Goe1998,Tar2002}. It was shown that for insulators, i.e. systems with large band-gaps, the contributions $P_{\mu\nu}$ decay exponentially with increasing distance $R_{\mu\nu}$, while for systems with small or no band gaps, such as metals, the elements decay algebraically. This is also known as Kohn's conjecture \cite{Koh1959}.  
 The same observations have been made for non-periodic systems using atomic orbitals as basis. For molecules with a large HOMO-LUMO gap, e.g. alkanes, the number of non-zero elements in the atomic orbital density matrix scales linearly with increasing system size. On the other hand, molecules with strong electron delocalization, such as conjugated polyenes, have have a small HOMO-LUMO gap, and the density matrix elements decay much slower. 
 Consider again a chain of hydrogen atoms, equally spaced by $a_0$, each with one 1s Gaussian function, this time with $N_{atom}$ atoms. Figure \ref{fig:HCHAIN_DECAY}a shows the MO diagram for an increasing chain length. In the limit where $N_{atom} \rightarrow \infty$, the system takes on a band structure, similar to how they are encountered in a metal, with a smooth transition between occupied (valence) and virtual (conductance) band. In other words, the HOMO-LUMO gap becomes increasingly small. For a hydrogen chain, where each individual atom contributes one electron, the band is half filled, and the system is a conductor. If the Hydrogen atoms are replaced by Helium atoms, with two electrons per site, the band is fully filled and the system becomes an insulator.
 The magnitude of the density matrix elements $P_{\mu\nu}$ is plotted in Figure \ref{fig:HCHAIN_DENSITY}b as a function of increasing distance between 1s functions. The elements decay much slower for the conducting hydrogen chain (algebraic decay), while a rapid exponential decay can be observed in the case of the insulating helium chain. An interesting thing to note is the oscillating values of the density matrix for the hydrogen chain. This phenomenon arises due to the hydrogen atoms pairing up into loosely bound $H_2$ molecules. 
@@ -212,7 +212,7 @@ by $N_{AO}^2$0 matrix with combined row indices $I = \mu + N_{AO}*\nu$ and colum
 \begin{equation}
 \cn{ia}{jb} = C_{\mu i} C_{\sigma a} B_{\mu \sigma X} B_{X \nu \lambda} C_{\nu j} C_{\lambda b} = B_{iaX} B_{Xjb}
 \end{equation} 
-\noindent The AO-MO transformation step is also drastically sped up, but remains a $\ccpx{4}$ effort. Rank sparsity has therefore little impact on the overall scaling, but rather reduces the scaling \emph{prefactor}. Over the years, different methods have been proposed to compute $\mathbf{C}$, such as density fitting, Cholesky decompostion, pseudo-spectral methods, or tensor hypercontraction.
+\noindent The AO-MO transformation step is also drastically sped up, but remains a $\ccpx{4}$ effort. Rank sparsity has therefore little impact on the overall scaling, but rather reduces the scaling \emph{prefactor}. Over the years, different methods have been proposed to compute $\mathbf{C}$, such as density fitting, Cholesky decomposition, pseudo-spectral methods, or tensor hypercontraction.
 Density matrices at different levels of theory (Hartree Fock, MP2, CC ...) also exhibit rank sparsity. Decomposition of such matrices play an important role in local molecular orbital schemes and low scaling electronic structure methods, as will be shown in later sections.
 
 % pos def Roo1951 C. C. J. Roothaan, Rev. Mod. Phys., 23, 69 (1951).
@@ -262,7 +262,7 @@ The charge densities $\rho$ can be approximated by fitting them to a set of atom
 \label{eq:DFLLS}
 \end{equation}
 \noindent Finding the fitting coefficients by minimizing $\eps_J^{(2)}$ has the important feature that $eps_J^{(1)} = 0$, which can be shown by substituting Equation \ref{eq:DFLLS} back into Equation \ref{eq:DFERROR}. The total electron integral error is therefore \emph{quadratic} in the fitting error. Fitting procedures where the coefficients $C^P_{\mu\nu}$ satisfy Equation \ref{eq:DFLLS} are termed $\emph{robust}$ \cite{Dun2000}. Any restrictions posed on $C^P_{\mu\nu}$ makes $\eps_{1}$ different from zero and the error scales linearly. 
-Equation \ref{eq:DFLLS} requires the evaluation of the three-centre-two-electron (3c2e) and two-centre-two-electron (2c2e) integrals in the auxiliary basis set $\{P\}$
+Equation \ref{eq:DFLLS} requires the evaluation of the three-center-two-electron (3c2e) and two-center-two-electron (2c2e) integrals in the auxiliary basis set $\{P\}$
 \begin{equation}
 \cn{\mu\nu}{P} = \int \int \chi_{\mu}(\mathbf{r_1}) \chi_{\mu}(\mathbf{r_1}) \frac{1}{\mathbf{r_1} - \mathbf{r_2}} \chi_{P}(\mathbf{r_2}) d\mathbf{r_1} d\mathbf{r_2} 
 \end{equation}
@@ -324,7 +324,7 @@ The fitting coefficients evaluated as $C^P_{\mu\nu} = \cn{\mu\nu}{Q} \cn{Q}{P}^{
 \noindent due to the inverse of $\cn{P}{Q}$ not being sparse. 
 
 \subsection{Local Density Fitting: Principles} 
-The long-range behaviour introduced by Equation \ref{eq:DFLLS} is often deemed "unphysical" \cite{Tew2018}. \emph{Local density fitting} (LDF) methods circumvent this problem by forcing a more rapid decay of long-range contributions, either (a) by using a different metric in the fitting procedure or (b) by constructing domains $[\mu\nu]$ that exclude distant fitting functions $P$ a priori. In both cases, Equation \ref{eq:DFLLS} no longer holds and the error in the electron integrals increases linearly with the fitting error. Therefore, the density fitting procedure is no longer robust. Fortunately, LDF methods can use a different expression for the electron integrals which includes the first order terms to remove the linear error
+The long-range behavior introduced by Equation \ref{eq:DFLLS} is often deemed "unphysical" \cite{Tew2018}. \emph{Local density fitting} (LDF) methods circumvent this problem by forcing a more rapid decay of long-range contributions, either (a) by using a different metric in the fitting procedure or (b) by constructing domains $[\mu\nu]$ that exclude distant fitting functions $P$ a priori. In both cases, Equation \ref{eq:DFLLS} no longer holds and the error in the electron integrals increases linearly with the fitting error. Therefore, the density fitting procedure is no longer robust. Fortunately, LDF methods can use a different expression for the electron integrals which includes the first order terms to remove the linear error
 \begin{equation}
 \cn{\mu\nu}{\sigma\lambda} \approx (\widetilde{\mu\nu}|\sigma\lambda) + (\mu\nu|\widetilde{\sigma\lambda}) - (\widetilde{\mu\nu}|\widetilde{\sigma\lambda})
 \label{eq:DUNLAP}
@@ -348,7 +348,7 @@ M_{PQ} = \int\int \bfun{P}{1} g(\mbf{r_1},\mbf{r_2}) \bfun{Q}{2} d\mbf{r_1} d\mb
 C^P_{\mu\nu} = S_{PQ}^{-1} (\mu\nu Q)
 \label{eq:OVLPMET}
 \end{equation}
-\noindent where $S_{PQ}$ is the overlap matrix of the auxiliary basis, and $(\mu\nu Q)$ are the 3-center-\textbf{1-electron} overlap integrals. While the overlap metric has the most rapid decay and the quantities in Equation \ref{eq:OVLPMET} can be evaluated in $\mathcal{O}(N)$ time, it has the worst accuracy of all metrics. One solution to this problem is to introduce a metric which is intermediate between overlap and coulomb fitting. Examples include the Yukawa, Coulomb- and Gaussian-attenuated metrics. These intermediate metrics introduce a damping factor $\omega$ to control the sparsity and accuracy of the density fit. In the limit where $\omega \rightarrow 0$, and $\omega \rightarrow \infty$, one recovers the coulomb and overlap metric, respectively. Figure \ref{fig:DFMETRICS} shows the decay behaviour of the Coulomb-attenuated metric, for $\omega$ = 0.01, 0.1 and 1.0, compared to the overlap and the Coulomb metric. 
+\noindent where $S_{PQ}$ is the overlap matrix of the auxiliary basis, and $(\mu\nu Q)$ are the 3-center-\textbf{1-electron} overlap integrals. While the overlap metric has the most rapid decay and the quantities in Equation \ref{eq:OVLPMET} can be evaluated in $\mathcal{O}(N)$ time, it has the worst accuracy of all metrics. One solution to this problem is to introduce a metric which is intermediate between overlap and coulomb fitting. Examples include the Yukawa, Coulomb- and Gaussian-attenuated metrics. These intermediate metrics introduce a damping factor $\omega$ to control the sparsity and accuracy of the density fit. In the limit where $\omega \rightarrow 0$, and $\omega \rightarrow \infty$, one recovers the coulomb and overlap metric, respectively. Figure \ref{fig:DFMETRICS} shows the decay behavior of the Coulomb-attenuated metric, for $\omega$ = 0.01, 0.1 and 1.0, compared to the overlap and the Coulomb metric. 
 
 \begin{table}
 \centering
@@ -415,7 +415,7 @@ Finally, domains can also be formed using local molecular orbitals instead of AO
 \begin{equation}
 \cn{\mu i}{P} = \sum_{Q \in [i]_{fit}} \cn{P}{Q} C^Q_{\mu i}
 \end{equation}
-The fitting coefficients are determined individually for each AO-LMO pair $\cket{\mu i}$, and include only those auxiliary functions centred on atoms in the fitting domain $[i]_{fit}$ for which the Mulliken charges are above a given threshold. Although the fitting coefficients need to be recomputed for each update of the MO coefficients, the number of $\cket{\mu i}$ pairs scales linearly with system size. This type of local density fitting and variations thereof are predominantly used in pair-orbital specific local correlation methods, and will be explained in more detail further below. 
+The fitting coefficients are determined individually for each AO-LMO pair $\cket{\mu i}$, and include only those auxiliary functions centered on atoms in the fitting domain $[i]_{fit}$ for which the Mulliken charges are above a given threshold. Although the fitting coefficients need to be recomputed for each update of the MO coefficients, the number of $\cket{\mu i}$ pairs scales linearly with system size. This type of local density fitting and variations thereof are predominantly used in pair-orbital specific local correlation methods, and will be explained in more detail further below. 
 
 % Pol2004 Fast Hartree–Fock theory using local densityfitting approximations
 
@@ -437,7 +437,7 @@ For a set of given $\mu,\nu$, select a set of \emph{fitting function} $\{P_{\mu\
 \left\lvert \sum_R S_{PR}^{-1} (R\mu\nu) \right\rvert > T 
 \label{eq:QRDF_FIT}
 \end{equation} 
-\noindent where $S$ is the auxiliary overlap matrix, and $(R\mu\nu)$ are the 3-centre-1-electron overlap integrals. Next, choose a set of test functions $\{Q_{\mu\nu}\} \in \{P\}$ using
+\noindent where $S$ is the auxiliary overlap matrix, and $(R\mu\nu)$ are the 3-center-1-electron overlap integrals. Next, choose a set of test functions $\{Q_{\mu\nu}\} \in \{P\}$ using
 \begin{equation}
 f(Q_{\mu\nu},P_{\mu\nu}) < R
 \label{eq:QRDF_TEST}
@@ -475,7 +475,7 @@ Another disadvantage of auxiliary basis sets is that the accuracy of the fitting
 \begin{equation}
 \cn{\mu\nu}{\sigma\lambda} = L^X_{\mu\nu} L^X_{\sigma\lambda}
 \end{equation}
-\noindent The Choleksy vectors $\mathbf{L}_{\mu\nu}$ indicate which product densities should be taken to construct the auxiliary basis. This type of atomic Cholesky decomposition (aCD) basis sets has the advantage that the accuracy can be rigorously controlled by the decomposition threshold $\theta$. To remove linear dependencies in the aCD basis set, another Cholesky decomposition can be performed to yield the atomic compact Cholesky decomposition (acCD) auxiliary basis set \cite{Aqu2009}.
+\noindent The Cholesky vectors $\mathbf{L}_{\mu\nu}$ indicate which product densities should be taken to construct the auxiliary basis. This type of atomic Cholesky decomposition (aCD) basis sets has the advantage that the accuracy can be rigorously controlled by the decomposition threshold $\theta$. To remove linear dependencies in the aCD basis set, another Cholesky decomposition can be performed to yield the atomic compact Cholesky decomposition (acCD) auxiliary basis set \cite{Aqu2009}.
 
 % Dunning JKFIT (1): Wei2002 https://pubs.rsc.org/en/content/articlepdf/2002/cp/b204199p
 % Karlsruhe JKFIT (2): Wei2007 https://onlinelibrary.wiley.com/doi/full/10.1002/jcc.20702
@@ -552,7 +552,7 @@ U^{NF}_i = \sum_{j \in NF} \frac{Z_i Z_j}{R_{ij}}
 \begin{equation}
 U^{FF}_i = \sum_{A \in FF} \mathbf{q}_{iC} \mathbf{T}_{CA} \mathbf{q}_A
 \end{equation}
-\noindent While evaluating the interaction energy at block-level rather than particle-level can considerably reduce the prefactor, the cost of this \emph{single-level multipole method} is still quadratic, since for each particle $i$, there is a system-dependent number of FF boxes. The granularity of the blocks is the same, independent of how far away the blocks are. To achieve linear scaling, the crucial point to realize is that, the further one gets from the source block $C$, the smaller the single-particle interaction $U_i$ becomes, and the less accurately it actually needs to be evaluated. This means that the farther one moves away from C, the larger the FF boxes can be. For this reason, \emph{multi-level multipole methods} introduce a hierarchy of boxes (Figure \ref{FMM2}), where at level 0, the whole system is in a single box, and for each subsequent level, the field is divided into fourths. FF boxes that are closest to C are evaluated at the highest level/granularity $S$. The region of FF boxes sourrounding the closest FF boxes are then treated at a lower level $S-1$, and so on, until all interactions have been computed. Because the multipole expansion is evaluated for increasing box size, it can be shown that the total number of boxes is constant for a single particle $i$. This is the basic idea on which the \emph{Fast Multipole Method} (FMM) operates \cite{Gre1987,Gre1994,Din1992}, and it has quickly become one of the most important algorithms in scientific computing, as the problem of particle-particle interaction is not limited to the field of quantum chemistry. FMM can evaluate the total interaction energy $U$ with linear computational complexity.
+\noindent While evaluating the interaction energy at block-level rather than particle-level can considerably reduce the prefactor, the cost of this \emph{single-level multipole method} is still quadratic, since for each particle $i$, there is a system-dependent number of FF boxes. The granularity of the blocks is the same, independent of how far away the blocks are. To achieve linear scaling, the crucial point to realize is that, the further one gets from the source block $C$, the smaller the single-particle interaction $U_i$ becomes, and the less accurately it actually needs to be evaluated. This means that the farther one moves away from C, the larger the FF boxes can be. For this reason, \emph{multi-level multipole methods} introduce a hierarchy of boxes (Figure \ref{FMM2}), where at level 0, the whole system is in a single box, and for each subsequent level, the field is divided into fourths. FF boxes that are closest to C are evaluated at the highest level/granularity $S$. The region of FF boxes surrounding the closest FF boxes are then treated at a lower level $S-1$, and so on, until all interactions have been computed. Because the multipole expansion is evaluated for increasing box size, it can be shown that the total number of boxes is constant for a single particle $i$. This is the basic idea on which the \emph{Fast Multipole Method} (FMM) operates \cite{Gre1987,Gre1994,Din1992}, and it has quickly become one of the most important algorithms in scientific computing, as the problem of particle-particle interaction is not limited to the field of quantum chemistry. FMM can evaluate the total interaction energy $U$ with linear computational complexity.
 
 \begin{figure}
 \centering
@@ -575,7 +575,7 @@ U^{FF}_i = \sum_{A \in FF} \mathbf{q}_{iC} \mathbf{T}_{CA} \mathbf{q}_A
 
 \subsection{Continuous Fast Multipole Method}
 
-The fast multipole method does not work for continuous charge distrbutions like Gaussian functions, as their extents can be quite different from one another, making the separation into NF and FF contributions more difficult. Nonetheless, FMM has been generalized to the continous case, known as the continuous fast multipole method (CFMM) \cite{Whi1996}. The principle is the same as in multi-level multipole methods, only special care needs to be taken to only include classical contributions into the FMM treatment. For further details, the reader is referred to the original publication. 
+The fast multipole method does not work for continuous charge distributions like Gaussian functions, as their extents can be quite different from one another, making the separation into NF and FF contributions more difficult. Nonetheless, FMM has been generalized to the continuous case, known as the continuous fast multipole method (CFMM) \cite{Whi1996}. The principle is the same as in multi-level multipole methods, only special care needs to be taken to only include classical contributions into the FMM treatment. For further details, the reader is referred to the original publication. 
 
 \section{The ABCs of LMOs and NOs: Orbital Representations \label{sec:ABCLMO}}
 
@@ -583,7 +583,7 @@ To solve the Hartree-Fock equations in a computationally efficient way, it is fa
 \begin{equation}
 \hat{f}\sket{\phi_i} = \eps_i \sket{\phi_i}
 \end{equation} 
-\noindent Here, $\{\phi_i\}$ are also known as the \emph{canonical molecular orbitals}. CMOs are not unique in the sense that there are infinitely many alternative molecular representations which yield the same electron density $\mathbf{P}$. Quantities like the total wave function energy or the electronic density are said to be \emph{orbitally invariant}. Non-observables like the MO energies are not preserved under orbital rotation. Let $\mbf{C}$ be the CMO coeffcient matrix. A new solution to the HF equations can then be generated by applying a unitary transformation such that
+\noindent Here, $\{\phi_i\}$ are also known as the \emph{canonical molecular orbitals}. CMOs are not unique in the sense that there are infinitely many alternative molecular representations which yield the same electron density $\mathbf{P}$. Quantities like the total wave function energy or the electronic density are said to be \emph{orbitally invariant}. Non-observables like the MO energies are not preserved under orbital rotation. Let $\mbf{C}$ be the CMO coefficient matrix. A new solution to the HF equations can then be generated by applying a unitary transformation such that
 \begin{equation}
 C^{new}_{\mu \olj} = U_{ji} C_{\mu i} \qquad \mbf{UU}\pdg = \mbf{1}
 \end{equation} 
@@ -664,7 +664,7 @@ The projection operators $\hat{P}$, $\hat{Q}$ and the non-symmetric PAO coeffici
 \sket{\Psi_{a}} &= C_{\mu a} \sket{\olgn} 
 \label{PAO2CMO}
 \end{eqnarray}
-PAOs are centred on the atom on which their corresponding AO is localized, but can still be delocalized over multiple atoms, depending on the sparsity of the density matrix. Methods which are entirely formulated in PAOs are rare but possible \cite{Chr2006}. The projection method is most often used on the virtual orbital space, where standrad localization procedures fail. In literature, the following alternative formular is often used for expression the virtual PAO coefficient matrix in terms of the occupied LMOs:
+PAOs are centered on the atom on which their corresponding AO is localized, but can still be delocalized over multiple atoms, depending on the sparsity of the density matrix. Methods which are entirely formulated in PAOs are rare but possible \cite{Chr2006}. The projection method is most often used on the virtual orbital space, where standard localization procedures fail. In literature, the following alternative formula is often used for expression the virtual PAO coefficient matrix in terms of the occupied LMOs:
 \begin{equation}
 \mbf{\ovl{Q}} = \left( \mbf{1} - \mbf{LL}^{\dagger} \mbf{S} \right) \mbf{C} 
 \end{equation}
@@ -688,7 +688,7 @@ The scheme can be extended to virtual orbitals as well, by CD of the virtual ato
 
 Moreover, orbitals obtained by CD are less localized than FB or ER LMOs, especially for small molecules. Low scaling is still possible using CholMOs in the context of LMO correlation methods, albeit with a larger prefactor.
 
-CD is also used in the context of AO-MP2 to reduce the prefactor of integral transformation by using the rank sparsity of the pseudo-density matrices, as will be shown further below. CholMOs can also used as an initial guess for iterative localization schemes to achive faster convergence.
+CD is also used in the context of AO-MP2 to reduce the prefactor of integral transformation by using the rank sparsity of the pseudo-density matrices, as will be shown further below. CholMOs can also used as an initial guess for iterative localization schemes to achieve faster convergence.
 
 \begin{figure}[h]
 \centering
@@ -712,7 +712,7 @@ $\Longrightarrow$
 \centering
 \includegraphics[scale=1.0]{choleskyV}
 \end{subfigure}%
-\caption{Cholesky decomposition, the occupied and virtual density matrices (left) yields a set of coefficients that describe a localized MO basis in the orbital and virtual space, respectively (right). The matrices are represented in terms of a heat map which inidicates the magnitude of $log_{10}(abs(a_{ij}))$.}
+\caption{Cholesky decomposition, the occupied and virtual density matrices (left) yields a set of coefficients that describe a localized MO basis in the orbital and virtual space, respectively (right). The matrices are represented in terms of a heat map which indicates the magnitude of $log_{10}(abs(a_{ij}))$.}
 \label{fig:LOCORB_CHOL}
 \end{figure} 
 
@@ -734,7 +734,7 @@ While the schemes described above try to generate a set of occupied and/or virtu
 
 In Hartree Fock theory, natural orbitals are mostly reserved for qualitative population and bond order analysis. 
 
-Natural atomic orbitals (NAOs) are computed by diagonalizing the blocks $P_{\mu_A\nu_A}$ of the atomic density matrix, where ${\mu_A}$, ${\nu_A}$ are basis functions centred on atom $A$. NAOs are optimal for describing the electron density around individual atom centres. NAOs are also useful for obtaining a set of guess orbitals from densitiy matrices formed from the superposition of atomic densities (SAD) guess (Annex \ref{app:SCFGUESS}). 
+Natural atomic orbitals (NAOs) are computed by diagonalizing the blocks $P_{\mu_A\nu_A}$ of the atomic density matrix, where ${\mu_A}$, ${\nu_A}$ are basis functions centered on atom $A$. NAOs are optimal for describing the electron density around individual atom centers. NAOs are also useful for obtaining a set of guess orbitals from density matrices formed from the superposition of atomic densities (SAD) guess (Annex \ref{app:SCFGUESS}). 
 
 Furthermore, NAOs serve as the starting point for obtaining natural hybrid orbitals (NHOs), which in turn are used for constructing natural bond orbitals (NBOs). NBOs are a useful orbital representation for  analyzing molecular bonds (e.g. bond order, bond polarity). They are conceptually close to the traditional Lewis structure of a molecule \cite{Ree1983,Wei2001,Gle2012}.
 
@@ -907,7 +907,7 @@ Instead of reducing the density matrix, one can just diagonalize $\mathbf{t}^{ij
 
 OSVs have the advantage that the can be constructed with $\ccpx{3}$ scaling provided that density fitting is used. However, OSVs are less compact than PNOs.
 
-OSVs can be used to lower the computational complexity to construct PNOs. Several hybrid OSV-PNO schemes have been proposed whith a computaional complexity of $\ccpx{4}$ \cite{Kra2012}, $\ccpx{3}$ \cite{Sch2013} and finally $\mathcal{O}(N)$ \cite{Rip2013}.
+OSVs can be used to lower the computational complexity to construct PNOs. Several hybrid OSV-PNO schemes have been proposed with a computational complexity of $\ccpx{4}$ \cite{Kra2012}, $\ccpx{3}$ \cite{Sch2013} and finally $\mathcal{O}(N)$ \cite{Rip2013}.
 
 %\subsubsection{Local Pair Natural Orbitals}
 

@@ -3624,7 +3624,7 @@
   publisher = {American Institute of Physics},
 }
 
-@Article{Low1956,
+@Article{Low1956a,
   author    = {L{\ifmmode\ddot{o}\else\"{o}\fi}wdin, Per-Olov},
   title     = {{Quantum theory of cohesive properties of solids}},
   journal   = {Adv. Phys.},
@@ -3652,6 +3652,37 @@
   doi       = {10.1016/S0065-3276(08)60339-1},
   groups    = {APPENDIX},
   issn      = {0065-3276},
+}
+
+@Article{Sun2015,
+  author  = {Sun, Qiming},
+  title   = {Libcint: An efficient general integral library for Gaussian basis functions},
+  journal = {Journal of Computational Chemistry},
+  year    = {2015},
+  volume  = {36},
+  pages   = {1664-1671},
+  doi     = {10.1002/jcc.23981},
+  groups  = {CHAPTER_ALGO},
+  url     = {http://dx.doi.org/10.1002/jcc.23981},
+}
+
+@Misc{OMP2021,
+  title   = {{Specifications - OpenMP}},
+  month   = {Aug},
+  year    = {2021},
+  note    = {[Online; accessed 6. Sep. 2021]},
+  groups  = {CHAPTER_8},
+  journal = {OpenMP},
+  url     = {https://www.openmp.org/specifications},
+}
+
+@Misc{MPI2021,
+  title  = {{MPI Documents}},
+  month  = {Sep},
+  year   = {2021},
+  note   = {[Online; accessed 6. Sep. 2021]},
+  groups = {CHAPTER_8},
+  url    = {https://www.mpi-forum.org/docs},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

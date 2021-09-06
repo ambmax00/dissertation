@@ -15,7 +15,7 @@ All of the existing low-scaling implementations of ADC, CCLR and EOM use some fo
 
 \subsection{Orbital Invariance of the Matrix Expressions}
 
-Correlated excited state methods involve some form of symmetric or non-symmetric eigenvalue problem, which is generally solved using the Davidson procedure. The time-determining step is given by the computation of the matrix-vector product of the ADC, response or EOM matrix with the Davdison trial vectors $\mbf{u}$
+Correlated excited state methods involve some form of symmetric or non-symmetric eigenvalue problem, which is generally solved using the Davidson procedure. The time-determining step is given by the computation of the matrix-vector product of the ADC, response or EOM matrix with the Davidson trial vectors $\mbf{u}$
 \begin{equation}
 \mbf{r} = \mbf{A} \mbf{u}
 \end{equation}
@@ -43,7 +43,7 @@ After transforming to the LMO basis, the local ADC(2) equations read
 \begin{equation}
 r_{\uli \ola}(\omega) = A_{\uli \ola, \ulj \olb} u_{\ulj \olb} - A_{\uli \ola, \ulj \olb \ulk \olc} \sum_{\alpha}^{n} e^{\omega t\pa} X_{\ulj \ulj'}\pa Y_{\olb \olb'}\pa A_{\ulj' \olb' \ulk' \olc', \ull \old} u_{\ull \old} X_{\ulk \ulk'}\pa Y_{\olc \olc'}\pa  \\
 \end{equation}
-\noindent whith the Laplace matrices $\mathbf{X}$ and $\mathbf{Y}$ 
+\noindent with the Laplace matrices $\mathbf{X}$ and $\mathbf{Y}$ 
 \begin{equation}
 X_{\uli\ulk}\pa = \sum_i U_{i\uli} |w^{'(\alpha)}|^{1/4} e^{\eps_i t^{'(\alpha)}} U_{k\ulk}
 \end{equation}
@@ -56,7 +56,7 @@ An orbital invariant reformulation is not needed by every method. NOs, PNOs and 
 
 \subsection{Local Molecular Orbitals and Domains}
 
-The most challenging part in extending domain-specific virtual orbital methods to excited states lies in determining a suitable excitation domain in which to expand the virtual space. The first implementations of local excited state EOM-CCSD \cite{Kor2003,Cra2002} and CC2-LR \cite{Kat2003} constructed the domains using a Mulliken-charge like analysis of the CIS coeffcients $r_ia$. The CIS coefficients are first transformed to the LMO-PAO basis
+The most challenging part in extending domain-specific virtual orbital methods to excited states lies in determining a suitable excitation domain in which to expand the virtual space. The first implementations of local excited state EOM-CCSD \cite{Kor2003,Cra2002} and CC2-LR \cite{Kat2003} constructed the domains using a Mulliken-charge like analysis of the CIS coefficients $r_ia$. The CIS coefficients are first transformed to the LMO-PAO basis
 \begin{equation}
 r_{\uli \olgm} = U_{\uli i } r_{ia} \bar{C}_{\mu a} 
 \end{equation}
@@ -171,7 +171,7 @@ In the end, most local excited state methods using natural orbitals differ by ho
  
 \subsection{Natural Transition Orbitals}
 
-The last method to obtain a compact representation of excited states is via natural transition orbitals. NTOs are the equivalent of NOs for excited states, and represent a compact representations of their dominant contribution (Figure \ref{fig:NTO}). Baudin and Kristensen have developped two different CC2LR schemes based on NTOs called LoFEX (local framework for calculating excitation energies) \cite{Bau2016} and CornFLEX (correlated natural transition orbital framework for calculating excitation energies) \cite{Bau2017} 
+The last method to obtain a compact representation of excited states is via natural transition orbitals. NTOs are the equivalent of NOs for excited states, and represent a compact representations of their dominant contribution (Figure \ref{fig:NTO}). Baudin and Kristensen have developed two different CC2LR schemes based on NTOs called LoFEX (local framework for calculating excitation energies) \cite{Bau2016} and CornFLEX (correlated natural transition orbital framework for calculating excitation energies) \cite{Bau2017} 
 
 Again, one needs information about the excited state to efficiently compute its properties. The LoFEX method starts with a time-dependent Hartree Fock calculation and generates a set of NTOs by decomposition of the TDHF transition vectors $\mathbf{r}$ by diagonalization
 \begin{align}
@@ -188,7 +188,7 @@ The improved CornFLEX method constructs a set of CIS(D)-like NTOs (CIS(D')-NTOs)
 \begin{figure}
 \centering
 \includegraphics[scale=0.6]{Pics/NTOACID}
-\caption{Dominant natural transition orbital pair for the lowest excitation of the carboxylic acid C$_{79}$H$_{159}$COOH ($\pi \rightarrow \pi^*$ transition). The span of the NTOs is very small compared to the rest of the molecule, and the compactness can be used to drastically speed up excited state caculations.}
+\caption{Dominant natural transition orbital pair for the lowest excitation of the carboxylic acid C$_{79}$H$_{159}$COOH ($\pi \rightarrow \pi^*$ transition). The span of the NTOs is very small compared to the rest of the molecule, and the compactness can be used to drastically speed up excited state calculations.}
 \label{fig:NTO}
 \end{figure}
 

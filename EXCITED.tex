@@ -23,7 +23,7 @@ The potential energy landscape of electronic excited states is complex and gover
 Excited states typically have lifetimes and decay back to the ground state via several different mechanisms. Figure \ref{fig:PESEX} illustrates the different processes. The notation $S$, $D$, $T$ ... is used to denote singlet, doublet, triplet ... states and the subscripts indicate the energy level, where 0 is the ground state, 1 is the first excited state for the given spin symmetry, 2 is the second excited state etc. The transition from the ground state $S_0$ to the excited state $S_1$ on the same reaction coordinate is known as a \emph{vertical excitation}. The excited state may be in a higher vibrational state at that reaction coordinate (indicated by the lines within the potential wells), and relax to the lowest level. The difference between these two points is known as the \emph{reorganization energy}, and the difference between the lowest vibrational states of $S_0$ and the excited state is known as the \emph{adiabatic excitation} energy. The 
 molecule returns to the ground state by emitting a photon in a process known as \emph{fluorescence}. 
 
-Surfaces of different states may cross at specific reaction coordinates. The crossing between states with different multiplicity (e.g. S$_1$ to T$_1$) is known as an inter-system crossing (ISC). The process between two states where the crossing takes place between molecules of the same spin-symmetry is known as \emph{internal conversion} (IC), and takes place at a \emph{conical intersection} (CoIn). The S$_1$ excited state can cross over to the T$_1$ state via an ISC which then decays in a process known as \emph{phosphorescence}, or it can decay radiation-less via the CoIn. At the ISC and CoIn, the Born-Openheimer approximation breaks down due to non-adiabating coupling between electrons and nuclei. ISCs and CoIns are central to describing the dynamics in photochemical events \cite{Mig2008,Mat2011,Kim2015,Zhu2016}.
+Surfaces of different states may cross at specific reaction coordinates. The crossing between states with different multiplicity (e.g. S$_1$ to T$_1$) is known as an inter-system crossing (ISC). The process between two states where the crossing takes place between molecules of the same spin-symmetry is known as \emph{internal conversion} (IC), and takes place at a \emph{conical intersection} (CoIn). The S$_1$ excited state can cross over to the T$_1$ state via an ISC which then decays in a process known as \emph{phosphorescence}, or it can decay radiation-less via the CoIn. At the ISC and CoIn, the Born-Oppenheimer approximation breaks down due to non-adiabatic coupling between electrons and nuclei. ISCs and CoIns are central to describing the dynamics in photochemical events \cite{Mig2008,Mat2011,Kim2015,Zhu2016}.
 
 For the sake of brevity, this chapter will focus on the computational of vertical excitation energies only.
 
@@ -54,7 +54,7 @@ In 2008, Gilbert et al. \cite{Gil2008} proposed a modification the SCF procedure
 \end{equation}
 \noindent The maximum overlap method has led to a renewed interest in the $\Delta$X methods in recent years, especially in the context of core excitations and ionizations. 
 
-Adding to the above-mentioned technical difficulties, there are several other known criticisms. First, each excited state requires a separately optimized wave function, which may become a limiting factor. Second, the $\Delta$X methods assume that a transition can be represented by an excitation involving two orbitals. The separate optimization generally leads to the excited states being non-orthogonal, and there is considerable overlap between high and low energy states \cite{Dav1964,Dav1965,Gil2008}. $\Delta$X is therefore assumed to be only applicable to low-lying excited states. Third, the transition moments cannot be computed directly, but need to be evaluated using Fermi's Golden Rule \cite{Gro2008}. Futhermore, to allow a comparison with experimenatl XAS spectra, the calculated transition energies must be convoluted, for example by Gaussian functions, to 
+Adding to the above-mentioned technical difficulties, there are several other known criticisms. First, each excited state requires a separately optimized wave function, which may become a limiting factor. Second, the $\Delta$X methods assume that a transition can be represented by an excitation involving two orbitals. The separate optimization generally leads to the excited states being non-orthogonal, and there is considerable overlap between high and low energy states \cite{Dav1964,Dav1965,Gil2008}. $\Delta$X is therefore assumed to be only applicable to low-lying excited states. Third, the transition moments cannot be computed directly, but need to be evaluated using Fermi's Golden Rule \cite{Gro2008}. Furthermore, to allow a comparison with experimental XAS spectra, the calculated transition energies must be convoluted, for example by Gaussian functions, to 
 account for the finite experimental resolution and  lifetime of the electron hole. Finally, using an unrestricted HF or KS formalism leads to spin contamination. A single excited state is not a pure singlet but a mixture of singlet and triplet state. Spin contamination can be alleviated by applying Ziegler's spin purification formula \cite{Zie1977}:
 
 \begin{equation}
@@ -100,7 +100,7 @@ The Schrödinger equation is also a differential equation where the inhomogeneit
 \end{equation}
 \noindent The GF has the effect of \emph{propagating} the wave function from a given time and position to another time and space coordinate. GFs are therefore also known as \emph{propagators}.
 
-The MBGFs form a hierarchy, in which the one-particle GFs are the lowest rank (Figure \ref{fig:PROP}). One-particle GFs can be used to extract information on 1-electron processes such as ionization and electron attachment. Two-particle GFs form the next step in the hierarchy, and allow to gain information on two-particle processes such as electron excitation (electron-hole) and two-electron ionization (electron-eletron). 
+The MBGFs form a hierarchy, in which the one-particle GFs are the lowest rank (Figure \ref{fig:PROP}). One-particle GFs can be used to extract information on 1-electron processes such as ionization and electron attachment. Two-particle GFs form the next step in the hierarchy, and allow to gain information on two-particle processes such as electron excitation (electron-hole) and two-electron ionization (electron-electron). 
 \begin{figure}
 \centering
 \includegraphics[scale=0.6]{Pics/PROP}
@@ -115,7 +115,7 @@ To see how GFs can be used for excited state analysis, consider the 1-electron p
 G_{pq}(t,t') = - i\Theta(t-t') \sbra{\Psi_0} \hat{T}(a_p[t]a
 _q\pdg[t']) \sket{\Psi_0}
 \end{equation}
-\noindent whith $\Theta$ as the Heavyside step function, and the time-ordering operator 
+\noindent with $\Theta$ as the Heaviside step function, and the time-ordering operator 
 \begin{equation}
 \hat{T} = \left\lbrace \begin{matrix}
 a_p[t] a_q\pdg[t'] \quad \textrm{for } t > t' \\
@@ -177,12 +177,12 @@ t_2 \rightarrow t_2' = t'}} iR(t_1,t_2;t_1',t_2')
 } }_\text{$\Pi _-(\omega)$}
 \label{eq:POLPROP}
 \end{equation}
-\noindent Here, the poles correspond to the excitation energies $\omega_n = E_n - E_0$ and the spectroscopic factors give the transtion strengths. The polarization propagator is therefore all one needs to evaluate absorption or emission spectra of molecules. The left and right hand terms are related by
+\noindent Here, the poles correspond to the excitation energies $\omega_n = E_n - E_0$ and the spectroscopic factors give the transition strengths. The polarization propagator is therefore all one needs to evaluate absorption or emission spectra of molecules. The left and right hand terms are related by
 \begin{equation}
 \Pi(-\omega)_{+}\pdg = \Pi_{-}(\omega)
 \end{equation}
 
-Up to this point, the exact wave function was used in the expression for the propagators. To actually be able to compute the propagators, approximations need to be applied. There are a couple of choices. Coupled cluster linear response theory inserts the CC ansatz for the wave fucntion and explicitly evaluates expressions for the polarization propgator truncated to a given level of excitations (LR-CCSD, LR-CCSDT etc.).
+Up to this point, the exact wave function was used in the expression for the propagators. To actually be able to compute the propagators, approximations need to be applied. There are a couple of choices. Coupled cluster linear response theory inserts the CC ansatz for the wave function and explicitly evaluates expressions for the polarization propagator truncated to a given level of excitations (LR-CCSD, LR-CCSDT etc.).
 
 Alternatively, the polarization propagator may be approached using perturbation theory.
 
@@ -199,7 +199,7 @@ Similarly to the wave function in RSPT, the polarization propagator can be expan
 \end{equation}
 \noindent with the expressions for the wave functions and their energies given in Equations ... and ... 
 
-One may then evaluate the series \ref{eq:PERTPOLPROP} using either Rayleigh-Schrödinger perturbation theory or the Gell-Mann Low theorem \cite{Sch2018} to obtain master equations for $\Pi^{(n)}$. However, these eqautions are very tedious to solve, even more so than for M{\o}ller Plesset, due to the rapidly increasing number of nested terms for higher $n$. For this reason, diagrams were introduced to better keep track of the contributions at a given level. 
+One may then evaluate the series \ref{eq:PERTPOLPROP} using either Rayleigh-Schrödinger perturbation theory or the Gell-Mann Low theorem \cite{Sch2018} to obtain master equations for $\Pi^{(n)}$. However, these equations are very tedious to solve, even more so than for M{\o}ller Plesset, due to the rapidly increasing number of nested terms for higher $n$. For this reason, diagrams were introduced to better keep track of the contributions at a given level. 
 
 Diagrams were originally conceived by Feynman, and are a pictorial representation of mathematical expressions for particle interactions. Over the years, many different types of diagrams were proposed, such as Goldstone, Abrikosov or Hugenholtz diagrams. Each type has its own set of rules on how to construct them and translate them into formulas for a given problem. There is no formal proof: Feynman first worked out the rules by trial and error \cite{Fey1966}, and later refined the model.
 
@@ -311,7 +311,7 @@ and the anti-symmetrized MP2 amplitudes
 \label{fig:ADCMAT}
 \end{figure}
 
-Approximating the 2p-2h block to first order in the ADC(2) matrix, i.e. swapping the 2p-2h block with the one from the ADC(3) matrix, gives the so-called extended ADC(2) scheme (ADC(2)-x). It is an \emph{ad-hoc} extension without rigoruous theoretical justification \cite{Tro1995}.  
+Approximating the 2p-2h block to first order in the ADC(2) matrix, i.e. swapping the 2p-2h block with the one from the ADC(3) matrix, gives the so-called extended ADC(2) scheme (ADC(2)-x). It is an \emph{ad-hoc} extension without rigorous theoretical justification \cite{Tro1995}.  
 
 \subsection{Solving the Eigenvalue Problem \label{sec:ADC_DAV}}
 
@@ -323,7 +323,7 @@ r_{iajb} &= A_{iajb,kc} u_{kc} + A_{iajb,kcld} u_{kcld}
 
 While the Davidson procedure allows to circumvent storing the whole ADC matrix, the storage of the trial vectors can still be a major memory bottle-neck for ADC(2) and beyond. At second and third order, the doubles part of the vectors scale with $n_{occ}^2n_{vir}^2$, and take up as much space as the MP2 amplitudes. As the Davidson subspace grows, so does the number of trial vectors. Techniques such as \emph{subspace collapse} (Section \ref{sec:DAV}) impose a maximum to the number of trial vectors held in memory, which helps to better estimate the total storage size needed by an ADC calculation, although it increases the total number of iterations to convergence.
 
-An alternative technique to reduce the memory footprint of the Davdison diagonalization is \emph{doubles-folding}. Consider the doubles part of the MVP which is computed as
+An alternative technique to reduce the memory footprint of the Davidson diagonalization is \emph{doubles-folding}. Consider the doubles part of the MVP which is computed as
 \begin{align}
 r_{iajb} &= A_{iajb,kc} u_{kc} + A_{iajb,kcld} u_{kcld} = \omega u_{iajb}
 \end{align}
@@ -336,7 +336,7 @@ u_{iajb} = \frac{A_{iajb,kc} u_{kc}}{\omega - A_{iajb,iajb}}
 \begin{equation}
 r_{ia} = A_{ia,jb} u_{jb} + A_{ia,jbkc} \frac{A_{jbkc,ld} u_{ld}}{\omega - \eps_j - \eps_k + \eps_b + \eps_c} 
 \end{equation}
-\noindent The doubles part of the MVP is computed on-the-fly and does not need to be explicitly stored, reducing the overall memory requirements of the Davdison diagonalization to $n_{occ}n_{vir}$. Doubles-folding corresponds to a multiplication of the singles vectors with an \emph{effective} ADC matrix which depends on the eigenvalue $\omega$
+\noindent The doubles part of the MVP is computed on-the-fly and does not need to be explicitly stored, reducing the overall memory requirements of the Davidson diagonalization to $n_{occ}n_{vir}$. Doubles-folding corresponds to a multiplication of the singles vectors with an \emph{effective} ADC matrix which depends on the eigenvalue $\omega$
 \begin{equation}
 \mbf{r}_{\mu_1} = \mbf{A}(\omega)_{\mu_1\nu_1} \mbf{u}_{\nu_1} 
 \end{equation}
@@ -387,12 +387,12 @@ M_{ia,kcld} = c_{osc} \left( \bra{kl}{}\ket{id} \gd_{ac} - \bra{kl}{}\ket{ic} \d
 \begin{equation}
 M_{iajb,kc} = c_{osc} \left( \bk{kb}{ij} \gd_{ac} - \bk{ka}{ij} \gd_{bc} - \bk{ab}{cj} \gd_{ik} + \bk{ab}{ci} \gd_{jk} \right) \left( 1 - \gd_{\gs (i) \gs (j)} \right)
 \end{equation}
-\noindent where $c_{osc}$ is the opposite-spin coupling constant, typcially set to 1.15 \cite{Kra2013} or 1.17 (diss).
+\noindent where $c_{osc}$ is the opposite-spin coupling constant, typically set to 1.15 \cite{Kra2013} or 1.17 (diss).
 \end{enumerate}
 
 \noindent For open-shell molecules, this drastically reduces the size of the matrix, reducing the prefactor of the method. By applying density fitting, the total scaling can be further reduced by an order of magnitude \cite{Win2011}.
 
-ISR-SOS-ADC(2) does not modifiy the off-diagonal blocks of the ADC(2) and only replaces the amplitudes as in Eqaution \ref{eq:SOSAMPLITUDES}, and therefore offers no substantial improvement. 
+ISR-SOS-ADC(2) does not modify the off-diagonal blocks of the ADC(2) and only replaces the amplitudes as in Equation \ref{eq:SOSAMPLITUDES}, and therefore offers no substantial improvement. 
 
 % 85 https://www.sciencedirect.com/science/article/abs/pii/S030101041100423X
 % 86 https://aip.scitation.org/doi/abs/10.1063/1.4776675
@@ -437,7 +437,7 @@ The time-dependent wave function may be expanded in orders of the perturbation $
 \begin{equation}
 \sket{\Psi (t)} = \sket{\Psi_0} + \sket{\Psi^{(1)}(t)} + \sket{\Psi^{(2)}(t)} + \ldots
 \end{equation}
-\noindent which can be determined using Eherenfest's theorem. Using this wave function expansion, the expectation value of a time-independent operator $\hat{A}$ reads
+\noindent which can be determined using Ehrenfest's theorem. Using this wave function expansion, the expectation value of a time-independent operator $\hat{A}$ reads
 \begin{equation}
 \begin{split}
 \sbra{\Psi (t)} \hat{A} \sket{\Psi (t)} = & \sbra{\Psi_0} \hat{A} \sket{\Psi_0} + \int_{-\infty}^{\infty} 
@@ -522,7 +522,7 @@ There are many different routes for deriving the expressions for the matrix elem
 A_{IA,JB} &= \delta_{IA,JB} (\eps_A - \eps_I) + \sket{IJ}{AB} \\
 B_{IA,JB} &= \sket{IJ}{AB}
 \end{align}
-\noindent Setting the coupling block $\mbf{B}$ to zero, the TDHF equations reduce to the CIS eqautions. Even if TDHF can therefore be seen as an extension to CIS, it does not give a considerable improvement. Over the years, it has fallen into disuse.
+\noindent Setting the coupling block $\mbf{B}$ to zero, the TDHF equations reduce to the CIS equations. Even if TDHF can therefore be seen as an extension to CIS, it does not give a considerable improvement. Over the years, it has fallen into disuse.
 
 Linear response TDHF is equivalent to the \emph{random phase approximation}. 
 
@@ -570,7 +570,7 @@ For a molecular system in the presence of a static external perturbation, such a
 \{Q\}_T = \frac{1}{T} \int_0^T \sbra{\Psi(t)} (\hat{H} - i\frac{\partial}{\partial t})\sket{\Psi(t)}
 \label{eq:HELLFEYN2}
 \end{equation}
-\noindent The time-averaged quasi-energy is the analog of the ground state energy for static perturbations in Equation \ref{eq:HELLFEYN}. Using the perturbation expansion \ref{eq:TIMEEXP} for the operator, the first, second, ... derivative of the quasi-energy can be related to the linear, quadratic ... response function. Similarly to the energy derivative, expressions for quasi-energy derivatives are more easily evaluated. The CC response eqautions are then obtained by constructing a Lagrangian of the CC quasi-energy. 
+\noindent The time-averaged quasi-energy is the analog of the ground state energy for static perturbations in Equation \ref{eq:HELLFEYN}. Using the perturbation expansion \ref{eq:TIMEEXP} for the operator, the first, second, ... derivative of the quasi-energy can be related to the linear, quadratic ... response function. Similarly to the energy derivative, expressions for quasi-energy derivatives are more easily evaluated. The CC response equations are then obtained by constructing a Lagrangian of the CC quasi-energy. 
 
 Analysis of the CC response equations leads to the non-symmetric eigenvalue problem
 \begin{align}
@@ -594,7 +594,7 @@ An interesting relationship can be established between ADC(2) and CC2-LR \cite{H
 \right)
 \end{equation}
 
-\noindent where $\mu_1$, $\mu_2$ are the single and double excitation manifolds. By replacing the similarity-transformed Hamiltoninan $\hat{\bar{H}}$ by the Hamiltonian itself, the CIS(D) matrix reads
+\noindent where $\mu_1$, $\mu_2$ are the single and double excitation manifolds. By replacing the similarity-transformed Hamiltonian $\hat{\bar{H}}$ by the Hamiltonian itself, the CIS(D) matrix reads
 \begin{equation}
 \mbf{A}^{CIS(D)} = \left( \begin{matrix}
 \sbra{\mu_1} \left[ (\hat{\bar{H}} + \left[ \smash{ \hat{H},\hat{T}_2} \right]), \tau_{\nu_1} \right] \sket{HF} &  \sbra{\mu_1} \left[ \hat{H}, \tau_{\nu_2} \right] \sket{HF} \\

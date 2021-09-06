@@ -1287,11 +1287,24 @@ Evgeny Epifanovsky, Michael Wormit, Tomasz Ku{\ifmmode\acute{s}\else\'{s}\fi},
   block tensor library for high-performance electronic structure calculations}.
 \newblock {\em J. Comput. Chem.}, 34(26):2293--2309, Oct 2013.
 
+\bibitem{Och2021}
+{Theoretical Chemistry Group - Faculty for Chemistry and Pharmacy - Download},
+  Aug 2021.
+\newblock [Online; accessed 28. Aug. 2021].
+
 \bibitem{Kat2007}
 Danylo Kats, Tatiana Korona, and Martin Sch{\ifmmode\ddot{u}\else\"{u}\fi}tz.
 \newblock {Transition strengths and first-order properties of excited states
   from local coupled cluster CC2 response theory with density fitting}.
 \newblock {\em J. Chem. Phys.}, 127(6):064107, Aug 2007.
+
+\bibitem{OMP2021}
+{Specifications - OpenMP}, Aug 2021.
+\newblock [Online; accessed 6. Sep. 2021].
+
+\bibitem{MPI2021}
+{MPI Documents}, Sep 2021.
+\newblock [Online; accessed 6. Sep. 2021].
 
 \bibitem{LAP2021}
 {LAPACK{\hspace{0.167em}}{\ifmmode---\else\textemdash\fi}{\hspace{0.167em}}Linear
@@ -1344,6 +1357,18 @@ Maximilien Ambroise.
 \newblock Designing a modern c++/fortran interface by example.
 \newblock Presented at FortranCon 2020, University of Zurich, Switzerland,
   2020.
+
+\bibitem{Sun2015}
+Qiming Sun.
+\newblock Libcint: An efficient general integral library for gaussian basis
+  functions.
+\newblock {\em Journal of Computational Chemistry}, 36:1664--1671, 2015.
+
+\bibitem{Hel2016}
+Benjamin Helmich-Paris and Lucas Visscher.
+\newblock {Improvements on the minimax algorithm for the Laplace transformation
+  of orbital energy denominators}.
+\newblock {\em J. Comput. Phys.}, 321:927--931, Sep 2016.
 
 \bibitem{Pul1980}
 P{\ifmmode\acute{e}\else\'{e}\fi}ter Pulay.
@@ -1402,5 +1427,63 @@ Jianwei Xiao, Ming Gu, and Julien Langou.
   Reliable Low-Rank Matrix Approximations}.
 \newblock In {\em {2017 IEEE 24th International Conference on High Performance
   Computing (HiPC)}}, pages 233--242. IEEE, Dec 2017.
+
+\bibitem{Has1992}
+Marco H{\ifmmode\ddot{a}\else\"{a}\fi}ser and Jan
+  Alml{\ifmmode\ddot{o}\else\"{o}\fi}f.
+\newblock {Laplace transform techniques in Mo/ller{\textendash}Plesset
+  perturbation theory}.
+\newblock {\em J. Chem. Phys.}, 96(1):489--494, Jan 1992.
+
+\bibitem{Tak2008}
+Akio Takatsuka, Seiichiro Ten-no, and Wolfgang Hackbusch.
+\newblock {Minimax approximation for the decomposition of energy denominators
+  in Laplace-transformed M{\o}ller{\textendash}Plesset perturbation theories}.
+\newblock {\em J. Chem. Phys.}, 129(4):044112, Jul 2008.
+
+\bibitem{Cut1969}
+E.~Cuthill and J.~McKee.
+\newblock {Reducing the bandwidth of sparse symmetric matrices}.
+\newblock In {\em {ACM '69: Proceedings of the 1969 24th national conference}},
+  pages 157--172. Association for Computing Machinery, New York, NY, USA, Aug
+  1969.
+
+\bibitem{Van2006}
+J.~H. Van~Lenthe, R.~Zwaans, H.~J.~J. Van~Dam, and M.~F. Guest.
+\newblock {Starting SCF calculations by superposition of atomic densities}.
+\newblock {\em J. Comput. Chem.}, 27(8):926--932, Jun 2006.
+
+\bibitem{Leh2019}
+Susi Lehtola.
+\newblock {Assessment of Initial Guesses for Self-Consistent Field
+  Calculations. Superposition of Atomic Potentials: Simple yet Efficient}.
+\newblock {\em J. Chem. Theory Comput.}, 15(3):1593--1604, Mar 2019.
+
+\bibitem{Bra1980}
+H.~S. Brandi, M.~M. De~Matos, and R.~Ferreira.
+\newblock {Fractional occupation in the hartree-fock method}.
+\newblock {\em Chem. Phys. Lett.}, 73(3):597--601, Aug 1980.
+
+\bibitem{Tur2012}
+Justin~M. Turney, Andrew~C. Simmonett, Robert~M. Parrish, Edward~G. Hohenstein,
+  Francesco~A. Evangelista, Justin~T. Fermann, Benjamin~J. Mintz, Lori~A.
+  Burns, Jeremiah~J. Wilke, Micah~L. Abrams, Nicholas~J. Russ, Matthew~L.
+  Leininger, Curtis~L. Janssen, Edward~T. Seidl, Wesley~D. Allen, Henry~F.
+  Schaefer, Rollin~A. King, Edward~F. Valeev, C.~David Sherrill, and T.~Daniel
+  Crawford.
+\newblock {Psi4: an open-source ab initio electronic structure program}.
+\newblock {\em WIREs Comput. Mol. Sci.}, 2(4):556--565, Jul 2012.
+
+\bibitem{Low1970}
+Per-Olov L{\ifmmode\ddot{o}\else\"{o}\fi}wdin.
+\newblock {On the Nonorthogonality Problem}.
+\newblock In {\em {Advances in Quantum Chemistry}}, volume~5, pages 185--199.
+  Academic Press, Cambridge, MA, USA, Jan 1970.
+
+\bibitem{Leh2019a}
+Susi Lehtola.
+\newblock {Curing basis set overcompleteness with pivoted Cholesky
+  decompositions}.
+\newblock {\em J. Chem. Phys.}, 151(24):241102, Dec 2019.
 
 \end{thebibliography}

@@ -9,7 +9,7 @@
 
 \section{Motivation}
 
-Nowadays, quantum chemists have access to a healthy ecosystem of open-source quantum chemistry software that are under active development, including, but not limited to, CP2K \cite{}, Dalton \cite{}, GAMESS \cite{}, NWChem \cite{}, Psi4 \cite{}, pyscf \cite{} or VeloxChem \cite{}. They offer efficient algorithms for computing correlated ground and excited state properties, either with thread- or task-based parallelism. However, none of them support local correlation methods based on local molecular orbitals or atomic orbitals. The goal of \mchem{} is two-fold: (1) provide a framework for the development of local correlation methods and (2) offer a set of kernels for accelerating Hartree-Fock, MP2 and ADC(2) calculations, using MPI parallelism. While \mchem{} is stand-alone, it should be primarily seen as an external library or module. Quantum chemistry software packages are often composed of many different, often quite sophisticated libraries that handle e.g. evaluation of electron integrals, computation of the coulomb and exchange matrix or solving the eigenvalue problem of excited state methods. Modules allow teams of developers to concentrate on the optimization of specific libraries, rather than a whole program suite. %The ADC-connect (adcc) framework \cite{} is a good example of a highly modular library. 
+Nowadays, quantum chemists have access to a healthy ecosystem of open-source quantum chemistry software that are under active development, including, but not limited to, CP2K \cite{}, Dalton \cite{}, GAMESS \cite{}, NWChem \cite{}, Psi4 \cite{}, PySCF \cite{} or VeloxChem \cite{}. They offer efficient algorithms for computing correlated ground and excited state properties, either with thread- or task-based parallelism. However, none of them support local correlation methods based on local molecular orbitals or atomic orbitals. The goal of \mchem{} is two-fold: (1) provide a framework for the development of local correlation methods and (2) offer a set of kernels for accelerating Hartree-Fock, MP2 and ADC(2) calculations, using MPI parallelism. While \mchem{} is stand-alone, it should be primarily seen as an external library or module. Quantum chemistry software packages are often composed of many different, often quite sophisticated libraries that handle e.g. evaluation of electron integrals, computation of the coulomb and exchange matrix or solving the eigenvalue problem of excited state methods. Modules allow teams of developers to concentrate on the optimization of specific libraries, rather than a whole program suite. %The ADC-connect (adcc) framework \cite{} is a good example of a highly modular library. 
 
 \section{Software Architecture}
 
@@ -50,7 +50,7 @@ Besides the DBCSR runtime environment, ScaLAPACK also works best with a square p
 
 \section{JSON interface \label{sec:JSON}}
 
-Job control is specified by an input file in the JSON format. It is inspired by the BAGLE qunatum chemistry software \cite{Shi2017} and follows a similar scheme to the object-oriented python interfaces like Psi4 or PySCF. Consider the following example for running a Hartree-Fock calculation on a water molecule with the cc-pVDZ basis set
+Job control is specified by an input file in the JSON format. It is inspired by the BAGLE quantum chemistry software \cite{Shi2017} and follows a similar scheme to the object-oriented python interfaces like Psi4 or PySCF. Consider the following example for running a Hartree-Fock calculation on a water molecule with the cc-pVDZ basis set
 \begin{code}
 {
   "megalochem": [
@@ -93,7 +93,7 @@ Job control is specified by an input file in the JSON format. It is inspired by 
 \begin{itemize}
 \item \texttt{global}: Specifies global variables like block thresholds or damping factors for electron integrals
 
-\item \texttt{atoms}: Specifies the atomic structure of the system. It can either conatin an array with coordinates or reference an XYZ file
+\item \texttt{atoms}: Specifies the atomic structure of the system. It can either contain an array with coordinates or reference an XYZ file
 
 \item \texttt{basis}: Specifies the basis set and what kind of clustering is used. Clustering indicates how atomic orbitals are grouped into blocks. A cutoff parameter can also be specified for removing linear dependencies
 
@@ -229,7 +229,7 @@ One of the more prominent extensions in dbcsrx is the \texttt{btensor} (batched 
 
 \subsection{\texttt{math}}
 
-The \texttt{math} library contains the C++ interface to the ScaLAPACK functions for matrix decompositions, as well as DIIS and Davdison solver routines, a routine for incomplete pivoted Cholesky decompostion, and an interface to the Fortran library by Helmich-Paris and Visscher \cite{Hel2016} for computing the Laplace quadrature parameters. 
+The \texttt{math} library contains the C++ interface to the ScaLAPACK functions for matrix decompositions, as well as DIIS and Davidson solver routines, a routine for incomplete pivoted Cholesky decomposition, and an interface to the Fortran library by Helmich-Paris and Visscher \cite{Hel2016} for computing the Laplace quadrature parameters. 
 
 The ScaLAPACK interface accepts DBCSR matrices which are then converted to the fixed block-cyclic format used by ScaLAPACK. Using the interface is easy. The following example shows the eigenvalue decomposition of a hermitian matrix:
 \begin{cppinline}
@@ -313,7 +313,7 @@ The coulomb matrix can be computed with the kernels
 \end{itemize}
 \noindent and the following kernels are available for the exchange matrix
 \begin{itemize}
-\item \texttt{EXACT}: exact exchange matrix wihout density fitting
+\item \texttt{EXACT}: exact exchange matrix without density fitting
 \item \texttt{DFAO}: density fitting in the AO basis
 \item \texttt{DFMO}: density fitting in the MO basis
 \item \texttt{DFAOMEM}: density fitting in the AO basis, with the fitting coefficients computed on-the-fly

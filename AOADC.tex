@@ -1,43 +1,48 @@
 \chapter{The Spin-Opposite Scaled Algebraic Diagrammatic Construction Method in the Atomic Orbital Basis \label{cha:AOADC}}
 
-The Algebraic Diagrammatic Construction method can be considered as M{\o}ller Plesset for excited states. It is therefore not surprising that local correlation method for MP can also be applied to MP. In chapter 4, it has been shown that local approximations for the ground state can be grouped into 3 categories: atomic orbitals, local orbitals and natural orbitals. Only the latter two have been used in the context of ADC as discussed in chapter 6. An atomic orbital representation of ADC has not yet been considered in literature, and will be the subject of this chapter. First, the restricted doubles-folded ADC working equations are derived. Then the SOS approximation is applied. Finally, the restricted SOS-ADC working equations are derived in the AO basis, with and without density fitting. 
+The Algebraic Diagrammatic Construction method can be considered as M{\o}ller Plesset for excited states. It is therefore not surprising that local correlation methods for MP can also be applied to ADC. In chapter 4, it has been shown that local approximations for the ground state can be grouped into 3 categories: atomic orbitals, local orbitals and natural orbitals. Only the latter two have been used in the context of ADC as discussed in chapter 6. An atomic orbital representation of ADC has not yet been considered in literature, and will be the subject of this chapter. First, the restricted doubles-folded ADC working equations are derived. Then the SOS approximation is applied. Finally, the restricted SOS-ADC working equations are derived in the AO basis, with and without density fitting. 
 
 \section{Working Equations for Restricted ADC with Doubles-Folding}
 
 The eigenvalue problem in the algebraic diagrammatic construction method truncated at doubles excitations takes the form
 \begin{equation}
 \begin{bmatrix}
-\mathbf{A}_{SS} & \mathbf{A}_{SD} \\
-\mathbf{A}_{DS} & \mathbf{A}_{DD}
-\end{bmatrix} =  
+\mathbf{A}_{\mu_1\nu_1} & \mathbf{A}_{\mu_1\nu_2} \\
+\mathbf{A}_{\mu_2\nu_1} & \mathbf{A}_{\mu_2\mu_2}
+\end{bmatrix} 
 \begin{bmatrix}
-\mathbf{v}_{S} \\
-\mathbf{v}_{D}
+\mathbf{v}_{\mu_1} \\
+\mathbf{v}_{\mu_2}
+\end{bmatrix}
+=  
+\begin{bmatrix}
+\mathbf{v}_{\mu_1} \\
+\mathbf{v}_{\mu_2}
 \end{bmatrix}
 \mathbf{\Omega}
 \end{equation}
-\noindent where $\mathbf{A}$ is the symmetric ADC matrix with the singles-singles (SS), doubles-singles (DS), singles-doubles (SD) and doubles-doubles (DD) sub-blocks, with the eigenvectors $\mathbf{v}$ and the diagonal eigenvalue matrix $\Omega$. The eigenvalue problem is generally solved using the Davidson diagonalization procedure to extract the first few lowest eigenvalues. Rather than constructing the entire Jacobian matrix which scales as $\ccpx{8}$, the Davidson method computes the matrix-vector products $\mathbf{r} = \mathbf{A} \mathbf{u}$ with the current trial vectors $\mathbf{u}$ using a closed-form expression, which reduces the computational complexity to $\ccpx{5}$. The MVPs can be expressed in block-form as
+\noindent where $\mathbf{A}$ is the symmetric ADC matrix with the singles-singles ($\mu_1\nu_1$), doubles-singles ($\mu_2\nu_1$), singles-doubles ($\mu_1\nu_2$) and doubles-doubles ($\mu_2\nu_2$) sub-blocks, with the eigenvectors $\mathbf{v}$ and the diagonal eigenvalue matrix $\boldsymbol{\Omega}$. The eigenvalue problem is generally solved using the Davidson diagonalization procedure to extract the first few lowest eigenvalues. Rather than constructing the entire Jacobian matrix which scales as $\ccpx{8}$, the Davidson method computes the matrix-vector products $\mathbf{r} = \mathbf{A} \mathbf{u}$ with the current trial vectors $\mathbf{u}$ using a closed-form expression, which reduces the computational complexity to $\ccpx{5}$. The MVPs can be expressed in block-form as
 \begin{equation}
 \begin{split}
-\mathbf{r}_{S} = \mathbf{A}_{SS} \mathbf{u}_{S} + \mathbf{A}_{SD} \mathbf{u}_{D} \\
-\mathbf{r}_{D} = \mathbf{A}_{DS} \mathbf{u}_{S} + \mathbf{A}_{DD} \mathbf{u}_{D}
+\mathbf{r}_{\mu_1} = \mathbf{A}_{\mu_1\nu_1} \mathbf{u}_{\nu_1} + \mathbf{A}_{\mu_1\nu_2} \mathbf{u}_{\nu_2} \\
+\mathbf{r}_{\mu_2} = \mathbf{A}_{\mu_2\nu_1} \mathbf{u}_{\nu_1} + \mathbf{A}_{\mu_2\nu_2} \mathbf{u}_{\nu_2}
 \end{split} 
 \end{equation}
 \noindent The trial vector space in the Davidson diagonalization scales with fourth order as $o^2v^2$, and can quickly become a memory bottle-neck for large molecules. As shown in chapter 2, one can recompute the doubles-part of the MVP on-the-fly using \emph{doubles-folding}
 \begin{equation}
-\mathbf{r}_S(\omega) = \mathbf{A}_{SS} \mathbf{u}_{S} + \frac{\mathbf{A}_{SD}}{\omega - \mathbf{DD}} \mathbf{u}_{S} 
+\mathbf{r}_{\mu_1}(\omega) = \mathbf{A}_{\mu_1\nu_1} \mathbf{u}_{\nu_1} + \frac{\mathbf{A}_{\mu_1\zeta_2} \mbf{A}_{\zeta_2\nu_1}}{\omega - \mathbf{A}_{\zeta_2\zeta_2}} \mathbf{u}_{\nu_1} 
 \end{equation} 
 \noindent This trick is only possible for ADC(2)-s where the doubles-doubles block of the ADC matrix is diagonal. While the memory footprint for the diagonalization is reduced from $o^2v^2$ to $ov$, the MVP becomes dependent on the eigenvalue $\omega$ and a modified Davidson procedure needs to be used to solve this \emph{pseudo}-eigenvalue problem. The working equations for the folded ADC(2) matrix-vector product is given by \cite{Wor2009}
 \begin{align}
 \begin{split}
-r_{ia} &= \sum_b u_{ib} f_{ab} - \sum_j f_{ij} u_{jb} + \sum_{jb} \sbra{ja}\sket{ib} u_{jb} + \left[ \sum_b I^{(1)}_{ab} u_{ib} + \sum_j I^{(2)}_{ij} u_{ja}\right] \\
-&- \frac{1}{2} \left[ \sum_{jb} t_{ijab} I^{(3)}_{jb} - \sum_{jb} \sbra{ij}\sket{ab} I^{(4)}_{jb} \right] \\
-&+ \left[\sum_{jkb} \sbra{jk}\sket{ib} u_{jkab}(\omega) + \sum_{jbc} u_{ijbc}(\omega) \sket{ja}\sbra{bc}\right]
+r_{IA} &= \sum_B u_{IB} f_{AB} - \sum_J f_{IJ} u_{JB} + \sum_{JB} \sbra{JA}\sket{IB} u_{JB} + \left[ \sum_B I^{(1)}_{AB} u_{IB} + \sum_J I^{(2)}_{IJ} u_{JA}\right] \\
+&- \frac{1}{2} \left[ \sum_{JB} t_{IJAB} I^{(3)}_{JB} - \sum_{JB} \sbra{IJ}\sket{AB} I^{(4)}_{JB} \right] \\
+&+ \left[\sum_{JKB} \sbra{JK}\sket{IB} u_{JKAB}(\omega) + \sum_{JBC} u_{IJBC}(\omega) \sbra{JA}\sket{BC}\right]
 \end{split}
 \end{align}
 \noindent where the doubles part is computed as
 \begin{align}
-u_{iajb}(\omega) &= \frac{1}{2} \frac{\left[sum_k \sbra{ij}\sket{kb}u_{ka} - \sbra{ij}{ka} u_{kb}\right] + \sum_c u_{ic} \sbra{jc}\sket{ab} - u_{jc} \sbra{ic}\sket{ab}}{\omega + \eps_i + \eps_j - \eps_a - \eps_b}
+u_{IAJB}(\omega) &= \frac{1}{2} \frac{\left[\sum_K \sbra{IJ}\sket{KB}u_{KA} - \sbra{IJ}\sket{KA} u_{KB}\right] + \sum_C u_{IC} \sbra{JC}\sket{AB} - u_{JC} \sbra{IC}\sket{AB}}{\omega + \eps_I + \eps_J - \eps_A - \eps_B}
 \end{align}
 \noindent and with the intermediates $I^{(1)}$, $I^{(2)}$, $I^{(3)}$ and $I^{(4)}$ as given in \cite{Wor2009}. Until now, only spin molecular orbitals were assumed. Implementations such as adcman in Q-Chem \cite{Sha2006} can use these formulae directly by delegating any considerations of spin-symmetry to a special tensor library called libtensor \cite{Epi2013}, which programmatically keeps track of the non-vanishing spin block components and reduces the expressions to the restricted ADC(2) equations for closed-shell molecules.
 
@@ -46,12 +51,12 @@ If no special block tensor library is used, it is numerically advantageous to sp
 \begin{split}
 r_{ia}( \omega) = &(\eps_a - \eps_i) u_{ia} - \sum_{jb} \left[ \cn{ij}{ab} - \cn{ia}{jb} \right] u_{jb} + \sum_{\ool{jb}} \cn{ia}{\ool{jb}} u_{\ool{jb}} \\
 &+ \sum_b I_{ab} u_{ib} + \sum_{j} I_{ij} u_{ja} - \frac{1}{2} \left[ t_{ia\ool{jb}} I^{(1)}_{\ool{jb}} + \cn{ia}{\ool{jb}} I_{\ool{jb}}^{(2)} \right] \\
-&- \frac{1}{2} \left[ \left( t_{iajb} - t_{jaib} \right) I^(1)_{jb} + \left(\cn{ia}{jb} - \cn{ja}{ib} \right) I_{jb}^{(2)} \right] \\
+&- \frac{1}{2} \left[ \left( t_{iajb} - t_{jaib} \right) I^{(1)}_{jb} + \left(\cn{ia}{jb} - \cn{ja}{ib} \right) I_{jb}^{(2)} \right] \\
 &+ \sum_{kcl} u_{kalc}(\omega) \cn{ik}{cl} + \sum_{k\ool{cl}} u_{ka\ool{lc}}(\omega) \cn{ik}{\ool{cl}} \\
 &- \sum_{ckd} \cn{ac}{kd} u_{ikcd}(\omega) - \sum_{c\ool{kd}} \cn{ac}{\ool{kd}} u_{ic\ool{kd}}(\omega)
 \end{split}
 \end{equation}  
-\noindent with the pre-iteration intermediates (computed only once)
+\noindent with the preiteration intermediates (computed only once)
 \begin{equation}
 \begin{split}
 I_{ab} &= \frac{1}{2} \sum_{kcl} \left[ t_{kalc} \cn{kb}{lc} - t_{kalc} \cn{kc}{lb} + \cn{ak}{cl} t_{kblc} - \cn{al}{ck} t_{kb}{lc} \right] \\
@@ -80,10 +85,10 @@ u_{iajb}(\omega) &= \frac{1}{\omega - \eps_a - \eps_b + \eps_i + \eps_j} \left\l
 \end{equation}
 \begin{equation}
 \begin{split}
-u_{ia\ool{jb}}(\omega) = \frac{1}{\omega - \eps_a - \eps_b + \eps_i + \eps_j} \left\lbrace \sum_k u_{ka} \cn{ki}{\ool{bj}} + \sum_{\ool{k}} u_{\ool{kb}} \cn{\ool{kj}}{ai} \right. \\ - \sum_c u_ic \cn{ac}{\ool{bj}} - \left. \sum_{\ool{c}} u_{\ool{jc}} \cn{\ool{bc}}{ai} \right\rbrace
+u_{ia\ool{jb}}(\omega) = \frac{1}{\omega - \eps_a - \eps_{\olb} + \eps_i + \eps_{\olj}} \left\lbrace \sum_k u_{ka} \cn{ki}{\ool{bj}} + \sum_{\ool{k}} u_{\ool{kb}} \cn{\ool{kj}}{ai} \right. \\ - \sum_c u_ic \cn{ac}{\ool{bj}} - \left. \sum_{\ool{c}} u_{\ool{jc}} \cn{\ool{bc}}{ai} \right\rbrace
 \end{split}
 \end{equation}
-\noindent The expression for the MVP for beta electrons ($r_{\ool{ia}})$ is obtained by replacing alpha orbitals ($i$) by beta orbitals ($\ool{i}$) and vice-versa in the expressions above. The off-diagonal blocks $r_{i\oola}$, i.e. the spins-flip states will not be considered here and are set to zero. For closed-shell molecules, the complexity of the formulas can be drastically reduced by introducing the following spin-symmetry relationships:
+\noindent The expression for the MVP for beta electrons ($r_{\ool{ia}})$ is obtained by replacing alpha orbitals ($i$) by beta orbitals ($\ool{i}$) and vice-versa in the expressions above. The off-diagonal blocks $r_{i\oola}$/$r_{\oli a}$ i.e. the spin-flip states will not be considered here and are set to zero. For closed-shell molecules, the complexity of the formulas can be drastically reduced by introducing the following spin-symmetry relationships:
 \begin{align}
 t_{iajb} &= t_{ia\ool{jb}} = t_{\ool{ia}jb} = t_{\ool{iajb}}   \label{eq:SPIN1}\\
 \cn{ia}{jb} &= \cn{ia}{\ool{jb}} = \cn{\ool{ia}}{jb} = \cn{\ool{ia}}{\ool{jb}} \label{eq:SPIN2} \\
@@ -93,8 +98,8 @@ u_{ia} &= - u_{\ool{ia}} \qquad \textrm{if triplet} \label{eq:SPIN4}
 \noindent One then obtains two separate expressions for restricted ADC(2), depending on whether singlet or triplet states are addressed
 \begin{align}
 \begin{split}
-r_{ia}^S(\omega) &= (\eps_a - \eps_i) u_{ia} - \sum_{jb} \left[ 2\cn{ia}{jb} - \cn{ij}{ab} \right] u_{jb}^S + \sum_b I_{ab} u_{ib} + \sum_j u_{ja}^S I_{ij} \\
-&- \frac{1}{2} \sum_{jb} \left[2t_{iajb} - t_{ibja}\right] I^{(1)S}_{jb} - \frac{1}{2} sum_{jb} \left[ 2 \cn{ia}{jb} - \cn{ib}{ja} \right] I^{(2)S}_{jb} \\
+r_{ia}^S(\omega) &= (\eps_a - \eps_i) u^S_{ia} - \sum_{jb} \left[ 2\cn{ia}{jb} - \cn{ij}{ab} \right] u_{jb}^S + \sum_b I_{ab} u^S_{ib} + \sum_j u_{ja}^S I_{ij} \\
+&- \frac{1}{2} \sum_{jb} \left[2t_{iajb} - t_{ibja}\right] I^{(1)S}_{jb} - \frac{1}{2} \sum_{jb} \left[ 2 \cn{ia}{jb} - \cn{ib}{ja} \right] I^{(2)S}_{jb} \\
 &+ \sum_{kcl} \cn{ik}{lc} \left( 2 u_{kalc}^S(\omega) - u_{lakc}^S(\omega) \right) + \sum_{ckd} \left( 2 u^S_{ickd}(\omega) - u^S_{kcid}(\omega) \right) \cn{kd}{ac}  
 \end{split}
 \label{eq:SPINADCS}
@@ -143,7 +148,7 @@ I^{(2)T}_{ia} &= - \sum_{jb} t_{ibja} u_{jb}^T
 
 In the restricted ADC expressions for the matrix-vector product, the 4-index intermediates $u_{iajb}(\omega)$ need to be evaluated and temporarily stored, even if the density fitting approximation is used. This memory-intensive step can be avoided by using spin-opposite scaling (Section \ref{sec:SOSADC}). Consider again the approximations introduced by the SOS method for the unrestricted ADC(2) matrix equations
 \begin{itemize}
-\item In the spin-amplitudes $\hat{t}_{iajb}$ the same-spin contributions are nulled and the opposite-spin contributions are scales by $c_os$
+\item In the spin-amplitudes $\hat{t}_{iajb}$ the same-spin contributions are nulled and the opposite-spin contributions are scales by $c_{os}$
 \begin{equation}
 \hat{t}_{SOS} = c_{os} \hat{t}_{iajb} \left( 1 - \delta_{\sigma (i) \sigma (j)} \right)
 \end{equation}
@@ -156,7 +161,7 @@ C_{iajb,kc} = c_{osc} \left[ \sbk{kb}{ij} \delta_{ac} - \sbk{ka}{ij} \delta_{bc}
 \end{equation}
 \noindent Here, the function $\sigma(x)$ returns the spin of orbital $x$.
 \end{itemize}
-Applying the above constraints to the MVP expressions \ref{eq:SPINADCS} (shown for singles only) gives the spin components of the SOS-ADC(2) matrix-vector product:
+Applying the above constraints to the MVP expression \ref{eq:SPINADCS} (shown for singles only) gives the spin components of the SOS-ADC(2) matrix-vector product:
 \begin{equation}
 \begin{split}
 r_{ia}^{SOS}( \omega) = &(\eps_a - \eps_i) u_{ia} - \sum_{jb} \left[ \cn{ij}{ab} - \cn{ia}{jb} \right] u_{jb} + \sum_{\ool{jb}} \cn{ia}{\ool{jb}} u_{\ool{jb}} \\
@@ -188,19 +193,19 @@ I_{ia}^{(2)SOS} &= \sum_{\ool{jb}} t_{ia\ool{jb}} u_{\ool{jb}}
 u_{ia\ool{jb}}^{SOS}(\omega) = \frac{c_{osc}}{\omega - \eps_a - \eps_b + \eps_i + \eps_j} \left\lbrace \sum_k u_{ka} \cn{ki}{\ool{bj}} + \sum_{\ool{k}} u_{\ool{kb}} \cn{\ool{kj}}{ai} \right. \\ - \sum_c u_ic \cn{ac}{\ool{bj}} - \left. \sum_{\ool{c}} u_{\ool{jc}} \cn{\ool{bc}}{ai} \right\rbrace
 \end{split}
 \end{equation}
-\noindent Finally, for closed-shell molecules, the matrix vector products for singlet and triplet excitations for restricted SOS-ADC(2) can be obtained by inserting the spin-symmetry relationships \ref{eq:SPIN1} to \ref{eq:SPIN4} into Equation \ref{SPINSOSADC2S}, and performing a similar manipulation for the triplet expression:
+\noindent Finally, for closed-shell molecules, the matrix vector product for singlet excitations for restricted SOS-ADC(2) can be obtained by inserting the spin-symmetry relationships \ref{eq:SPIN1} to \ref{eq:SPIN4} into Equation \ref{SPINSOSADC2S}, and performing a similar manipulation for the triplet expression:
 %\begin{myframe}{EQUATION}
 \begin{align}
 \begin{split}
 r_{ia}^{S,SOS}(\omega) &= (\eps_a - \eps_i) u_{ia}^S - \sum_{jb} \left[ 2\cn{ia}{jb} - \cn{ij}{ab} \right] u_{jb}^S + \sum_b I^{SOS}_{ab} u_{ib} + \sum_j u_{ja}^S I^{SOS}_{ij} \\
-&- \frac{1}{2} \sum_{jb} t_{iajb}I^{(1)S,SOS}_{jb} - \frac{1}{2} \sum_{jb} \left[ 2\cn{ia}{jb} - \cn{ib}{ja} \right] I^{(2)S,SOS}_{jb} \\
+&- \frac{1}{2} \sum_{jb} t^{SOS}_{iajb}I^{(1)S,SOS}_{jb} - \frac{1}{2} \sum_{jb} \left[ 2\cn{ia}{jb} - \cn{ib}{ja} \right] I^{(2)S,SOS}_{jb} \\
 &+ c_{osc} \left\lbrace \sum_{kcl} \cn{ik}{lc} u^{S,SOS}_{kalc}(\omega) - \sum_{ckd} u^{S,SOS}_{ickd}(\omega) \cn{kd}{ac} \right\rbrace
 \end{split}
 \label{eq:SOSRADC2S}
 \\
 \begin{split}
 r_{ia}^{T,SOS}(\omega) &= (\eps_a - \eps_i) u_{ia}^S - \sum_{jb} \cn{ij}{ab} u_{jb}^T + \sum_b I^{SOS}_{ab} u_{ib} + \sum_j u_{ja}^S I^{SOS}_{ij} \\
-&- \frac{1}{2} \sum_{jb} t_{iajb}I^{(1)T,SOS}_{jb} + \frac{1}{2} \sum_{jb} \cn{ib}{ja} I^{(2)T,SOS}_{jb} \\
+&- \frac{1}{2} \sum_{jb} t^{SOS}_{iajb}I^{(1)T,SOS}_{jb} + \frac{1}{2} \sum_{jb} \cn{ib}{ja} I^{(2)T,SOS}_{jb} \\
 &+ c_{osc} \left\lbrace \sum_{kcl} \cn{ik}{lc} u^{T,SOS}_{kalc}(\omega) - \sum_{ckd} u^{T,SOS}_{ickd}(\omega) \cn{kd}{ac} \right\rbrace
 \end{split}
 \label{eq:SOSRADC2T}
@@ -219,9 +224,9 @@ u_{iajb}^{T,SOS}(\omega) &= \frac{c_{osc}}{\omega - \eps_a - \eps_b + \eps_i + \
 \end{align}
 \noindent and the intermediates
 \begin{align}
-I_{ab}^{SOS} &= \frac{c_os}{2} \left[ \sum_{kcl} t_{kalc} \cn{kb}{lc} \right]\sym{a}{b}
+I_{ab}^{SOS} &= \frac{c_{os}}{2} \left[ \sum_{kcl} t_{kalc} \cn{kb}{lc} \right]\sym{a}{b}
 \\
-I_{ij}^{SOS} &= \frac{c_os}{2} \left[ \sum_{ckd} t_{ickd} \cn{jc}{kd} \right]\sym{i}{j}
+I_{ij}^{SOS} &= \frac{c_{os}}{2} \left[ \sum_{ckd} t_{ickd} \cn{jc}{kd} \right]\sym{i}{j}
 \\
 I^{(1)S,SOS}_{ia} &= \sum_{jb} \left( 2\cn{ia}{jb} - \cn{ib}{ja} \right) u_{jb}^S
 \\
@@ -232,7 +237,7 @@ I^{(1)T,SOS}_{ia} &= - \sum_{jb} \cn{ib}{ja} u_{jb}^T
 I^{(2)T,SOS}_{ia} &= - c_{os} \sum_{jb} t_{iajb} u_{jb}^T
 \end{align}
 
-\section{Working Equations For Restricted SOS-ADC(2) with Doubles-Folding in an Atomic Orbital Basis}
+\section[Working Equations For Restricted AO-SOS-ADC(2)]{Working Equations For Restricted SOS-ADC(2) with Doubles-Folding in an Atomic Orbital Basis}
 
 The goal of an atomic orbital based formulation of ADC(2) is to compute the matrix-vector product in an intermediate AO basis and transform it back to the MO basis (or alternatively an LMO basis) for the Davidson procedure, similarly to how it is done for CIS:
 \begin{equation}
@@ -267,7 +272,7 @@ r_{ia}^{T,CIS,AO} &= (\eps_a - \eps_i) u^T_{ia} - \sum_{ia} C_{\mu i} C_{\sigma 
 \begin{equation}
 u_{\ulgm\olgs} = C_{\mu i} u_{ia} C_{\olgs a}
 \end{equation}
-\noindent The zero order terms (i.e. the molecular orbital energy differences) do not need to be formulated in an AO basis, because the computation time is negligible. Similarly, transforming $\mathbf{\tilde{J}}$ and $\mathbf{\tilde{K}}$ to the MO basis formerly scales as $\ccpx{3}$ but has very low overhead and does not influence the overall scaling of AO-SOS-ADC(2). The time-determining steps are the computation of the J-kernel, which scales as $\ccpx{2}$ and the K-kernel, which scales as $\mathcal{O}(N)$ in limit of large systems. For triplet excitations, the scaling is reduced to linear due to the absence of coulomb contributions.
+\noindent The zero order terms (i.e. the molecular orbital energy differences) do not need to be formulated in an AO basis, because the computation time is negligible. Similarly, transforming $\mathbf{\tilde{J}}$ and $\mathbf{\tilde{K}}$ to the MO basis formerly scales as $\ccpx{3}$ but has very low overhead and does not influence the overall scaling of AO-SOS-ADC(2). The time-determining steps are the computation of the J-kernel, which scales as $\ccpx{2}$ and the K-kernel, which scales as $\mathcal{O}(N)$ in the limit of large systems. For triplet excitations, the scaling is reduced to linear due to the absence of coulomb contributions.
 
 \subsection{Second Order: Part 2A and 2B}
 
@@ -276,7 +281,7 @@ The expressions for component 2A and 2B read
 r_{ia}^{S,SOS,2A} = \sum_b I^{SOS}_{ab} u^S_{ib} + \sum_j I^{SOS}_{ij} u^S_{ja} \\
 r_{ia}^{T,SOS,2A} = \sum_b I^{SOS}_{ab} u^T_{ia} + \sum_j I^{SOS}_{ij} u^T_{ja} 
 \end{align}
-\noindent with the intermediates as defined in the previous section. Rather than casting the whole expression into the AO basis, it is more convenient to evaluate only the non-symmetrized intermediates $I^{SOS,ns}_ab$ and $I^{SOS,ns}_{ij}$ in the AO basis.
+\noindent with the intermediates as defined in the previous section. Rather than casting the whole expression into the AO basis, it is more convenient to evaluate only the non-symmetrized intermediates $I^{SOS,ns}_{ab}$ and $I^{SOS,ns}_{ij}$ in the AO basis.
 The expressions for the intermediates involve the t-amplitudes, and to obtain an orbital-invariant formulation, it is necessary to use the Laplace transform
 \begin{equation}
 \frac{1}{\eps_a - \eps_i + \eps_b - \eps_j} = \sum^{nlap}_{\alpha} |w\pa| e^{-\eps_a t\pa} e^{\eps_i t\pa} e^{-\eps_b t\pa} e^{\eps_j t\pa} 
@@ -340,11 +345,11 @@ r_{ia}^{T,SOS,2C} &= -\frac{c_{os}}{2} \sum_{jb} t_{iajb} I^{(1)T,SOS}_{jb}
 \noindent Applying the Laplace transform, this then gives
 \begin{align}
 \begin{split}
-r_{ia}^{S,AO-SOS,2C} &= -\frac{c_{os}}{2} \sum_{jb} \sum_{alpha} \wpa e^{\Delta_{iajb}t\pa} \cn{ia}{jb} \left[\sum_{kc} \left(2\cn{jb}{kc} - \cn{jc}{kb} \right) u_{kc}^S \right] \\
-&=  -\frac{c_{os}}{2} \sum_{alpha} \sum_{ia} \wpa^{1/2} C_{\mu i} e^{\eps_i t\pa} C_{\sigma a} e^{-\eps_a t\pa} \\
+r_{ia}^{S,AO-SOS,2C} &= -\frac{c_{os}}{2} \sum_{jb} \sum_{\alpha} \wpa e^{\Delta_{iajb}t\pa} \cn{ia}{jb} \left[\sum_{kc} \left(2\cn{jb}{kc} - \cn{jc}{kb} \right) u_{kc}^S \right] \\
+&=  -\frac{c_{os}}{2} \sum_{\alpha} \sum_{ia} \wpa^{1/2} C_{\mu i} e^{\eps_i t\pa} C_{\sigma a} e^{-\eps_a t\pa} \\
 &\left\lbrace \sum_{\nu\lambda} \cn{\mu\alpha}{\ulgn\olgl}\pa \left[ \sum_{\kappa\gamma}  \left( 2\cn{\nu\lambda}{\kappa\gamma} - \cn{\nu\gamma}{\kappa\lambda}\right) u^S_{\ulgk\olgg} \right] \right\rbrace \\
-&=   -\frac{c_{os}}{2} \sum_{alpha} \sum_{ia} \wpa^{1/2} C_{\mu i} e^{\eps_i t\pa} C_{\sigma a} e^{-\eps_a t\pa} \left\lbrace \sum_{\nu\lambda} \cn{\mu\alpha}{\ulgn\olgl}\pa \left[ 2\tilde{J}_{\lambda\nu} - \tilde{K}_{\lambda\nu} \right] \right\rbrace \\
-&= -\frac{c_{os}}{2} \sum_{alpha} \sum_{ia} \wpa^{1/2} C_{\mu i} e^{\eps_i t\pa} C_{\sigma a} e^{-\eps_a t\pa} I^{(1)(\alpha)S,AO-SOS}_{\mu \sigma}
+&=   -\frac{c_{os}}{2} \sum_{\alpha} \sum_{ia} \wpa^{1/2} C_{\mu i} e^{\eps_i t\pa} C_{\sigma a} e^{-\eps_a t\pa} \left\lbrace \sum_{\nu\lambda} \cn{\mu\alpha}{\ulgn\olgl}\pa \left[ 2\tilde{J}_{\lambda\nu} - \tilde{K}_{\lambda\nu} \right] \right\rbrace \\
+&= -\frac{c_{os}}{2} \sum_{\alpha} \sum_{ia} \wpa^{1/2} C_{\mu i} e^{\eps_i t\pa} C_{\sigma a} e^{-\eps_a t\pa} I^{(1)(\alpha)S,AO-SOS}_{\mu \sigma}
 \end{split} 
 \end{align}
 \noindent Similarly, triplet contributions are given by
@@ -391,7 +396,7 @@ r_{ia}^{T,SOS,2D} &= \frac{1}{2}\sum_{jb} \cn{ib}{ja} I_{jb}^{(2)T,SOS}
 \noindent Applying the Laplace transform gives the singlet expression
 \begin{align}
 \begin{split}
-r_{ia}^{S,AO-SOS,2D} &= -\frac{c_{os}}{2} \sum_{jb} K_{iajb} \sum_{kc} \sum_{\alpha} \wpa e^{\Delta_{iajb}tpa} \cn{jb}{kc} u_{kc}^S \\
+r_{ia}^{S,AO-SOS,2D} &= -\frac{c_{os}}{2} \sum_{jb} K_{iajb} \sum_{kc} \sum_{\alpha} \wpa e^{\Delta_{iajb}t\pa} \cn{jb}{kc} u_{kc}^S \\
 &= -\frac{c_{os}}{2} \sum_{ia} C_{\mu i} C_{\sigma a} \left[  K_{\mu\sigma\nu\lambda} \left( \sum_{\alpha} \cn{\ulgn\olgl}{\kappa\gamma}\pa u^{(\alpha)S}_{\ulgk\olgg} \right)  \right] \\
 &= -\frac{c_{os}}{2} \sum_{ia} C_{\mu i} C_{\sigma a} I^{(2)S,AO-SOS}_{\mu\sigma} 
 \end{split} 
@@ -523,7 +528,7 @@ This information can be used to find the scaling of the $\mathbf{R}$ intermediat
 
 \subsection{Summary}
 
-The SOS-ADC(2) matrix-vector product is finally computed as
+The AO-SOS-ADC(2) matrix-vector product is finally computed as
 \begin{align}
 \begin{split}
 r_{ia}^{S,AO-DF-SOS}(\omega) &= (\eps_a - \eps_i) u_{ia}^S + \sum_{\mu\nu} C_{\mu i} C_{\nu a} \left( 2\tilde{J}^S_{\mu\nu} - \tilde{K}^S_{\mu\nu} \right) \\
@@ -559,17 +564,18 @@ To lower the steep scaling associated with increasing basis set size, the densit
 \end{align}
 \noindent This notation allows to reduce the complexity of the formulas to some degree. 
 
-The working equations for AO-DF-SOS-ADC(2) are given in Tables \ref{AODFSOSADC2INTERMEDIATES}, \ref{AODFSOSADC21D} and \ref{AODFSOSADC2E}. Table \ref{AODFSOSADC2INTERMEDIATES} shows the pre-iteration steps, that is, the computation of the Laplace parameters and the intermediates $I_{ij}$ and $I_{ab}$. The construction of the intermediates can be formulated in terms of the Z- and K-kernels. In the K-kernel, the metric matrix $\mbf{M}$ is replaced by the Laplace matrix $\mbf{G}$ formed by the Z-kernel. The contraction of $\mbf{G}$ with $B_{X\mu\nu}$ in the K-kernel is the most expensive step in the pre-iteration procedure. The resulting tensor can be computed on-the-fly as it is not needed for any other contraction.
+The working equations for AO-DF-SOS-ADC(2) are given in Tables \ref{AODFSOSADC2INTERMEDIATES}, \ref{AODFSOSADC21D} and \ref{AODFSOSADC2E}. Table \ref{AODFSOSADC2INTERMEDIATES} shows the preiteration steps, that is, the computation of the Laplace parameters and the intermediates $I_{ij}$ and $I_{ab}$. The construction of the intermediates can be formulated in terms of the Z- and K-kernels. In the K-kernel, the metric matrix $\mbf{M}$ is replaced by the Laplace matrix $\mbf{G}$ formed by the Z-kernel. The contraction of $\mbf{G}$ with $B_{X\mu\nu}$ in the K-kernel is the most expensive step in the preiteration procedure. The resulting tensor can be computed on-the-fly as it is not needed for any other contraction.
 
-Table \ref{AODFSOSADC21D} shows the steps to form part 1 and 2A-2D of the matrix-vector product. The steps are listed for both singlet and triplet. First the CIS Fock-like matrix $\mbf{F}^{CIS}$ is formed, as it represents an important intermediate for the subsequent steps. This is easily done using the J/K-kernels. Zero and first order contributions, as well as part 2A and 2B of the second order contributions are formed trivially afterwards using the intermediates. Part 2C is most conveniently computed using the J-kernel where the density matrix is replaced by a pseudo-density matrix $\mbf{H}$ formed by contracting with a pseudo-AO CIS matrix. Part 2D is a bit more involved. First, the matrix $\mbf{T}$ is formed by looping over the Laplace points and using the J-kernel. Then, this matrix is used in a fock-like construction scheme to get the final result.
+Table \ref{AODFSOSADC21D} shows the steps to form part 1 and 2A-2D of the matrix-vector product. The steps are listed for both singlet and triplet. First the CIS Fock-like matrix $\mbf{F}^{CIS}$ is formed, as it represents an important intermediate for the subsequent steps. This is easily done using the J/K-kernels. Zero and first order contributions, as well as part 2A and 2B of the second order contributions are formed trivially afterwards using the intermediates. Part 2C is most conveniently computed using the J-kernel where the density matrix is replaced by a pseudo-density matrix $\mbf{H}$ formed by contracting with a pseudo-AO CIS matrix. Part 2D is a bit more involved. First, the matrix $\mbf{T}$ is formed by looping over the Laplace points and using the J-kernel. Then, this matrix is used in a Fock-like construction scheme to get the final result.
 
-Finally, Table \ref{AODFSOSADC2E} shows the construction of part 2E of the MVP. This is the most expensive step of the whole procedure. First, the Laplace parameters are (re-)computed for the current excitation energy $\omega$. The algorithm then enters the Laplace loop in step 2. First, the intermediate tensors $B_{X\ulgm\olgn}$ and $R_{X\ulgm\ulgn}$ are formed and stored. They are then used in step 2f and 2g to form two intermediate matrices in the auxiliary basis. The final intermediate $D_{X\ulgm\olgn}$ is formed in step. After two major contraction steps, the contributions are added to part 2E. 
+Finally, Table \ref{AODFSOSADC2E} shows the construction of part 2E of the MVP. This is the most expensive step of the whole procedure. First, the Laplace parameters are (re-)computed for the current excitation energy $\omega$. The algorithm then enters the Laplace loop in step 2. First, the intermediate tensors $B_{X\ulgm\olgn}$ and $R_{X\ulgm\ulgn}$ are formed and stored. They are then used to compute two intermediate matrices in the auxiliary basis, and the final intermediate $D_{X\ulgm\olgn}$ is formed. After two major exchange-like contraction steps, the contributions are added to part 2E. 
 
 Using the density fitting approximation, the four-index intermediates $u_{\mu\sigma\nu\lambda}$ from AO-SOS-ADC(2) can be avoided, and the procedure only depends on 3-index intermediates. 
 
 \SetKwBlock{Substep}{}{}
 
 \begin{algorithm}
+\setstretch{1.3}
 Compute Laplace quadrature parameters $\{w\pa,t\pa\}$ for $(\eps_i + \eps_j - \eps_a - \eps_b)^{-1}$
 \\
 If needed by the J,K or Z kernels, compute the Cholesky decompositions of the occupied and virtual pseudo-density matrix 
@@ -592,6 +598,7 @@ $I_{ab} \leftarrow I_{ba}$
 \end{algorithm}
 %
 \begin{algorithm}
+\setstretch{1.3}
 \Substep(\textbf{Compute the CIS Fock matrices}){
 if singlet: $U_{\mu\nu} \leftarrow C_{\mu i} u^S_{ia} C_{\nu a}$
 \\
@@ -640,6 +647,7 @@ $r_{ia} \leftarrow -\frac{c_{os}}{2} C_{\mu i} C_{\nu a} \left[ 2\calJ\left\lbra
 \end{algorithm}
 
 \begin{algorithm}
+\setstretch{1.3}
 Compute Laplace quadrature parameters $\{w\pt,t\pt\}$ for $(-\omega + \eps_i + \eps_j - \eps_a - \eps_b)^{-1}$ \\
 \For{\forcond}{
 Compute doubles pseudo-matrices $P\pt$ and $Q\pt$
@@ -668,19 +676,20 @@ $r_{ia} += c_{os-coupling}^2 e^{\omega t\pa} \left[ - r^{(A)}_{ia}(\alpha,\omega
 \label{AODFSOSADC2E}
 \end{algorithm}
 
-Similarly to AO-MP2, the prefactor can be significantly lowered by virtue of the incomplete Cholesky decomposition which yields the CD-DF-SOS-ADC(2) method. Table \ref{AODFSOSADC2EOB} and \ref{AODFSOSADC2EOV} show how the intermediates in part 2E can be formed in a mixed pseudo-AO/MO basis ("OB" algorithm) or in a complete pseudo-MO basis ("OV" algorithm). While the fully transformed OV version has a lower memory footprint by reducing the dimension from $N_XN_{AO}^2$ to $N_XOV$, the overhead due to the additional Cholesky decomposition of the virtual pseudo-density might outweigh the benefit: first, the virtual space may be quite large, especially if large basis sets are used, increasing the rank of the matrix and hence the computational effort of the Cholesky decomposition. Second, the decompositions need to be recomputed for each $\omega$, and for each Laplace point. The OB version might offer a compromise between memory savings and additional overhead. 
+Similarly to AO-MP2, the prefactor can be significantly lowered by virtue of the incomplete Cholesky decomposition which yields the CDD-DF-SOS-ADC(2) method. Table \ref{AODFSOSADC2EOB} and \ref{AODFSOSADC2EOV} show how the intermediates in part 2E can be formed in a mixed pseudo-AO/MO basis ("OB" algorithm) or in a complete pseudo-MO basis ("OV" algorithm). While the fully transformed OV version has a lower memory footprint by reducing the dimension from $N_XN_{AO}^2$ to $N_XOV$, the overhead due to the additional Cholesky decomposition of the virtual pseudo-density might outweigh the benefit: first, the virtual space may be quite large, especially if large basis sets are used, increasing the rank of the matrix and hence the computational effort of the Cholesky decomposition. Second, the decompositions need to be recomputed for each $\omega$, and for each Laplace point. The OB version might offer a compromise between memory savings and additional overhead. 
 
 It should be noted that the Cholesky decomposition can also be used in the Z-kernels in Table \ref{AODFSOSADC2INTERMEDIATES} to reduce its prefactor as well. 
 
-By using local density fitting, the inherent quadratic scaling of the AO-SOS-ADC(2) method also applies for AO-DF-SOS-ADC(2) and CD-DF-SOS-ADC(2).
+By using local density fitting, the inherent quadratic scaling of the AO-SOS-ADC(2) method also applies for AO-DF-SOS-ADC(2) and CDD-DF-SOS-ADC(2).
 
 %... Cholesky in K of intermediates ???
 
 \begin{algorithm}
+\setstretch{1.3}
 Compute Laplace quadrature parameters $\{w\pt,t\pt\}$ for $(-\omega + \eps_i + \eps_j - \eps_a - \eps_b)^{-1}$
 \\
 \For{\forcond}{
-Compute doubles pseudo-matrices $P\pt$ and $Q\pt$ and the cholesky decomposition $L_{\mu \uli}$
+Compute doubles pseudo-matrices $P\pt$ and $Q\pt$ and the Cholesky decomposition $L_{\mu \uli}$
 \\
 $B_{X \uli \olgs}\pt \leftarrow L\pt_{\mu\uli} B_{X \mu\nu} Q\pt_{\nu\sigma}$
 \\
@@ -707,10 +716,11 @@ $r_{ia} += c_{os-coupling}^2 e^{\omega t\pa} \left[ - r^{(A)}_{ia}(\alpha,\omega
 \end{algorithm}
 %
 \begin{algorithm}
+\setstretch{1.3}
 Compute Laplace quadrature parameters $\{w\pt,t\pt\}$ for $(-\omega + \eps_i + \eps_j - \eps_a - \eps_b)^{-1}$
 \\
 \For{\forcond}{
-Compute doubles pseudo-matrices $P\pt$ and $Q\pt$ and their cholesky decompositions $L_{\mu \uli}\pt$ and $L_{\sigma \ola}\pt$
+Compute doubles pseudo-matrices $P\pt$ and $Q\pt$ and their Cholesky decompositions $L_{\mu \uli}\pt$ and $L_{\sigma \ola}\pt$
 \\
 $B_{X \uli \ola}\pt \leftarrow L\pt_{\mu\uli} B_{X \mu\nu} L\pt_{\nu\ola}$
 \\

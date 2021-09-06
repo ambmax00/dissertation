@@ -46,7 +46,7 @@ g_X &= C^X_{\mu\nu} P_{\mu\nu} \\
 \tilde{g}_X &= \cn{X}{Y} b_{Y} \\ 
 \quad b_{X} &= C_{\mu\nu}^{X} P_{\mu\nu} 
 \end{align}
-\noindent The robust LDF-J approximation is evaluated at an effort similar to standard DF-J. The only advantages to LDF in this case pertain to the fitting procedure itself. It is no longer necessary to invert the 2c2e integral matrix $\cn{X}{Y}$, and the fitting coefficients $C_{\mu\nu}^{X}$ can be evaluated in linear scaling fashion. However, it has been demonstrated that using Dunlap's robust formula in combination with local metrics leads to "attractive electron" states where the SCF energy may converge to very high positive values \cite{Mer2013,Hol2014}. The reason is that the the two-electron integral tensor in the robust LDF approximation is no longer postive semidefinite, but \emph{indefinite}, which can lead to severe convergence problems. One way to circumvent this problem is to loosen the constraints on the density fitting procedure, or use a larger auxiliary basis set. In both cases, performance is compromised.  
+\noindent The robust LDF-J approximation is evaluated at an effort similar to standard DF-J. The only advantages to LDF in this case pertain to the fitting procedure itself. It is no longer necessary to invert the 2c2e integral matrix $\cn{X}{Y}$, and the fitting coefficients $C_{\mu\nu}^{X}$ can be evaluated in linear scaling fashion. However, it has been demonstrated that using Dunlap's robust formula in combination with local metrics leads to "attractive electron" states where the SCF energy may converge to very high positive values \cite{Mer2013,Hol2014}. The reason is that the the two-electron integral tensor in the robust LDF approximation is no longer positive semidefinite, but \emph{indefinite}, which can lead to severe convergence problems. One way to circumvent this problem is to loosen the constraints on the density fitting procedure, or use a larger auxiliary basis set. In both cases, performance is compromised.  
 
 As shall be shown in chapter \ref{cha:RESULTS}, quasi-robust density offers a better alternative to robust LDF-J methods, with similar sparsity and higher accuracy without the use of Dunlap's formula.
 
@@ -215,7 +215,7 @@ In spectral projection methods, an initial guess for the density matrix $\mathbf
 \begin{equation}
 \mathbf{P} = \Theta \left( \mu \mathbf{I} - \mathbf{F} \right)
 \end{equation}
-\noindent where $\mu$ is the chemical potential, and $\Theta$ is the Heavyside step-function. The guess density then has orbital occupation numbers spread between 0 and 1, and has the same eigenvectors as the Fock matrix. The idempotent density is then determined by \emph{density purification}. Density purification is a iterative procedure where a purification transformation is repeatedly applied to the density matrix which converges the orbital occupation numbers either towards 0 or 1. One of the earliest purification transformation by McWeeny \cite{McW1959} takes the form
+\noindent where $\mu$ is the chemical potential, and $\Theta$ is the Heaviside step-function. The guess density then has orbital occupation numbers spread between 0 and 1, and has the same eigenvectors as the Fock matrix. The idempotent density is then determined by \emph{density purification}. Density purification is a iterative procedure where a purification transformation is repeatedly applied to the density matrix which converges the orbital occupation numbers either towards 0 or 1. One of the earliest purification transformation by McWeeny \cite{McW1959} takes the form
 \begin{equation}
 \mathbf{P}_{n+1} = 3\mathbf{P}_n\mathbf{SP}_n - 2\mathbf{P}_n\mathbf{SP}_n\mathbf{SP}_n
 \label{eq:MCWEENY}
@@ -321,7 +321,7 @@ E_{AO-MP2} = - \sum_{\alpha}^n \sum_{\mu\nu\lambda\sigma} \cn{\ulgm\olgs}{\ulgn\
 Tr[\mathbf{I}_{exp}] = \sum_i e^{0.25 ln(w\pa) + \eps_i t\pa} + \sum_a e^{0.25 ln(w\pa) - \eps_a t\pa}
 \end{equation}
 
-The entries of the pseudo-density also decay exponentially as function of the distance between pseudo-AO centres. Strictly speaking, AO-MP2 is not only formulated in a pure AO-basis ($\mu\nu...$), but also a PAO-like basis ($\ulgm,olgn,...$). 
+The entries of the pseudo-density also decay exponentially as function of the distance between pseudo-AO centers. Strictly speaking, AO-MP2 is not only formulated in a pure AO-basis ($\mu\nu...$), but also a PAO-like basis ($\ulgm,olgn,...$). 
 
 \subsubsection{Quadratic Scaling AO-MP2}
 
@@ -437,7 +437,7 @@ One can then formulate the CD-AO-MP2 energy expression as
 \begin{equation}
 E_{CD-AO-MP2} = - \sum_{\alpha}^n \sum_{\uli\ola\ulj\olb} \cn{\uli\ola}{\ulj\olb}\pa \left [ 2\cn{\uli\ola}{\ulj\olb}\pa -  \cn{\uli\olb}{\ulj\ola}\pa \right]
 \end{equation}
-\noindent whith the pseudo-MO integrals
+\noindent with the pseudo-MO integrals
 \begin{equation}
 \cn{\uli\ola}{\ulj\olb}\pa = \unl{L}\pa_{\mu\uli} \ovl{L}\pa_{\sigma\ola} \cn{\mu\sigma}{\nu\lambda} \unl{L}\pa_{\nu\ulj} \ovl{L}\pa_{\lambda\olb}
 \end{equation}
@@ -456,7 +456,7 @@ To reduce the prefactor associated with integral transformation, either from AOs
 
 \subsubsection{SOS-AO-DF-MP2}
 
-SOS-MP2 is a cost-efficient variant of MP2 with improved  accuracy (Section \ref{sec:SCSMP2}. One of the advantages of SOS-MP2 is that by omitting the same-spin contributions, the energy expressions can be effciently factored when using the density fitting approximation \cite{Mau2014,Gla2020}: 
+SOS-MP2 is a cost-efficient variant of MP2 with improved  accuracy (Section \ref{sec:SCSMP2}. One of the advantages of SOS-MP2 is that by omitting the same-spin contributions, the energy expressions can be efficiently factored when using the density fitting approximation \cite{Mau2014,Gla2020}: 
 \begin{equation}
 \begin{split}
 E_{AO-DF-SOS-MP2} &= - c_{os} \sum^{nlap}_{\alpha=1} \sum_{\mu\nu\sigma\lambda} \cn{\ulgn\olgs}{X}\pa \cn{X}{Y}^{-1} \cn{Y}{\ulgn\olgl}\pa \\
@@ -531,7 +531,7 @@ E_{AO-DF-SOS-MP2} = - c_{os} \sum^{nlap}_{\alpha=1} \sum_{XY} \tilde{Z}\pa_{XY} 
 \end{tikzpicture}
 \end{center}
 
-\noindent where "LDF" is the sparsity relationship introduced between the auxiliary density $X$ and the product density $\cbra{\mu\nu}$, which is metric-specific. In the case of quasi-robust density fitting, LDF = S, and the intermediates $\mathbf{Z}\pa$ can be constructed with linear effort. For weaker decay behaviour, such as the error function coulomb-attenuated metric, the scaling is intermediate between linear and quadratic \cite{Gla2020}. 
+\noindent where "LDF" is the sparsity relationship introduced between the auxiliary density $X$ and the product density $\cbra{\mu\nu}$, which is metric-specific. In the case of quasi-robust density fitting, LDF = S, and the intermediates $\mathbf{Z}\pa$ can be constructed with linear effort. For weaker decay behavior, such as the error function coulomb-attenuated metric, the scaling is intermediate between linear and quadratic \cite{Gla2020}. 
 
 %CAN BE APPLIED TO CC2
 
@@ -642,7 +642,7 @@ e_{ij} = \left( 2t_{ij}^{ab} - t_{ij}^{ba} \right) \cn{ia}{jb}
  
 For well localized orbitals, the electron pair correlation $e_{ij}$ decays with $1/r_{ij}^6$ with the distance between orbital centers. Electron pairs are generally divided into four groups: strong pairs ($r_{ij} < 1a_0$), weak pairs ($1 < r_{ij} \leq 8 a_0$), distant pairs ($8 < r_{ij} \leq 15 a_0$), and very distant pairs ($15 < r_{ij}$) \cite{Sch1999}. Other than by distance criteria, electron pairs can also be grouped by their pair energy \cite{Nee2009}. Figure \ref{fig:EPAIRS} shows the number of significant electron pairs in each category for glycine chains. The number of strong, weak and distant pairs scale as $\mathcal{O}(N)$, while the number of very distant pairs scales quadratically. 
 
-The occupied molecular orbitals $ij$ are localized using e.g. Foster-Boys, Pipiek-Mezey or a Cholesky decomposition of the density matrix. Virtual orbitals are generally localized by projection onto the atomic orbital space (PAOs) and subsequently assigning them to pair domains $[ij]$ (domain specific virtuals), or by diagonalizing the MP2 density matrix for each electron pair (pair natural orbitals).  In all cases, the number of virtual orbitals within a domain scales as $\mathbf{O}(1)$ for each electron pair $ij$, in the limit of large molecules, such that the scaling of LMP2 is determined by the scaling of significant electron pairs only.
+The occupied molecular orbitals $ij$ are localized using e.g. Foster-Boys, Pipek-Mezey or a Cholesky decomposition of the density matrix. Virtual orbitals are generally localized by projection onto the atomic orbital space (PAOs) and subsequently assigning them to pair domains $[ij]$ (domain specific virtuals), or by diagonalizing the MP2 density matrix for each electron pair (pair natural orbitals).  In all cases, the number of virtual orbitals within a domain scales as $\mathbf{O}(1)$ for each electron pair $ij$, in the limit of large molecules, such that the scaling of LMP2 is determined by the scaling of significant electron pairs only.
 
 The major bottle-neck in LMP2 is, as usual, the transformation of the 2 electron integrals from the AO basis into the local basis
 \begin{equation}

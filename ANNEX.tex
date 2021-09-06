@@ -9,7 +9,7 @@ two electron
 
 \chapter{Hartree-Fock Starting Guesses \label{sec:SCFGUESS}}
 
-MEGALOchem can use three different starting guesses for the Hartree-Fock procedure: the core Hamiltonian, SAD and projection. This section gives some additional implementation details on the latter two methods
+\mchem{} can use three different starting guesses for the Hartree-Fock procedure: the core Hamiltonian, SAD and projection. This section gives some additional implementation details on the latter two methods
 
 \section{Superposition of Atomic Densities}
 
@@ -19,12 +19,12 @@ The superposition of atomic densities (SAD) is a simple, yet powerful method to 
 \end{equation}
 \noindent The resulting density matrix $\mbf{P}$ is block-diagonal. The atomic densities are obtained by performing a Hartree-Fock calculation on the individual atoms using partial occupation.
 
-The SAD guess only gives an initial density, but no molecular orbitals, which might be necessary in some cases to construct the Fock matrix, depending on which algorithm is chosen. There are two choices in MEGALOchem to generate starting orbitals:
+The SAD guess only gives an initial density, but no molecular orbitals, which might be necessary in some cases to construct the Fock matrix, depending on which algorithm is chosen. There are two choices in \mchem{} to generate starting orbitals:
 \begin{itemize}
 \item Natural orbitals by diagonalization of the guess density
-\item Local molecular orbitals by performing an incomplete cholesky decomposition with full pivoting on the guess density
+\item Local molecular orbitals by performing an incomplete Cholesky decomposition with full pivoting on the guess density
 \end{itemize}
-The Cholesky decomposition has the advantage of revealing the rank of the matrix, and are therefore much more compact and the default option in MEGALOchem
+The Cholesky decomposition has the advantage of revealing the rank of the matrix, and are therefore much more compact and the default option in \mchem{}
 
 \subsection{Partial Occupation Hartree-Fock}
 
@@ -37,11 +37,11 @@ There are several different ways to perform the atomic Hartree-Fock calculations
 \mbf{v}^{\alpha} &= \{1,1,1,1,1\} \\
 \mbf{v}^{\beta} &= \{1,1,\frac{1}{3},\frac{1}{3},\frac{1}{3}\}
 \end{align}
-\noindent Through electron-delocalization accross all three p-orbitals, the energy of the FOHF wave function is actually lowered compared to the UHF wave function. FOHF can substantially improve the description of single atoms and open-shell molecules. Restricted FOHF is also possible by simply spin-averaging the $\alpha$ and $\beta$ occupation vectors:
+\noindent Through electron-delocalization across all three p-orbitals, the energy of the FOHF wave function is actually lowered compared to the UHF wave function. FOHF can substantially improve the description of single atoms and open-shell molecules. Restricted FOHF is also possible by simply spin-averaging the $\alpha$ and $\beta$ occupation vectors:
 \begin{equation}
 v^{restricted} = \frac{1}{2} \left( \mbf{v}^{\alpha} + \mbf{v}^{\beta} \right)
 \end{equation}
-\noindent MEGALOchem supports both unrestricted and restricted FOHF, though only for a single atoms. The occupation numbers for each atom-type are hard-coded and taken from Psi4 \cite{Tur2012}.
+\noindent \mchem{} supports both unrestricted and restricted FOHF, though only for a single atoms. The occupation numbers for each atom-type are hard-coded and taken from Psi4 \cite{Tur2012}.
 
 \section{Projection Methods}
 
@@ -64,7 +64,7 @@ For Hartree-Fock calculations that encounter convergence difficulties when using
 
 \chapter{Removing Linear Dependencies in Basis Sets \label{app:LINDEP}}
 
-Excited state methods often need larger basis sets with diffuse functions to accurately describe electron transitions into higher lying orbitals. However, large basis sets often introduce linear dependencies which may lead to decreased accuracy, numerical instabilities or even crashes. MEGALOchem can use two different methods to remove linear dependencies from basisn sets.
+Excited state methods often need larger basis sets with diffuse functions to accurately describe electron transitions into higher lying orbitals. However, large basis sets often introduce linear dependencies which may lead to decreased accuracy, numerical instabilities or even crashes. \mchem{} can use two different methods to remove linear dependencies from basis sets.
 
 \section{Canonical Orthogonalization}
 
