@@ -1306,6 +1306,10 @@ Danylo Kats, Tatiana Korona, and Martin Sch{\ifmmode\ddot{u}\else\"{u}\fi}tz.
 {MPI Documents}, Sep 2021.
 \newblock [Online; accessed 6. Sep. 2021].
 
+\bibitem{BLAS2021}
+{BLAS (Basic Linear Algebra Subprograms)}, Jun 2021.
+\newblock [Online; accessed 28. Aug. 2021].
+
 \bibitem{LAP2021}
 {LAPACK{\hspace{0.167em}}{\ifmmode---\else\textemdash\fi}{\hspace{0.167em}}Linear
   Algebra PACKage}, Aug 2021.
@@ -1330,6 +1334,17 @@ Lynn~Elliot Cannon.
 {ScaLAPACK{\hspace{0.167em}}{\ifmmode---\else\textemdash\fi}{\hspace{0.167em}}Scalable
   Linear Algebra PACKage}, Apr 2021.
 \newblock [Online; accessed 28. Aug. 2021].
+
+\bibitem{Bor2014}
+Urban Borstnik, Joost VandeVondele, Valery Weber, and Juerg Hutter.
+\newblock {Sparse Matrix Multiplication: The Distributed Block-Compressed
+  Sparse Row Library}.
+\newblock {\em Parallel Computing}, 40(5-6), 2014.
+
+\bibitem{DBCSR2020}
+The CP2K~Developers Group.
+\newblock {DBCSR: Distributed Block Compressed Sparse Row matrix library},
+  2020.
 
 \bibitem{Hut2014}
 J{\ifmmode\ddot{u}\else\"{u}\fi}rg Hutter, Marcella Iannuzzi, Florian
@@ -1358,11 +1373,83 @@ Maximilien Ambroise.
 \newblock Presented at FortranCon 2020, University of Zurich, Switzerland,
   2020.
 
+\bibitem{Aid2014}
+Kestutis Aidas, Celestino Angeli, Keld~L. Bak, Vebj{\o}rn Bakken, Radovan Bast,
+  Linus Boman, Ove Christiansen, Renzo Cimiraglia, Sonia Coriani, P{\aa}l
+  Dahle, Erik~K. Dalskov, Ulf Ekstr{\ifmmode\ddot{o}\else\"{o}\fi}m, Thomas
+  Enevoldsen, Janus~J. Eriksen, Patrick Ettenhuber, Berta
+  Fern{\ifmmode\acute{a}\else\'{a}\fi}ndez, Lara Ferrighi, Heike Fliegl, Luca
+  Frediani, Kasper Hald, Asger Halkier, Christof
+  H{\ifmmode\ddot{a}\else\"{a}\fi}ttig, Hanne Heiberg, Trygve Helgaker,
+  Alf~Christian Hennum, Hinne Hettema, Eirik Hjerten{\ae}s, Stinne H{\o}st,
+  Ida-Marie H{\o}yvik, Maria~Francesca Iozzi, Branislav
+  Jans{\ifmmode\acute{\imath}\else\'{\i}\fi}k, Hans J{\o}rgen~{\relax Aa}.
+  Jensen, Dan Jonsson, Poul J{\o}rgensen, Joanna Kauczor, Sheela Kirpekar,
+  Thomas Kj{\ae}rgaard, Wim Klopper, Stefan Knecht, Rika Kobayashi, Henrik
+  Koch, Jacob Kongsted, Andreas Krapp, Kasper Kristensen, Andrea Ligabue,
+  Ola~B. Lutn{\ae}s, Juan~I. Melo, Kurt~V. Mikkelsen, Rolf~H. Myhre, Christian
+  Neiss, Christian~B. Nielsen, Patrick Norman, Jeppe Olsen,
+  J{\ifmmode\acute{o}\else\'{o}\fi}gvan Magnus~H. Olsen, Anders Osted,
+  Martin~J. Packer, Filip Pawlowski, Thomas~B. Pedersen, Patricio~F. Provasi,
+  Simen Reine, Zilvinas Rinkevicius, Torgeir~A. Ruden, Kenneth Ruud,
+  Vladimir~V. Rybkin, Pawel Sa{\l}ek, Claire C.~M. Samson,
+  Alfredo~S{\ifmmode\acute{a}\else\'{a}\fi}nchez
+  de~Mer{\ifmmode\acute{a}\else\'{a}\fi}s, Trond Saue, Stephan P.~A. Sauer,
+  Bernd Schimmelpfennig, Kristian Sneskov, Arnfinn~H. Steindal, Kristian~O.
+  Sylvester-Hvid, Peter~R. Taylor, Andrew~M. Teale, Erik~I. Tellgren, David~P.
+  Tew, Andreas~J. Thorvaldsen, Lea Th{\o}gersen, Olav Vahtras, Mark~A. Watson,
+  David J.~D. Wilson, Marcin Ziolkowski, and Hans {\AA}gren.
+\newblock {The Dalton quantum chemistry program system}.
+\newblock {\em WIREs Comput. Mol. Sci.}, 4(3):269--284, May 2014.
+
+\bibitem{Gor2005}
+Mark~S. Gordon and Michael~W. Schmidt.
+\newblock {Advances in electronic structure theory: GAMESS a decade later}.
+\newblock In {\em {Theory and Applications of Computational Chemistry}}, pages
+  1167--1189. Elsevier, Walthm, MA, USA, Jan 2005.
+
+\bibitem{Val2010}
+M.~Valiev, E.~J. Bylaska, N.~Govind, K.~Kowalski, T.~P. Straatsma, H.~J.~J.
+  Van~Dam, D.~Wang, J.~Nieplocha, E.~Apra, T.~L. Windus, and W.~A. de~Jong.
+\newblock {NWChem: A comprehensive and scalable open-source solution for large
+  scale molecular simulations}.
+\newblock {\em Comput. Phys. Commun.}, 181(9):1477--1489, Sep 2010.
+
+\bibitem{Tur2012}
+Justin~M. Turney, Andrew~C. Simmonett, Robert~M. Parrish, Edward~G. Hohenstein,
+  Francesco~A. Evangelista, Justin~T. Fermann, Benjamin~J. Mintz, Lori~A.
+  Burns, Jeremiah~J. Wilke, Micah~L. Abrams, Nicholas~J. Russ, Matthew~L.
+  Leininger, Curtis~L. Janssen, Edward~T. Seidl, Wesley~D. Allen, Henry~F.
+  Schaefer, Rollin~A. King, Edward~F. Valeev, C.~David Sherrill, and T.~Daniel
+  Crawford.
+\newblock {Psi4: an open-source ab initio electronic structure program}.
+\newblock {\em WIREs Comput. Mol. Sci.}, 2(4):556--565, Jul 2012.
+
+\bibitem{Sun2018}
+Qiming Sun, Timothy~C. Berkelbach, Nick~S. Blunt, George~H. Booth, Sheng Guo,
+  Zhendong Li, Junzi Liu, James~D. McClain, Elvira~R. Sayfutyarova, Sandeep
+  Sharma, Sebastian Wouters, and Garnet Kin-Lic Chan.
+\newblock {PySCF: the Python-based simulations of chemistry framework}.
+\newblock {\em WIREs Comput. Mol. Sci.}, 8(1):e1340, Jan 2018.
+
+\bibitem{Rin2020}
+Zilvinas Rinkevicius, Xin Li, Olav Vahtras, Karan Ahmadzadeh, Manuel Brand,
+  Magnus Ringholm, Nanna~Holmgaard List, Maximilian Scheurer, Mikael Scott,
+  Andreas Dreuw, and Patrick Norman.
+\newblock {VeloxChem: A Python-driven density-functional theory program for
+  spectroscopy simulations in high-performance computing environments}.
+\newblock {\em WIREs Comput. Mol. Sci.}, 10(5):e1457, Sep 2020.
+
 \bibitem{Sun2015}
 Qiming Sun.
 \newblock Libcint: An efficient general integral library for gaussian basis
   functions.
 \newblock {\em Journal of Computational Chemistry}, 36:1664--1671, 2015.
+
+\bibitem{Shi2018}
+Toru Shiozaki.
+\newblock {BAGEL: Brilliantly Advanced General Electronic-structure Library}.
+\newblock {\em WIREs Comput. Mol. Sci.}, 8(1):e1331, Jan 2018.
 
 \bibitem{Hel2016}
 Benjamin Helmich-Paris and Lucas Visscher.
@@ -1463,16 +1550,6 @@ Susi Lehtola.
 H.~S. Brandi, M.~M. De~Matos, and R.~Ferreira.
 \newblock {Fractional occupation in the hartree-fock method}.
 \newblock {\em Chem. Phys. Lett.}, 73(3):597--601, Aug 1980.
-
-\bibitem{Tur2012}
-Justin~M. Turney, Andrew~C. Simmonett, Robert~M. Parrish, Edward~G. Hohenstein,
-  Francesco~A. Evangelista, Justin~T. Fermann, Benjamin~J. Mintz, Lori~A.
-  Burns, Jeremiah~J. Wilke, Micah~L. Abrams, Nicholas~J. Russ, Matthew~L.
-  Leininger, Curtis~L. Janssen, Edward~T. Seidl, Wesley~D. Allen, Henry~F.
-  Schaefer, Rollin~A. King, Edward~F. Valeev, C.~David Sherrill, and T.~Daniel
-  Crawford.
-\newblock {Psi4: an open-source ab initio electronic structure program}.
-\newblock {\em WIREs Comput. Mol. Sci.}, 2(4):556--565, Jul 2012.
 
 \bibitem{Low1970}
 Per-Olov L{\ifmmode\ddot{o}\else\"{o}\fi}wdin.

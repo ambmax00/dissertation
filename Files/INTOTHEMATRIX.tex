@@ -1,12 +1,12 @@
 \chapter{Into The Matrix}
 
-At its core, computational chemistry is basically matrix algebra applied to molecular systems. The performance of an algorithm, in other words its scaling, memory footprint and even accuracy, is intimately linked to how matrix operations and storage are handled internally. While the earliest implementations of molecular electronic structure methods often used hand-coded loops running over matrix indices, over the years, a whole ecosystem of matrix and tensor libraries has emerged in an attempt to lessen the burden of programmers, to various degrees of success, each with their strong and weak points. Choosing the best library for an algorithm is a non-trivial task, and depends on various factors: if memory is the bottle-neck, a sparse matrix library might be able to sufficiently compress data into a smaller space. If speed is the greatest concern, using targeting different architectures like distributed memory systems, accelerators, or both, might be the solution. -.... The modern theoretical chemist needs to be aware of the possibilities ....
+At its core, computational chemistry is basically matrix algebra applied to molecular systems. The performance of an algorithm, in other words its scaling, memory footprint and even accuracy, is intimately linked to how matrix operations and storage are handled internally. While the earliest implementations of molecular electronic structure methods often used hand-coded loops running over matrix indices, over the years, a whole ecosystem of matrix and tensor libraries has emerged in an attempt to lessen the burden of programmers, to various degrees of success, each with their strong and weak points. Choosing the best library for an algorithm is a non-trivial task, and depends on various factors: if memory is the bottle-neck, a sparse matrix library might be able to sufficiently compress data into a smaller space. If speed is the greatest concern, targeting different architectures like distributed memory systems, accelerators, or both, might be the solution.
 
-This chapter introduces basic concepts of matrix and tensor algebra, with a focus on storage orders. After introducing the core concepts, an (incomplete) list of matrix libraries is provided with small examples on how to use them. 
+This chapter introduces basic concepts of matrix and tensor algebra, with a focus on storage orders. After introducing the core concepts, a small list of matrix libraries used in \mchem{} is provided which summarizes the core functionalities.´
 
 \section{Linear Algebra}
 
-Linear algebra is a crucial tool in many areas of computational science, such as image processing, machine learning, computational physics, computational biology and of course computational chemistry. The most important concepts are discussed in this section, and generalized to tensors. Until mentioned otherwise, zero-based indexing is assumed. 
+Linear algebra is a crucial tool in many areas of computational science, such as image processing, machine learning, computational physics, computational biology and of course computational chemistry. The most important concepts are discussed in this section. Until mentioned otherwise, zero-based indexing is assumed. 
 
 \subsection{Matrices}
 
@@ -19,12 +19,12 @@ a_{10} & a_{11} & \ldots & a_{1N} \\
 a_{M0} & a_{M1} & \ldots & a_{MN}
 \end{pmatrix}
 \end{equation}
-\noindent with $M$ \emph{rows} and $N$ \emph{columns}. \emph{Row vectors} and \emph{column vectors} are a type of matrix that contain only one row or one column, respectively. 
+\noindent with $M$ \emph{rows} and $N$ \emph{columns}. \emph{Row vectors} and \emph{column vectors} are types of matrices that contain only one row or one column, respectively. 
 
 Matrix multiplication is only defined between matrices of dimension $M$ by $K$ and $K$ by $N$. The product yields an $M$ by $N$ matrix
 \begin{align}
 \mbf{C}_{M\times N} &= \mbf{A}_{M\times K} \mbf{B}_{K\times N} \\
-c_{ij} = \sum_k a_{ik} b_{kj}
+c_{ij} &= \sum_k a_{ik} b_{kj}
 \end{align}
 
 A matrix with an equal number of rows and columns is called a \emph{square matrix}. There a different types of square matrices:
@@ -39,7 +39,7 @@ a_{ij} = a_{ii} \delta_{ij}
 \item The \emph{identity} or \emph{unit} matrix $\mbf{1}$ is defined as
 \begin{align}
 \mbf{A} \mbf{1} &= \mbf{1} \mbf{A} \\
-\mbf{1}_{ij} = \delta_{ij}
+\mbf{1}_{ij} &= \delta_{ij}
 \end{align} 
 
 \item The \emph{inverse} of a matrix $\mbf{A}$ is defined as
@@ -57,14 +57,27 @@ a_{ij} = a_{ii} \delta_{ij}
 \item A \emph{hermitian} matrix is its own conjugate transpose
 \begin{align}
 \mbf{A} &= \mbf{A}\pdg \\
-a_{ij} = (a_{ji})^*
+a_{ij} &= (a_{ji})^*
 \end{align}
 \noindent A real hermitian matrix is called \emph{symmetric}
 
 \item A hermitian matrix is said to be \emph{positive definite} if all of its eigenvalues are positive, and \emph{negative definite} if all eigenvalues are negative. \emph{Semi-definite} matrices additionally have some eigenvalues which are equal to zero.   
 \end{enumerate}
 
-Decompositions?
+%\subsection{Matrix Decompositions}
+%
+%Matrix decomposition (or factorization) is one of the fundamental disciplines in linear algebra. Decompositions reduce a matrix into a product of matrices. They can be used to solve a system of linear equations, solve the linear least squares problem, invert a matrix, analyze the numerical stability of a system, or find the \emph{rank} of a matrix, i.e. the number of linearly independent column vectors. Some decomposition techniques can factorize a large and complex matrix into smaller constituents that are more easy to operate on. Examples of matrix decomposition algorithms include
+%\begin{enumerate}
+%
+%\item The \emph{eigenvalue decomposition} finds a transformation matrix $\mbf{V}$ such that it diagonalizes the matrix
+%\begin{equation}
+%\mbf{A} = \mbf{V} \boldsymbol{\Lambda} \mbf{V}^{-1}
+%\end{equation}
+%\noindent where $\boldsymbol{\Lambda}$ is a diagonal matrix containing the eigenvalues. This decomposition is only possible for square matrices.
+%
+%\item The \emph{LU} factorizes a symmetric matrix into a product of a lower triangular matrix $\mbf{L}$ with its transpose
+%
+%\end{enumerate}
 
 \section{Matrix Storage Formats}
 
@@ -72,7 +85,7 @@ The main memory in a computer, i.e. DRAM, is a linear address space and can be s
 
 \subsection{Dense Storage}
 
-There are two ways to map a dense matrix to memory: row-major ordering and column-major ordering. The two storage orders differ by the order in which the individual elements are stored in memory (Figure ...). For an $M$ by $N$ matrix stored in a linear array $a$ in row-major format, the address offset of an element $a_{ij}$ compared to element $a_{00}$ is given by
+There are two ways to map a dense matrix to memory: row-major ordering and column-major ordering. The two storage orders differ by the order in which the individual elements are stored in memory. For an $M$ by $N$ matrix stored in a linear array $a$ in row-major format, the address offset of an element $a_{ij}$ compared to element $a_{00}$ is given by
 \begin{equation}
 A(i,j) \rightarrow \text{a[i * N + j]}
 \end{equation}
@@ -80,7 +93,7 @@ A(i,j) \rightarrow \text{a[i * N + j]}
 \begin{equation}
 A(i,j) \rightarrow \text{a[i + j * M]}
 \end{equation}
-Neither storage order has any advantages or disadvantages over the other one. It is only a matter of convention, and depend on the library and programming language. Fortran arrays are column-major, while C/C++ arrays are row-major. 
+Neither storage order has any advantages or disadvantages over the other one. It is only a matter of convention, and depends on the library and programming language. Fortran arrays are column-major, while C/C++ arrays are row-major. 
 
 However, algorithms optimized for column-major access might not give the same performance for row-major formats and vice-versa. Consider a simple loop over matrix elements in the Fortran programming language
 \begin{fortran}{Matrix Loop \label{FORTRAN1}}
@@ -119,7 +132,7 @@ COO: \left\lbrace
 \end{matrix}
 \right.
 \end{equation*}
-\noindent The values do not need to be necessarily ordered. The COO format has the advantage that it is very easy to insert elements and change the sparsity pattern with low overhead. COO is generally not used for algebra due to slow random access of elements if elements are not in order. Rather, COO is an intermediate format for incremental construction of sparse matrices in the CSR or CSC format.
+\noindent The values do not need to be necessarily ordered. The COO format has the advantage that it is very easy to insert elements and change the sparsity pattern with low overhead. COO is generally not used for algebra due to slow random access of elements if they are not stored in order. Rather, COO is an intermediate format for incremental construction of sparse matrices in the CSR or CSC format.
 
 \subsubsection{Compressed Sparse Row}
 
@@ -137,7 +150,7 @@ CSR: \left\lbrace
 
 \subsubsection{Compressed Sparse Column}
 
-The compressed sparse column format is the "column-major" analog to the CSR format. Instead of compressing the rows, it compresses the columns. The matrix in the CSC format is represented as
+The compressed sparse column format (CSC) is the "column-major" analog to the CSR format. Instead of compressing the rows, it compresses the columns. The matrix in the CSC format is represented as
 
 \begin{equation*}
 CSC: \left\lbrace
@@ -165,15 +178,15 @@ BCSR: \left\lbrace
 \right.
 \end{equation*}
 
-\noindent The matrix is therefore split into two non-zero blocks of size 2-by-2 each, with elements $\{3,0,5,4\}$ and $\{1,6,2,7\}$ using column-major ordering. The BCSR format can further reduce the storage prefactor for block-sparse matrices. Smaller block-sizes can account for a higher degree of sparsity, but lead to a higher prefactor. Large block sizes have lower prefactor, but capture less of the sparsity. Figure \ref{fig:DISTSTOR2} shows the BCSR format for different split factors. The block sizes do not need to be the same, although a constant block size is best suited for load balancing. Whether a block is significant or not depends on the matrix norm that is chosen as a criterion for filtering. Popular choices include the Frobenius norm or the max norm. 
+\noindent The matrix is therefore split into two non-zero blocks of size 2-by-2 each, with elements $\{3,0,5,4\}$ and $\{1,6,2,7\}$ using column-major ordering. The BCSR format can further reduce the storage prefactor for block-sparse matrices compared to CSR or CSC. Smaller block-sizes can account for a higher degree of sparsity, but lead to a higher prefactor. Large block sizes have lower prefactor, but capture less of the sparsity. Figure \ref{fig:DISTSTOR2} shows the BCSR format for different split factors. The block sizes do not need to be the same, although a constant block size is best suited for load balancing. Whether a block is significant or not depends on the matrix norm that is chosen as a criterion for filtering. Popular choices include the Frobenius norm or the max norm. 
 
 \subsection{Distributed Storage}
 
 In distributed memory parallelism, processes do no longer have access to the whole matrix. The question then arises how to distribute data over multiple nodes or processes. Distribution can be \emph{blocked} or \emph{cyclic} (Figure \ref{fig:DISTSTOR1}). In the block representation, the matrix is distributed by dividing rows, columns (or both) by the number of processes, and distributing them sequentially over the processes. On the other hand, the cyclic representation distributes each individual row, column or matrix element over the set of processes and wrapping over them until all elements are assigned to a processor. The cyclic data layout achieves great load balancing by evenly distributing the matrix elements, but is not suitable for row or column manipulations due to a high communication overhead. A blocked representation can reduce this overhead, but load-balancing is more difficult to achieve if the number of elements is not evenly divisible by the number of processes. 
 
-The most commonly used format for distributed matrix storage is the \emph{block-cyclic} representation (Figure \ref{fig:DISTSTOR2}). It combines the best of both worlds, with good load-balancing and low communication overhead for matrix algebra. Communication is most efficient by arranging processes into a 2-dimensional rectangular grid with $N_{proc} = N_{row} \times N_{col}$, such that each process is uniquely identifies by its coordinates $(i,j)$. A 4-by-2 grid therefore has 4 \emph{process rows} and 2 \emph{process columns}. With MPI, this is most easily achieved by using \emph{Cartesian grids}. In Cartesian grids, processes can only communicate with their nearest neighbor. 
+The most commonly used format for distributed matrix storage is the \emph{block-cyclic} representation (Figure \ref{fig:DISTSTOR2}). It combines the best of both worlds, with good load-balancing and low communication overhead for matrix algebra. Communication is most efficient by arranging processes into a 2-dimensional rectangular grid with $N_{proc} = N_{row} \times N_{col}$, such that each process is uniquely identified by its coordinates $(i,j)$. A 4-by-2 grid therefore has 4 \emph{process rows} and 2 \emph{process columns}. With MPI, this is most easily achieved by using \emph{Cartesian grids}. In Cartesian grids, processes can only communicate with their nearest neighbor. 
 
-Each process has a local array which can be packed in different ways. The ScaLAPACK library keeps the original ordering of the matrix elements, while other matrix libraries like DBCSR store the individual blocks sequentially in memory. Blocks do not necessarily need to be equal in size. Matrices like DBCSR also support heterogeneous block sizes.
+Each process has a local array which can be packed in different ways. The ScaLAPACK library keeps the original ordering of the matrix elements, while other matrix libraries like DBCSR store the individual blocks sequentially in memory. Blocks do not necessarily need to be equal in size. Libraries like DBCSR also support heterogeneous block sizes.
 
 All the sparse storage schemes discussed in the previous sections can also be applied to distributed matrices. DBCSR uses a block-sparse row format which distributes the significant blocks over the processors in a row-major format (Figure \ref{fig:DISTSTOR3}). 
 
@@ -193,9 +206,9 @@ All the sparse storage schemes discussed in the previous sections can also be ap
 
 \begin{figure}
 \centering
-\includegraphics[scale=0.25]{Pics/DBCSR.pdf}
+\includegraphics[scale=0.25]{Pics/DISTSTOR3.pdf}
 \caption{The DBCSR library distributes the significant blocks over the processor grid in row-major format.}
-\label{fig:DISTSTOR2}
+\label{fig:DISTSTOR3}
 \end{figure}
 
 %¨libxsmm?
@@ -229,7 +242,7 @@ A(i_0,i_1,...,i_n) &\rightarrow \sum_{k=0} \left( \prod_{l=0}^{k-1} n_l \right) 
 \end{align} 
 \noindent where $N_{dim}$ is the dimension of the tensor, and $n_k$ is the size of dimension $k$.
 
-Consider again the tensor contraction \ref{eq:TENEX}.  loops running over the indices $kl$:
+Consider again the tensor contraction \ref{eq:TENEX}. It can be programmed by just looping over all elements explicitly:
 \begin{fortran}{Tensor Loop \label{lst:TLOOP}}
 DO i = 1, ndim_i
   DO j = 1, ndim_j
@@ -274,13 +287,11 @@ This section briefly describes the different matrix libraries that are used in \
 
 \subsection{BLAS}
 
-Basic Linear Algebra Subroutines (BLAS) is a \emph{specification} that describes a set of fundamental operations on vectors and matrices which serve as building blocks for higher level algebraic functionality \ref{BLAS2021}. The subroutines are grouped into different \emph{levels}. BLAS 1 provides vector-vector operations, BLAS 2 performs matrix-vector operations, and BLAS 3 provides matrix-matrix operations. Implementations of the BLAS library are often optimized for a certain type of processor, such as Intel's math kernel library (MKL) or the BLAS-like instantiation software (BLIS) which are optimized for Intel and AMD processors respectively. By providing a general interface, BLAS-based code is highly portable and should be preferred over processor-dependent, intrinsic functions. 
+Basic Linear Algebra Subroutines (BLAS) is a \emph{specification} that describes a set of fundamental operations on vectors and matrices which serve as building blocks for higher level algebraic functionality \cite{BLAS2021}. The subroutines are grouped into different \emph{levels}. BLAS 1 provides vector-vector operations, BLAS 2 performs matrix-vector operations, and BLAS 3 provides matrix-matrix operations. Implementations of the BLAS library are often optimized for a certain type of processor, such as Intel's math kernel library (MKL) or the BLAS-like instantiation software (BLIS) which are optimized for Intel and AMD processors respectively. By providing a general interface, BLAS-based code is highly portable and should be preferred over processor-dependent, intrinsic functions. 
 
 \subsection{LAPACK}
 
-The linear algebra package (LAPACK) provides routines for matrix factorizations such as the QR decomposition, eigenvalue decomposition or singular value decomposition \cite{LAP2021}. It also includes functions for solving systems of linear equations and linear least squares problems. The official Netlib LAPACK implementation is based on BLAS and therefore highly portable, and simply linking the corresponding BLAS library that is optimized for the targeted architecture is sufficient. However, processor-specific re-implementations of LAPACK such as Intel MKL also exist.
-
-LAPACK can handle dense matrices only. 
+The linear algebra package (LAPACK) provides routines for matrix factorizations such as the QR decomposition, eigenvalue decomposition or singular value decomposition \cite{LAP2021}. It also includes functions for solving systems of linear equations and linear least squares problems. The official Netlib LAPACK implementation is based on BLAS and therefore highly portable, and simply linking the corresponding BLAS library that is optimized for the targeted architecture is sufficient. However, processor-specific re-implementations of LAPACK such as Intel MKL also exist. LAPACK can handle dense matrices only. 
 
 \subsection{Eigen}
 
@@ -294,9 +305,7 @@ A = A + B * C;
 
 \subsection{PBLAS}
 
-PBLAS (Parallel BLAS) is a generalization of the BLAS specification to distributed memory environments \cite{PBLAS2021}. It uses BLACS (basic linear algebra subprograms) as the message passing interface, typically built on MPI, and optimized for 2D grid communication. Matrices and vectors use a block-cyclic distribution with homogeneous block sizes across processor rows and columns. Similarly to BLAS, it provides a general interface and several different implementations exist (Netlib, Intel MKL, IBM, Cray). It closely mimics the function signature of BLAS, but matrices have an additional \emph{array descriptor} which holds all parameters of the matrix distribution.
-
-Matrix multiplication is performed using Cannon's algorithm \cite{Can1969}.
+PBLAS (Parallel BLAS) is a generalization of the BLAS specification to distributed memory environments \cite{PBLAS2021}. It uses BLACS (basic linear algebra communication subprograms) as the message passing interface, typically built on MPI, and optimized for 2D grid communication. Matrices and vectors use a block-cyclic distribution with homogeneous block sizes across processor rows and columns. Similarly to BLAS, it provides a general interface and several different implementations exist (Netlib, Intel MKL, IBM, Cray). It closely mimics the function signature of BLAS, but matrices have an additional \emph{array descriptor} which holds all parameters of the matrix distribution. Matrix multiplication is performed using Cannon's algorithm \cite{Can1969}.
 
 \subsection{ScaLAPACK}
 
@@ -306,9 +315,9 @@ Compared to LAPACK, ScaLAPACK does not support many matrix decompositions with p
 
 \subsection{DBCSR}
 
-DBCSR (distributed block compressed sparse row) is a Fortran library designed for efficient sparse matrix multiplication in distributed memory environments \ref{Bor2014,DBCSR2020}. It is OpenMP and MPI parallel and can exploit NVIDIA and AMD GPUs via Cuda and HIP. It uses a sparse block-cyclic matrix storage format (Figure \ref{fig:DISTSTOR2}) and was originally developed for linear-scaling self-consistent field calculations within CP2K, a quantum chemistry and solid state physics software package \cite{Hut2014,Sch2016}. 
+DBCSR (distributed block compressed sparse row) is a Fortran library designed for efficient sparse matrix multiplication in distributed memory environments \cite{Bor2014,DBCSR2020}. It is OpenMP and MPI parallel and can exploit NVIDIA and AMD GPUs via Cuda and HIP. It uses a sparse block-cyclic matrix storage format (Figure \ref{fig:DISTSTOR2}) and was originally developed for linear-scaling self-consistent field calculations within CP2K, a quantum chemistry and solid state physics software package \cite{Hut2014,Sch2016}. 
 
-The DBCSR matrix multiplication architecture is divided into several layers managing data transfer, data access and offloading. Figure \ref{fig:ARCH} shows a schematic representation of the layers. The top-most layer manages the parallelization of the matrix multiplication over multiple nodes, and subdivides the matrix into large sparse sub-matrices, or \emph{panels}, which contain approximately the same number of blocks. A block-generalized version of Cannon's algorithm \ref{Can1969} is used to communicate the panels to different processes in a regular and ordered fashion. At each "tick" of Canon's algorithm, each process  sends and receives panels which it then multiplies and adds to the local blocks. 
+The DBCSR matrix multiplication architecture is divided into several layers managing data transfer, data access and offloading. Figure \ref{fig:ARCH} shows a schematic representation of the layers. The top-most layer manages the parallelization of the matrix multiplication over multiple nodes, and subdivides the matrix into large sparse sub-matrices, or \emph{panels}, which contain approximately the same number of blocks. A block-generalized version of Cannon's algorithm \cite{Can1969} is used to communicate the panels to different processes in a regular and ordered fashion. At each "tick" of Canon's algorithm, each process  sends and receives panels which it then multiplies and adds to the local blocks. 
 
 The multiplication of the panels is handled by the multrec layer, which subdivides panels \emph{recursively} along the longest dimension until the submatrices are small enough to fit into cache size.
 
@@ -320,7 +329,7 @@ In 2019, the DBCSR library  was extended to handle tensor contractions using the
 
 A C-interface to the DBCSR library was written as part of this PhD project \cite{Amb2020}.
 
-OTHER POSSIBILTY: https://arxiv.org/abs/1607.00291
+%OTHER POSSIBILTY: https://arxiv.org/abs/1607.00291
 
 \begin{figure}
 \centering

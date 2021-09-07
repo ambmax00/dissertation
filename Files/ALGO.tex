@@ -26,7 +26,7 @@ At a given iteration $i$, the DIIS method tries to find a set of coefficients $c
 \noindent where $\mbf{B}$ is the matrix (or \emph{subspace})
 containing the overlaps
 \begin{equation}
-B_{ij} = \sbra{e_i}\sket{e_j}
+B_{ij} = \sbraket{e_i}{e_j}
 \end{equation}
 \noindent Minimizing $\mathcal{L}$ with respect to $\mbf{c}$ gives
 \begin{equation}
@@ -63,14 +63,14 @@ The exact form of the error vector (or \emph{residual}) depends on the nature of
 \begin{equation}
 \mbf{e}_i = \mbf{F}_i \mbf{P}_i \mbf{S} - \mbf{S} \mbf{P}_i \mbf{F}_i 
 \end{equation}
-In some cases, it may be beneficial to remove some error vectors from the subspace to avoid linear dependencies. One can either the remove the first error vector, or the vector with the largest norm. In most quantum chemistry software packages, the maximum DIIS space is set between 8 and 12. 
+In some cases, it is beneficial to remove some error vectors from the subspace to avoid linear dependencies. One can either remove the first error vector, or the vector with the largest norm. In most quantum chemistry software packages, the maximum DIIS space is set between 8 and 12. 
 
 \begin{algorithm}
 Compute the new Fock matrix $\mbf{F}_i$ for the current iteration $i$ using the density matrix $\mbf{P}_i$
 \\
 Compute the error vector $\mbf{e}_i = \mbf{F}_i \mbf{P}_i \mbf{S} - \mbf{S} \mbf{P}_i \mbf{F}_i$
 \\
-Add the error vector $\mbf{e}_i$ and the $\mbf{F}_i$ to the trial vectors. If the number of trail vectors is larger than a given threshold \textrm{DIIS\_MAX\_SUBSPACE}, remove  the first vector in the sets $\{\mbf{F}\}$ and $\{\mbf{e}\}$, or erase entry $k$ where $\mbf{e}_k$ is the error with the largest norm.
+Add the error vector $\mbf{e}_i$ and the $\mbf{F}_i$ to the trial vectors. If the number of trial vectors is larger than a given threshold \textrm{DIIS\_MAX\_SUBSPACE}, remove  the first vector in the sets $\{\mbf{F}\}$ and $\{\mbf{e}\}$, or erase entry $k$ where $\mbf{e}_k$ is the error with the largest norm.
 \\
 Compute the overlap matrix $\mbf{B}$ and minimize the Lagrangian
 \\
@@ -158,9 +158,9 @@ When using doubles-folding in the context of the ADC(2) or CC2 method (section \
 \begin{equation}
 \mbf{A}_{eff}(\omega) \mbf{v} = \omega \mbf{v}
 \end{equation}
-\noindent In this case, the standard Davidson method does not work, and needs to be modified to be able to solve this pseudo-eigenvalue problem. Different approaches have been proposed over the years, but are each based on similar principles \cite{Kat2009,Win2011}. The modified Davidson algorithm is given in Algorithm \ref{algo:PSEUDODAVDISON}, as implemented in \mchem{}. 
+\noindent In this case, the standard Davidson method does not work, and needs to be modified to be able to solve this pseudo-eigenvalue problem. Different approaches have been proposed over the years, but are each based on similar principles \cite{Kat2009,Win2011}. The modified Davidson algorithm is given in Algorithm \ref{algo:PSEUDODAVIDSON}, as implemented in \mchem{}. 
 
-The algorithm is split into \emph{macro} and \emph{micro} iterations, which are state-specific. The micro-iterations corresponds to the standard single-root Davidson iterations for diagonalizing an effective matrix $\mbf{A}_{eff}(\omega_i)$ with \emph{fixed} eigenvalue $\omega_i$. When the procedure has converged, $\omega_i$ is set to $\omega_i'$, and a new Davidson procedure, or macro-iteration commences with the new effective matrix $\mbf{A}_{eff}(\omega_i)$. The macro-iterations are repeated until the eigenvectors have converged to a certain threshold. The individual roots are then further converged using DIIS.
+The algorithm is split into \emph{macro} and \emph{micro} iterations, which are state-specific. The micro-iterations corresponds to the standard single-root Davidson iterations for diagonalizing an effective matrix $\mbf{A}_{eff}(\omega_i)$ with \emph{fixed} eigenvalue $\omega_i$. When the procedure has converged, $\omega_i$ is set to the new eigenvalue $\omega_i'$, and a new Davidson procedure, or macro-iteration commences with the effective matrix $\mbf{A}_{eff}(\omega_i)$. The macro-iterations are repeated until the eigenvectors have converged to a certain threshold. The individual roots are then further converged using DIIS.
 
 \begin{algorithm}
 \setstretch{1.1}
@@ -216,15 +216,13 @@ The Cholesky factorization decomposes a symmetric, positive definite (PD) matrix
 \mbf{A} = \mbf{L} \mbf{L}^T
 \label{eq:NONPIVCHOL}
 \end{equation}
-\noindent where $\mbf{L}$ has the same dimension as $\mbf{A}$. However, the Cholesky factorization, as defined in \ref{eq:NONPIVCHOL}, does not exist for positive semi-definite (PSD) matrices. To see the reason why, consider Algorithm \ref{algo:CHOL}. The loop runs over all columns $i$ of $\mbf{A}$  and involves divisions by the diagonal elements $L_{ii}$. For PSD matrices, some of these elements will be zero due to linear dependencies of the column vectors, and the operation is therefore not defined.
- 
-A PSD matrix is also called \emph{rank-deficient}. The rank of a symmetric matrix is equal to the number of linearly independent column vectors. The occupied atomic density matrix $\mbf{P}$ is an example of a rank-deficient matrix. The atomic orbital basis, with $N_{bas}$ functions, is often redundant and has linear dependencies, which translates to a lower rank $r$ < $N_{bas}$ of the occupied density matrix. The rank of $\mbf{P}$ is equal to the number of occupied molecular orbitals. The atomic orbital overlap matrix $\mbf{S}$ is an example of a "numerically" positive semi-definite matrix. While the column vectors are not strictly linear dependent from a mathematical point of view, they are linearly dependent in the sense of floating-point precision. The diagonals $L_{ii}$ are close to zero (< 1e-5), which will lead to large values and reduced accuracy when dividing.  
+\noindent where $\mbf{L}$ has the same dimension as $\mbf{A}$. However, the Cholesky factorization, as defined in \ref{eq:NONPIVCHOL}, does not exist for positive semi-definite (PSD) matrices. To see the reason why, consider Algorithm \ref{algo:CHOL} for the standard Cholesky factorization. The loop runs over all columns $i$ of $\mbf{A}$  and involves divisions by the diagonal elements $L_{ii}$. For PSD matrices, some of these elements will be zero due to linear dependencies of the column vectors, and the operation is therefore not defined.
 
 \begin{algorithm}
 \setstretch{1.1}
 \KwIn{Symmetric matrix $\mbf{A}$ with dimension $N$ by $N$}
 \KwOut{Cholesky factors $\mbf{L}$}
-$L_{00} \leftarrow \sqrt{A_00}$
+$L_{00} \leftarrow \sqrt{A_{00}}$
 \\
 $L_{j0} \leftarrow \frac{a_{j0}}{L_{00}} \quad j \in [1:N]$
 \\
@@ -234,6 +232,8 @@ $L_{ji} \leftarrow \left( A_{ji} - \sum_{k=0}^{i} L_{ik} L_{jk} \right) / L_{ii}
 \caption{Cholesky decomposition without pivoting.}
 \label{algo:CHOL}
 \end{algorithm}
+ 
+A PSD matrix is also called \emph{rank-deficient}. The rank of a symmetric matrix is equal to the number of linearly independent column vectors. The occupied atomic density matrix $\mbf{P}$ is an example of a rank-deficient matrix. The atomic orbital basis, with $N_{bas}$ functions, is often redundant and has linear dependencies, which translates to a lower rank $r < N_{bas}$ of the occupied density matrix. The rank of $\mbf{P}$ is equal to the number of occupied molecular orbitals. The atomic orbital overlap matrix $\mbf{S}$ is an example of a "numerically" positive semi-definite matrix. While the column vectors are not strictly linearly dependent from a mathematical point of view, they are linearly dependent in the sense of floating-point precision. The diagonals $L_{ii}$ are close to zero ($<$ 1e-5), which will lead to large values and reduced accuracy when dividing.  
 
 The Cholesky factorization can be generalized to PSD matrices by introducing permutation matrices which pivot the columns and rows of $\mbf{A}$:
 \begin{equation}
@@ -287,7 +287,7 @@ Set $\mbf{L}$ to $\mbf{L}'$
 
 It should be noted that pivoting destroys the banded structure of the matrix $\mbf{L}$ (Figure \ref{fig:LOCORB_CHOL}). In other words, the pivoted Cholesky factorization of a diagonally dominant, sparse matrix may not give sparse matrices $\mbf{L}$ in the block-diagonal form. Blocking significant elements together reduces the number of non-zero blocks, which is crucial for the performance of atomic orbital based methods. It is therefore necessary to reorder the columns of $\mbf{P^TL}$ at the end of the procedure. In \mchem{}, this is done by sorting the columns by their weight $n = (p_f - p_i) / 2$, where $p_i$ is the first significant element in the column, and $p_f$ is the last significant element. The block-diagonal form can then restored for $\mbf{L}$. 
 
-The pivoted Cholesky decomposition in \mchem{} does not exploit sparsity and scales with $\mathcal{N^2rank(A)}$. While a sparse implementation could be considered, row and column pivoting often destroys sparsity patterns (also known as \emph{fill-in}) and leads to a lot of reordering within the data structures. Pivoting needs to be applied in such a way that fill-in is reduced to keep scaling low. It is not currently considered.
+The pivoted Cholesky decomposition in \mchem{} does not exploit sparsity and scales with $\mathcal{O}(N^2rank(A))$. While a sparse implementation could be considered, row and column pivoting often destroys sparsity patterns (also known as \emph{fill-in}) and leads to a lot of reordering within the sparse data structures. Pivoting needs to be applied in such a way that fill-in is reduced to keep scaling low. 
 
 Finally, pivoting also negatively impacts parallelization when using MPI. When columns are swapped, this incurs additional communication overhead between processes. Moreover, global communication is necessary to communicate the position and value of the maximum diagonal element to each process, which further slows down the procedure. Efficient parallelization of matrix decompositions with pivoting is subject of current research \cite{Xia2016,Xia2017}.
 
@@ -310,14 +310,15 @@ The Laplace transformation is  a crucial step for formulating an orbital invaria
 \delta_{k[1,R]}(\bar{\omega}\pa,\bar{t}\pa) = \max_{x \in [1,R]} \left\lvert \eta_k (x,\bar{\omega}\pa,\bar{t}\pa ) \right\rvert 
 \end{equation}
 \noindent with the scaled Laplace parameters $\bar{\omega} = \omega x_{min}$, $\bar{t} = t x_{min}$  in the new interval $[1,R]$ where $R = x_{max}/x_{min}$. The scaled Laplace coefficients in the minimax approximation are obtained by repeating the following two steps until self-consistency is reached:
-\begin{itemize}
-\item Determine the $2k-1$ extremum points $x_i$ of the error distribution function $\eta_k (x,\bar{\omega}\pa,\bar{t}\pa)$ with the current set of $\{\bar{\omega}\}$ and $\{\bar{t}\pa\}$
-\item Optimize the $2k+1$ parameters $\{\bar{\omega}\}$ and $\{\bar{t}\pa\}$ by solving the $2k+1$ non-linear equations
+\begin{enumerate}
+\item Determine the $2k-1$ extremum points $x_i$ of the error distribution function \\ 
+$\eta_k (x,\bar{\omega}\pa,\bar{t}\pa)$ with the current set of $\{\bar{\omega}\}$ and $\{\bar{t}\pa\}$
+\item Optimize the $2k+1$ parameters $\{\bar{\omega}\pa\}$ and $\{\bar{t}\pa\}$ by solving the $2k+1$ non-linear equations
 \begin{equation}
 \eta_k (x_i,\bar{\omega}\pa,\bar{t}\pa) = (-1)^i \delta_{k[1,R]}(\bar{\omega}\pa,\bar{t}\pa)
 \end{equation} 
-\end{itemize}
-\noindent This procedure is also known as the Remez algorithm (RA). Each of the two steps are non-trivial. The set of non-linear equations in step 2 can be solved by performing a Newton-Raphson minimization using pre-tabulated values of $\{\bar{\omega}\}$ and $\{\bar{t}\pa\}$ as guesses for the first RA iteration. Step 1 is a bit more complicated, and is either solved (1) by first finding the nodal points $x_0$ of the error distribution function to compute the extremum points using Newton-Raphson \cite{Tak2008}, or (2) by finding the extremum points directly using the Newton-Maehly algorithm \cite{Hel2016}. For further details, the reader is referred to the original publications.
+\end{enumerate}
+\noindent This procedure is also known as the Remez algorithm (RA). Each of the two steps are non-trivial to compute. The set of non-linear equations in step 2 can be solved by performing a Newton-Raphson minimization using pre-tabulated values of $\{\bar{\omega}\pa\}$ and $\{\bar{t}\pa\}$ as guesses for the first RA iteration. Step 1 is a bit more complicated, and is either solved (a) by first finding the nodal points $x_0$ of the error distribution function to compute the extremum points using Newton-Raphson \cite{Tak2008}, or (b) by finding the extremum points directly using the Newton-Maehly algorithm \cite{Hel2016}. For further details, the reader is referred to the original publications.
 
 All calculations in this report use the robust minimax approximation as proposed by Helmich-Paris and Visscher \cite{Hel2016}. They have published their source code on GitHub (GitHub.com/bhelmichparis/laplace-minimax), which was in turn incorporated into the \mchem{} software.
 

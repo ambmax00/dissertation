@@ -24,7 +24,7 @@ The SAD guess only gives an initial density, but no molecular orbitals, which mi
 \item Natural orbitals by diagonalization of the guess density
 \item Local molecular orbitals by performing an incomplete Cholesky decomposition with full pivoting on the guess density
 \end{itemize}
-The Cholesky decomposition has the advantage of revealing the rank of the matrix, and are therefore much more compact and the default option in \mchem{}
+The Cholesky decomposition has the advantage of revealing the rank of the matrix, and the resulting orbitals are therefore much more compact. It is the default option in \mchem{}.
 
 \subsection{Partial Occupation Hartree-Fock}
 
@@ -41,7 +41,7 @@ There are several different ways to perform the atomic Hartree-Fock calculations
 \begin{equation}
 v^{restricted} = \frac{1}{2} \left( \mbf{v}^{\alpha} + \mbf{v}^{\beta} \right)
 \end{equation}
-\noindent \mchem{} supports both unrestricted and restricted FOHF, though only for a single atoms. The occupation numbers for each atom-type are hard-coded and taken from Psi4 \cite{Tur2012}.
+\noindent \mchem{} supports both unrestricted and restricted FOHF, though only for single atoms. The occupation numbers for each atom-type are hard-coded and taken from Psi4 \cite{Tur2012}.
 
 \section{Projection Methods}
 
@@ -60,7 +60,7 @@ For Hartree-Fock calculations that encounter convergence difficulties when using
 \begin{equation}
 \mbf{C}^{full} = (\mbf{S}^{full})^{-1} \mbf{S}^{full,min} \mbf{C}^{min} 
 \end{equation}
-\noindent The projection method is also useful in cases where the SAD guess cannot be used (see \ref{app:LINDEP}). 
+\noindent The projection method is also useful in cases where the SAD guess cannot be used (see Appendix \ref{app:LINDEP}). 
 
 \chapter{Removing Linear Dependencies in Basis Sets \label{app:LINDEP}}
 
@@ -80,13 +80,13 @@ Linear dependencies may alternatively be removed by an incomplete pivoted Choles
 \begin{equation}
 \mbf{PSP}^T = \mbf{L} \mbf{L}^T
 \end{equation}
-\noindent where $\mbf{P}$ is a permutation matrix, and $\mbf{L}$ are the Cholesky factors of dimension $N_{AO} \times r$, where $r$ is the rank of $\mbf{S}$. The Cholesky procedure as given in Algorithm \ref{algo:CHOLPIV}) outputs a vector $perm$ which contains the pivoting indices. A new basis set is constructed such that each atomic orbital with indices $perm[0:r]$ are included. The remaining functions $perm[r:N]$ are discarded as the pivots lie below the threshold. 
+\noindent where $\mbf{P}$ is a permutation matrix, and $\mbf{L}$ are the Cholesky factors of dimension $N_{AO} \times r$, where $r$ is the rank of $\mbf{S}$. The Cholesky procedure in Algorithm \ref{algo:CHOLPIV} outputs a vector \texttt{perm} which contains the pivoting indices. A new basis set is constructed such that each atomic orbital with indices \texttt{perm[0:r]} are included. The remaining functions \texttt{perm[r:N]} for which the pivots lie below the threshold are discarded. 
 
 Because the removal of linear dependencies from basis sets can significantly alter the basis sets on individual atoms, the SAD method cannot be used for an initial guess, and projective approaches should be used.
 
 %- ERI deomposition: cholesky, THC, pseudo-spectral
 % cholesky https://link.springer.com/article/10.1007/s00214-009-0608-y
-- The evil matrix inversion: considerations
+%- The evil matrix inversion: considerations
 % see https://www.johndcook.com/blog/2010/01/19/dont-invert-that-matrix/ 
 % also https://epubs.siam.org/doi/abs/10.1137/1.9780898718027.ch14
 %- mulliken, boughton pulay

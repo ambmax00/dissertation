@@ -12,4 +12,4 @@ Second, the diffuse basis functions are also less than ideal for local density f
 
 Third, while the DBCSR matrix library is quite efficient, the tensor library built on top of it has a few drawbacks. Tensors need to regularly reordered which effectively doubles memory requirements. Furthermore, the tensor library is optimized for 1 OpenMP-thread per MPI rank, which also negatively impacts memory due to data duplication. Sparse tensor libraries are still an active field of research and need to be further investigated, as they will be crucial for developing novel AO based excited state methods.
 
-To summarize, local excited state methods need a lot of know-how both in theoretical chemistry and programming. The road towards a truly robust local excited state method is arduous, but promising new approaches are proposed each year, and bring a new puzzle piece to the table.
+To summarize, local excited state methods need a lot of know-how both in theoretical chemistry and computer programming. The road towards a truly robust local excited state method is arduous, but promising new approaches arise each year, and bring a new puzzle piece to the table.

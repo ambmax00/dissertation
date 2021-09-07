@@ -9,7 +9,7 @@
 
 \section{Motivation}
 
-Nowadays, quantum chemists have access to a healthy ecosystem of open-source quantum chemistry software that are under active development, including, but not limited to, CP2K \cite{}, Dalton \cite{}, GAMESS \cite{}, NWChem \cite{}, Psi4 \cite{}, PySCF \cite{} or VeloxChem \cite{}. They offer efficient algorithms for computing correlated ground and excited state properties, either with thread- or task-based parallelism. However, none of them support local correlation methods based on local molecular orbitals or atomic orbitals. The goal of \mchem{} is two-fold: (1) provide a framework for the development of local correlation methods and (2) offer a set of kernels for accelerating Hartree-Fock, MP2 and ADC(2) calculations, using MPI parallelism. While \mchem{} is stand-alone, it should be primarily seen as an external library or module. Quantum chemistry software packages are often composed of many different, often quite sophisticated libraries that handle e.g. evaluation of electron integrals, computation of the coulomb and exchange matrix or solving the eigenvalue problem of excited state methods. Modules allow teams of developers to concentrate on the optimization of specific libraries, rather than a whole program suite. %The ADC-connect (adcc) framework \cite{} is a good example of a highly modular library. 
+Nowadays, quantum chemists have access to a healthy ecosystem of open-source quantum chemistry programs that are under active development, including, but not limited to, CP2K \cite{Hut2014}, Dalton \cite{Aid2014}, GAMESS \cite{Gor2005}, NWChem \cite{Val2010}, Psi4 \cite{Tur2012}, PySCF \cite{Sun2018} or VeloxChem \cite{Rin2020}. They offer efficient algorithms for computing correlated ground and excited state properties, either with thread- or task-based parallelism. However, none of them support local correlation methods based on local molecular orbitals or atomic orbitals. The goal of \mchem{} is two-fold: (1) provide a framework for the development of local correlation methods and (2) offer a set of kernels for accelerating Hartree-Fock, MP2 and ADC(2) calculations, using MPI parallelism. While \mchem{} is stand-alone, it should be primarily seen as an external library or module. Quantum chemistry software packages are often composed of many different, often quite sophisticated libraries that handle e.g. evaluation of electron integrals, computation of the coulomb and exchange matrix or solving the eigenvalue problem of excited state methods. Modules allow teams of developers to concentrate on the optimization of specific libraries, rather than a whole program suite. %The ADC-connect (adcc) framework \cite{} is a good example of a highly modular library. 
 
 \section{Software Architecture}
 
@@ -44,13 +44,13 @@ mpirun -n 64 bin/chem h2o /scratch
 \end{code}
 \noindent launches 64 MPI processes with the input file \texttt{h2o.json} located in the directory \texttt{/scratch}. Process are arranged in a Cartesian grid. It is therefore crucial to choose a square number of processes for optimal performance, even if some cores on the nodes might be idle. For example, for three nodes with 24 cores each, it is better to run 64 processes instead of 72, as the performance penalty for idling cores is not significant. 
 
-Most of the considerations for performance are dictated by the DBCSR library. DBCSR also supports OpenMP parallelism, meaning a hybrid MPI+OpenMP approach is also possible for \mchem{}. However, the tensor module of DBCSR has optimal performance for 1 OpenMP thread per MPI process. The reasons are two-fold: first, each process can only allocate approximately 2.1 GB at once, which means that a larger number of MPI processes per node reduces the possibility of crashes for memory-intensive calculations. Second, not every task in the tensor library is parallelized with OpenMP threads. For these reasons, \mchem{} was also not optimized for a lower number of MPI processes, and the 1-OpenMP-thread rule is also valid for the rest of the program modules. This preference for pure MPI might conflict with other quantum chemistry software with a hybrid MPI+OpenMP approach. For more information on MPI binding and mapping, the reader is referred to the CP2K documentation, which also uses DBCSR (\url{https://xconfigure.readthedocs.io/en/latest/cp2k/#running-cp2k}).
+Most of the considerations for performance are dictated by the DBCSR library. DBCSR supports OpenMP parallelism, meaning a hybrid MPI+OpenMP approach is also possible for \mchem{}. However, the tensor module of DBCSR has optimal performance for 1 OpenMP thread per MPI process. The reasons are two-fold: first, each process can only allocate approximately 2.1 GB at once, which means that a larger number of MPI processes per node reduces the possibility of crashes for memory-intensive calculations. Second, not every task in the tensor library is parallelized with OpenMP threads. For these reasons, \mchem{} was also not optimized for a lower number of MPI processes, and the 1-OpenMP-thread rule is also valid for the rest of the program modules. This preference for pure MPI might conflict with other quantum chemistry software with a hybrid MPI+OpenMP approach. For more information on MPI binding and mapping, the reader is referred to the CP2K documentation, which also uses DBCSR (\url{https://xconfigure.readthedocs.io/en/latest/cp2k/#running-cp2k}).
 
 Besides the DBCSR runtime environment, ScaLAPACK also works best with a square process grid. \mchem{} uses two separate grid instances for DBCSR and ScaLAPACK to avoid conflicts during message passing.
 
-\section{JSON interface \label{sec:JSON}}
+\section{JSON Interface \label{sec:JSON}}
 
-Job control is specified by an input file in the JSON format. It is inspired by the BAGLE quantum chemistry software \cite{Shi2017} and follows a similar scheme to the object-oriented python interfaces like Psi4 or PySCF. Consider the following example for running a Hartree-Fock calculation on a water molecule with the cc-pVDZ basis set
+Job control is specified by an input file in the JSON format. It is inspired by the BAGLE quantum chemistry software \cite{Shi2018} and follows a similar scheme to the object-oriented python interfaces like Psi4 or PySCF. Consider the following example for running a Hartree-Fock calculation on a water molecule with the cc-pVDZ basis set
 \begin{code}
 {
   "megalochem": [
@@ -109,7 +109,7 @@ Job control is specified by an input file in the JSON format. It is inspired by 
 
 \end{itemize} 
 
-\noindent Some objects may reference other preceding objects. For example, the \texttt{adcwfn} object needs to reference a \texttt{hfwfn} object which is then used as the reference.
+\noindent Some objects may reference other preceding objects. For example, the \texttt{adcwfn} object needs to reference a \texttt{hfwfn} object on which to operate.
 
 This object-oriented approach will also facilitate a potential implementation of a python interface to \mchem{}.
 
@@ -154,11 +154,11 @@ auto hfobj = hf::hfmod::create()
 
 \noindent New keywords can be easily added to the list. For optional parameters, there is also the possibility to add default values. The lists are then passed to preprocessor functions which automatically generate the necessary code for the factory functions. They construct a \texttt{struct} containing all of the parameters in the list which can be used in the constructor of the module class. While this approach is more verbose, it provides a clearer overview of possible input parameters. 
 
-\section{Libraries sec:LIBS}
+\section{Libraries \label{sec:LIBS}}
 
 This section provides an overview of the different modules present in \mchem{}, and presents some examples on how to use them. 
 
-All information on the parallel MPI runtime environment, that is, communicators and Cartesian grids for the DBCSR and ScaLAPACK libraries, are stored in the \texttt{megalochem::world} object. It contains information on the rank, size and topology of the different grids. 
+All information on the parallel MPI runtime environment, that is, communicators and Cartesian grids for the DBCSR and ScaLAPACK libraries, are stored in a class called \texttt{megalochem::world}. It contains information on the rank, size and topology of the different grids. 
 
 \subsection{\texttt{dbcsrx}}
 
@@ -174,7 +174,7 @@ my_matrix = dbcsr::matrix<>::create()
 	.matrix_type(dbcsr::type::symmetric)
 	.build();
 \end{cppinline}
-\noindent which returns a \texttt{std::shared\_ptr} to a dbcsr matrix object, also known as \texttt{dbcsr::shared\_matrix}. In general, all the factory functions return pointers rather than objects. The matrix class needs the Cartesian grids, row and column block sizes, as well as the matrix type (symmetric, hermitian, nonsymmetric, ...). Factory functions can also be used to construct copies of the matrix, e.g.
+\noindent which returns a \texttt{std::shared\_ptr} to a dbcsr matrix object, or \texttt{dbcsr::shared\_matrix} for short. In general, all the factory functions return pointers rather than objects. The matrix class needs the Cartesian grids, row and column block sizes, as well as the matrix type (symmetric, hermitian, nonsymmetric, ...). Factory functions can also be used to construct copies of the matrix, e.g.
 \begin{cppinline}
 auto my_copy = dbcsr::matrix<>::copy(*my_matrix)
 	.name("My Copy")
@@ -223,15 +223,15 @@ dbcsr::contract(3.0, *A, *B, 0.0, *C)
 \end{cppinline}
 \noindent which greatly simplifies the implementation.
 
-One of the more prominent extensions in dbcsrx is the \texttt{btensor} (batched tensor) class. Tensor contractions often need to be performed in batches for memory efficiency. This however means that the tensor needs to be spit appropriately along each dimension. The \texttt{btensor} manages the necessary metadata of batched tensor contractions and provides helper functions to the developer. Moreover, it is possible to pass a \texttt{btype} variable to the constructor which specifies whether the tensor is held in core memory, read from disk, or generated on-the-fly. The interface remains the same, irregardless of how the tensor is stored, meaning that in-core, disk and direct algorithms do not need separate implementations. Disk batched tensors store data in block-wise format on disk using MPI I/O, meaning each process can read and write independently. Direct batch tensors furthermore need a generator function that indicates how the data is generated, for example in the case of atomic orbital electron integrals. 
+One of the more prominent extensions in dbcsrx is the \texttt{btensor} (batched tensor) class. Tensor contractions often need to be performed in batches for memory efficiency. This however means that the tensor needs to be split appropriately along each dimension. The \texttt{btensor} class manages the necessary metadata of batched tensor contractions and provides helper functions to the developer. Moreover, it is possible to pass a \texttt{btype} variable to the constructor which specifies whether the tensor is held in core memory, read from disk, or generated on-the-fly. The interface remains the same, irregardless of how the tensor is stored, meaning that in-core, disk and direct algorithms do not need separate implementations. Disk batched tensors store data in block-wise format on disk using MPI I/O, meaning each process can read and write independently. Direct batch tensors furthermore need a generator function that indicates how the data is generated, for example in the case of atomic orbital electron integrals. 
 
-\texttt{dbcsrx} also provides several functions for converting to ScaLAPACK and Eigen matrix formats. 
+The \texttt{dbcsrx} module also provides several functions for converting to ScaLAPACK and Eigen matrix formats. 
 
 \subsection{\texttt{math}}
 
 The \texttt{math} library contains the C++ interface to the ScaLAPACK functions for matrix decompositions, as well as DIIS and Davidson solver routines, a routine for incomplete pivoted Cholesky decomposition, and an interface to the Fortran library by Helmich-Paris and Visscher \cite{Hel2016} for computing the Laplace quadrature parameters. 
 
-The ScaLAPACK interface accepts DBCSR matrices which are then converted to the fixed block-cyclic format used by ScaLAPACK. Using the interface is easy. The following example shows the eigenvalue decomposition of a hermitian matrix:
+The ScaLAPACK interface accepts DBCSR matrices which are then converted to the fixed block-cyclic format used by ScaLAPACK. The following example shows the eigenvalue decomposition of a hermitian matrix:
 \begin{cppinline}
 hermitian_eigen_solver hsolver(world, *my_matrix, 'V', true);
 hsolver.compute();
@@ -241,11 +241,9 @@ auto eigenvectors = hsolver.eigvecs();
 
 \subsection{\texttt{ints}}
 
-Evaluating of electron integrals, as well as the computation of density fitting coefficients is handled by the \texttt{ints} module. The interface for requesting integrals is general and does not depend on what integral library is used. 
-
-Integrals are computed by constructing an \texttt{aofactory} object
+Evaluation of electron integrals, as well as the computation of density fitting coefficients is handled by the \texttt{ints} module. The interface for requesting integrals is general and does not depend on what integral library is used. Integrals are computed by constructing an \texttt{aofactory} object
 \begin{cppinline}
-auto factory = ints::factory(my_world, my_molecule);
+auto factory = ints::aofactory(my_world, my_molecule);
 
 // get the overlap integrals
 dbcsr::shared_matrix<> s_bb = factory.ao_overlap();
@@ -259,7 +257,7 @@ dbcsr::shared_tensor<3> eri_3c2e;
 factory.ao_3c2e_setup(metric::coulomb);
 factory.ao_3c2e_fill(eri_3c2e);
 \end{cppinline}
-\noindent For this reason, the user should prefer the auxiliary  \texttt{aoloder} class, where integrals are first requested, and then computed.
+\noindent For this reason, the user should prefer the auxiliary  \texttt{aoloader} class, where integrals are first requested, and then computed.
 \begin{cppinline}
 auto loader = ints::aoloader::create()
 	.set_world(my_world)
@@ -272,9 +270,7 @@ loader.request(ints::key::s_bb)
 	
 loader.compute();
 \end{cppinline}
-\noindent Integrals are requested by a predefined set of keys. Fitting coefficients can also be computed by the aoloader. Furthermore, it also resolves any dependencies and computes all the necessary integrals, even if they were not specifically requested. 
-
-The integral library can compute the following density fitting coefficients:
+\noindent Integrals are requested by a predefined set of keys. Fitting coefficients can also be computed by the \texttt{aoloader} class. Furthermore, it also resolves any dependencies and computes all the necessary integrals, even if they were not specifically requested. The integral library can compute the following density fitting coefficients:
 \begin{itemize}
 \item Standard coulomb metric
 \item Coulomb-attenuated metric
@@ -304,9 +300,7 @@ jbuilder->set_density_alpha(*P_bb);
 // compute coulomb matrix
 auto J_bb = jbuilder->get_J();
 \end{cppinline} 
-\noindent After calling \texttt{build()}, the object needs to be initialized. For each SCF cycle, the kernel is updated with the current density matrix. The matrix is then constructed by calling the \texttt{get} functions.
-
-The coulomb matrix can be computed with the kernels
+\noindent After calling \texttt{build()}, the object needs to be initialized. For each SCF cycle, the kernel is updated with the current density matrix. The matrix is then constructed by calling the \texttt{get} functions. The coulomb matrix can be computed with the kernels
 \begin{itemize}
 \item \texttt{EXACT}: exact coulomb matrix without density fitting
 \item \texttt{DFAO}: coulomb matrix with density fitting in the AO basis
@@ -324,11 +318,11 @@ The coulomb matrix can be computed with the kernels
 
 \subsection{\texttt{hf}}
 
-The \texttt{hf} module computes the Hartree-Fock wave function using the self-consistent field methods. The Fock matrix with the $J$ and $K$ kernels, and different methods can be easily combined. The guess is computed either from the core Hamiltonian, the superposition of atomic densities (SAD) or projection methods (see Annex \ref{app:HFGUESS}). 
+The \texttt{hf} module computes the Hartree-Fock wave function using the self-consistent field methods. The Fock matrix is computed with the $J$ and $K$ kernels, and different methods can be easily combined. The guess is computed either from the core Hamiltonian, the superposition of atomic densities (SAD) or projection methods (see Appendix \ref{sec:SCFGUESS}). 
 
 \subsection{\texttt{mp}}
 
-The \texttt{mp} library contains the kernels for computing the $Z$ matrix encountered in AO-DF-SOS-MP2. They kernels are initialized similarly to the $J$ and $K$ kernels. Two different types have been implemented 
+The \texttt{mp} library contains the kernels for computing the $Z$ matrix encountered in AO-DF-SOS-MP2. The kernels are initialized similarly to the $J$ and $K$ kernels. Two different types have been implemented 
 \begin{itemize}
 \item \texttt{LLMP\_FULL}: computes the Z kernel by constructing the fully transformed $B_{X\ulgm\olgn}$ tensor and keeping it in core memory
 \item \texttt{LLMP\_MEM}: the tensor $B_{X\ulgm\olgn}$ is recomputed on-the-fly when contracting it with $B_{X\mu\nu}$
@@ -336,7 +330,7 @@ The \texttt{mp} library contains the kernels for computing the $Z$ matrix encoun
 
 \subsection{\texttt{adc}}
 
-The final set of kernels is contained in the \texttt{adc} library, which compute the AO-CIS and CDD-DF-SOS-ADC(2) matrix-vector product and reuse the $J$, $K$ and $Z$ kernels from the other modules to evaluate some of the expressions. The \texttt{adc} library solves the ADC eigenvalue problem by using the Davidson diagonalization. 
+The final set of kernels is contained in the \texttt{adc} library, which compute the AO-CIS and CDD-DF-SOS-ADC(2) matrix-vector product and reuse the $J$, $K$ and $Z$ kernels from the other modules to evaluate some of the expressions. The \texttt{adc} library solves the ADC eigenvalue problem by using the (modified) Davidson method. Only eigenvalues can be computed at the moment.
 
 \subsection{\texttt{locorb}}
 
