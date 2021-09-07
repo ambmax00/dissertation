@@ -196,36 +196,21 @@
 \contentsline {subsection}{\numberline {9.4.4}PBLAS}{170}{}%
 \contentsline {subsection}{\numberline {9.4.5}ScaLAPACK}{170}{}%
 \contentsline {subsection}{\numberline {9.4.6}DBCSR}{170}{}%
-\contentsline {chapter}{\numberline {10}The {\texttt {MEGALOchem}}Program Package}{172}{}%
-\contentsline {section}{\numberline {10.1}Motivation}{172}{}%
-\contentsline {section}{\numberline {10.2}Software Architecture}{173}{}%
-\contentsline {section}{\numberline {10.3}Parallel Runtime Environment}{174}{}%
-\contentsline {section}{\numberline {10.4}JSON interface }{175}{}%
-\contentsline {section}{\numberline {10.5}Design Patterns}{176}{}%
-\contentsline {section}{\numberline {10.6}Libraries sec:LIBS}{178}{}%
-\contentsline {subsection}{\numberline {10.6.1}\texttt {dbcsrx}}{178}{}%
-\contentsline {subsection}{\numberline {10.6.2}\texttt {math}}{180}{}%
-\contentsline {subsection}{\numberline {10.6.3}\texttt {ints}}{180}{}%
-\contentsline {subsection}{\numberline {10.6.4}\texttt {fock}}{181}{}%
-\contentsline {subsection}{\numberline {10.6.5}\texttt {hf}}{182}{}%
-\contentsline {subsection}{\numberline {10.6.6}\texttt {mp}}{182}{}%
-\contentsline {subsection}{\numberline {10.6.7}\texttt {adc}}{182}{}%
-\contentsline {subsection}{\numberline {10.6.8}\texttt {locorb}}{182}{}%
-\contentsline {chapter}{\numberline {11}Algorithms}{183}{}%
-\contentsline {section}{\numberline {11.1}Direct Inversion of The Iterative Subspace }{183}{}%
-\contentsline {section}{\numberline {11.2}Davidson Diagonalization }{184}{}%
-\contentsline {subsection}{\numberline {11.2.1}Davidson-Liu Method}{185}{}%
-\contentsline {subsection}{\numberline {11.2.2}Modified Davidson Method for the Pseudo-Eigenvalue Problem}{186}{}%
-\contentsline {section}{\numberline {11.3}Incomplete Cholesky Decomposition }{186}{}%
-\contentsline {subsubsection}{Comments}{189}{}%
-\contentsline {section}{\numberline {11.4}Laplace Transformation }{190}{}%
-\contentsline {section}{\numberline {11.5}Cuthill-McKee}{191}{}%
-\contentsline {chapter}{\numberline {12}Conclusion and Outlook}{194}{}%
-\contentsline {chapter}{\numberline {A}Second Quantization}{196}{}%
-\contentsline {chapter}{\numberline {B}Hartree-Fock Starting Guesses }{197}{}%
-\contentsline {section}{\numberline {B.1}Superposition of Atomic Densities}{197}{}%
-\contentsline {subsection}{\numberline {B.1.1}Partial Occupation Hartree-Fock}{197}{}%
-\contentsline {section}{\numberline {B.2}Projection Methods}{198}{}%
-\contentsline {chapter}{\numberline {C}Removing Linear Dependencies in Basis Sets }{199}{}%
-\contentsline {section}{\numberline {C.1}Canonical Orthogonalization}{199}{}%
-\contentsline {section}{\numberline {C.2}Cholesky Decomposition}{199}{}%
+\contentsline {chapter}{\numberline {10}Algorithms}{172}{}%
+\contentsline {section}{\numberline {10.1}Direct Inversion of The Iterative Subspace }{172}{}%
+\contentsline {section}{\numberline {10.2}Davidson Diagonalization }{173}{}%
+\contentsline {subsection}{\numberline {10.2.1}Davidson-Liu Method}{174}{}%
+\contentsline {subsection}{\numberline {10.2.2}Modified Davidson Method for the Pseudo-Eigenvalue Problem}{175}{}%
+\contentsline {section}{\numberline {10.3}Incomplete Cholesky Decomposition }{175}{}%
+\contentsline {subsubsection}{Comments}{178}{}%
+\contentsline {section}{\numberline {10.4}Laplace Transformation }{179}{}%
+\contentsline {section}{\numberline {10.5}Cuthill-McKee}{180}{}%
+\contentsline {chapter}{\numberline {11}Conclusion and Outlook}{183}{}%
+\contentsline {chapter}{\numberline {A}Second Quantization}{185}{}%
+\contentsline {chapter}{\numberline {B}Hartree-Fock Starting Guesses }{186}{}%
+\contentsline {section}{\numberline {B.1}Superposition of Atomic Densities}{186}{}%
+\contentsline {subsection}{\numberline {B.1.1}Partial Occupation Hartree-Fock}{186}{}%
+\contentsline {section}{\numberline {B.2}Projection Methods}{187}{}%
+\contentsline {chapter}{\numberline {C}Removing Linear Dependencies in Basis Sets }{188}{}%
+\contentsline {section}{\numberline {C.1}Canonical Orthogonalization}{188}{}%
+\contentsline {section}{\numberline {C.2}Cholesky Decomposition}{188}{}%

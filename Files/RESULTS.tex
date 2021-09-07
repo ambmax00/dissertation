@@ -212,7 +212,7 @@ K_{\mu\nu} &= B_{X\nu\sigma} C_{X\mu\lambda} P_{\lambda\sigma}
 
 Step 2 is less expensive, but still more demanding than the computation of the coulomb matrix. Figure \ref{fig:GS_DFK2SCALE_LA} shows the scaling for linear alkanes. Moreover, the MO algorithm is also included for comparison. Even standard density fitting can positively impact the scaling, with a reduction from cubic to $\ccpx{1.5}$. DFCAM does not improve on the scaling, although the additional sparsity lowers the prefactor compared to DFCM. QRDF can again achieve linear scaling, for similar reasons as discussed above. 
 
-\input{JKTABLES.tex}
+\input{Tables/JKTABLES.tex}
 
 Finally, the scaling coefficients for the FW systems are collected in Table \ref{tab:GS_DFJKSCALE_FW}. As expected, local density fitting does not considerably reduce the scaling for evaluating the exchange matrix and shows the limit of what AO methods can do. Of course, at some point, the computational effort will eventually decrease with increasing system size $N$, although the crossover point is much later than for LA. The major advantage is that, compared to a MO implementation, local density fitting decreases the overhead compared to DFCM, making it more competitive to the MO methods (Figure \ref{fig:GS_DFK2SCALE_FW}). The AO method is therefore still applicable in a dense context. 
 
@@ -252,7 +252,7 @@ Z_{XY}\pa &= D\pa_{X\ulgm\olgn} B_{Y\mu\nu}
 \end{align}
 \noindent and is evaluated for each Laplace point $\alpha$. The 3-index intermediate $\mbf{D}$ can either be stored in main memory, stored on disk, or computed on the fly. Here, only the first variant of the algorithm is considered, although the other methods are implemented as well. First, the sparsity of the intermediate tensor will be considered (Figure \ref{fig:GS_ZMEM_LA}) for the LA systems. Quadratic scaling is observed for DFCM, while linear scaling is achievable for DFCAM and QRDF. This is in accordance to the sparsity analysis in chapter 4. Again, local density fitting is crucial to reduce the memory footprint.
 
-\input{ZTABLES.tex}
+\input{Tables/ZTABLES.tex}
 
 The scaling behavior of the Z kernel is collected in Figure \ref{fig:GS_ZSCALE_LA} for LA. Even with DFCM, the computational effort is drastically reduced from quartic to quadratic. It is even further reduced with LDF, and linear scaling of the Z kernel is obtained for QRDF from LA80 to LA160. 
 
@@ -328,7 +328,7 @@ Concerning the memory footprint of AO-ADC(2), the same 3-index tensors that appe
 
 \ref{fig:ES_SPARSITY_LCA} shows the block sparsity of those tensors for QRDF, with $B_{AO}$ as a reference. Block sparsity is defined as the number of significant blocks divided by the total number of blocks in the dense tensor. $C'$ and $B_{MO}$ are very dense, with a block sparsity slightly below 10\%. The intermediate Laplace tensors $D_{MO}$ and $R_{MO}$ decay much faster than $B_{AO}$ which was shown to scale with $\mathcal{O}(N)$. For LCA160, $I_{MO}$ and $R_{MO}$ are an order of magnitude sparser ($\approx$ 0.1\%) than $B_{AO}$. The difference to the other Laplace tensor $B_{MO}$ is that $I_{MO}$ and $R_{MO}$ are formed by the contraction of $B_{AO}$ with both the AO ground state density $\mbf{P}$ and the AO transition matrix $\mbf{U}$, which explains their much higher degree of sparsity compared to $B_{MO}$ which is formed using the AO ground state densities only. One peculiar thing to notice here is that the intermediate tensor $D_{MO}$, which is formed from $B_{MO}$ and $R_{MO}$, is sparser than both of its input tensors. This indicates a potentially faster route to evaluating $D_{MO}$ by imposing sparsity criteria on $B_{MO}$ and $R_{MO}$. How these criteria exactly look like is subject of future investigation. The most plausible route goes via a sparsity analysis of the trial vector $u$, similar to how LMO or NO excited state methods generate a compact virtual orbital space.
 
-\input{ADCTABLES.tex}
+\input{Tables/ADCTABLES.tex}
 
 Similarly, the evaluation of the intermediate tensors can be sped up by only taking into the account the AOs which are near or within the excitation space. This would however lead to a loss of state specificity of the CDD-DF-SOS-ADC(2) MVP. 
 

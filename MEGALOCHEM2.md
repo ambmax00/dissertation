@@ -1,1 +1,0 @@
-# MEGALOchem Developer Guide

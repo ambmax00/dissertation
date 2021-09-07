@@ -23,11 +23,11 @@ Consider a model system consisting of $n$ hydrogen atoms arranged in a line, wit
 \begin{figure}[h]
 \centering
 \begin{subfigure}{0.45\linewidth}
-\includegraphics[scale=0.8]{overlap_nze}
+\includegraphics[scale=0.8]{Pics/overlap_nze}
 \caption{}
 \end{subfigure}
 \begin{subfigure}{0.45\linewidth}
-\includegraphics[scale=0.8]{eri_nze}
+\includegraphics[scale=0.8]{Pics/eri_nze}
 \caption{}
 \end{subfigure}%
 \caption{(a) Number of significant entries (green line) in the overlap matrix for a hydrogen atom chain, with a threshold of 1e-10. The blue line shows the total number of elements for the dense matrix, which scale as $N^2$. (b) Number of significant entries (green line) in the electron repulsion integral tensor for a hydrogen atom chain, with a threshold of 1e-10. The blue line shows the total number of elements for the dense tensor, which scale as $N^4$.}
@@ -37,11 +37,11 @@ Consider a model system consisting of $n$ hydrogen atoms arranged in a line, wit
 \begin{figure}
 \centering
 \begin{subfigure}{0.45\linewidth}
-\includegraphics[scale=0.8]{overlap_decay}
+\includegraphics[scale=0.8]{Pics/overlap_decay}
 \caption{}
 \end{subfigure}
 \begin{subfigure}{0.45\linewidth}
-\includegraphics[scale=0.8]{eri_decay}
+\includegraphics[scale=0.8]{Pics/eri_decay}
 \caption{}
 \end{subfigure}%
 \caption{(a) Magnitude of the overlap integral between two Gaussian 1s orbitals as a function of distance $r$ (exponential decay). (b) Magnitude of the electron repulsion integral between two Gaussian 1s orbitals as a function of $r$. The short range interaction $\cn{\mu\nu}{\mu\nu}$ decays at a  much faster rate with $e^{-r^2}$, compared to the long range interaction $\cn{\mu\mu}{\nu\nu}$ with $1/R$.}
@@ -140,7 +140,7 @@ The magnitude of the density matrix elements $P_{\mu\nu}$ is plotted in Figure \
 \end{subfigure}
 \begin{subfigure}{0.45\linewidth}
 \centering
-\includegraphics[scale=0.8]{density_decay}
+\includegraphics[scale=0.8]{Pics/density_decay}
 \caption{}
 \end{subfigure}
 \caption{(a) Molecular orbital diagram for a hydrogen with increasing chain length. (b) Logarithm of the absolute value of the density matrix element $P_{\mu\nu}$ as a function of increasing distance $R_{\mu\nu}$ for a Hydrogen and a Helium atom chain.}
@@ -366,7 +366,7 @@ Metric & $g(r_{12})$ \\ \hline
 
 \begin{figure}
 \centering
-\includegraphics[scale=1.0]{ldf.pdf}
+\includegraphics[scale=1.0]{Pics/ldf.pdf}
 \caption{Absolute value of the 3c2e integral $B_{\mu\mu P}$ between two 1s GTOs $\mu$ and $P$ with $\alpha$ = 1.0 using different metrics.}
 \label{fig:DFMETRICS}
 \end{figure}
@@ -694,23 +694,23 @@ CD is also used in the context of AO-MP2 to reduce the prefactor of integral tra
 \centering
 \begin{subfigure}{0.5\linewidth}
 \centering
-\includegraphics[scale=1.0]{densityO}
+\includegraphics[scale=1.0]{Pics/densityO}
 \end{subfigure}
 $\Longrightarrow$
 \begin{subfigure}{0.4\linewidth}
 \centering
-\includegraphics[scale=1.0]{choleskyO}
+\includegraphics[scale=1.0]{Pics/choleskyO}
 \end{subfigure}%
 \hfill
 \centering
 \begin{subfigure}{0.5\linewidth}
 \centering
-\includegraphics[scale=1.0]{densityV}
+\includegraphics[scale=1.0]{Pics/densityV}
 \end{subfigure}
 $\Longrightarrow$
 \begin{subfigure}{0.4\linewidth}
 \centering
-\includegraphics[scale=1.0]{choleskyV}
+\includegraphics[scale=1.0]{Pics/choleskyV}
 \end{subfigure}%
 \caption{Cholesky decomposition, the occupied and virtual density matrices (left) yields a set of coefficients that describe a localized MO basis in the orbital and virtual space, respectively (right). The matrices are represented in terms of a heat map which indicates the magnitude of $log_{10}(abs(a_{ij}))$.}
 \label{fig:LOCORB_CHOL}
