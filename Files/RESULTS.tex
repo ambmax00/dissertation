@@ -33,7 +33,7 @@ Table \ref{tab:GS_NBAS} shows the total number of basis functions of the systems
          \caption{}
          \label{fig:five over x}
      \end{subfigure}
-     	\caption{Molecular systems used for the analysis of the J, K and Z kernels: (a) linear alkanes (LA); (b) hydrated formamide (FW)}
+     	\caption[Molecular systems used for the analysis of the J, K and Z kernels.]{Molecular systems used for the analysis of the J, K and Z kernels: (a) linear alkanes (LA); (b) hydrated formamide (FW)}
         \label{fig:GS_MOL}
 \end{figure}
 
@@ -81,7 +81,7 @@ DFCAM & $\cn{X}{\mu\nu}_{\omega}$ & $\cn{X}{Y}_{\omega}^{-1} \cn{Y}{R} \cn{R}{S}
 QRDF & $C^{QRDF}_{X\mu\nu}$ & $\cn{X}{Y}$ \\ 
 \hline
 \end{tabular}
-\caption{Expressions for $\mbf{B}$ and $\mbf{M}$ for kernels presented in this work. The subscript $\omega$ indicates that the coulomb attenuated metric is used. \label{tab:BMTENSORS}}
+\caption[Expressions for $\mbf{B}$ and $\mbf{M}$ for kernels presented in this work.]{Expressions for $\mbf{B}$ and $\mbf{M}$ for kernels presented in this work. The subscript $\omega$ indicates that the coulomb attenuated metric is used. \label{tab:BMTENSORS}}
 \end{table}
 
 Figure \ref{fig:GS_BTIME_ALKAN} shows the time needed to evaluate $\mbf{B}$ for the LA systems. There is no difference between DFCM and DFCAM, hence only DFCM is shown. QRDF has a much higher prefactor due to the huge number of QR decompositions that are necessary for the calculation of the fitting coefficients. The consequence is that QRDF is an order of magnitude more expensive than DFCM or DFCAM. Comparing the wall times here to the the total time needed for the Hartree-Fock procedure, QRDF is actually more expensive than the whole HF computation for LA20, LA40 and LA80. However, QRDF has the advantage of becoming linearly scaling going from LA80 to LA160, compared to the quadratic scaling of DFCM.  
@@ -174,7 +174,7 @@ N$_{AO}$ & DFCM & DFCAM & QRDF \\ \hline
 \caption{}
 \label{fig:GS_BNZE_FW}
 \end{subfigure}
-\caption{(a) Total walltime needed to construct the tensor $B_{X\mu\nu}$ (3c2e integrals, QR fitting coefficients) for LA, with scaling coefficients. (b) Number of non-zero elements in the tensor $B_{X\mu\nu}$ as a function of $N_{AO}$ for LA, with the corresponding scaling coefficients. (c) Number of non-zero elements in the tensor $B_{X\mu\nu}$ as a function of $N_{AO}$ for FW, with the corresponding scaling coefficients}
+\caption[Scaling property of $B_{X\mu\nu}$ for LA.]{(a) Total walltime needed to construct the tensor $B_{X\mu\nu}$ (3c2e integrals, QR fitting coefficients) for LA, with scaling coefficients. (b) Number of non-zero elements in the tensor $B_{X\mu\nu}$ as a function of $N_{AO}$ for LA, with the corresponding scaling coefficients. (c) Number of non-zero elements in the tensor $B_{X\mu\nu}$ as a function of $N_{AO}$ for FW, with the corresponding scaling coefficients}
 \end{figure}
 
 
@@ -365,7 +365,7 @@ FLVA	 & 0.26	& 0.04$^{(a)}$	& 5.25$^{(a)}$	& 0.26 \\
 DYAP	 & 1.77	& 27.25	& 94.89	& 1.76 \\
 \hline
 \end{tabular}
-\caption{Difference in excitation energy between canonical SOS-ADC(2) and CD-DF-SOS-ADC(2), in $\mu$Hartrees per occupied orbital, for different density fitting approximations. LA = linear alkane, LCA = linear carboxylic acid, FW = solvated formamide, flva(a) = borondipyrromethene-flavin dyad, iso = phenothiazine-isoalloxazine dyad. $^{(a)}$ The cc-pVTZ-ri auxiliary basis set was used instead of aug-cc-pVDZ-ri due to convergence problems.}
+\caption[Difference in excitation energy between canonical SOS-ADC(2) and CD-DF-SOS-ADC(2), in $\mu$Hartrees per occupied orbital, for different density fitting approximations.]{Difference in excitation energy between canonical SOS-ADC(2) and CD-DF-SOS-ADC(2), in $\mu$Hartrees per occupied orbital, for different density fitting approximations. LA = linear alkane, LCA = linear carboxylic acid, FW = solvated formamide, flva(a) = borondipyrromethene-flavin dyad, iso = phenothiazine-isoalloxazine dyad. $^{(a)}$ The cc-pVTZ-ri auxiliary basis set was used instead of aug-cc-pVDZ-ri due to convergence problems.}
 \label{tab:ES_ACCURACY}
 \end{table}
 

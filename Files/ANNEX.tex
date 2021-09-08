@@ -1,11 +1,32 @@
 \appendix
-\chapter{Second Quantization}
 
-Creation operator
+\chapter{Second Quantization: Formulas \label{app:SECQUA}}
 
-One electron
-
-two electron
+In second quantization, the antisymmetry property of the wave function is transferred to the algebraic properties of a set of elementary operators known as the \emph{creation} and \emph{annihilation} operators. As their name implies, they act on a state by adding or removing an electron, which translates to 
+\begin{align}
+a\pdg_P \sket{\mbf{k}} &= \delta_{k_P0} \Gamma^k_P \sket{k_1, \ldots, 1_P, \ldots, k_M} \quad \textrm{creation operator} \\
+a_P \sket{\mbf{k}} &= \delta_{k_P1} \Gamma^k_P \sket{k_1, \ldots, 0_P, \ldots, k_M} \quad \textrm{annihilation operator}
+\end{align}
+\noindent where $\Gamma$ is a phase factor given by
+\begin{equation}
+\Gamma^k_P = \prod_{Q=1}^{P-1} (-1)^{k_Q}
+\end{equation}
+\noindent The creation and annihilation operators are related by the anticommutation relations
+\begin{align}
+a\pdg_P a_Q + a_Q a\pdg_P &= \delta_{PQ} \\
+a\pdg_P a\pdg_Q + a\pdg_Q a\pdg_P &= 0 \\
+a_P a_Q + a_Q a_P &= 0
+\end{align}
+\noindent All operators and states can be constructed from the creation and annihilation operators. A general ON vector can be expressed as a string of creation operators acting on the vacuum state
+\begin{equation}
+\ket{\mbf{k}} = \left[ \prod_{P=1}^M (a\pdg_P)^{k_P} \right] \ket{vac}
+\end{equation}
+\noindent One-electron and two-electron operators take the form
+\begin{alignat}{2}
+\hat{f} &= \sum_{PQ} f_{PQ} a\pdg_P a_Q \quad & \text{One-electron} \\
+\hat{g} &= \sum_{PQRS} g_{PQRS} a\pdg_P a\pdg_R a_S a_Q \quad & \text{Two-electron}
+\end{alignat}
+\noindent where $f_{PQ}$ and $g_{PQRS}$ are the matrix elements (expectation values) of the operators.
 
 \chapter{Hartree-Fock Starting Guesses \label{sec:SCFGUESS}}
 

@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt]{report}
+\documentclass[a4paper,12pt]{book}
 \include{Files/HEADER.tex}
 
 \begin{document}
@@ -47,7 +47,10 @@ der Ruprecht-Karls-Universität Heidelberg \\}
 
 \vspace*{\fill}
 
-{The source code for this PhD thesis is freely available on GitHub under \url{https://github.com/ambmax00/dissertation}}
+\noindent 
+\includegraphics[scale=1.0]{Pics/license}
+
+\noindent {The source code for this PhD thesis is freely available on GitHub under \url{https://github.com/ambmax00/dissertation} }
 
 \newpage
 
@@ -88,26 +91,34 @@ $\olgm$, $\olgn$, $\olgl$, $\olgs$, ... & virtual projected atomic orbitals
 \setlength{\tabcolsep}{14pt}
 \renewcommand{\arraystretch}{1.5}
 \begin{longtable}[l]{ll}
-$\mbf{A}$ & matrix \\
+$\mbf{A}$ & matrix or vector \\
 $\hat{A}$ & operator \\
+$\sbraket{ij}{ab}$ & physicist's notation for the 2-electron integrals \\
+$\scn{ia}{jb}$ & chemist's (Mulliken) notation for the 2-electron integrals \\
+$\sbra{ij}\sket{ab}$ & antisymmetrized electron integrals
 \end{longtable}
 }
 
 \newpage
+
+\nonewpage
 
 \include{Files/ABSTRACT.tex}
 
 \setcounter{tocdepth}{2}
 \tableofcontents
 
+\nonewpage
 \newpage
 
 \listoffigures
 
+\nonewpage
 \newpage
 
 \listoftables
 
+\nonewpage
 \newpage
 
 \pagenumbering{arabic}

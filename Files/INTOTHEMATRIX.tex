@@ -193,21 +193,21 @@ All the sparse storage schemes discussed in the previous sections can also be ap
 \begin{figure}
 \centering
 \includegraphics[scale=0.25]{Pics/DISTSTOR1.pdf}
-\caption{There are two distinct ways to distribute rows, column or elements along processes, namely cyclic and block. Each color represents a processor (4 in total).}
+\caption[Cyclic and blocked distribution]{There are two distinct ways to distribute rows, column or elements along processes, namely cyclic and block. Each color represents a processor (4 in total).}
 \label{fig:DISTSTOR1}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.25]{Pics/DISTSTOR2.pdf}
-\caption{In the block-cyclic distribution, the matrix is divided into blocks which are distributed over a processor grid, in this case 2 $\times$ 2.}
+\caption[Block-cyclic distribution]{In the block-cyclic distribution, the matrix is divided into blocks which are distributed over a processor grid, in this case 2 $\times$ 2.}
 \label{fig:DISTSTOR2}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.25]{Pics/DISTSTOR3.pdf}
-\caption{The DBCSR library distributes the significant blocks over the processor grid in row-major format.}
+\caption[Distributed block compressed sparse row format]{The DBCSR library distributes the significant blocks over the processor grid in row-major format.}
 \label{fig:DISTSTOR3}
 \end{figure}
 

@@ -25,10 +25,10 @@
 \usepackage[most,skins]{tcolorbox}
 \usepackage{subcaption} 
 \usetikzlibrary{positioning,calc}
-\usepackage{draftwatermark}
+%\usepackage{draftwatermark}
 \usepackage{framed}
-\SetWatermarkText{DRAFT}
-\SetWatermarkScale{5}
+%\SetWatermarkText{DRAFT}
+%\SetWatermarkScale{5}
 
 \usepackage[left=1in,right=1in,top=1.2in,bottom=1.2in]{geometry}
 
@@ -185,6 +185,9 @@
 
 \newcommand{\mbfx}{\mathbf{x}}
 
+\newcommand{\nonewpage}{\let\cleardoublepage\clearpage
+}
+
 \setcellgapes{10pt}
 
 \newtcolorbox{myframe}[2][]{%
@@ -325,6 +328,12 @@
 \hyphenation{sub-pro-gram}
 \hyphenation{sub-pro-grams}
 \hyphenation{com-pu-ta-tion}
+\hyphenation{dis-so-cia-tion}
+\hyphenation{con-fi-gu-ra-tion}
+\hyphenation{con-fi-gu-ra-tions}
+\hyphenation{com-bi-na-tion}
+\hyphenation{com-bi-na-tions}
+\hyphenation{in-crea-sing}
 
 \selectlanguage{ngerman}
 

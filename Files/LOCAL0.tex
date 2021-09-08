@@ -30,7 +30,7 @@ Consider a model system consisting of $n$ hydrogen atoms arranged in a line, wit
 \includegraphics[scale=0.8]{Pics/eri_nze}
 \caption{}
 \end{subfigure}%
-\caption{(a) Number of significant entries (green line) in the overlap matrix for a hydrogen atom chain, with a threshold of 1e-10. The blue line shows the total number of elements for the dense matrix, which scale as $N^2$. (b) Number of significant entries (green line) in the electron repulsion integral tensor for a hydrogen atom chain, with a threshold of 1e-10. The blue line shows the total number of elements for the dense tensor, which scale as $N^4$.}
+\caption[Sparsity of overlap and electron repulstion integrals]{(a) Number of significant entries (green line) in the overlap matrix for a hydrogen atom chain, with a threshold of 1e-10. The blue line shows the total number of elements for the dense matrix, which scale as $N^2$. (b) Number of significant entries (green line) in the electron repulsion integral tensor for a hydrogen atom chain, with a threshold of 1e-10. The blue line shows the total number of elements for the dense tensor, which scale as $N^4$.}
 \label{fig:HCHAIN_ERINZE}
 \end{figure}
 
@@ -44,7 +44,7 @@ Consider a model system consisting of $n$ hydrogen atoms arranged in a line, wit
 \includegraphics[scale=0.8]{Pics/eri_decay}
 \caption{}
 \end{subfigure}%
-\caption{(a) Magnitude of the overlap integral between two Gaussian 1s orbitals as a function of distance $r$ (exponential decay). (b) Magnitude of the electron repulsion integral between two Gaussian 1s orbitals as a function of $r$. The short range interaction $\cn{\mu\nu}{\mu\nu}$ decays at a  much faster rate with $e^{-r^2}$, compared to the long range interaction $\cn{\mu\mu}{\nu\nu}$ with $1/R$.}
+\caption[Decay of the overlap and electron repulsion integrals]{(a) Magnitude of the overlap integral between two Gaussian 1s orbitals as a function of distance $r$ (exponential decay). (b) Magnitude of the electron repulsion integral between two Gaussian 1s orbitals as a function of $r$. The short range interaction $\cn{\mu\nu}{\mu\nu}$ decays at a  much faster rate with $e^{-r^2}$, compared to the long range interaction $\cn{\mu\mu}{\nu\nu}$ with $1/R$.}
 \label{fig:HCHAIN_DECAY}
 \end{figure}
 
@@ -143,7 +143,7 @@ The magnitude of the density matrix elements $P_{\mu\nu}$ is plotted in Figure \
 \includegraphics[scale=0.8]{Pics/density_decay}
 \caption{}
 \end{subfigure}
-\caption{(a) Molecular orbital diagram for a hydrogen with increasing chain length. (b) Logarithm of the absolute value of the density matrix element $P_{\mu\nu}$ as a function of increasing distance $R_{\mu\nu}$ for a Hydrogen and a Helium atom chain.}
+\caption[MO diagram and decay of density matrix elements in the infinite hydrogen chain]{(a) Molecular orbital diagram for a hydrogen with increasing chain length. (b) Logarithm of the absolute value of the density matrix element $P_{\mu\nu}$ as a function of increasing distance $R_{\mu\nu}$ for a Hydrogen and a Helium atom chain.}
 \label{fig:HCHAIN_DENSITY}
 \end{figure}
 
@@ -557,14 +557,14 @@ U^{FF}_i = \sum_{A \in FF} \mathbf{q}_{iC} \mathbf{T}_{CA} \mathbf{q}_A
 \begin{figure}
 \centering
 \includegraphics[scale=0.35]{Pics/FMM1}
-\caption{In multipole methods, the system is subdivided into blocks of equal size containing one or more particles. For a reference block $C$, its surrounding blocks are categorized into near-field and far-field contributions which are treated using separate methods.}
+\caption[Single-level multipole method]{In multipole methods, the system is subdivided into blocks of equal size containing one or more particles. For a reference block $C$, its surrounding blocks are categorized into near-field and far-field contributions which are treated using separate methods.}
 \label{fig:FMM1}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.35]{Pics/FMM2}
-\caption{In the fast multiple method, the granularity of the boxes becomes coarser the further away they are from the source blocks.}
+\caption[Fast multipole method]{In the fast multiple method, the granularity of the boxes becomes coarser the further away they are from the source blocks.}
 \label{fig:FMM2}
 \end{figure}
 
@@ -712,7 +712,7 @@ $\Longrightarrow$
 \centering
 \includegraphics[scale=1.0]{Pics/choleskyV}
 \end{subfigure}%
-\caption{Cholesky decomposition, the occupied and virtual density matrices (left) yields a set of coefficients that describe a localized MO basis in the orbital and virtual space, respectively (right). The matrices are represented in terms of a heat map which indicates the magnitude of $log_{10}(abs(a_{ij}))$.}
+\caption[Cholesky decomposition of density matrices]{Cholesky decomposition, the occupied and virtual density matrices (left) yields a set of coefficients that describe a localized MO basis in the orbital and virtual space, respectively (right). The matrices are represented in terms of a heat map which indicates the magnitude of $log_{10}(abs(a_{ij}))$.}
 \label{fig:LOCORB_CHOL}
 \end{figure} 
 
