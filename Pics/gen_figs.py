@@ -182,11 +182,39 @@ def save_table(fname, string):
     f.write(string)
     f.close()
 
-desktop = init_pyoo()
-doc = desktop.open_spreadsheet("../precision.ods")
+#desktop = init_pyoo()
+#doc = desktop.open_spreadsheet("../precision.ods")
 plt.style.use('science')
 plt.rcParams.update({
     "font.size":10})          # specify font size here 
+    
+    
+# =========================================================
+# ================= DENSITY MATRIX/CHOLESKY ===============
+# =========================================================
+
+arrayDO = np.loadtxt('densityO.dat')
+arrayLO = np.loadtxt('choleskyO.dat')
+arrayDV = np.loadtxt('densityV.dat')
+arrayLV = np.loadtxt('choleskyV.dat')
+
+fig, ax = plt.subplots()
+im = ax.imshow(arrayDO)
+fig.savefig("densityO.pdf")
+
+fig, ax = plt.subplots()
+im = ax.imshow(arrayLO)
+fig.savefig("choleskyO.pdf")
+
+fig, ax = plt.subplots()
+im = ax.imshow(arrayDV)
+fig.savefig("densityV.pdf")
+
+fig, ax = plt.subplots()
+im = ax.imshow(arrayLV)
+fig.savefig("choleskyV.pdf")
+
+exit(0)
 
 # =========================================================
 # ========== SPARSITY DEMONSTRATION =======================
@@ -285,33 +313,6 @@ fig.savefig("ldf.pdf")
 
 #doc.close()
 #exit(0)
-
-# =========================================================
-# ================= DENSITY MATRIX/CHOLESKY ===============
-# =========================================================
-
-arrayDO = np.loadtxt('densityO.dat')
-arrayLO = np.loadtxt('choleskyO.dat')
-arrayDV = np.loadtxt('densityV.dat')
-arrayLV = np.loadtxt('choleskyV.dat')
-
-fig, ax = plt.subplots()
-im = ax.imshow(arrayDO,cmap='Reds')
-fig.savefig("densityO.pdf")
-
-fig, ax = plt.subplots()
-im = ax.imshow(arrayLO)
-fig.savefig("choleskyO.pdf")
-
-fig, ax = plt.subplots()
-im = ax.imshow(arrayDV)
-fig.savefig("densityV.pdf")
-
-fig, ax = plt.subplots()
-im = ax.imshow(arrayLV)
-fig.savefig("choleskyV.pdf")
-
-exit(0)
 
 # =========== HARTREE FOCK ALKAN ==========================
 

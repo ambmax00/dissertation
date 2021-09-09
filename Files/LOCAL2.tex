@@ -1,4 +1,4 @@
-\chapter{Local Correlation Methods (III): Excited State}
+\chapter{Local Correlation Methods (III): Excited States}
 
 While local correlation methods for the ground state have been around since the 1980s, the extension of the local treatment of electron correlation to excited states is relatively new. With the earliest attempts dating back to the 2000s, many new approaches and approximations have emerged over the last decade, building on the concepts of LMOs, NOs and PNOs. One of the major obstacles that makes a straight-forward extension to excited states difficult is the long-range character of certain excitations, such as charge transfer states. In contrast to the description of electron correlation in the ground state, the occupied and virtual orbitals involved in electron transitions can be very far apart. This means that the optimal molecular orbital space for the excited state can be very different from that of the ground state. 
 
@@ -11,11 +11,11 @@ This chapter presents the state of the art for local correlated excited state me
 
 \section{Low-Scaling Correlated Excited State Methods}
 
-All of the existing low-scaling implementations of ADC, CCLR and EOM use some form of local or compact molecular orbital representation, to varying degrees of success. As mentioned above, the major problem that these methods face is the non-locality of certain excited states such as charge transfer states, which can involve occupied and virtually orbitals which are localized on entirely different parts in the system. Clearly, truncating virtual orbitals spatially is no longer a valid option, and makes a straight-forward extension of LMO-methods difficult, because they cut out far-away contributions. Similar problems are encountered in NO formulations, as the excited state is often not properly described by the electronic ground state (pair-)densities and their associated (pair) natural representation. Over the years, various strategies have been proposed to adapt existing LMO and NO schemes to excited states as well. 
+All of the existing low-scaling implementations of ADC, CCLR and EOM use some form of local or compact molecular orbital representation, to varying degrees of success. As mentioned above, the major problem that these methods face is the non-locality of certain excited states such as charge transfer states, which can involve occupied and virtual orbitals which are localized on entirely different parts in the system. Clearly, truncating virtual orbitals spatially is no longer a valid option, and makes a straight-forward extension of LMO-methods difficult, because they cut out far-away contributions. Similar problems are encountered in NO formulations, as the excited state is often not properly described by the electronic ground state (pair-)densities and their associated (pair) natural representation. Over the years, various strategies have been proposed to adapt existing LMO and NO schemes to excited states as well. 
 
 \subsection{Orbital Invariance of the Matrix Expressions}
 
-Correlated excited state methods involve some form of symmetric or non-symmetric eigenvalue problem, which is generally solved using the Davidson procedure. The time-determining step is given by the computation of the matrix-vector product of the ADC, response or EOM matrix with the Davidson trial vectors $\mbf{u}$
+Correlated excited state methods involve some form of symmetric or non-symmetric eigenvalue problem, which is generally solved using the Davidson procedure. The time-determining step is given by the computation of the matrix-vector product of the ADC, CC response, or EOM-CC matrix $\mbf{A}$ with the Davidson trial vectors $\mbf{u}$
 \begin{equation}
 \mbf{r} = \mbf{A} \mbf{u}
 \end{equation}
@@ -28,15 +28,15 @@ r_{iajb} &= A_{iajb,kc} u_{kc} + A_{iajb,kcld} u_{kcld}
 \begin{equation}
 r_{ia} = U_{i\uli} r_{\uli\ola} U_{\ola a} 
 \end{equation}
-\noindent The eigenvalues of the LMO matrix appear to not differ from the ones obtained via a CMO formalism \cite{Kats2009}.
+\noindent The eigenvalues of the LMO matrix appear to not differ from the ones obtained via a CMO formalism \cite{Kat2009}.
 
 For local EOM-CC and CCLR, the singles and doubles amplitudes $t_{\mu_1}$ and $t_{\mu_2}$ are determined iteratively from a local ground state calculations using the techniques in the previous chapter for reduced scaling. For the approximate EOM-CC2 and CC2-LR methods, as well as ADC(2), the MP2 amplitudes may also be computed iteratively in the local basis using the Hylleraas functional, or using a closed form expression via the Laplace transform techniques.   
 
-EOM-CC2, CC2-LR and ADC(2) also allow an on-the-fly computation of the doubles part (see section \ref{sec:ADC_DAV}). Here, the orbital invariant formulation becomes less straight-forward because the doubles-doubles block of the non-canonical ADC and CC2 Jacobian matrix is not diagonal. Fortunately, the Laplace transform can be applied to circumvent this problem. Using the ADC(2) eigenvalue problem as an example, the doubles-folded MVP expression is given by
+EOM-CC2, CC2-LR and ADC(2) allow for an on-the-fly computation of the doubles part (see section \ref{sec:ADC_DAV}). Here, the orbital invariant formulation becomes less straight-forward because the doubles-doubles block of the non-canonical ADC and CC2 Jacobian matrix is not diagonal. Fortunately, the Laplace transform can be applied to circumvent this problem. Using the ADC(2) eigenvalue problem as an example, the doubles-folded MVP expression is given by
 \begin{equation}
 \begin{split}
 r_{ia}(\omega) &= A_{ia,jb} u_{jb} + A_{ia,jbkc} \frac{A_{iajb,kc} u_{kc}}{\omega - \eps_a - \eps_b + \eps_i + \eps_j} \\
-&= A_{ia,jb} u_{jb} - \sum_{\alpha}^{n} |w\pa| e^{\left(\omega - \eps_a - \eps_b + \eps_i + \eps_j\right) tpa} A_{ia,jbkc} A_{,kc} u_{kc} 
+&= A_{ia,jb} u_{jb} - \sum_{\alpha}^{n} |w\pa| e^{\left(\omega - \eps_a - \eps_b + \eps_i + \eps_j\right) t\pa} A_{ia,jbkc} A_{,kc} u_{kc} 
 \end{split}
 \end{equation}
 After transforming to the LMO basis, the local ADC(2) equations read
@@ -50,13 +50,13 @@ X_{\uli\ulk}\pa = \sum_i U_{i\uli} |w^{'(\alpha)}|^{1/4} e^{\eps_i t^{'(\alpha)}
 \begin{equation}
 Y_{\ola\olc}\pa = \sum_a U_{a\ola} |w^{'(\alpha)}|^{1/4} e^{-\eps_a t^{'(\alpha)}} U_{c\olc}
 \end{equation}
-\noindent Note that the optimal Laplace parameters $w^{'(\alpha)}$ and $t^{'(\alpha)}$ are different from the ones used in the MP2 amplitudes, due to the presence of the eigenvalue $omega$ in the denominator. Each time the eigenvalue changes, the Laplace parameters need to be recomputed to obtain an accurate approximation. 
+\noindent Note that the optimal Laplace parameters $w^{'(\alpha)}$ and $t^{'(\alpha)}$ are different from the ones used in the MP2 amplitudes, due to the presence of the eigenvalue $\omega$ in the denominator. Each time the eigenvalue changes, the Laplace parameters need to be recomputed to obtain an accurate approximation. 
 
-An orbital invariant reformulation is not needed by every method. NOs, PNOs and NTOs can be \emph{canonicalized} (Annex \ref{app:CANON}) by diagonalizing the occupied-occupied and virtual-virtual block of the Fock matrix in the truncated NO/PNO/NTO basis to get a smaller set of canonical molecular orbitals and orbital energies. Because these types of representations generally do not depend on distance criteria, they are unaffected by the delocalized nature of the canonical basis, as they seek compactness rather than locality. 
+An orbital invariant reformulation is not needed by every method. NOs, PNOs and NTOs can be \emph{canonicalized} by diagonalizing the occupied-occupied and virtual-virtual block of the Fock matrix in the truncated NO/PNO/NTO basis to get a smaller set of canonical molecular orbitals and orbital energies. Because these types of representations generally do not depend on distance criteria, they are unaffected by the delocalized nature of the canonical basis, as they seek compactness rather than locality. 
 
 \subsection{Local Molecular Orbitals and Domains}
 
-The most challenging part in extending domain-specific virtual orbital methods to excited states lies in determining a suitable excitation domain in which to expand the virtual space. The first implementations of local excited state EOM-CCSD \cite{Kor2003,Cra2002} and CC2-LR \cite{Kat2003} constructed the domains using a Mulliken-charge like analysis of the CIS coefficients $r_ia$. The CIS coefficients are first transformed to the LMO-PAO basis
+The most challenging part in extending domain-specific virtual orbital methods to excited states lies in determining a suitable excitation domain in which to expand the virtual space. The first implementations of local excited state EOM-CCSD \cite{Cra2002,Kor2003} and CC2-LR \cite{Kat2006} constructed the domains using a Mulliken-charge like analysis of the CIS coefficients $r_{ia}$. The CIS coefficients are first transformed to the LMO-PAO basis
 \begin{equation}
 r_{\uli \olgm} = U_{\uli i } r_{ia} \bar{C}_{\mu a} 
 \end{equation}
@@ -94,7 +94,7 @@ In their NO-CC2 and NO-ADC(2) implementations, Mester et al. \cite{Mes2017, Mes2
 \begin{equation}
 \mathbf{D}_{ab} = \frac{1}{2} \left( \mathbf{D}_{ab}^{MP2} + \mathbf{D}_{ab}^{CIS(D)} \right)
 \end{equation}
-\noindent where $\mathbf{D}^{MP2}$ is the MP2 ground state density and $\mathbf{D}^{CIS}$ is the state-specific CIS(D) excited state density. Their restricted expressions read
+\noindent where $\mathbf{D}^{MP2}$ is the MP2 ground state density and $\mathbf{D}^{CIS(D)}$ is the state-specific CIS(D) excited state density. Their restricted expressions read
 \begin{equation}
 D_{ij}^{MP2} = \sum_{kab} \left( 2 t_{ik}^{ab} t_{jk}^{ab} - t_{ik}^{ab} t_{jk}^{ab} \right) 
 \end{equation}
@@ -131,7 +131,7 @@ In combination with natural auxiliary functions, this hybrid NO-LMO scheme can r
 
 \subsection{Pair Natural Orbitals}
 
-Pair natural orbital methods face the same problems as NOs, where PNOs with low occupation numbers are considerably more important for response properties than for ground state properties \cite{Har2016}. In a similar vein, excited state PNOs can be generated by considering lower level excited state electron pair densities \cite{Hel2011}. PNO methods have been successfully extended to ADC(2), CC2-LR \cite{Hel2013}, ADC(2)-x \cite{Hel2014} and CCSD-LR \cite{Fra2018} by using CIS(D) or CIS(D)-like densities
+Pair natural orbital methods face the same problems as NOs, where PNOs with low occupation numbers are considerably more important for response properties than for ground state properties \cite{McA2016}. In a similar vein, excited state PNOs can be generated by considering lower level excited state electron pair densities \cite{Hel2011}. PNO methods have been successfully extended to ADC(2), CC2-LR \cite{Hel2013}, ADC(2)-x \cite{Hel2014} and CCSD-LR \cite{Fra2018} by using CIS(D) or CIS(D)-like densities
 \begin{equation}
 D_{ij}^{ab} = \sum_c \left( 2b_{ij}^{ab} - b_{ij}^{ba} \right) b_{ij}^{ab} + \left( 2b_{ij}^{ab} - b_{ij}^{ba} \right) b_{ij}^{ba}
 \end{equation}
@@ -143,7 +143,7 @@ Efforts have also been made to develop PNO response methods which are more econo
 \end{equation}
 \noindent A production-quality implementation has not yet been shown which uses this approach.
 
-In their perturbed pair-natural orbital (PNO++) approach for CCLR, Cunha and Crawford \cite{Cun2021} incorporate the external perturbation into the electron pair density
+In their perturbed pair-natural orbital (PNO++) approach for CCLR, Cunha and Crawford \cite{DCu2021} incorporate the external perturbation into the electron pair density
 \begin{equation}
 D_{ij}^{ab} = \sum_c \left( 2x_{ij}^{ab} - x_{ij}^{ba} \right) x_{ij}^{ab} + \left( 2x_{ij}^{ab} - x_{ij}^{ba} \right) x_{ij}^{ba}
 \end{equation}
@@ -171,7 +171,7 @@ In the end, most local excited state methods using natural orbitals differ by ho
  
 \subsection{Natural Transition Orbitals}
 
-The last method to obtain a compact representation of excited states is via natural transition orbitals. NTOs are the equivalent of NOs for excited states, and represent a compact representations of their dominant contribution (Figure \ref{fig:NTO}). Baudin and Kristensen have developed two different CC2LR schemes based on NTOs called LoFEX (local framework for calculating excitation energies) \cite{Bau2016} and CornFLEX (correlated natural transition orbital framework for calculating excitation energies) \cite{Bau2017} 
+The last method to obtain a compact representation of excited states is via natural transition orbitals. NTOs are the equivalent of NOs for excited states, and represent a compact representations of their dominant contribution (Figure \ref{fig:NTO}). Baudin and Kristensen have developed two different CC2-LR schemes based on NTOs called LoFEX (local framework for calculating excitation energies) \cite{Bau2016} and CornFLEX (correlated natural transition orbital framework for calculating excitation energies) \cite{Bau2017} 
 
 Again, one needs information about the excited state to efficiently compute its properties. The LoFEX method starts with a time-dependent Hartree Fock calculation and generates a set of NTOs by decomposition of the TDHF transition vectors $\mathbf{r}$ by diagonalization
 \begin{align}
@@ -201,19 +201,19 @@ The methods presented in the previous section all work similarly. They first sta
 
 At the moment of writing, CIS is the only excited state method which is routinely evaluated using an AO approach. While CIS does not give qualitatively good results, it is still a very important stepping stone for higher order methods, as was demonstrated in the previous section. Omitting the zero-order contributions, the CIS working equations are given by
 \begin{equation}
-u_{ia} = \left[ 2 \cn{ia}{jb} - \cn{ib}{ja} \right] u_{jb}
+r_{ia} = \left[ 2 \cn{ia}{jb} - \cn{ib}{ja} \right] u_{jb}
 \end{equation}
 \noindent Factoring out the MO coefficient matrices:
 \begin{equation}
 \begin{split}
-u_{ia} &= C_{\mu i} C_{\sigma a} \left[ 2 \cn{\mu\sigma}{\nu\lambda} - \cn{\mu\lambda}{\nu\sigma} \right] C_{\nu j} C_{\lambda b} u_{jb} \\ 
+r_{ia} &= C_{\mu i} C_{\sigma a} \left[ 2 \cn{\mu\sigma}{\nu\lambda} - \cn{\mu\lambda}{\nu\sigma} \right] C_{\nu j} C_{\lambda b} u_{jb} \\ 
 &= C_{\mu i} C_{\sigma a} \left[ 2 \cn{\mu\sigma}{\nu\lambda} - \cn{\mu\lambda}{\nu\sigma} \right] P_{\nu\lambda} 
 \end{split}
 \end{equation} 
-\noindent where $\mathbf{P}$ is the non-symmetric transition density in the AO basis. The CIS working equations can be reduced to the construction of a "pseudo"-Fock matrix which has a coulomb and an exchange part. The Fock matrix is then transformed to the MO basis:
+\noindent where $\mathbf{P}$ is the non-symmetric transition density in the AO basis. The CIS working equations can be reduced to the construction of a "pseudo"-Fock matrix which has a Coulomb and an exchange part. The Fock matrix is then transformed to the MO basis:
 \begin{align}
 F_{\mu\nu} &= J_{\mu\nu} + K_{\mu\nu}  \\ 
-u_{ia} &= C_{\mu i} F_{\mu\nu} C_{\mu a}  
+r_{ia} &= C_{\mu i} F_{\mu\nu} C_{\mu a}  
 \end{align}
 \noindent For localized excitations, the AO transition density is sparse (Figure \ref{fig:CISDENSE}), and similar approximation can be used as in Hartree Fock, e.g. LinK, CFMM, or LDF. CIS can therefore be evaluated with $\mathcal{O}(N)$ computational effort. Strictly speaking, it is not a "pure" AO formulation, because the AO intermediates still need to be transformed to the MO basis.
 
@@ -230,7 +230,7 @@ $\Longrightarrow$
 \includegraphics[scale=0.6]{Pics/CIS}
 \caption{}
 \end{subfigure}
-\caption[Logarithm of the absolute values of the matrix elements in the transition densities in the MO and AO basis for the lowest excited state for the carboxylic acid C$_{79}$H$_{159}$COOH.]{Logarithm of the absolute values of the matrix elements in the transition densities in the MO (left) and AO basis (right) for the lowest excited state for the carboxylic acid C$_{79}$H$_{159}$COOH. The excitation domain is entirely localized on the carboxylic group. Using sparse matrix algebra, significant speed-ups can be obtained for CIS in the AO basis}
+\caption[Logarithm of the absolute values of the matrix elements in the transition densities in the MO and AO basis for the lowest excited state for the carboxylic acid C$_{79}$H$_{159}$COOH.]{Logarithm of the absolute values of the matrix elements in the transition densities in the MO (left) and AO basis (right) for the lowest excited state for the carboxylic acid C$_{79}$H$_{159}$COOH. The excitation domain is entirely localized on the carboxylic group. Using sparse matrix algebra, significant speed-ups can be obtained for CIS in the AO basis.}
 \label{fig:CISDENSE}
 \end{figure}
 

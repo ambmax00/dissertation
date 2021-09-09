@@ -1,50 +1,5 @@
 \begin{thebibliography}{100}
 
-\bibitem{Jen2017}
-Frank Jensen.
-\newblock {\em {Introduction to Computational Chemistry, 3rd Edition}}.
-\newblock Wiley, Hoboken, NJ, USA, Feb 2017.
-
-\bibitem{Sch2018}
-Jochen Schirmer.
-\newblock {\em {Many-Body Methods for Atoms, Molecules and Clusters}}.
-\newblock Springer International Publishing, Cham, Switzerland, 2018.
-
-\bibitem{Sch1999}
-Martin Sch{\ifmmode\ddot{u}\else\"{u}\fi}tz, Georg Hetzer, and Hans-Joachim
-  Werner.
-\newblock {Low-order scaling local electron correlation methods. I. Linear
-  scaling local MP2}.
-\newblock {\em J. Chem. Phys.}, 111(13):5691--5705, Oct 1999.
-
-\bibitem{Mes2019}
-D{\ifmmode\acute{a}\else\'{a}\fi}vid Mester,
-  P{\ifmmode\acute{e}\else\'{e}\fi}ter~R. Nagy, and
-  Mih{\ifmmode\acute{a}\else\'{a}\fi}ly K{\ifmmode\acute{a}\else\'{a}\fi}llay.
-\newblock {Reduced-Scaling Correlation Methods for the Excited States of Large
-  Molecules: Implementation and Benchmarks for the Second-Order
-  Algebraic-Diagrammatic Construction Approach}.
-\newblock {\em J. Chem. Theory Comput.}, 15(11):6111--6126, Nov 2019.
-
-\bibitem{Har2014}
-Philipp H.~P. Harbach, Michael Wormit, and Andreas Dreuw.
-\newblock {The third-order algebraic diagrammatic construction method (ADC(3))
-  for the polarization propagator for closed-shell molecules: Efficient
-  implementation and benchmarking}.
-\newblock {\em J. Chem. Phys.}, 141(6):064113, Aug 2014.
-
-\bibitem{Kra2013}
-Caroline~M. Krauter, Markus Pernpointner, and Andreas Dreuw.
-\newblock {Application of the scaled-opposite-spin approximation to algebraic
-  diagrammatic construction schemes of second order}.
-\newblock {\em J. Chem. Phys.}, 138(4):044107, Jan 2013.
-
-\bibitem{Tro2006}
-A.~B. Trofimov, I.~L. Krivdina, J.~Weller, and J.~Schirmer.
-\newblock {Algebraic-diagrammatic construction propagator approach to molecular
-  response properties}.
-\newblock {\em Chem. Phys.}, 1-3(329):1--10, 2006.
-
 \bibitem{Sza1996}
 Attila Szabo and Neil~S. Ostlund.
 \newblock {\em {Modern Quantum Chemistry: Introduction to Advanced Electronic
@@ -56,11 +11,26 @@ Trygve Helgaker, Poul J{\o}rgensen, and Jeppe Olsen.
 \newblock {\em {Molecular Electronic{-}Structure Theory}}.
 \newblock Wiley, Aug 2000.
 
+\bibitem{Jen2017}
+Frank Jensen.
+\newblock {\em {Introduction to Computational Chemistry, 3rd Edition}}.
+\newblock Wiley, Hoboken, NJ, USA, Feb 2017.
+
 \bibitem{Nor2018}
 Patrick Norman, Kenneth Ruud, and Trond Saue.
 \newblock {\em {Principles and Practices of Molecular Properties: Theory,
   Modeling, and Simulations}}.
 \newblock Wiley, Hoboken, NJ, USA, Mar 2018.
+
+\bibitem{Sch2018}
+Jochen Schirmer.
+\newblock {\em {Many-Body Methods for Atoms, Molecules and Clusters}}.
+\newblock Springer International Publishing, Cham, Switzerland, 2018.
+
+\bibitem{Van2006}
+J.~H. Van~Lenthe, R.~Zwaans, H.~J.~J. Van~Dam, and M.~F. Guest.
+\newblock {Starting SCF calculations by superposition of atomic densities}.
+\newblock {\em J. Comput. Chem.}, 27(8):926--932, Jun 2006.
 
 \bibitem{You2004}
 D.~Young.
@@ -350,6 +320,25 @@ S.~Knippenberg, D.~R. Rehn, M.~Wormit, J.~H. Starcke, I.~L. Rusakova, A.~B.
   propagator approach: two-photon absorption spectra}.
 \newblock {\em J. Chem. Phys.}, 136(6):064107., Feb 2012.
 
+\bibitem{Kra2013}
+Caroline~M. Krauter, Markus Pernpointner, and Andreas Dreuw.
+\newblock {Application of the scaled-opposite-spin approximation to algebraic
+  diagrammatic construction schemes of second order}.
+\newblock {\em J. Chem. Phys.}, 138(4):044107, Jan 2013.
+
+\bibitem{Har2014}
+Philipp H.~P. Harbach, Michael Wormit, and Andreas Dreuw.
+\newblock {The third-order algebraic diagrammatic construction method (ADC(3))
+  for the polarization propagator for closed-shell molecules: Efficient
+  implementation and benchmarking}.
+\newblock {\em J. Chem. Phys.}, 141(6):064113, Aug 2014.
+
+\bibitem{Tro2006}
+A.~B. Trofimov, I.~L. Krivdina, J.~Weller, and J.~Schirmer.
+\newblock {Algebraic-diagrammatic construction propagator approach to molecular
+  response properties}.
+\newblock {\em Chem. Phys.}, 1-3(329):1--10, 2006.
+
 \bibitem{Koc1990}
 Henrik Koch and Poul Jo/rgensen.
 \newblock {Coupled cluster response functions}.
@@ -475,6 +464,39 @@ Frank Neese, Frank Wennmohs, Andreas Hansen, and Ute Becker.
   Hartree{\textendash}Fock exchange}.
 \newblock {\em Chem. Phys.}, 356(1):98--109, Feb 2009.
 
+\bibitem{Koc2003}
+Henrik Koch, Alfredo S{\ifmmode\acute{a}\else\'{a}\fi}nchez~de
+  Mer{\ifmmode\acute{a}\else\'{a}\fi}s, and Thomas~Bondo Pedersen.
+\newblock {Reduced scaling in electronic structure calculations using Cholesky
+  decompositions}.
+\newblock {\em J. Chem. Phys.}, 118(21):9481--9484, Jun 2003.
+
+\bibitem{Roe2008}
+I.~R{\o}eggen and Tor Johansen.
+\newblock {Cholesky decomposition of the two-electron integral matrix in
+  electronic structure calculations}.
+\newblock {\em J. Chem. Phys.}, 128(19):194107, May 2008.
+
+\bibitem{Hoh2012}
+Edward~G. Hohenstein, Robert~M. Parrish, and Todd~J.
+  Mart{\ifmmode\acute{\imath}\else\'{\i}\fi}nez.
+\newblock {Tensor hypercontraction density fitting. I. Quartic scaling second-
+  and third-order M{\o}ller-Plesset perturbation theory}.
+\newblock {\em J. Chem. Phys.}, 137(4):044103, Jul 2012.
+
+\bibitem{Par2012}
+Robert~M. Parrish, Edward~G. Hohenstein, Todd~J.
+  Mart{\ifmmode\acute{\imath}\else\'{\i}\fi}nez, and C.~David Sherrill.
+\newblock {Tensor hypercontraction. II. Least-squares renormalization}.
+\newblock {\em J. Chem. Phys.}, 137(22):224106, Dec 2012.
+
+\bibitem{Hoh2012a}
+Edward~G. Hohenstein, Robert~M. Parrish, C.~David Sherrill, and Todd~J.
+  Mart{\ifmmode\acute{\imath}\else\'{\i}\fi}nez.
+\newblock {Communication: Tensor hypercontraction. III. Least-squares tensor
+  hypercontraction for the determination of correlated wavefunctions}.
+\newblock {\em J. Chem. Phys.}, 137(22):221101, Dec 2012.
+
 \bibitem{Whi1973}
 J.~L. Whitten.
 \newblock {Coulombic potential energy integrals and approximations}.
@@ -563,6 +585,13 @@ Arno F{\ifmmode\ddot{o}\else\"{o}\fi}rster, Mirko Franchini, Erik van Lenthe,
 \newblock {A Quadratic Pair Atomic Resolution of the Identity Based SOS-AO-MP2
   Algorithm Using Slater Type Orbitals}.
 \newblock {\em J. Chem. Theory Comput.}, 16(2):875--891, Feb 2020.
+
+\bibitem{Pol2004}
+Robert Polly, Hans-Joachim Werner~{$\ast$}, Frederick~R. Manby, and Peter~J.
+  Knowles.
+\newblock {Fast Hartree{\textendash}Fock theory using local density fitting
+  approximations}.
+\newblock {\em Mol. Phys.}, 102(21-22):2311--2321, Nov 2004.
 
 \bibitem{Wei2002}
 Florian Weigend.
@@ -782,6 +811,13 @@ Christine Krause and Hans-Joachim Werner.
   with various choices of virtual orbitals}.
 \newblock {\em Phys. Chem. Chem. Phys.}, 14(21):7591--7604, May 2012.
 
+\bibitem{Sch1999}
+Martin Sch{\ifmmode\ddot{u}\else\"{u}\fi}tz, Georg Hetzer, and Hans-Joachim
+  Werner.
+\newblock {Low-order scaling local electron correlation methods. I. Linear
+  scaling local MP2}.
+\newblock {\em J. Chem. Phys.}, 111(13):5691--5705, Oct 1999.
+
 \bibitem{Sch2001}
 Martin Sch{\ifmmode\ddot{u}\else\"{u}\fi}tz and Hans-Joachim Werner.
 \newblock {Low-order scaling local electron correlation methods. IV. Linear
@@ -843,6 +879,11 @@ Gunnar Schmitz, Benjamin Helmich, and Christof
   OSVs{\ifmmode\dag\else\textdagger\fi}}.
 \newblock {\em Mol. Phys.}, 111(16-17):2463--2476, Sep 2013.
 
+\bibitem{Pul1983}
+Peter Pulay.
+\newblock {Localizability of dynamic electron correlation}.
+\newblock {\em Chem. Phys. Lett.}, 100(2):151--154, Sep 1983.
+
 \bibitem{Str1996}
 Matthew~C. Strain, Gustavo~E. Scuseria, and Michael~J. Frisch.
 \newblock {Achieving Linear Scaling for the Electronic Quantum Coulomb
@@ -884,39 +925,12 @@ Christian Ochsenfeld, Christopher~A. White, and Martin Head-Gordon.
   Hartree{\textendash}Fock-type exchange matrices}.
 \newblock {\em J. Chem. Phys.}, 109(5):1663--1669, Aug 1998.
 
-\bibitem{Pol2004}
-Robert Polly, Hans-Joachim Werner~{$\ast$}, Frederick~R. Manby, and Peter~J.
-  Knowles.
-\newblock {Fast Hartree{\textendash}Fock theory using local density fitting
-  approximations}.
-\newblock {\em Mol. Phys.}, 102(21-22):2311--2321, Nov 2004.
-
 \bibitem{Mej2014}
 Daniel
   Mej{\ifmmode\acute{\imath}\else\'{\i}\fi}a-Rodr{\ifmmode\acute{\imath}\else\'{\i}\fi}guez
   and Andreas~M. K{\ifmmode\ddot{o}\else\"{o}\fi}ster.
 \newblock {Robust and efficient variational fitting of Fock exchange}.
 \newblock {\em J. Chem. Phys.}, 141(12):124114, Sep 2014.
-
-\bibitem{Nee2009c}
-Frank Neese, Frank Wennmohs, Andreas Hansen, and Ute Becker.
-\newblock {Efficient, approximate and parallel Hartree{\textendash}Fock and
-  hybrid DFT calculations. A {`}chain-of-spheres{'} algorithm for the
-  Hartree{\textendash}Fock exchange}.
-\newblock {\em Chem. Phys.}, 356(1):98--109, Feb 2009.
-
-\bibitem{Izs2011}
-R{\ifmmode\acute{o}\else\'{o}\fi}bert Izs{\ifmmode\acute{a}\else\'{a}\fi}k and
-  Frank Neese.
-\newblock {An overlap fitted chain of spheres exchange method}.
-\newblock {\em J. Chem. Phys.}, 135(14):144105, Oct 2011.
-
-\bibitem{Gui2010}
-Manuel Guidon, J{\ifmmode\ddot{u}\else\"{u}\fi}rg Hutter, and Joost
-  VandeVondele.
-\newblock {Auxiliary Density Matrix Methods for Hartree{-}Fock Exchange
-  Calculations}.
-\newblock {\em J. Chem. Theory Comput.}, 6(8):2348--2364, Aug 2010.
 
 \bibitem{Kim2016}
 Jaehoon Kim and Yousung Jung.
@@ -1034,11 +1048,6 @@ Michael Glasbrenner, Daniel Graf, and Christian Ochsenfeld.
   Perturbation Theory with Cholesky-Decomposed Densities and an Attenuated
   Coulomb Metric}.
 \newblock {\em J. Chem. Theory Comput.}, 16(11):6856--6868, Nov 2020.
-
-\bibitem{Pul1983}
-Peter Pulay.
-\newblock {Localizability of dynamic electron correlation}.
-\newblock {\em Chem. Phys. Lett.}, 100(2):151--154, Sep 1983.
 
 \bibitem{Pul1986}
 Peter Pulay and Svein Saeb{\o}.
@@ -1160,10 +1169,11 @@ Gunnar Schmitz and Christof H{\ifmmode\ddot{a}\else\"{a}\fi}ttig.
 Filippo Sacchetta and Christian Ochsenfeld.
 \newblock 2021.
 
-\bibitem{Kor2003}
-Tatiana Korona and Hans-Joachim Werner.
-\newblock {Local treatment of electron excitations in the EOM-CCSD method}.
-\newblock {\em J. Chem. Phys.}, 118(7):3006--3019, Feb 2003.
+\bibitem{Kat2009}
+Danylo Kats and Martin Sch{\ifmmode\ddot{u}\else\"{u}\fi}tz.
+\newblock {A multistate local coupled cluster CC2 response method based on the
+  Laplace transform}.
+\newblock {\em J. Chem. Phys.}, 131(12):124117, Sep 2009.
 
 \bibitem{Cra2002}
 T.~Daniel Crawford and Rollin~A. King.
@@ -1171,11 +1181,16 @@ T.~Daniel Crawford and Rollin~A. King.
   excited states of large molecules}.
 \newblock {\em Chem. Phys. Lett.}, 366(5):611--622, Dec 2002.
 
-\bibitem{Kat2009}
-Danylo Kats and Martin Sch{\ifmmode\ddot{u}\else\"{u}\fi}tz.
-\newblock {A multistate local coupled cluster CC2 response method based on the
-  Laplace transform}.
-\newblock {\em J. Chem. Phys.}, 131(12):124117, Sep 2009.
+\bibitem{Kor2003}
+Tatiana Korona and Hans-Joachim Werner.
+\newblock {Local treatment of electron excitations in the EOM-CCSD method}.
+\newblock {\em J. Chem. Phys.}, 118(7):3006--3019, Feb 2003.
+
+\bibitem{Kat2006}
+Danylo Kats, Tatiana Korona, and Martin Sch{\ifmmode\ddot{u}\else\"{u}\fi}tz.
+\newblock {Local CC2 electronic excitation energies for large molecules with
+  density fitting}.
+\newblock {\em J. Chem. Phys.}, 125(10):104106, Sep 2006.
 
 \bibitem{Mes2017}
 D{\ifmmode\acute{a}\else\'{a}\fi}vid Mester,
@@ -1205,6 +1220,21 @@ D{\ifmmode\acute{a}\else\'{a}\fi}vid Mester,
   for excitation energies and transition moments}.
 \newblock {\em J. Chem. Phys.}, 148(9):094111, Mar 2018.
 
+\bibitem{Mes2019}
+D{\ifmmode\acute{a}\else\'{a}\fi}vid Mester,
+  P{\ifmmode\acute{e}\else\'{e}\fi}ter~R. Nagy, and
+  Mih{\ifmmode\acute{a}\else\'{a}\fi}ly K{\ifmmode\acute{a}\else\'{a}\fi}llay.
+\newblock {Reduced-Scaling Correlation Methods for the Excited States of Large
+  Molecules: Implementation and Benchmarks for the Second-Order
+  Algebraic-Diagrammatic Construction Approach}.
+\newblock {\em J. Chem. Theory Comput.}, 15(11):6111--6126, Nov 2019.
+
+\bibitem{McA2016}
+Harley~R. McAlexander and T.~Daniel Crawford.
+\newblock {A Comparison of Three Approaches to the Reduced-Scaling Coupled
+  Cluster Treatment of Non-Resonant Molecular Response Properties}.
+\newblock {\em J. Chem. Theory Comput.}, 12(1):209--222, Jan 2016.
+
 \bibitem{Hel2011}
 Benjamin Helmich and Christof H{\ifmmode\ddot{a}\else\"{a}\fi}ttig.
 \newblock {Local pair natural orbitals for excited states}.
@@ -1228,6 +1258,19 @@ Marius~S. Frank and Christof H{\ifmmode\ddot{a}\else\"{a}\fi}ttig.
 \newblock {A pair natural orbital based implementation of CCSD excitation
   energies within the framework of linear response theory}.
 \newblock {\em J. Chem. Phys.}, 148(13):134102, Apr 2018.
+
+\bibitem{Pen2018}
+Chong Peng, Marjory~C. Clement, and Edward~F. Valeev.
+\newblock {Exploration of Reduced Scaling Formulation of Equation of Motion
+  Coupled-Cluster Singles and Doubles Based on State-Averaged Pair Natural
+  Orbitals}.
+\newblock {\em arXiv}, Feb 2018.
+
+\bibitem{DCu2021}
+Ruhee D{'}Cunha and T.~Daniel Crawford.
+\newblock {PNO++: Perturbed Pair Natural Orbitals for Coupled Cluster Linear
+  Response Theory}.
+\newblock {\em J. Chem. Theory Comput.}, 17(1):290--301, Jan 2021.
 
 \bibitem{Cra2019}
 T.~Daniel Crawford, Ashutosh Kumar, Alexandre~P.
@@ -1534,11 +1577,6 @@ E.~Cuthill and J.~McKee.
 \newblock In {\em {ACM '69: Proceedings of the 1969 24th national conference}},
   pages 157--172. Association for Computing Machinery, New York, NY, USA, Aug
   1969.
-
-\bibitem{Van2006}
-J.~H. Van~Lenthe, R.~Zwaans, H.~J.~J. Van~Dam, and M.~F. Guest.
-\newblock {Starting SCF calculations by superposition of atomic densities}.
-\newblock {\em J. Comput. Chem.}, 27(8):926--932, Jun 2006.
 
 \bibitem{Leh2019}
 Susi Lehtola.

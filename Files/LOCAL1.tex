@@ -1,10 +1,10 @@
 \chapter{Local Correlation Methods (II): Ground State \label{cha:LOCAL1}}
 
-Since the seminal work of S{\ae}b{\o} and Pulay \ref{Pul1983,Sae1985,Sae1993}, demonstrating how the computational effort of electronic structure methods may be reduced via a local treatment of electron correlation using LMOs and PAOs, the concept of locality has been applied to Hartree-Fock, M{\o}ller-Plesset and Coupled-Cluster methods. Over the years, pure LMO methods have somewhat fallen out of use, in favor for an atomic orbital or (local) natural orbital treatment. This chapter summarizes how the tools and concepts of sparsity and local electron correlation presented in the previous chapter can be used to reduce the scaling of electronic structure methods. The focus will mainly be on Hartree-Fock and M{\o}ller-Plesset, with some words on Coupled-Cluster as well.
+Since the seminal work of S{\ae}b{\o} and Pulay \cite{Pul1983,Sae1985,Sae1993}, demonstrating how the computational effort of electronic structure methods may be reduced via a local treatment of electron correlation using LMOs and PAOs, the concept of locality has been applied to Hartree-Fock, M{\o}ller-Plesset and Coupled-Cluster methods. Over the years, pure LMO methods have somewhat fallen out of use, in favor for an atomic orbital or (local) natural orbital treatment. This chapter summarizes how the tools and concepts of sparsity and local electron correlation presented in the previous chapter can be used to reduce the scaling of electronic structure methods. The focus will mainly be on Hartree-Fock and M{\o}ller-Plesset, with some words on Coupled-Cluster as well.
 
 \section{Low-Scaling Self-Consistent Field Methods}
 
-Hartree-Fock and density field theory, also grouped under the umbrella term of self-consistent field (SCF) methods, are the working horses in quantum chemistry, and the underlying equations, the Roothan and Kohn-Sham equations, are well known and studied. Conventional formulations of HF and DFT, without inclusion of sparsity, scale with $\ccpx{3}$ to $\ccpx{4}$ which hampers extension to very large systems. There are three major bottle-necks: (1) computation of the coulomb matrix, (2) computation of the exchange matrix and (3) diagonalization of the Fock matrix. Over the last couple of decades, multiple different approaches have been proposed on how to lower the scaling of constructing the Fock matrix and circumvent matrix diagonalization. To this day, the field of low scaling SCF methods remains an active area of research in theoretical chemistry. The next sections will address the time-determining steps in detail.
+Hartree-Fock and density field theory, grouped under the umbrella term of self-consistent field (SCF) methods, are the working horses in quantum chemistry, and the underlying equations, the Roothan and Kohn-Sham equations, are well known and studied. Conventional formulations of HF and DFT, without inclusion of sparsity, scale with $\ccpx{3}$ to $\ccpx{4}$ which hampers extension to very large systems. There are three major bottle-necks: (1) computation of the coulomb matrix, (2) computation of the exchange matrix and (3) diagonalization of the Fock matrix. Over the last couple of decades, multiple different approaches have been proposed on how to lower the scaling of constructing the Fock matrix and circumvent matrix diagonalization. To this day, the field of low scaling SCF methods remains an active area of research in theoretical chemistry. The next sections will address the time-determining steps in detail.
 
 \subsection{The Coulomb Matrix}
 
@@ -28,18 +28,19 @@ J_{\mu\nu} = \cn{\mu\nu}{\lambda\sigma} P_{\sigma\lambda}
 \end{tikzpicture}
 \end{center}
 
-\noindent The construction of $\mathbf{J}$ has an inherent computational complexity of $\ccpx{2}$, even though the number of non-zero elements scales linearly due to the overlap relationship between $\mu$ and $\nu$. Quadratic scaling algorithms are straight-forward to implement. The first method to construct $\mathbf{J}$ with $\mathcal{O}(N)$ effort was the continuous fast multipole method (CFMM) \cite{Whi1996}. For each element $\mu\nu$ the contributions $\sigma\lambda$ are split into near-field and far-field contributions. NF interactions are computed using standard integration techniques, while FF interactions are computed using multi-level multipole expansion. The linear scaling consists even if the density matrix is not sparse. Other tree-like algorithms have also been proposed \cite{Str1996,Cha1996}. In all cases, computing the NF interactions are by far the most time-consuming step.
+\noindent The construction of $\mathbf{J}$ has an inherent computational complexity of $\ccpx{2}$, even though the number of non-zero elements scales linearly due to the overlap relationship between $\mu$ and $\nu$. Quadratic scaling algorithms are straight-forward to implement. The first method to construct $\mathbf{J}$ with $\mathcal{O}(N)$ effort was the continuous fast multipole method (CFMM) \cite{Whi1996}. For each element $\mu\nu$ the contributions $\sigma\lambda$ are split into near-field and far-field contributions. NF interactions are computed using standard integration techniques, while FF interactions are computed using multi-level multipole expansion. The linear scaling remains even if the density matrix is not sparse. Other tree-like algorithms were also proposed \cite{Str1996,Cha1996}. In all cases, computing the NF interactions are by far the most time-consuming step.
 
-One way to speed up the evaluation of the non-classical contributions is by moving the contraction step with the density matrix into the underlying integral evaluation. By modifying the formulas for the Gaussian integrals, the explicit storage of the 2-electron repulsion integrals can be skipped which greatly increases computational efficiency \cite{Whi1996,Sha2000,Sha2001}. To this day, the \emph{J engine method}, in combination with CFMM, remains the most efficient way to evaluate the exact coulomb matrix.
+One way to speed up the evaluation of the non-classical contributions is by moving the contraction step with the density matrix into the underlying integral evaluation. By modifying the formulas for the Gaussian integrals, the explicit storage of the 2-electron repulsion integrals can be skipped which greatly increases computational efficiency \cite{Whi1996,Sha2000,Sha2001}. To this day, the \emph{J engine method}, in combination with CFMM, remains the most efficient way to evaluate the exact Coulomb matrix.
 
-Alternatively, one may introduce the density fitting approximation. The coulomb matrix is then evaluated in several steps via an intermediate $\mathbf{d}$ as 
+Alternatively, one may introduce the density fitting approximation. The Coulomb matrix is then evaluated in several steps via the intermediates $\mathbf{D}$ and $\mbf{C}$ as 
 \begin{align}
-J_{\mu\nu} &= \cn{\mu\nu}{X} \tilde{d}_X \\
-d_X &= \cn{Y}{\mu\nu} P_{\nu\mu} ; \quad \tilde{d}_X = \cn{X}{Y}^{-1} d_X 
+J_{\mu\nu} &= C_{X\mu\nu} D_X \\
+D_X &= \cn{Y}{\mu\nu} P_{\nu\mu} \\
+C_{X\mu\nu} &= \cn{X}{Y}^{-1} \cn{Y}{\mu\nu}
 \end{align}
 \noindent The computational effort remains unchanged, with $\ccpx{2}$, but with a much lower prefactor, especially for larger, more diffuse basis sets \cite{Wei2002}. Furthermore, the integrals can be recomputed on the fly, and do not need to be explicitly stored. The inversion of the metric matrix $\cn{X}{Y}$ scales cubically, and dominates the cost of the DF approximation for large molecules. 
 
-For large molecules, one could also consider using local density fitting, such as the atomic resolution of the identity or pair-atomic resolution of the identity. Unfortunately, LDF also only reduces the prefactor, rather than scaling. Furthermore, it is necessary to use the robust density fitting of the electron integrals (Equation \ref{eq:DUNLAP}) to recover quadratic scaling in the fitting error, due to the constraints imposed on the density fitting procedure. The coulomb matrix is then expressed as
+For large molecules, one could also consider using local density fitting, such as the atomic resolution of the identity or pair-atomic resolution of the identity. Unfortunately, LDF also only reduces the prefactor, rather than scaling. Furthermore, it is necessary to use the robust density fitting of the electron integrals (Equation \ref{eq:DUNLAP}) to recover quadratic scaling in the fitting error, due to the constraints imposed on the density fitting procedure. The Coulomb matrix is then expressed as
 \begin{align}
 J_{\mu\nu} &= \cn{\mu\nu}{X} b_X + c^Y_{\mu\nu} \left[ g_Y - \tilde{g}_Y \right] \\
 g_X &= C^X_{\mu\nu} P_{\mu\nu} \\
@@ -84,7 +85,7 @@ K_{\mu\nu} = \cn{\mu\sigma}{\nu\lambda} P_{\lambda\sigma}
 
 \end{tikzpicture}
 \end{center}
-\noindent The non-zero elements in $\mathbf{K}$ scale linearly and can also be evaluated with $\mathcal{O}(N)$. This property has been realized quite early on \cite{Sch1997}. However, a straight-forward implementation where the 4c2e integrals are directly contracted with the density matrix $\mathbf{P}$ using sparse matrix algebra does not give the desired results, when applying the standard $\ccpx{2}$ Schwarz-screening to $\cn{\mu\sigma}{\nu\lambda}$. To lower the scaling of electron integral evaluation, it is important to design a screening algorithm which imposes the P junction between $\sigma$ and $\lambda$ which in turn leads to only a linear increase in the number of bra-ket pairs. 
+\noindent The non-zero elements in $\mathbf{K}$ scale linearly and can be evaluated with $\mathcal{O}(N)$. This property was realized quite early on \cite{Sch1997}. However, a straight-forward implementation where the 4c2e integrals are directly contracted with the density matrix $\mathbf{P}$ using sparse matrix algebra does not give the desired results, when applying the standard $\ccpx{2}$ Schwarz-screening to $\cn{\mu\sigma}{\nu\lambda}$. To lower the scaling of electron integral evaluation, it is important to design a screening algorithm which imposes the P junction between $\sigma$ and $\lambda$ which in turn leads to only a linear increase in the number of bra-ket pairs. 
 
 The ONX method by Schwegler \cite{Sch1997} was the first $\mathcal{O}(N)$ scheme for constructing the exchange matrix, but did not exploit permutational symmetry, which lead to a four fold increase in the prefactor. More competitive methods were proposed later, such as Linear Exchange (LinK) \cite{Och1998}, or symmetrized ONX (SONX) \cite{Sch2000} that could also be applied to small systems without major overhead.
 
@@ -106,7 +107,7 @@ The downside of exact linear exchange algorithms is the steep $\ccpx{4}$ scaling
 C^X_{\mu\nu} &= \cn{X}{Y}^{-1} \cn{Y}{\mu\nu} \label{eq:DFAOK_STEP1}\\
 K_{\mu\nu} &= C^X_{\nu\lambda} \cn{X}{\mu \sigma} P_{\sigma\lambda} \label{eq:DFAOK_STEP2}
 \end{align}
-\noindent In a straight-forward implementation using sparse matrix algebra, Equation \ref{eq:DFAOK_STEP1} and Equation \ref{eq:DFAOK_STEP2} are evaluated with $\ccpx{3}$  and $\ccpx{2}$ effort respectively. The non-zero elements of both the fitting coefficients $C$ and the 3c2e integrals increase quadratically. Their storage can quickly become problematic for large basis sets if both are held in-core. In principle, both tensors can be recomputed batchwise on-the-fly to reduce memory-footprint, but in contrast to the DF-J kernel where only the 3c2e integrals need to be generated at each iteration, recomputing the fitting coefficients each time introduces a prefactor that is too large for an out-of-core DF-K kernel to be of any practical use (see also Chapter \ref{cha:RESULTS}).
+\noindent In a straight-forward implementation using sparse matrix algebra, Equation \ref{eq:DFAOK_STEP1} and Equation \ref{eq:DFAOK_STEP2} are evaluated with $\ccpx{3}$  and $\ccpx{2}$ effort respectively. The non-zero elements of both the fitting coefficients $C$ and the 3c2e integrals increase quadratically. Their storage can quickly become problematic for large basis sets if both are held in-core. In principle, both tensors can be recomputed batchwise on-the-fly to reduce memory-footprint, but in contrast to the DF-J kernel where only the 3c2e integrals need to be generated at each iteration, recomputing the fitting coefficients each time introduces a prefactor that is too large for an out-of-core DF-K kernel to be of any practical use (see Chapter \ref{cha:RESULTS}).
 
 For an efficient, direct evaluation of the exchange matrix using density fitting, an MO based approach is much more favorable \cite{Wei2002}. The MO-DF-K kernel is evaluated as
 \begin{align}
@@ -121,11 +122,11 @@ K_{\mu\nu} &= B^{X}_{\mu i} B^{X}_{\nu i}
 \subsubsection{Local Density Fitting}
 
 Standard density fitting introduces long-range interactions which inhibit the linear scaling construction of the exchange matrix. This problem can be solved by using LDF. Again, Dunlap's robust density fitting needs to applied to get accurate results. The robust DF-K kernel can take the form
-\begin{eqnarray}
-E_{\mu\nu}^{X} =& C^{X}_{\mu\sigma} P_{\lambda\nu} \\
-L_{\mu\nu} =& E_{\mu\sigma}^X \cn{X}{\nu\sigma} - \frac{1}{2} E_{\mu\sigma}^X \cn{X}{Y} C^{Y}_{\nu\sigma} \\
-K_{\mu\nu} =& L_{\mu\nu} + L_{\nu\mu}
-\end{eqnarray}
+\begin{align}
+E_{\mu\nu}^{X} &= C^{X}_{\mu\sigma} P_{\lambda\nu} \\
+L_{\mu\nu} &= E_{\mu\sigma}^X \cn{X}{\nu\sigma} - \frac{1}{2} E_{\mu\sigma}^X \cn{X}{Y} C^{Y}_{\nu\sigma} \\
+K_{\mu\nu} &= L_{\mu\nu} + L_{\nu\mu}
+\end{align}
 \noindent All steps can be evaluated in $\mathcal{O}(N)$ time, under the assumption that the fitting coefficients scale linearly:
 \begin{center}
 \begin{tikzpicture}
@@ -186,9 +187,9 @@ K_{\mu\nu} =& L_{\mu\nu} + L_{\nu\mu}
 % Man2015 https://pubs.acs.org/doi/abs/10.1021/ct5008586
 % Hol2017 Fast construction of the exchange operator in an atom-centred basis with concentric atomic densityfitting
 
-\subsubsection{Other Methods}
-
-Other methods for linear-scaling evaluation of Hartree-Fock exchange (also often abbreviated as HFX in literature) are the semi-numerical chain-of-spheres methods (COS) \cite{Nee2009c,Izs2011} and the auxiliary density matrix methods (ADMM) \cite{Gui2010}. For further details, the reader is referred to the original publications. (Maybe elaborate?)
+%\subsubsection{Other Methods}
+%
+%Other methods for linear-scaling evaluation of Hartree-Fock exchange (also often abbreviated as HFX in literature) are the semi-numerical chain-of-spheres methods (COS) \cite{Nee2009c,Izs2011} and the auxiliary density matrix methods (ADMM) \cite{Gui2010}. For further details, the reader is referred to the original publications. (Maybe elaborate?)
 
 % COS Nee2009 https://www.sciencedirect.com/science/article/pii/S0301010408005089
 % COS2 Isz2011 https://aip.scitation.org/doi/full/10.1063/1.3646921
@@ -197,25 +198,22 @@ Other methods for linear-scaling evaluation of Hartree-Fock exchange (also often
 \subsection{The SCF Procedure}
 
 In the standard SCF procedure, the construction of the Fock matrix is followed by a cubic scaling diagonalization to obtain the MO coefficient matrix and the MO energies. As was discussed in detail in the previous chapter, the eigenvectors of the Fock matrix, i.e. the canonical MOs, are delocalized, and therefore using a sparse eigenvalue solver is unfortunately not an option. The solution is to entirely avoid any MO quantities and replace the Fock diagonalization step. For a functional, fully AO-based method, the same constraints on the density matrix need to be fulfilled as in the standard SCF procedure:
-\begin{equation}
-\mathbf{P} = \mathbf{P}^{\dagger} \qquad \textrm{Hermiticity}
-\end{equation}
-\begin{equation}
-Tr(\mathbf{PS}) = N_{ele} \qquad \textrm{N-representability}
-\end{equation}
-\begin{equation}
-\mathbf{PSP} = \mathbf{P} \qquad \textrm{Idempotency}
-\end{equation}
-\begin{equation}
-\mathbf{FPS} - \mathbf{SPF} = \mathbf{0} \qquad \textrm{Commutator}
-\end{equation}
+\begin{alignat}{2}
+\mathbf{P} &= \mathbf{P}^{\dagger} \qquad &\textrm{Hermiticity}
+\\
+Tr(\mathbf{PS}) &= N_{ele} \qquad &\textrm{$N$-representability}
+\\
+\mathbf{PSP} &= \mathbf{P} \qquad &\textrm{Idempotency}
+\\
+\mathbf{FPS} &- \mathbf{SPF} = \mathbf{0} \qquad &\textrm{Commutator}
+\end{alignat}
 \noindent There are two main approaches for replacing Fock matrix diagonalization: Purification (or spectral projection) and density matrix minimization \cite{Kim2016}. % (Jor2005).
 
 In spectral projection methods, an initial guess for the density matrix $\mathbf{P}$ of its Fock matrix $\mathbf{F}$ is obtained as
 \begin{equation}
 \mathbf{P} = \Theta \left( \mu \mathbf{I} - \mathbf{F} \right)
 \end{equation}
-\noindent where $\mu$ is the chemical potential, and $\Theta$ is the Heaviside step-function. The guess density then has orbital occupation numbers spread between 0 and 1, and has the same eigenvectors as the Fock matrix. The idempotent density is then determined by \emph{density purification}. Density purification is a iterative procedure where a purification transformation is repeatedly applied to the density matrix which converges the orbital occupation numbers either towards 0 or 1. One of the earliest purification transformation by McWeeny \cite{McW1959} takes the form
+\noindent where $\mu$ is the chemical potential, and $\Theta$ is the Heaviside step-function. The guess density then has orbital occupation numbers spread between 0 and 1, and has the same eigenvectors as the Fock matrix. The idempotent density is then determined by \emph{density purification}. Density purification is an iterative procedure where a purification transformation is repeatedly applied to the density matrix which converges the orbital occupation numbers either towards 0 or 1. One of the earliest purification transformation by McWeeny \cite{McW1959} takes the form
 \begin{equation}
 \mathbf{P}_{n+1} = 3\mathbf{P}_n\mathbf{SP}_n - 2\mathbf{P}_n\mathbf{SP}_n\mathbf{SP}_n
 \label{eq:MCWEENY}
@@ -242,11 +240,11 @@ Routine application of density matrix purification or minimization has been main
 
 \section{M{\o}ller-Plesset}
 
-Second-Order M{\o}ller Plesset is one of the simplest post-Hartree Fock methods available, but still scales as $\ccpx{5}$. Attempts to reduce computational complexity can generally be grouped into two categories: AO-MP2, LMO-MP2. Independent on which method is used, they share two problems. 
+Second-Order M{\o}ller Plesset is one of the simplest post-Hartree Fock methods available, but still scales as $\ccpx{5}$. Attempts to reduce computational complexity can generally be grouped into two categories: AO-MP2 and LMO-MP2. Independent on which method is used, they share two problems. 
 
 First, the energy denominator in the MP2-amplitudes $t$ make it difficult to transform the MP2 energy expressions into a different basis. AO-MP2 and LMO-MP2 take different approaches to an \emph{orbital-invariant} formulation of the MP2 energy expressions: AO-MP2 solves the problem using the Laplace quadrature, while LMO-MP2 methods generally use the Hylleraas functional. %NO methods can alternatively use canonicalization (Annex \ref{app:CANON}) to use the canonical MP2 expressions. 
 
-Second, steps involving the transformation of the AO 2-electron integrals to the Pseudo-AO or LMO basis still remain a major bottle-neck, even with sparsity involved. Both AO- and LMO-MP2 use screening criteria, additional domain restrictions, density fitting or similar methods to lower the cost of integral transformation. These additional procedures are crucial if one wishes to achieve a truly linear scaling MP2 method with a reduced overhead. 
+Second, steps involving the transformation of the AO two-electron integrals to the Pseudo-AO or LMO basis still remain a major bottle-neck, even with sparsity involved. Both AO- and LMO-MP2 use screening criteria, additional domain restrictions, density fitting or similar methods to lower the cost of integral transformation. These additional procedures are crucial if one wishes to achieve a truly linear scaling MP2 method with a reduced overhead. 
 
 \subsection{Atomic Orbital MP2}
 
@@ -266,7 +264,7 @@ The t-integration can be replaced \cite{Has1993} by a finite summation using a f
 \frac{1}{\eps_a + \eps_b - \eps_i - \eps_j} \approx \sum_{\alpha}^{n} w\pa e^{-\left(\eps_a + \eps_b - \eps i - \eps_j\right)t\pa}
 \end{equation} 
 
-\noindent where $w\pa$ and $t\pa$ are the Laplace weights and exponents at the Laplace points $\alpha$. Accuracy can be controlled by the number of Laplace points $n$. An efficient AO-MP2 implementation heavily relies on an accurate quadrature scheme to achieve the desired accuracy using as few Laplace points as possible to reduce overhead caused by the repeated AO transformation at each step. In general, 5-8 Laplace points are needed to achieve milli-Hartree accuracy, and 10 to 15 points for $\mu$Hartree accuracy (see also \ref{sec:LAPLACE}).
+\noindent where $w\pa$ and $t\pa$ are the Laplace weights and exponents at the Laplace points $\alpha$. Accuracy can be controlled by the number of Laplace points $n$. An efficient AO-MP2 implementation heavily relies on an accurate quadrature scheme to achieve the desired accuracy using as few Laplace points as possible to reduce overhead caused by the repeated AO transformation at each step. In general, 5-8 Laplace points are needed to achieve milli-Hartree accuracy, and 10 to 15 points for micro-Hartree accuracy. For more details, the reader is referred to section \ref{sec:LAPLACE}.
 
 \subsubsection{AO-MP2 Equations}
 
@@ -291,8 +289,8 @@ E_{MP2} &= - \sum_{iajb} \frac{\cn{ia}{jb} \left[2 \cn{ia}{ib} - \cn{ib}{ja} \ri
 \noindent with the occupied and virtual \emph{pseudo} or \emph{Laplace} density matrices 
 \begin{equation}
 \begin{split}
-P\pa_{\mu\mu'} = \sum_i C_{\mu i} e^{0.25 ln(w\pa) + \eps_i t\pa} C_{\mu' i} \\
-Q\pa_{\mu\mu'} = \sum_i C_{\sigma a} e^{0.25 ln(w\pa) - \eps_a t\pa} C_{\sigma' i}
+P\pa_{\mu\mu'} = \sum_i C_{\mu i} e^{0.25 \ln w\pa + \eps_i t\pa} C_{\mu' i} \\
+Q\pa_{\mu\mu'} = \sum_i C_{\sigma a} e^{0.25 \ln w\pa - \eps_a t\pa} C_{\sigma' i}
 \end{split}
 \end{equation}
 
@@ -318,10 +316,10 @@ E_{AO-MP2} = - \sum_{\alpha}^n \sum_{\mu\nu\lambda\sigma} \cn{\ulgm\olgs}{\ulgn\
 \end{equation}
 \noindent where $\mathbf{I}_{exp}$ is a diagonal matrix with trace
 \begin{equation}
-Tr[\mathbf{I}_{exp}] = \sum_i e^{0.25 ln(w\pa) + \eps_i t\pa} + \sum_a e^{0.25 ln(w\pa) - \eps_a t\pa}
+Tr[\mathbf{I}_{exp}] = \sum_i e^{0.25 \ln w\pa + \eps_i t\pa} + \sum_a e^{0.25 \ln w\pa - \eps_a t\pa}
 \end{equation}
 
-The entries of the pseudo-density also decay exponentially as function of the distance between pseudo-AO centers. Strictly speaking, AO-MP2 is not only formulated in a pure AO-basis ($\mu\nu...$), but also a PAO-like basis ($\ulgm,olgn,...$). 
+\noindent The entries of the pseudo-density also decay exponentially as function of the distance between pseudo-AO centers. Strictly speaking, AO-MP2 is not only formulated in a pure AO-basis ($\mu\nu...$), but also a PAO-like basis ($\ulgm,\olgn,...$). 
 
 \subsubsection{Quadratic Scaling AO-MP2}
 
@@ -337,14 +335,14 @@ Using the linked index rule, the complexity of the AO-MP2 method can easily be d
 
 \begin{equation}
 \begin{split}
-Q_{\mu\nu} &= \mid \cn{\mu\nu}{\mu\nu} \mid ^{1/2} \\
-X_{\mu\nu} &= \mid \cn{\ulgm\nu}{\ulgm\nu} \mid ^{1/2} \\
-Y_{\mu\nu} &= \mid \cn{\mu\olgn}{\mu\olgn} \mid ^{1/2} \\
-Z_{\mu\nu} &= min\left( \sum_{\sigma} A_{\mu\sigma} \mid \ovl{P}_{\sigma\nu} \mid; \sum_{\sigma} B_{\mu \sigma} \mid \unl{P}_{\sigma\nu} \mid \right)
+Q_{\mu\nu} &=  \abs{\cn{\mu\nu}{\mu\nu}}^{1/2} \\
+X_{\mu\nu} &= \abs{\cn{\ulgm\nu}{\ulgm\nu}}^{1/2} \\
+Y_{\mu\nu} &= \abs{\cn{\mu\olgn}{\mu\olgn}}^{1/2} \\
+Z_{\mu\nu} &= min\left( \sum_{\sigma} A_{\mu\sigma} \abs{P_{\sigma\nu}}; \sum_{\sigma} B_{\mu \sigma} \abs{Q_{\sigma\nu}} \right)
 \end{split}
 \end{equation} 
 
-\noindent gives an upper-bound for each transformation step in Equation \ref{eq:PSEUDOAOINTS}, for example 
+\noindent gives an upper bound for each transformation step in Equation \ref{eq:PSEUDOAOINTS}, for example 
 
 \begin{equation}
 \cn{\mu'\sigma'}{\nu'\lambda'} \leq Q_{\mu'\sigma'}Q_{\nu'\lambda'}
@@ -360,9 +358,9 @@ Z_{\mu\nu} &= min\left( \sum_{\sigma} A_{\mu\sigma} \mid \ovl{P}_{\sigma\nu} \mi
 
 \subsubsection{Linear Scaling AO-MP2}
 
-For the two-electron repulsion integrals, the $1/R$ decay between the charge densities $\cbra{\mu\sigma}$ and $\cket{\nu\lambda}$ is too slow to be of any use even for large systems. However, it has been shown \cite{Aya1999} that $bra$ and $ket$ in the Laplace integral tensor $e\pa$ decays much faster with $1/R^3$. Here, we follow the discussion in Ref \cite{Lam2005a}. 
+For the two-electron repulsion integrals, the $1/R$ decay between the charge densities $\cbra{\mu\sigma}$ and $\cket{\nu\lambda}$ is too slow to be of any use even for large systems. However, it was shown \cite{Aya1999} that $bra$ and $ket$ in the Laplace integral tensor $e\pa$ decay much faster with $1/R^3$. Here, we follow the discussion from Reference \cite{Lam2005a}. 
 
-For two non-overlapping charge densities $\cbra{\mu\sigma}$ and $\cket{nu\lambda}$ the following inequality holds
+For two non-overlapping charge densities $\cbra{\mu\sigma}$ and $\cket{\nu\lambda}$ the following inequality holds
 \begin{equation}
 \cn{\mu\sigma}{\nu\lambda} = \cbra{\mu\sigma}\frac{1}{\mathbf{r}_{12}}\cket{\nu\lambda} \leq \frac{1}{R} \left\lvert \sum_{n=0}^{\infty} \frac{\cbra{\mu\sigma} \left( \mathbf{r}_1 - \mathbf{r}_2 \right)^n \cket{\nu\lambda}}{R^n} \right\rvert
 \label{eq:MBIESCREEN}
@@ -384,18 +382,18 @@ M^{(n)}_{\mu\sigma} = \int \chi_{\mu}(r_1) \mathbf{r}_1^n \chi_{\sigma}(r_1) dr
 \end{split}
 \end{equation}
 
-From equation \ref{eq:PSP0}, it follows that $M_{\ulgm\olgs}^{(0)} = S_{\ulgm\olgs} = 0$. The multipole expansion for the pseudo-AO ERIs $e\pa$ therefore reduces to
+\noindent From equation \ref{eq:PSP0}, it follows that $M_{\ulgm\olgs}^{(0)} = S_{\ulgm\olgs} = 0$. The multipole expansion for the pseudo-AO ERIs $e\pa$ therefore reduces to
 \begin{equation}
 \begin{split}
 \cn{\ulgm\olgs}{\ulgn\olgl} &\leq R^{-3} \left\lvert - 2 \mpole{\ulgm\olgs}{1} \mpole{\ulgn\olgl}{1} \right\rvert \\
-&+ R^{-4} \left\lvert - 3\mpole{\ulgm\olgs}{2} \mpole{\ulgn\olgl}{1} + 3\mpole{\ulgm\olgs}{1} \mpole{\ulgn\olgl}{2} \right\rvert + \mathcal{O} \\
+&+ R^{-4} \left\lvert - 3\mpole{\ulgm\olgs}{2} \mpole{\ulgn\olgl}{1} + 3\mpole{\ulgm\olgs}{1} \mpole{\ulgn\olgl}{2} \right\rvert \\
 &+ \mathcal{O}(R^{-5})
 \end{split}
 \end{equation}
 
 \noindent which shows the $1/R^3$ dependence of the tensor $\cn{\ulgm\olgs}{\ulgn\olgl}$. Combined with the $1/R$ decay of the AO ERIs, this leads to an overall $1/R^4$ behavior for the AO-MP2 energy. This long-range decay can be exploited to introduce a sparsity relationship between the bra and ket quantities, and reduce the scaling of AO-MP2 from $\ccpx{2}$ to $\ccpx{1}$. In the original paper by Ayala and Scuseria \cite{Aya1999}, this decay was accounted for by introducing an interaction domain centered on each atomic orbital $\mu$ in the form of a sphere. For the integrals $\cn{\ulgm\olgm}{\ulgn\olgn}$, the domain $\mathcal{D}(\mu)$, comprises all charge distributions $\sigma\lambda$ for which 
 \begin{equation}
-\left( \unl{P}_{\mu\sigma} S_{\sigma\lambda} \ovl{P}_{\lambda\mu} \right) \geq \epsilon 
+\left( P\pa_{\mu\sigma} S_{\sigma\lambda} Q\pa_{\lambda\mu} \right) \geq \epsilon 
 \end{equation}
 \noindent The radius $R_{\mu}$ of the interaction sphere is defined by the maximum distance between $\mu$ and the charge density $\sigma\lambda$ in its domain. One can then screen long-range behavior for the interaction sphere $\mu$ and $\nu$ by the distance criterion
 \begin{equation}
@@ -416,7 +414,7 @@ A more rigorous screening method has been proposed by Lambrecht et al. known as 
 
 \subsubsection{Cholesky Decomposition of Pseudo-Densities}
 
-As with any method formulated entirely in an AO basis, AO-MP2 suffers from $\ccpx{4}$ scaling with increasing basis set $N$. The cost associated with larger basis sets can be mitigated by Cholesky decomposition of the pseudo-density matrices (CDD) \cite{Zie2009}. Similar to the orbital localization technique described in Chapter 3, where the (incomplete) CD of the occupied and virtual Hartree Fock density matrices yields a set of occupied and virtual Cholesky molecular orbitals, the CD of the pseudo-density matrices $\unl{P}\pa$ and $\ovl{P}\pa$ yields a set of Cholesky pseudo-molecular orbitals: 
+As with any method formulated entirely in an AO basis, AO-MP2 suffers from $\ccpx{4}$ scaling with increasing basis set size $N$. The cost associated with larger basis sets can be mitigated by Cholesky decomposition of the pseudo-density matrices (CDD) \cite{Zie2009}. Similar to the orbital localization technique described in Chapter 3, where the (incomplete) CD of the occupied and virtual Hartree-Fock density matrices yields a set of occupied and virtual Cholesky molecular orbitals, the CD of the pseudo-density matrices $\mbf{P}\pa$ and $\mbf{Q}\pa$ yields a set of Cholesky pseudo-molecular orbitals: 
 \begin{equation}
 \mathbf{P}\pa = \mathbf{\unl{L}}\pa \mathbf{\unl{L}}^{(\alpha)T}
 \end{equation}
@@ -429,19 +427,19 @@ As with any method formulated entirely in an AO basis, AO-MP2 suffers from $\ccp
 \end{equation}
 \noindent The pseudo-MO coefficients are then computed as
 \begin{equation}
-\unl{L}\pa = \mathbf{S}^{-1/2} \mathbf{\unl{L}}\pa_{orth}
+\mbf{\unl{L}}\pa = \mathbf{S}^{-1/2} \mathbf{\unl{L}}\pa_{orth}
 \end{equation}
 \noindent The square root and inverse square root of the overlap matrix $\mathbf{S}$ are most reliably found by (full) Cholesky decomposition. The number of occupied and virtual pseudo-MOs is given by the rank of the occupied/virtual pseudo-density matrices, which is equal or a little less than the number of occupied/virtual CMOs. 
 
-One can then formulate the CD-AO-MP2 energy expression as
+One can then formulate the CDD-MP2 energy expression as
 \begin{equation}
-E_{CD-AO-MP2} = - \sum_{\alpha}^n \sum_{\uli\ola\ulj\olb} \cn{\uli\ola}{\ulj\olb}\pa \left [ 2\cn{\uli\ola}{\ulj\olb}\pa -  \cn{\uli\olb}{\ulj\ola}\pa \right]
+E_{CDD-MP2} = - \sum_{\alpha}^n \sum_{\uli\ola\ulj\olb} \cn{\uli\ola}{\ulj\olb}\pa \left [ 2\cn{\uli\ola}{\ulj\olb}\pa -  \cn{\uli\olb}{\ulj\ola}\pa \right]
 \end{equation}
 \noindent with the pseudo-MO integrals
 \begin{equation}
 \cn{\uli\ola}{\ulj\olb}\pa = \unl{L}\pa_{\mu\uli} \ovl{L}\pa_{\sigma\ola} \cn{\mu\sigma}{\nu\lambda} \unl{L}\pa_{\nu\ulj} \ovl{L}\pa_{\lambda\olb}
 \end{equation}
-\noindent CD-AO-MP2 therefore reduces the sizes of the tensors from $N^{4}_{AO}$ to $N_{occ}^2N_{vir}^2$, while still being sparse. Similar to AO-MP2, Schwarz screening and interaction domains can be introduced to obtain quadratic and linear scaling CDD-AO-MP2.
+\noindent CDD-MP2 therefore reduces the sizes of the tensors from $N^{4}_{AO}$ to $N_{occ}^2N_{vir}^2$, while still being sparse. Similar to AO-MP2, Schwarz screening and interaction domains can be introduced to obtain quadratic and linear scaling CDD-MP2.
 
 % first appearence of CDD-MP2 Zie2009 https://aip.scitation.org/doi/pdf/10.1063/1.3142592
 % AO-RPA Lue2017 https://pubs.acs.org/doi/abs/10.1021/acs.jctc.6b01235
@@ -454,9 +452,9 @@ To reduce the prefactor associated with integral transformation, either from AOs
 \end{equation}
 \noindent which are evaluated with $\ccpx{2}$ cost. Using local density fitting approximations, this step can be reduced to approximately $\mathcal{O}(N)$ \cite{Gla2020}.
 
-\subsubsection{SOS-AO-DF-MP2}
+\subsubsection{Spin-Opposite Scaling}
 
-SOS-MP2 is a cost-efficient variant of MP2 with improved  accuracy (Section \ref{sec:SCSMP2}. One of the advantages of SOS-MP2 is that by omitting the same-spin contributions, the energy expressions can be efficiently factored when using the density fitting approximation \cite{Mau2014,Gla2020}: 
+SOS-MP2 is a cost-efficient variant of MP2 with improved  accuracy (Section \ref{sec:SCSMP2}). One of the advantages of SOS-MP2 is that by omitting the same-spin contributions, the energy expressions can be efficiently factored when using the density fitting approximation \cite{Mau2014,Gla2020}: 
 \begin{equation}
 \begin{split}
 E_{AO-DF-SOS-MP2} &= - c_{os} \sum^{nlap}_{\alpha=1} \sum_{\mu\nu\sigma\lambda} \cn{\ulgn\olgs}{X}\pa \cn{X}{Y}^{-1} \cn{Y}{\ulgn\olgl}\pa \\
@@ -534,10 +532,8 @@ E_{AO-DF-SOS-MP2} = - c_{os} \sum^{nlap}_{\alpha=1} \sum_{XY} \tilde{Z}\pa_{XY} 
 \noindent where "LDF" is the sparsity relationship introduced between the auxiliary density $X$ and the product density $\cbra{\mu\nu}$, which is metric-specific. In the case of quasi-robust density fitting, LDF = S, and the intermediates $\mathbf{Z}\pa$ can be constructed with linear effort. For weaker decay behavior, such as the error function coulomb-attenuated metric, the scaling is intermediate between linear and quadratic \cite{Gla2020}. 
 
 %CAN BE APPLIED TO CC2
-
 % Mau2014 https://aip.scitation.org/doi/full/10.1063/1.4881144
 % Gla2020 https://pubs.acs.org/doi/abs/10.1021/acs.jctc.0c00600
-
 % QQR screeening:
 % S. A. Maurer, D. S. Lambrecht, D. Flaig, and C. Ochsenfeld, J. Chem. Phys. 136, 144107 (2012). https://doi.org/10.1063/1.3693908
 %  S. A. Maurer, D. S. Lambrecht, J. Kussmann, and C. Ochsenfeld, J. Chem. Phys. 138, 014101 (2013). https://doi.org/10.1063/1.4770502
@@ -545,34 +541,31 @@ E_{AO-DF-SOS-MP2} = - c_{os} \sum^{nlap}_{\alpha=1} \sum_{XY} \tilde{Z}\pa_{XY} 
 \subsection{Local Molecular Orbital MP2}
 
 While linear scaling MP2 was first achieved using an atomic orbital formulation, the first low-scaling MP2 implementations were actually formulated in a local molecular orbital basis with domain-specific virtual orbitals \cite{Pul1983,Sae1985,Pul1986,Sae1987,Sae1988}. While pure LMO methods are not used very often nowadays, the concepts and tools they introduced are still found in the context of (pair) natural orbitals \cite{Pin2018}.
-
 % Pul1983 https://www.sciencedirect.com/science/article/pii/0009261483807039?via%3Dihub
 % Sae1985 https://www.sciencedirect.com/science/article/pii/000926148585003X
 % Pul1986 https://link.springer.com/article/10.1007/BF00526697 (ORBITAL INVARIANT)
 % Sae1987 https://aip.scitation.org/doi/abs/10.1063/1.452293
 % Sae1988 https://aip.scitation.org/doi/abs/10.1063/1.454111
+\subsubsection{Laplace Transform MP2}
 
-\subsubsection{Laplace LMP2}
-
-In the local molecular orbital basis, the Fock matrix is no longer diagonal, and the amplitudes $t_{ia}^{jb}$ cannot be easily expressed in a local basis, due to the energy denominator. AO-MP2 tackle this problem by virtue of the Laplace transform. Similarly, one can obtain an energy expression in the LMO basis. The Laplace decomposed MP2 energy is given by
+In the local molecular orbital basis, the Fock matrix is no longer diagonal, and the amplitudes $t_{iajb}$ cannot be easily expressed in a local basis, due to the energy denominator. AO-MP2 tackles this problem by virtue of the Laplace transform. Similarly, one can obtain an energy expression in the LMO basis. The Laplace decomposed MP2 energy is given by
 \begin{equation}
 E_{MP2} = \sum_{\alpha}^{n} \sum_{iajb} |w\pa| e^{(\eps_i + \eps_j - \eps_a - \eps_j)t\pa} \left[2\cn{ia}{jb} - \cn{ib}{ja}\right] \cn{ia}{jb}  
 \label{eq:MP2LAP}
 \end{equation}
 \noindent Introducing the unitary occupied and virtual LMO-MO transformation matrix $\mathbf{U}$ 
-\begin{equation}
-\ket{i} = U_{i\uli} \ket{\uli}
-\end{equation} 
-\begin{equation}
-\ket{a} = U_{i\ola} \ket{\ola}
-\end{equation}
+\begin{align}
+\ket{i} &= U_{i\uli} \ket{\uli}
+\\
+\ket{a} &= U_{a\ola} \ket{\ola}
+\end{align}
 \noindent which is factorized out, Equation \ref{eq:MP2LAP} becomes
 \begin{equation}
 \begin{split}
-E_{MP2} &= \sum_{\alpha}^{n} \sum_{iajb} \sum_{\uli\ola\olb} \sum_{\ulk\olc\ull\old} |w\pa| e^{(\eps_i + \eps_j - \eps_a - \eps_j)t\pa} U_{i\uli} U_{a\ola} \left[2\cn{\uli\ola}{\ulj\olb} - \cn{\ulj\olb}{\ulj\olb}\right] U_{j\ulj} U_{b\olb} \\
+E_{MP2} &= \sum_{\alpha}^{n} \sum_{iajb} \sum_{\uli\ola\olb} \sum_{\ulk\olc\ull\old} |w\pa| e^{(\eps_i + \eps_j - \eps_a - \eps_j)t\pa} U_{i\uli} U_{a\ola} \left[2\cn{\uli\ola}{\ulj\olb} - \cn{\uli\olb}{\ulj\ola}\right] U_{j\ulj} U_{b\olb} \\
 & \qquad \qquad U_{i\ulk} U_{a\olc} \cn{\ulk\olc}{\ull\old} U_{j\ull} U_{b\old} \\  
-&= \sum_{\alpha}^{n} \sum_{\uli\ola\olb} \left[2\cn{\uli\ola}{\ulj\olb} - \cn{\ulj\olb}{\ulj\olb}\right] \sum_{\ulk\olc\ull\old} X_{\uli\ulk}\pa Y_{\ola\olc}\pa \cn{\ulk\olc}{\ull\old} X_{\ulj\ull}\pa Y_{\olb\old}\pa \\
-&= \sum_{\uli\ola\olb} \left[2\cn{\uli\ola}{\ulj\olb} - \cn{\ulj\olb}{\ulj\olb}\right] \mathcal{T}_{\uli\ola\ulj\olb}
+&= \sum_{\alpha}^{n} \sum_{\uli\ola\olb} \left[2\cn{\uli\ola}{\ulj\olb} - \cn{\uli\olb}{\ulj\ola}\right] \sum_{\ulk\olc\ull\old} X_{\uli\ulk}\pa Y_{\ola\olc}\pa \cn{\ulk\olc}{\ull\old} X_{\ulj\ull}\pa Y_{\olb\old}\pa \\
+&= \sum_{\uli\ola\olb} \left[2\cn{\uli\ola}{\ulj\olb} - \cn{\uli\olb}{\ulj\ola}\right] \mathcal{T}_{\uli\ola\ulj\olb}
 \end{split}
 \label{MP2LOCEN}
 \end{equation}
@@ -585,10 +578,10 @@ Y_{\ola\olc}\pa = \sum_a U_{a\ola} |w\pa|^{1/4} e^{-\eps_a t\pa} U_{c\olc}
 \end{equation}
 \noindent Equation \ref{MP2LOCEN} is the general expression for the MP2 energy in a local molecular orbital basis, where both the occupied and virtual orbitals are \emph{orthogonal}. The situation changes slightly when using non-orthogonal, domain-specific PAOs $\olgm$, which are related to CMOs via
 \begin{align}
-\ket{\olgm} &= \mbf{SC}_{\mu i} \ket{i} = \bar{C}_{\mu i} \ket{i}
+\ket{\olgm} &= \bar{C}_{\mu i} \ket{i} \\
 \ket{i} &= \bar{C}_{\nu i} S_{\olgn\olgm}^{-1} \ket{\olgm} 
 \end{align}
-\noindent with $\mathbf{S}$ being the overlap matrix in the PAO basis. Its inverse is computed by canonical orthogonalization (Annex). This approximate inverse will be given by the matrix $\mbf{V}$, which is also specific to a given pair $[ij]$. In general, only the virtual CMOs are transformed to the PAO base. The virtual Laplace matrix then takes the following form \cite{Kat2008}:
+\noindent with $\mathbf{S}$ being the overlap matrix in the PAO basis, and $\mbf{\bar{C}} = \mbf{SC}$ are the orthogonalized MO coefficients. The inverse of $\mbf{S}$ is computed by canonical orthogonalization (Appendix \ref{app:LINDEP}). This approximate inverse will be given by the matrix $\mbf{V}$, which is also specific to a given pair $[ij]$. In general, only the virtual CMOs are transformed to the PAO base. The virtual Laplace matrix then takes the following form \cite{Kat2008}:
 \begin{equation}
 \mathbf{Y}\pa = \mathbf{V} \mathbf{B}\pa \mathbf{V} \pdg 
 \end{equation}
@@ -603,7 +596,7 @@ B_{\olgm\olgn}\pa = \sum_a \bar{C}_{\mu a} |w\pa|^{1/4} e^{-\eps_a t\pa} \bar{C}
 
 Alternatively, the local MP2 amplitudes can be determined iteratively via an orbital-invariant formulation of the MP2 energy expression based on the \emph{Hylleraas functional} \cite{Hyl1929,Pul1986}. The  Hylleraas functional form of the energy is given by minimizing 
 \begin{equation}
-E^{(2)} = min \left[ 2\bra{\Psi^{(1)}} \mathbf{H} - E_0  \ket{Psi^{(0}} - \bra{\Psi^{(1)}} \mathbf{H}_0 - E_0 \ket{\Psi^{(1)}} \right]
+E^{(2)} = min \left[ 2\bra{\Psi^{(1)}} \mathbf{H} - E_0  \ket{\Psi^{(0}} - \bra{\Psi^{(1)}} \mathbf{H}_0 - E_0 \ket{\Psi^{(1)}} \right]
 \label{eq:HYLMIN}
 \end{equation}
 \noindent In the case of MP2, the quantities in Equation \ref{eq:HYLMIN} take the form
@@ -639,10 +632,9 @@ E_{MP2} = \sum_{ij} e_{ij}
 \begin{equation}
 e_{ij} = \left( 2t_{ij}^{ab} - t_{ij}^{ba} \right) \cn{ia}{jb} 
 \end{equation} 
- 
-For well localized orbitals, the electron pair correlation $e_{ij}$ decays with $1/r_{ij}^6$ with the distance between orbital centers. Electron pairs are generally divided into four groups: strong pairs ($r_{ij} < 1a_0$), weak pairs ($1 < r_{ij} \leq 8 a_0$), distant pairs ($8 < r_{ij} \leq 15 a_0$), and very distant pairs ($15 < r_{ij}$) \cite{Sch1999}. Other than by distance criteria, electron pairs can also be grouped by their pair energy \cite{Nee2009}. Figure \ref{fig:EPAIRS} shows the number of significant electron pairs in each category for glycine chains. The number of strong, weak and distant pairs scale as $\mathcal{O}(N)$, while the number of very distant pairs scales quadratically. 
+ \noindent For well localized orbitals, the electron pair correlation $e_{ij}$ decays with $1/r_{ij}^6$ with the distance between orbital centers. Electron pairs are generally divided into four groups: strong pairs ($r_{ij} < 1a_0$), weak pairs ($1a_0 < r_{ij} \leq 8 a_0$), distant pairs ($8 < r_{ij} \leq 15 a_0$), and very distant pairs ($15 < r_{ij}$) \cite{Sch1999}. Other than by distance criteria, electron pairs can be grouped by their pair energy \cite{Nee2009}. Figure \ref{fig:EPAIRS} shows the number of significant electron pairs in each category for glycine chains. The number of strong, weak and distant pairs scale as $\mathcal{O}(N)$, while the number of very distant pairs scales quadratically. 
 
-The occupied molecular orbitals $ij$ are localized using e.g. Foster-Boys, Pipek-Mezey or a Cholesky decomposition of the density matrix. Virtual orbitals are generally localized by projection onto the atomic orbital space (PAOs) and subsequently assigning them to pair domains $[ij]$ (domain specific virtuals), or by diagonalizing the MP2 density matrix for each electron pair (pair natural orbitals).  In all cases, the number of virtual orbitals within a domain scales as $\mathbf{O}(1)$ for each electron pair $ij$, in the limit of large molecules, such that the scaling of LMP2 is determined by the scaling of significant electron pairs only.
+The occupied molecular orbitals $ij$ are localized using e.g. Foster-Boys, Pipek-Mezey or a Cholesky decomposition of the density matrix. Virtual orbitals are generally localized by projection onto the atomic orbital space (PAOs) and subsequently assigning them to pair domains $[ij]$ (domain specific virtuals), or by diagonalizing the MP2 density matrix for each electron pair (pair natural orbitals).  In all cases, the number of virtual orbitals within a domain scales as $\mathcal{O}(1)$ for each electron pair $ij$, in the limit of large molecules, such that the scaling of LMP2 is determined by the scaling of significant electron pairs only.
 
 The major bottle-neck in LMP2 is, as usual, the transformation of the 2 electron integrals from the AO basis into the local basis
 \begin{equation}
@@ -679,6 +671,7 @@ The major bottle-neck in LMP2 is, as usual, the transformation of the 2 electron
 \centering
 \includegraphics[scale=0.5]{Pics/electron_pairs.png}
 \caption[Number of significant electron pairs in glycine chains.]{Number of significant electron pairs in glycine chains. Taken from \cite{Sch1999}}
+\label{fig:EPAIRS}
 \end{figure}
 
 \subsubsection{Linear Scaling LMP2}
@@ -709,24 +702,20 @@ It has been found \cite{Sae1987} early on that the quadratic scaling very distan
 
 \end{tikzpicture}
 \end{center}
-\noindent Linear scaling MP2 can therefore be achieved suing an LMO formulation \cite{Sch1999}.
+\noindent Linear scaling MP2 can therefore be achieved with an LMO formulation \cite{Sch1999}.
 
 % Sch1999 https://aip.scitation.org/doi/pdf/10.1063/1.479957
-
 % distant pairs multipole approximate very distant pairs by multipole expansion Het1998 https://www.sciencedirect.com/science/article/pii/S0009261498004916
-
 % distant pairs Empirically Rau1995 G. Rauhut, J. W. Boughton, and P. Pulay, J. Chem. Phys., 103, 5662 1995 .
-
-Instead of using distance criteria, can use screening: 
+%Instead of using distance criteria, can use screening: 
 %https://aip.scitation.org/doi/10.1063/1.4773581
-
 \subsubsection{Density Fitting for LMP2}
 
 While specific virtual orbitals form a very compact representation of the virtual space, the fact that each electron pair has their own orthogonal virtual orbital basis means that the total number of virtuals can become exceedingly large, and consequently increases the cost associated with the AO-MO transformation step. The most expensive step then becomes
 \begin{equation}
 \cn{\uli\ola}{P} = L_{\mu\uli} \cn{\mu\nu}{P} L_{\nu\ola}
 \end{equation}
-\noindent Transformation of the 3c2e integrals scales with $\ccpx{2}$. Linear scaling can be achieved by introducing an orbital-specific fitting domain $[i]_fit$, e.g. by assigning all auxiliary functions $P$ on atoms with a Mulliken charge above a given threshold for the local orbital $i$ \cite{Pin2015}, or by using a Boughton-Pulay like scheme \cite{Wer2015}. This yields the sparsity diagram
+\noindent Transformation of the 3c2e integrals scales with $\ccpx{2}$. Linear scaling can be achieved by introducing an orbital-specific fitting domain $[i]_{fit}$, e.g. by assigning all auxiliary functions $P$ on atoms with a Mulliken charge above a given threshold for the local orbital $i$ \cite{Pin2015}, or by using a Boughton-Pulay like scheme \cite{Wer2015}. This yields the sparsity diagram
 \begin{center}
 \begin{tikzpicture}
 
@@ -746,12 +735,11 @@ While specific virtual orbitals form a very compact representation of the virtua
 \end{tikzpicture}
 \end{center}
 \noindent As opposed to SOS-AO-MP2, where density fitting can give a more favorable factorization of the energy expression, the MO integrals need to be fully assembled for LMP2 in order to solve the linear equations \ref{eq:MP2RES}. The assembly is done in two steps
-\begin{equation}
-B^{X}_{\uli\ola} = \sum_{Y \in [i]_{fit} \cup [j]_{fit}} \cn{X}{Y}^{-1/2} \cn{Y}{\uli\ola}
-\end{equation}
-\begin{equation}
-\cn{\uli\ola}{\ulj\olb} = \sum_{X \in [i]_{fit} \cup [j]_{fit}} B^{X}_{\uli\ola} B^{X}_{\ulj\olb} 
-\end{equation}
+\begin{align}
+B^{X}_{\uli\ola} &= \sum_{Y \in [i]_{fit} \cup [j]_{fit}} \cn{X}{Y}^{-1/2} \cn{Y}{\uli\ola}
+\\
+\cn{\uli\ola}{\ulj\olb} &= \sum_{X \in [i]_{fit} \cup [j]_{fit}} B^{X}_{\uli\ola} B^{X}_{\ulj\olb} 
+\end{align}
 \noindent The two steps are repeated for each electron pair $ij$, and the sum runs over all auxiliary functions $P$ in the unified fitting domain $[i]_{fit} \cup [j]_{fit}$, which enforces linear scaling for these steps as well. 
 
 % Pin2015 https://aip.scitation.org/doi/pdf/10.1063/1.4926879
@@ -850,6 +838,6 @@ An atomic orbital formulation of the coupled cluster equations is possible \cite
 %% Linear scaling of electron inetgrals
 %% linear scaling of MO-AO transformation -> or density fitting
 
-\section{Summary}
-
-LMO vs PNO vs NO ?
+%\section{Summary}
+%
+%LMO vs PNO vs NO ?
