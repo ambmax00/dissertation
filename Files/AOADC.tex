@@ -1,6 +1,6 @@
 \chapter{The Spin-Opposite Scaled Algebraic Diagrammatic Construction Method in the Atomic Orbital Basis \label{cha:AOADC}}
 
-The Algebraic Diagrammatic Construction method can be considered as M{\o}ller Plesset for excited states. It is therefore not surprising that local correlation methods for MP can also be applied to ADC. In chapter 4, it has been shown that local approximations for the ground state can be grouped into 3 categories: atomic orbitals, local orbitals and natural orbitals. Only the latter two have been used in the context of ADC as discussed in chapter 6. An atomic orbital representation of ADC has not yet been considered in literature, and will be the subject of this chapter. First, the restricted doubles-folded ADC working equations are derived. Then the SOS approximation is applied. Finally, the restricted SOS-ADC working equations are derived in the AO basis, with and without density fitting. 
+The Algebraic Diagrammatic Construction method can be considered as M{\o}ller Plesset for excited states. It is therefore not surprising that local correlation methods for MP can also be applied to ADC. In chapter 4, it has been shown that local approximations for the ground state can be grouped into 3 categories: atomic orbitals, local orbitals and natural orbitals. Only the latter two have been used in the context of ADC as discussed in chapter 5. An atomic orbital representation of ADC has not yet been considered in literature, and will be the subject of this chapter. First, the restricted doubles-folded ADC working equations are derived. Then the SOS approximation is applied. Finally, the restricted SOS-ADC working equations are derived in the AO basis, with and without density fitting. 
 
 \section{Working Equations for Restricted ADC with Doubles-Folding}
 
@@ -28,7 +28,7 @@ The eigenvalue problem in the algebraic diagrammatic construction method truncat
 \mathbf{r}_{\mu_2} = \mathbf{A}_{\mu_2\nu_1} \mathbf{u}_{\nu_1} + \mathbf{A}_{\mu_2\nu_2} \mathbf{u}_{\nu_2}
 \end{split} 
 \end{equation}
-\noindent The trial vector space in the Davidson diagonalization scales with fourth order as $o^2v^2$, and can quickly become a memory bottle-neck for large molecules. As shown in chapter 2, one can recompute the doubles-part of the MVP on-the-fly using \emph{doubles-folding}
+\noindent The trial vector space in the Davidson diagonalization scales as $o^2v^2$, and can quickly become a memory bottle-neck for large molecules. As shown in chapter 2, one can recompute the doubles-part of the MVP on-the-fly using \emph{doubles-folding}
 \begin{equation}
 \mathbf{r}_{\mu_1}(\omega) = \mathbf{A}_{\mu_1\nu_1} \mathbf{u}_{\nu_1} + \frac{\mathbf{A}_{\mu_1\zeta_2} \mbf{A}_{\zeta_2\nu_1}}{\omega - \mathbf{A}_{\zeta_2\zeta_2}} \mathbf{u}_{\nu_1} 
 \end{equation} 
@@ -88,7 +88,7 @@ u_{iajb}(\omega) &= \frac{1}{\omega - \eps_a - \eps_b + \eps_i + \eps_j} \left\l
 u_{ia\ool{jb}}(\omega) = \frac{1}{\omega - \eps_a - \eps_{\olb} + \eps_i + \eps_{\olj}} \left\lbrace \sum_k u_{ka} \cn{ki}{\ool{bj}} + \sum_{\ool{k}} u_{\ool{kb}} \cn{\ool{kj}}{ai} \right. \\ - \sum_c u_ic \cn{ac}{\ool{bj}} - \left. \sum_{\ool{c}} u_{\ool{jc}} \cn{\ool{bc}}{ai} \right\rbrace
 \end{split}
 \end{equation}
-\noindent The expression for the MVP for beta electrons ($r_{\ool{ia}})$ is obtained by replacing alpha orbitals ($i$) by beta orbitals ($\ool{i}$) and vice-versa in the expressions above. The off-diagonal blocks $r_{i\oola}$/$r_{\oli a}$ i.e. the spin-flip states will not be considered here and are set to zero. For closed-shell molecules, the complexity of the formulas can be drastically reduced by introducing the following spin-symmetry relationships:
+\noindent The expression for the MVP for beta electrons ($r_{\ool{ia}})$ is obtained by replacing alpha orbitals ($i$) by beta orbitals ($\ool{i}$) and vice-versa in the expressions above. The off-diagonal blocks $r_{i\oola}$/$r_{\oli a}$ i.e. the spin-flipped states will not be considered here and are set to zero. For closed-shell molecules, the complexity of the formulas can be drastically reduced by introducing the following spin-symmetry relationships:
 \begin{align}
 t_{iajb} &= t_{ia\ool{jb}} = t_{\ool{ia}jb} = t_{\ool{iajb}}   \label{eq:SPIN1}\\
 \cn{ia}{jb} &= \cn{ia}{\ool{jb}} = \cn{\ool{ia}}{jb} = \cn{\ool{ia}}{\ool{jb}} \label{eq:SPIN2} \\
@@ -237,7 +237,7 @@ I^{(1)T,SOS}_{ia} &= - \sum_{jb} \cn{ib}{ja} u_{jb}^T
 I^{(2)T,SOS}_{ia} &= - c_{os} \sum_{jb} t_{iajb} u_{jb}^T
 \end{align}
 
-\section[Working Equations For Restricted AO-SOS-ADC(2)]{Working Equations For Restricted SOS-ADC(2) with Doubles-Folding in an Atomic Orbital Basis}
+\section[Working Equations For Restricted AO-SOS-ADC(2)]{Working Equations For Restricted SOS-ADC(2) \\ with Doubles-Folding in an Atomic Orbital Basis}
 
 The goal of an atomic orbital based formulation of ADC(2) is to compute the matrix-vector product in an intermediate AO basis and transform it back to the MO basis (or alternatively an LMO basis) for the Davidson procedure, similarly to how it is done for CIS:
 \begin{equation}
@@ -288,9 +288,9 @@ The expressions for the intermediates involve the t-amplitudes, and to obtain an
 \end{equation}
 \noindent Using a similar strategy to AO-MP2 to factor out the coefficient matrices, the intermediates can be formulated as
 \begin{align}
-I_{ab}^{AO-SOS,ns} &= \frac{c_os}{2} \sum_{kcl} \sum_{\alpha} |w\pa| e^{\Delta_{kalc}t\pa} \cn{ka}{lc} \cn{kb}{lc} \\
-&= \frac{c_os}{2} \sum_b C_{\lambda b} \sum_{\alpha} \mid w\pa\mid^{1/4} e^{-\eps_a t\pa} C_{\sigma a} \sum_{\kappa \gamma \tau} \cn{\ulgk \sigma}{\ulgt \olgg}\pa \cn{\kappa \lambda}{\tau \gamma} \\
-&= \frac{c_os}{2} \sum_b C_{\lambda b} \sum_{\alpha} \mid w\pa\mid^{1/4} e^{-\eps_a t\pa} C_{\sigma a} A\pa_{\sigma\lambda}
+I_{ab}^{AO-SOS,ns} &= \frac{c_{os}}{2} \sum_{kcl} \sum_{\alpha} |w\pa| e^{\Delta_{kalc}t\pa} \cn{ka}{lc} \cn{kb}{lc} \\
+&= \frac{c_{os}}{2} \sum_b C_{\lambda b} \sum_{\alpha} \mid w\pa\mid^{1/4} e^{-\eps_a t\pa} C_{\sigma a} \sum_{\kappa \gamma \tau} \cn{\ulgk \sigma}{\ulgt \olgg}\pa \cn{\kappa \lambda}{\tau \gamma} \\
+&= \frac{c_{os}}{2} \sum_b C_{\lambda b} \sum_{\alpha} \mid w\pa\mid^{1/4} e^{-\eps_a t\pa} C_{\sigma a} A\pa_{\sigma\lambda}
 \end{align}
 \noindent with the pseudo-AO electron integrals and the occupied/virtual pseudo density matrices
 \begin{align}
@@ -435,7 +435,7 @@ First, an AO formulation of the doubles amplitudes will be derived such that
 \begin{equation}
 u_{iajb}(\omega) = C_{\mu i} C_{\sigma a} u_{\mu\sigma\nu\lambda} C_{\nu j} C_{\lambda b}
 \end{equation}
-\noindent For quantities like the MO integrals $\cn{ia}{jb}$, this is straight-forwardly done by factoring out the coefficient matrices. However, the situation is more complex in the doubles intermediates, due to the presence of terms like $u_{ka}\cn{ki}{bj}$. For the MO transition densities, the non-orthogonality of the AO basis needs to be taken into consideration. The MO coefficient matrices are factored out by a PAO backtransform:
+\noindent For quantities like the MO integrals $\cn{ia}{jb}$, this is straight forwardly done by factoring out the coefficient matrices. However, the situation is more complex in the doubles intermediates, due to the presence of terms like $u_{ka}\cn{ki}{bj}$. For the MO transition densities, the non-orthogonality of the AO basis needs to be taken into consideration. The MO coefficient matrices are factored out by a PAO backtransform:
 \begin{equation}
 u_{ia} = C_{\mu i} S_{\mu\mu'} u_{\ulgm'\olgs'} S_{\sigma'\sigma} C_{\sigma a}
 \end{equation}
@@ -473,7 +473,7 @@ r_{ia}^{S/T,AO-SOS,2E}(\omega) &= - c_{osc}^2 \sum_{\theta} e^{\omega t\pt} \lef
 &= - c_{osc}^2 \sum_{\theta} e^{\omega t\pt} \left\lbrace \bar{C}_{\mu i} \bar{C}_{\sigma a} R^{(\theta)(1)S/T}_{\ulgm\olgs} - \bar{C}_{\mu i} \bar{C}_{\sigma a} R^{(\theta)(2)S/T}_{\ulgm\olgs} \right\rbrace 
 \end{split}
 \end{equation} 
-\noindent which gives fully transformed integrals. This step is necessary to obtain a better factorization for part 2E in the density fitting approximation. Note that there are other cases of non-fully transformed integrals in the previous parts - however a full transformation does not give any significant advantage for a DF formulation, so they are left unchanged.  
+\noindent which gives fully transformed integrals. This step is necessary to obtain a better factorization for part 2E in the density fitting approximation. Note that there are other cases of non-fully transformed integrals in the previous parts - however a full transformation does not give any significant advantage over a DF formulation, so they are left unchanged.  
 
 The time-determining step is the formation of the $\mathbf{R}$ intermediates, which in turn depend on the AO doubles intermediates. Consider the sparsity diagram for the following term encountered in Equation \ref{eq:AODOUBLES}:
 
@@ -550,7 +550,7 @@ r_{ia}^{T,AO-DF-SOS}(\omega) &= (\eps_a - \eps_i) u_{ia}^T + \sum_{\mu\nu} C_{\m
 
 It is expected that AO-SOS-ADC(2) has the same drawback as LinK or AO-MP2, namely a late onset of the low-scaling regime for larger basis sets. This additional overhead is even worse for AO-ADC due to the complexity of the formulas which involve many more tensor contractions than the ground state, and more S and P junctions which makes the method much more dependent on basis set size. This is further aggravated by the fact that diffuse basis functions are essential to obtain accurate excitation energies as opposed to ground state correlation energies.
 
-\section{Working Equations for Restricted AO-DF-SOS-ADC(2) with Doubles-Folding}
+\section{Working Equations for Restricted AO-DF-SOS-\\ ADC(2) with Doubles-Folding}
 
 To lower the steep scaling associated with increasing basis set size, the density fitting approximation is introduced. The two-electron repulsion integrals are approximated using the generalized form
 \begin{equation}
@@ -680,7 +680,7 @@ Similarly to AO-MP2, the prefactor can be significantly lowered by virtue of the
 
 It should be noted that the Cholesky decomposition can also be used in the Z-kernels in Table \ref{AODFSOSADC2INTERMEDIATES} to reduce its prefactor as well. 
 
-By using local density fitting, the inherent quadratic scaling of the AO-SOS-ADC(2) method also applies for AO-DF-SOS-ADC(2) and CDD-DF-SOS-ADC(2).
+By using local density fitting, the inherent quadratic scaling of the AO-SOS-ADC(2) method also applies for AO-DF-SOS-ADC(2) and CDD-DF-SOS-ADC(2), but the prefactor and memory requirements are significantly reduced.
 
 %... Cholesky in K of intermediates ???
 

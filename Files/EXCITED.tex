@@ -42,7 +42,7 @@ E_{0\rightarrow i} = E_i - E_0
 \end{equation} 
 \noindent Any ground state model discussed in the previous chapter can be used. This approach to excited states is known by different names, depending on which approximation is used. Generally, the Greek letter $\Delta$ is just prepended to the method name, giving $\Delta$SCF or $\Delta$HF for Hartree-Fock \cite{Bag1965,Deu1976,Amb2019}, $\Delta$KS (Kohn-Sham) or $\Delta$DFT for DFT \cite{Tri1999,Tak2003,Bes2009}, and so on. At the moment of writing, excitation energies are also routinely computed using $\Delta$MP$n$ \cite{Hol2011}, $\Delta$CI, $\Delta$MCSCF \cite{Sch2015} and $\Delta$CC \cite{Hol2011,Zhe2019}. From here on out, $\Delta$X will be used as an umbrella term to group all aforementioned terms. 
 
-Despite the simplicity of the $\Delta$X methods, obtaining a solution to the KS or HF equations for higher energy states is non-trivial. By the variational principle, the SCF method finds the lowest energy solution. A HF type excited wave function may therefore collapse to that lowest energy solution during the SCF procedure (variational collapse). For small symmetric molecules, it is possible to converge excited states if they have a different spin multiplicity or spatial point group to the ground state. If the ground and excited state have the same symmetry however, this approach will not work. This technical difficulty was one of reasons why $\Delta$X methods never gained much ground compared to more sophisticated methods.
+Despite the simplicity of the $\Delta$X methods, obtaining a solution to the KS or HF equations for higher energy states is non-trivial. By the variational principle, the SCF method finds the lowest energy solution. A HF type excited wave function may therefore collapse to that lowest energy solution during the SCF procedure (variational collapse). For small symmetric molecules, it is possible to converge excited states if they have a different spin multiplicity or spatial point group than the ground state. If the ground and excited state have the same symmetry however, this approach will not work. This technical difficulty was one of reasons why $\Delta$X methods never gained much ground compared to more sophisticated methods.
 
 In 2008, Gilbert et al. \cite{Gil2008} proposed a modification the SCF procedure that prevents variational collapse, known as the \emph{maximum overlap method} (MOM). On each iteration, the new guess orbitals are obtained by diagonalization of the Fock matrix which is constructed using the old coefficients
 \begin{equation}
@@ -52,7 +52,7 @@ In 2008, Gilbert et al. \cite{Gil2008} proposed a modification the SCF procedure
 \begin{equation}
 \mbf{O} = (\mbf{C}^{old})\pdg \mbf{C}^{new}
 \end{equation}
-\noindent The maximum overlap method has led to a renewed interest in the $\Delta$X methods in recent years, especially in the context of core excitations and ionizations. 
+\noindent The maximum overlap method has led to a renewed interest in the $\Delta$X methods in recent years, especially in the context of core excitations and ionizations as they capture relaxation effects.
 
 Adding to the above-mentioned technical difficulties, there are several other known criticisms. First, each excited state requires a separately optimized wave function, which may become a limiting factor for multi-state calculations. Second, the $\Delta$X methods assume that a transition can be represented by an excitation involving only two orbitals. The separate optimization generally leads to the excited states being non-orthogonal, and there is considerable overlap between high and low energy states \cite{Dav1964,Dav1965,Gil2008}. $\Delta$X is therefore assumed to be only applicable to low-lying excited states. Third, the transition moments cannot be computed directly, but need to be evaluated using Fermi's Golden Rule \cite{Gro2008}. Furthermore, to allow a comparison with experimental XAS spectra, the calculated transition energies must be convoluted, for example by Gaussian functions, to 
 account for the finite experimental resolution and  lifetime of the electron hole. Finally, using an unrestricted HF or KS formalism leads to spin contamination. A single excited state is not a pure singlet but a mixture of singlet and triplet state. Spin contamination can be alleviated by applying Ziegler's spin purification formula \cite{Zie1977}:
@@ -598,7 +598,7 @@ An interesting relationship can be established between ADC(2) and CC2-LR \cite{H
 \noindent where $\mu_1$, $\mu_2$ are the single and double excitation manifolds. By replacing the similarity-transformed Hamiltonian $\hat{\bar{H}}$ by the Hamiltonian itself, the CIS(D) matrix reads
 \begin{equation}
 \mbf{A}^{CIS(D)} = \left( \begin{matrix}
-\sbra{\mu_1} \left[ (\hat{\bar{H}} + \left[ \smash{ \hat{H},\hat{T}_2} \right]), \tau_{\nu_1} \right] \sket{HF} &  \sbra{\mu_1} \left[ \hat{H}, \tau_{\nu_2} \right] \sket{HF} \\
+\sbra{\mu_1} \left[ (\hat{H} + \left[ \smash{ \hat{H},\hat{T}_2} \right]), \tau_{\nu_1} \right] \sket{HF} &  \sbra{\mu_1} \left[ \hat{H}, \tau_{\nu_2} \right] \sket{HF} \\
 \sbra{\mu_2} \left[ \hat{H}, \tau_{\nu_1} \right] \sket{HF} & \sbra{\mu_2} \left[ (\hat{H} + \left[ \smash{ \hat{F},\hat{T}_2} \right]), \tau_{\nu_2} \right] \sket{HF}
 \end{matrix}
 \right)
@@ -635,7 +635,7 @@ An alternative way for describing the molecular response to an external field us
 The (de-)excitation operators can be truncated similar to $\hat{T}$ to yield different approximations (EOM-CCS, EOM-CCSD...). The cluster amplitudes and the excitation energies are obtained 
 by solving the non-Hermitian eigenvalue problem 
 \begin{align}
-\sbra{\mu} \hat{\bar{H}} \hat{R} \sket{HF} &= 0 \\
+\sbra{\mu} \hat{\bar{H}} - E  \sket{\hat{R} HF} &= 0 \\
 \sbra{HF \hat{L}} \hat{\bar{H}} - E \sket{HF} &= 0
 \end{align}
 The excitation energies obtained by solving the LR-CC and EOM-CC eigenvalue problems are identical for pure CC models (CCSD, CCSDT...), but they give different results for transition moments and excited-state properties.

@@ -7,6 +7,7 @@
 \usepackage{extarrows} 
 \usepackage{makecell}
 \usepackage[ngerman,american]{babel}
+\usepackage[T1]{fontenc}
 \usepackage{placeins}
 \usepackage{fancyhdr}
 \usepackage{multirow}
@@ -50,11 +51,12 @@
 }
 \fancypagestyle{followingpage}{%
 \fancyhf{} % clear all six fields
-\fancyhead[LE,RO]{\textbf{\thepage}}
-\fancyhead[LO,RE]{\nouppercase{\rightmark}}
+\fancyhead[LE,RO]{\nouppercase{\rightmark}}
+\fancyhead[LO,RE]{\textbf{\thepage}}
 \renewcommand{\headrulewidth}{0.7pt}
 \renewcommand{\footrulewidth}{0pt}
 }
+\setlength{\headheight}{15pt}
 \pagestyle{followingpage}
  
 
@@ -315,6 +317,9 @@
 \hyphenation{cuda-Memcpy}
 \hyphenation{al-ge-braic}
 \hyphenation{dia-gram-ma-tic}
+\hyphenation{dou-ble}
+\hyphenation{dou-bles}
+\hyphenation{fol-ding}
 \hyphenation{con-struct-ion}
 \hyphenation{de-pen-den-cy}
 \hyphenation{ap-proxi-ma-tion}
@@ -343,6 +348,17 @@
 \hyphenation{re-pre-sen-ta-tions}
 \hyphenation{trans-for-ma-tion}
 \hyphenation{trans-for-ma-tions}
+\hyphenation{me-thod}
+\hyphenation{dia-gona-li-za-tion}
+\hyphenation{im-prove-ment}
+\hyphenation{in-tro-du-cing}
+\hyphenation{per-tur-ba-tion}
+\hyphenation{de-ri-va-tive}
+\hyphenation{per-tur-ba-tions}
+\hyphenation{de-ri-va-tives}
+\hyphenation{mo-le-c-u-les}
+\hyphenation{Schrö-din-ger}
+\hyphenation{ap-prox-i-mate}
 
 \selectlanguage{ngerman}
 
@@ -350,9 +366,18 @@
 \hyphenation{Clus-ter}
 \hyphenation{Me-tho-den}
 \hyphenation{e-lek-tro-ni-schen}
+\hyphenation{Zu-stän-de}
+\hyphenation{Kon-struk-ti-on}
 \hyphenation{mo-le-ku-la-ren}
 \hyphenation{Kom-bi-na-tion}
 \hyphenation{Rechnungs-kosten}
+\hyphenation{ein-ge-schränkt}
+\hyphenation{an-ge-reg-ter}
+\hyphenation{Ska-lie-rung}
+\hyphenation{Re-chen-kom-ple-xi-tät}
+\hyphenation{Or-bi-tal-ba-sis}
+\hyphenation{For-mu-lie-rung}
+\hyphenation{Ska-lier-bar-keit}
 
 \selectlanguage{american}
 

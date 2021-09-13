@@ -1330,6 +1330,49 @@ Evgeny Epifanovsky, Michael Wormit, Tomasz Ku{\ifmmode\acute{s}\else\'{s}\fi},
   block tensor library for high-performance electronic structure calculations}.
 \newblock {\em J. Comput. Chem.}, 34(26):2293--2309, Oct 2013.
 
+\bibitem{Sha2015}
+Yihan Shao, Zhengting Gan, Evgeny Epifanovsky, Andrew T.~B. Gilbert, Michael
+  Wormit, Joerg Kussmann, Adrian~W. Lange, Andrew Behn, Jia Deng, Xintian Feng,
+  Debashree Ghosh, Matthew Goldey, Paul~R. Horn, Leif~D. Jacobson, Ilya
+  Kaliman, Rustam~Z. Khaliullin, Tomasz Ku{\ifmmode\acute{s}\else\'{s}\fi},
+  Arie Landau, Jie Liu, Emil~I. Proynov, Young~Min Rhee, Ryan~M. Richard,
+  Mary~A. Rohrdanz, Ryan~P. Steele, Eric~J. Sundstrom, H.~Lee Woodcock, Paul~M.
+  Zimmerman, Dmitry Zuev, Ben Albrecht, Ethan Alguire, Brian Austin, Gregory
+  J.~O. Beran, Yves~A. Bernard, Eric Berquist, Kai Brandhorst, Ksenia~B.
+  Bravaya, Shawn~T. Brown, David Casanova, Chun-Min Chang, Yunqing Chen,
+  Siu~Hung Chien, Kristina~D. Closser, Deborah~L. Crittenden, Michael
+  Diedenhofen, Robert~A. DiStasio, Hainam Do, Anthony~D. Dutoi, Richard~G.
+  Edgar, Shervin Fatehi, Laszlo Fusti-Molnar, An~Ghysels, Anna
+  Golubeva-Zadorozhnaya, Joseph Gomes, Magnus W.~D. Hanson-Heine, Philipp H.~P.
+  Harbach, Andreas~W. Hauser, Edward~G. Hohenstein, Zachary~C. Holden,
+  Thomas-C. Jagau, Hyunjun Ji, Benjamin Kaduk, Kirill Khistyaev, Jaehoon Kim,
+  Jihan Kim, Rollin~A. King, Phil Klunzinger, Dmytro Kosenkov, Tim Kowalczyk,
+  Caroline~M. Krauter, Ka~Un Lao, Ad{\ifmmode\grave{e}\else\`{e}\fi}le~D.
+  Laurent, Keith~V. Lawler, Sergey~V. Levchenko, Ching~Yeh Lin, Fenglai Liu,
+  Ester Livshits, Rohini~C. Lochan, Arne Luenser, Prashant Manohar, Samuel~F.
+  Manzer, Shan-Ping Mao, Narbe Mardirossian, Aleksandr~V. Marenich, Simon~A.
+  Maurer, Nicholas~J. Mayhall, Eric Neuscamman, C.~Melania Oana, Roberto
+  Olivares-Amaya, Darragh~P. O{'}Neill, John~A. Parkhill, Trilisa~M. Perrine,
+  Roberto Peverati, Alexander Prociuk, Dirk~R. Rehn, Edina Rosta, Nicholas~J.
+  Russ, Shaama~M. Sharada, Sandeep Sharma, David~W. Small, Alexander Sodt,
+  Tamar Stein, David St{\ifmmode\ddot{u}\else\"{u}\fi}ck, Yu-Chuan Su, Alex
+  J.~W. Thom, Takashi Tsuchimochi, Vitalii Vanovschi, Leslie Vogt, Oleg Vydrov,
+  Tao Wang, Mark~A. Watson, Jan Wenzel, Alec White, Christopher~F. Williams,
+  Jun Yang, Sina Yeganeh, Shane~R. Yost, Zhi-Qiang You, Igor~Ying Zhang, Xing
+  Zhang, Yan Zhao, Bernard~R. Brooks, Garnet K.~L. Chan, Daniel~M. Chipman,
+  Christopher~J. Cramer, William~A. Goddard, Mark~S. Gordon, Warren~J. Hehre,
+  Andreas Klamt, Henry~F. Schaefer, Michael~W. Schmidt, C.~David Sherrill,
+  Donald~G. Truhlar, Arieh Warshel, Xin Xu, Al{\ifmmode\acute{a}\else\'{a}\fi}n
+  Aspuru-Guzik, Roi Baer, Alexis~T. Bell, Nicholas~A. Besley, Jeng-Da Chai,
+  Andreas Dreuw, Barry~D. Dunietz, Thomas~R. Furlani, Steven~R. Gwaltney,
+  Chao-Ping Hsu, Yousung Jung, Jing Kong, Daniel~S. Lambrecht, WanZhen Liang,
+  Christian Ochsenfeld, Vitaly~A. Rassolov, Lyudmila~V. Slipchenko, Joseph~E.
+  Subotnik, Troy Van~Voorhis, John~M. Herbert, Anna~I. Krylov, Peter M.~W.
+  Gill, and Martin Head-Gordon.
+\newblock {Advances in molecular quantum chemistry contained in the Q-Chem 4
+  program package}.
+\newblock {\em Mol. Phys.}, 113(2):184--215, Jan 2015.
+
 \bibitem{Och2021}
 {Theoretical Chemistry Group - Faculty for Chemistry and Pharmacy - Download},
   Aug 2021.

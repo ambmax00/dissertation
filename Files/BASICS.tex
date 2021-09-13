@@ -1,6 +1,6 @@
 \chapter{Electronic Structure Methods for the Ground State}
 
-Over the last decades, quantum chemistry has emerged as a crucial tool for investigating a wide variety of problems in chemistry. This, in combination with the increasing performance and widespread use of computers, has spawned a whole new branch of chemistry known as \emph{computational chemistry}. The field of computational chemistry uses methods developed in \emph{theoretical chemistry} and incorporates them into efficient programs. Quantum chemical methods are routinely applied to assist in solving problems related to chemical structure, reactivity and spectroscopy. However, one of the main problems in computational chemistry is choosing a suitable level of theory for a given problem - the best choice is always a trade-off between speed and accuracy, and requires intricate knowledge of the methods' theoretical and computational limits. This chapter summarizes the core concepts of quantum chemistry and its most important methods for computing the ground state. It is by no means complete, and the reader is referred to the original text book resources for more details \cite{Sza1996,Hel2000,Jen2017,Nor2018,Sch2018}.
+Over the last decades, quantum chemistry has emerged as a crucial tool for investigating a wide variety of problems in chemistry. This, in combination with the increasing performance and widespread use of computers, has spawned a whole new branch of chemistry known as \emph{computational chemistry}. The field of computational chemistry uses methods developed in \emph{theoretical chemistry} and incorporates them into efficient programs. Quantum chemical methods are routinely applied to assist in solving problems related to chemical structure, reactivity and spectroscopy. However, one of the main problems in computational chemistry is choosing a suitable level of theory for a given problem - the best choice is always a trade-off between speed and accuracy, and requires intricate knowledge of the methods' theoretical and computational limits. This chapter summarizes the core concepts of quantum chemistry and its most important methods for computing the ground state. It is by no means complete, and the reader is referred to the original text book resources on which this chapter is based on. \cite{Sza1996,Hel2000,Jen2017,Nor2018,Sch2018}.
 
 \section{Describing Dynamics in a Molecular System}
 
@@ -35,7 +35,7 @@ Classical Newtonian mechanics cannot be applied to very light particles such as 
 \hat{H} = \hat{T} + \hat{V} \\
 \hat{T} = -\frac{1}{2m} \nabla^2
 \end{align}
-\noindent and $\Psi$ is the wave function of the system, which is obtained as the solution to the Schrödinger equation, and gives the probability of finding a particle at position $\mbf{r}$ at time $t$. Here, atomic units are assumed.
+\noindent and $\Psi$ is the wave function of the system, which is obtained as the solution to the Schrödinger equation, and $\abs{\Psi}^2$ gives the probability of finding a particle at position $\mbf{r}$ at time $t$. Here, atomic units are assumed.
 
 For electrons moving at relativistic speed, for example in the core orbitals of super-heavy atoms like Uranium, the Hamiltonian takes a more complex form, and the Schrödinger equation is then known as the $\emph{Dirac}$ equation:
 \begin{equation}
@@ -102,7 +102,7 @@ From this point onward, the subscript $elec$ is dropped, and only the electronic
 
 \subsection{Slater Determinants}
 
-It is beneficial to first consider the wave function of the single electrons. In single-atom systems, these functions take the form of "atomic orbitals" (AOs). Correspondingly, "molecular orbitals" (MOs) are defined as the single electron wave functions in a molecular system. These spatial orbital functions form the basis of the full electronic wave function.  
+It is beneficial to first consider the wave function of a single electron. In single-atom systems, these functions take the form of "atomic orbitals" (AOs). Correspondingly, "molecular orbitals" (MOs) are defined as the single electron wave functions in a molecular system. These spatial orbital functions form the basis of the full electronic wave function.  
 
 The Hamiltonian in \ref{eq:FULLHAMILTONIAN} only depends on the spatial coordinates. However, to fully describe an electron, spin also needs to be considered. This is done by introducing two orthonormal spin functions $\alpha(\omega)$ and $\beta(\omega)$ corresponding to spin-up ($\uparrow$) and spin-down ($\downarrow$), with the spin-coordinate $\omega$. For one spatial molecular orbital, this gives two possible \emph{spin-orbitals}
 \begin{equation}
@@ -117,7 +117,7 @@ To a first approximation, one may consider a molecular system to consist of $N$ 
 \begin{equation}
 \mathbf{H} = \sum_i^N \mathbf{h}_i 
 \end{equation}
-\noindent Electron correlation may then be included in some average way by using \emph{effective} one-electron Hamiltonians, which is the basic working idea of the \emph{Hartree} method. The solution to the SEQ can then be expressed as a product of the one electron wave functions
+\noindent Electron correlation may be included in some average way by using \emph{effective} one-electron Hamiltonians, which is the basic working idea of the \emph{Hartree} method. The solution to the SEQ can then be expressed as a product of the one electron wave functions
 \begin{equation}
 \Psi^{HP}(\mbf{x}_1,\mbf{x}_2,...,\mbf{x}_N) = \phi(\mbf{x}_1) \phi(\mbf{x}_2) ... \phi(\mbf{x}_N)
 \end{equation}
@@ -155,7 +155,7 @@ A more generalized representation of the space of the antisymmetrized electron w
 \right.
 \label{eq:ONVECTORS}
 \end{equation}
-\noindent The occupation number is 1 if $\phi_P$ is present in the SD, and 0 if not. Together, all possible ON vectors in Equation \ref{eq:ONVECTORS} form an orthonormal abstract vector space, known as Fock space. The Fock space formed by $N$ electrons distributed over $M$ orbitals is denoted as $F(M,N)$ with total dimension equal to the binomial coefficient $\smash{{M\choose N}}$. The sum of the occupation numbers in the ON vectors gives the total number of electrons
+\noindent The occupation number is 1 if $\phi_P$ is present in the SD, and 0 if not. Together, all possible ON vectors in Equation \ref{eq:ONVECTORS} form an orthonormal abstract vector space, known as Fock space. The Fock space formed by $N$ electrons distributed over $M$ orbitals is denoted as $F(M,N)$ with total dimension equal to the binomial coefficient $\smash{\binom{M}{N}}$. The sum of the occupation numbers in the ON vectors gives the total number of electrons
 \begin{equation}
 N = \sum_i^M k_i
 \end{equation}
@@ -164,7 +164,7 @@ N = \sum_i^M k_i
 &\ket{vac} = \ket{0_1, 0_2, \ldots, 0_M} \\
 &\bra{vac}\ket{vac} = 1
 \end{align}
-\noindent The ON vectors in $F(M,N)$ can be alternatively expressed in terms of the vacuum state from $F(M,0)$ using creation operators
+\noindent The ON vectors in $F(M,N)$ can alternatively be expressed in terms of the vacuum state from $F(M,0)$ using creation operators
 \begin{equation}
 \ket{\mbf{k}} = \left[ \prod_{P=1}^M (a\pdg_P)^{k_P} \right] \ket{vac}
 \end{equation}
@@ -191,10 +191,10 @@ In order to improve on the HF approximation, it is important to add additional S
 
 The exact solution to the electronic Schrödinger equation is then given by the sum of the Hartree-Fock wave function and all possible ON vectors in $F(M,N)$
 \begin{equation}
-\ket{\Psi} = c_0 \ket{HF} + \sum^{{{M}\choose{N}}-1}_{i=1} c_i  \ket{i} 
+\ket{\Psi} = c_0 \ket{HF} + \sum^{\binom{M}{N}-1}_{i=1} c_i  \ket{i} 
 \label{eq:EXACTWF}
 \end{equation}  
-\noindent Equation \ref{eq:EXACTWF} offers a systematic approach to improve on the Hartree Fock method, by increasing (1) the number of Slater determinants and (2) the basis set size $M$, and gives rise to a hierarchy of methods (Figure \ref{fig:STANDARDMODEL}). Correlated electronic structure methods mainly differ by how they determine the expansion coefficients $c$. For all but the smallest systems, the full $F(M,N)$ Fock space cannot be used in calculations due to the total number of ON vectors which increases binomially with $\smash{{M}\choose{N}}$, and hence the number of coefficients to be determined. In practice, the Fock space is \emph{truncated} to some degree.
+\noindent Equation \ref{eq:EXACTWF} offers a systematic approach to improve on the Hartree Fock method, by increasing (1) the number of Slater determinants and (2) the basis set size $M$, and gives rise to a hierarchy of methods (Figure \ref{fig:STANDARDMODEL}). Correlated electronic structure methods mainly differ by how they determine the expansion coefficients $c$. For all but the smallest systems, the full $F(M,N)$ Fock space cannot be used in calculations due to the total number of ON vectors which increases binomially with $\smash{\binom{M}{N}}$, and hence the number of coefficients to be determined. In practice, the Fock space is \emph{truncated} to some degree.
 
 \begin{figure}
 \centering
@@ -203,7 +203,7 @@ The exact solution to the electronic Schrödinger equation is then given by the 
 \label{fig:STANDARDMODEL}
 \end{figure}
 
-\emph{Multi-determinant} methods like configuration interaction (CI) or coupled cluster (CC) use the Hartree Fock wave function as the reference from which they generate singles, doubles, triples ... SDs. By truncating at different excitation levels, one gets a hierarchy of CI/CC methods which recover different amounts of correlation energy (e.g. CIS, CISD, CISDT ...). Multi-determinant methods are mainly suited to recover dynamic correlation.
+\emph{Multi-determinant} methods like configuration interaction (CI) or coupled cluster (CC) use the Hartree Fock wave function as reference from which they generate singles, doubles, triples ... SDs. By truncating at different excitation levels, one gets a hierarchy of CI/CC methods which recover different amounts of correlation energy (e.g. CIS, CISD, CISDT ...). Multi-determinant methods are mainly suited to recover dynamic correlation.
 
 For systems with strong static correlation, additionally, a multi-reference approach is needed. Here, the excited SDs are generated from multiple reference states rather than only from HF. Methods include multi-reference CI (MRCI) and multi-reference CC (MRCC). The reference states are traditionally obtained from multi-configurational self-consistent-field methods (MCSCF) like the complete active space SCF (CASSCF) or restricted active space SCF (RASSCF). MCSCF is a combination of HF and CI, which both optimizes the HF molecular coefficients and the CI expansion coefficients. Multi-reference methods methods mainly recover \emph{static correlation}. 
 
@@ -254,7 +254,7 @@ By using Lagrange's method of undetermined multipliers
 
 \section{Hartree-Fock}
 
-The Hartree-Fock method is central to electronic structure method. It is computationally inexpensive, and is still routinely used in qualitative studies of large molecules, even if it does not accurately account for electron correlation. It also serves as the starting point for correlated methods. Only a few computational methods actually bypass the solution to the Hartree-Fock equations, firmly cementing its place in quantum chemistry.
+The Hartree-Fock method is central to electronic structure theory. It is computationally inexpensive, and is still routinely used in qualitative studies of large molecules, even if it does not accurately account for electron correlation. It also serves as the starting point for correlated methods. Only a few computational methods actually bypass the solution to the Hartree-Fock equations, firmly cementing its place in quantum chemistry.
 
 \subsection{The Hartree Fock Equations}
 
@@ -271,7 +271,7 @@ Recall the structure of the electronic Hamiltonian
 \end{align}
 \noindent In Hartree-Fock theory, the electrons are treated as independent particles. One can therefore ignore the coupling between electrons in $\hat{V}_{ee}$ and express the Hamiltonian as a sum of an effective one-electron operator $\mbf{f}$, also known as the \emph{Fock} operator, of the form
 \begin{align}
-\hat{H} &= \sum_i \hat{f}_i =  \sum_i \mbf{h}_i + \frac{1}{2} \sum_i \sum_{j \neq i} \mbf{g}_ij  \\
+\hat{H} &= \sum_i \hat{f}_i =  \sum_i \mbf{h}_i + \frac{1}{2} \sum_i \sum_{j \neq i} \mbf{g}_{ij} \\
 \hat{h}_i &= -\frac{1}{2}\nabla_i^2 - \sum_a^{N_{nuc}} \frac{Z_a}{\mid \mbf{R}_a - \mbf{r}_i |} \\
 \hat{g}_{ij} &= \frac{1}{\mid \mbf{r}_i - \mbf{r}_j \mid}
 \end{align}
@@ -397,7 +397,7 @@ The SCF procedure is summarized in Algorithm \ref{algo:SCF}. At every iteration,
 \begin{equation}
 \mbf{e} = \mbf{FPS} - \mbf{SPF} 
 \end{equation}
-\noindent At convergence, the density matrix has to commute with the Fock matrix though the overlap matrix. 
+\noindent At convergence, the density matrix has to commute with the Fock matrix through the overlap matrix. 
 
 \begin{algorithm}
 \KwIn{Molecule with nuclear coordinates $\{\mbf{R}_A\}$, atomic numbers $\{Z_A\}$, number of electrons $N$ and basis set $\{\chi_{\mu}\}$}
@@ -430,7 +430,7 @@ Generate a set of guess orbitals to compute an initial guess density $\mbf{P}$
 
 \subsubsection{SCF Initial Guesses}
 
-The preiteration steps compute the two-electron integrals, the transformation matrix $\mbf{X}$ and a set of guess orbitals. There are different methods for generating a guess. The closer the guess is to the solution, the fewer SCF iterations are needed which saves time. The simplest method consists in using a null matrix for $\mbf{P}$, which corresponds to setting the Fock matrix to the core Hamiltonian $\mbf{H}^{core}$. Diagonalization then gives the guess orbitals. The core Hamiltonian gives a sufficiently close starting guess for small molecules, but is unsuitable for larger molecules. 
+The preiteration steps compute the two-electron integrals, the transformation matrix $\mbf{X}$ and a set of guess orbitals. There are different methods for generating a guess. The closer the guess is to the solution, the fewer SCF iterations are needed which saves time. The simplest method consists of using a null matrix for $\mbf{P}$, which corresponds to setting the Fock matrix to the core Hamiltonian $\mbf{H}^{core}$. Diagonalization then gives the guess orbitals. The core Hamiltonian gives a sufficiently close starting guess for small molecules, but is unsuitable for larger molecules. 
 
 The most popular and efficient method at the time of writing is the superposition of atomic densities (SAD) \cite{Van2006}. For each type of atom in the molecule, an atomic HF calculation is carried out which gives the atomic density matrix for this atom type. The molecular guess density matrix is then constructed by setting its diagonal blocks to the atomic densities. The SAD method generates densities that are quite close to the solution. For implementation details, see Appendix \ref{sec:SCFGUESS}.
 
@@ -504,13 +504,13 @@ Configuration interaction (CI) is the simplest and one of the oldest examples of
 \vdots & \vdots & \vdots & \vdots & \vdots & \ddots  
 \end{bmatrix}
 \end{equation}
-\noindent In analogy to the Fock matrix, some blocks in the CI matrix are zero. Brillouin's theorem states that there is no coupling between the ground state and the singlet states. That does not imply that they do not contribute to the CI energy at all. Singles mix \emph{indirectly} via doubles. Moreover, matrix blocks of the Hamiltonian between two SDs which differ by more than two spin orbital orbitals are also zero. Triples mix with doubles and singles, but not with the ground state.
+\noindent In analogy to the Fock matrix, some blocks in the CI matrix are zero. Brillouin's theorem states that there is no coupling between the ground state and the singlet states. That does not imply that they do not contribute to the CI energy at all. Singles mix \emph{indirectly} via doubles. Moreover, matrix blocks of the Hamiltonian between two SDs which differ by more than two spin orbitals are also zero. Triples mix with doubles and singles, but not with the ground state.
 
 A more compact representation of the CI matrix is obtained by taking linear combinations of SDs in the same excitation manifold, known as configuration state functions (CSF) or spin-adapted configurations (SAC). The CSFs form a basis smaller than that composed of all individual SDs which leads to computational savings. However, CSFs were primarly introduced to preserve the spin symmetry of the ground state, or in other words, CSFs are eigenfunctions of the $\mbf{S}^2$ operator. If the HF ground state is a singlet, a non-spin-symmetric CI basis may lead to the CI wave function being a mixture of singlet and triplet determinants. 
 
 \subsection{Truncated CI}
 
-Full CI, i.e. including all excitation manifolds, is only computationally feasible for all but the smallest molecules, due to the binomial increase in the number of SDs as a function of system and basis set size. For this reason, the CI wave function is often truncated at a given excitation level. Including only singles gives configuration interaction with singles (CIS), including singles and doubles yields configuration interaction with singles and doubles (CISD), etc. Higher order methods recover a larger fraction of the correlation energy, but come at a higher computational cost.
+Full CI, i.e. including all excitation manifolds, is only computationally feasible for the smallest molecules, due to the binomial increase in the number of SDs as a function of system and basis set size. For this reason, the CI wave function is often truncated at a given excitation level. Including only singles gives configuration interaction with singles (CIS), including singles and doubles yields configuration interaction with singles and doubles (CISD), etc. Higher order methods recover a larger fraction of the correlation energy, but come at a higher computational cost.
 
 It should be noted that the energy of the CIS wave function is equal to the HF energy due to Brillouin's theorem, and hence does not contribute to the correlation energy of the ground state.  
 
@@ -524,7 +524,7 @@ Even at relatively low truncation levels, the number of matrix elements have a q
 
 \subsection{Size Consistency and Size Extensivity}
 
-Over the years, single-reference truncated CI methods have fallen out of favor for more sophisticated methods, due to them not being size-consistent and size-extensive. \emph{Size-consistency} refers to the idea that the energy of two non-interacting systems $A$ and $B$ should be equal to the sum of their individual energies obtained from two different calculations:
+Over the years, single-reference truncated CI methods have fallen out of favor for more sophisticated methods, due to CI not being size-consistent and size-extensive. \emph{Size-consistency} refers to the idea that the energy of two non-interacting systems $A$ and $B$ should be equal to the sum of their individual energies obtained from two different calculations:
 \begin{equation}
 E(A+B) = E(A) + E(B)
 \end{equation}
@@ -578,7 +578,7 @@ exp(\hat{T}_1 + \hat{T}_2 + \hat{T}_3) &= \hat{T}_3 + \hat{T}_1 \hat{T}_2 + \fra
 
 \subsection{The Coupled Cluster Equations} 
 
-The cluster amplitudes are unknown and need to be solved for. Equations for the amplitudes can be obtained by projecting the excitation manifolds onto the CC ground state wave function \ref{eq:CCANSATZ}. Using the so-called \emph{similarity-transformed} Hamiltonian
+The cluster amplitudes are unknown and need to be solved for. Equations for the amplitudes can be obtained by projecting the Schrödinger equation with the CC ansatz \ref{eq:CCANSATZ} onto the excitation manifolds. Using the so-called \emph{similarity-transformed} Hamiltonian
 \begin{equation}
 \hat{\bar{H}} = exp(-\hat{T}) \hat{H} exp(\hat{T})
 \end{equation} 
@@ -609,7 +609,7 @@ Coupled cluster and configuration interaction offer a systematic way to move tow
 
 \subsection{Rayleigh-Schrödinger Perturbation Theory}
 
-Perturbation theory is used in a wide range of fields and disciplines in natural sciences and mathematics. In the context of molecular electronic structure theory, the most widely used form of PT is Rayleigh Schrödinger perturbation theory (RSPT). In RSPT, the Hamiltonian is partitioned according to
+Perturbation theory is used in a wide range of fields and disciplines in natural sciences and mathematics. In the context of molecular electronic structure theory, the most widely used form of PT is Rayleigh-Schrödinger perturbation theory (RSPT). In RSPT, the Hamiltonian is partitioned according to
 \begin{equation}
 \hat{H} = \hat{H}_0 + \hat{U}
 \end{equation}
@@ -735,7 +735,7 @@ MP2 is a computationally cheap correlated method that includes 80\% to 90\% of e
 
 Ideally, the MP$n$ energy should converge monotonically towards the limit with increasing order of perturbation. However, such a behavior is not guaranteed. Contrary to the CI energy, which is determined variationally and therefore has a lower bound, the same is not true for MPPT and the MP$n$ series may become divergent or oscillating for larger basis sets, especially if diffuse functions are used. MP2 improves on the HF wave function, but slightly overestimates correlation energy. MP3 underestimates electron correlation, and properties computed at this level are often inferior to those computed at second order. MP4 again overestimates correlation effects, but is better than MP2.
 
-Due to the erratic convergence behavior of MPPT, higher order variations like MP3 or MP4 have fallen somewhat out of favor in the recent years. Moreover, the requirement of the single-determinant HF wave function being a suitable starting guess makes MPPT ill-suited to describe static correlation effects.  
+Due to the erratic convergence behavior of MPPT, higher order variations like MP3 or MP4 have fallen somewhat out of favor in recent years. Moreover, the requirement of the single-determinant HF wave function being a suitable starting guess makes MPPT ill-suited to describe static correlation effects.  
 
 \subsection{Spin-Component-Scaled M{\o}ller Plesset Perturbation Theory \label{sec:SCSMP2}}
 
@@ -762,7 +762,7 @@ E_{SCS-MP2} = c_{os} E_{OS-MP2} + c_{ss} E_{SS-MP2}
 \begin{equation}
 c_{ss} = 4 - 3c_{os}
 \end{equation}
-\noindent whit $c_{ss}$ and $c_{os}$ set to 0.4 and 1.3 respectively.
+\noindent whit $c_{ss}$ and $c_{os}$ set to 0.4 and 1.2 respectively.
 
 SCS-MP2 gives considerable improvements to reaction energies \cite{Gri2003}, barrier heights \cite{Gou2004,Bul2004}, geometries and vibrational frequencies \cite{Ger2004}, comparable to QCISD(T) with errors on the order of 1.7 kcal/mol. Strictly speaking, SCS-MP2 is no longer an \emph{ab initio} method, but \emph{semi-empirical}. SCS was initially an \emph{ad-hoc} improvement to the description of the wave function, but it is possible to justify its position in the theoretical framework of MPPT \cite{Sza2006,Fin2010}. 
 
@@ -790,7 +790,7 @@ Consider again the CCSD equations for the coupled cluster singles \ref{eq:CCSDEQ
 
 The CC2 energy has a similar accuracy and computational effort to MP2. Spin-component scaling has been generalized to CC2 as well \cite{Hel2008,Win2011}, with similar improvements to its accuracy \cite{Taj2019}. 
 
-Higher order CC methods like CCSDT can be approximated in a similar way to obtain the approximate CC3 method \cite{Koc1997}, where triples contributions are approximated to second order. A related method is the coupled cluster singles doubles with perturbative triples method \cite{Rag1989}, abbreviated as CCSD(T), where triples contributions are treated perturbatively and \emph{added} to the CCSD model. CCSD(T) and CC3 have comparable accuracy and cost. 
+Higher order CC methods like CCSDT can be approximated in a similar way to obtain the approximate CC3 method \cite{Koc1997}, where triples contributions are approximated to second order. A related method is the coupled cluster singles doubles with perturbative non-iterative triples method \cite{Rag1989}, abbreviated as CCSD(T), where triples contributions to the energy are added to the CCSD ground state energy. CCSD(T) and CC3 have comparable accuracy and cost. 
 
 % 1 DOI: 10.1039/b803727b Hel2008
 % 2 DOI: 10.1063/1.3584177 Win2011
