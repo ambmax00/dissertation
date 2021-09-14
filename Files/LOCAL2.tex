@@ -1,8 +1,6 @@
 \chapter{Local Correlation Methods (III): Excited States}
 
-While local correlation methods for the ground state have been around since the 1980s, the extension of the local treatment of electron correlation to excited states is relatively new. With the earliest attempts dating back to the 2000s, many new approaches and approximations have emerged over the last decade, building on the concepts of LMOs, NOs and PNOs. One of the major obstacles that makes a straight-forward extension to excited states difficult is the long-range character of certain excitations, such as charge transfer states. In contrast to the description of electron correlation in the ground state, the occupied and virtual orbitals involved in electron transitions can be very far apart. This means that the optimal molecular orbital space for the excited state can be very different from that of the ground state. 
-
-This chapter presents the state of the art for local correlated excited state methods (ADC, CCLR, EOM-CC) for LMOs, NOs, PNOs, and combinations thereof. Atomic orbital approaches are discussed as well. 
+While local correlation methods for the ground state have been around since the 1980s, the extension of the local treatment of electron correlation to excited states is relatively new. With the earliest attempts dating back to the 2000s, many new approaches and approximations have emerged over the last decade, building on the concepts of LMOs, NOs and PNOs. One of the major obstacles that makes a straight-forward extension to excited states difficult is the long-range character of certain excitations, such as charge transfer states. In contrast to the description of electron correlation in the ground state, the occupied and virtual orbitals involved in electron transitions can be very far apart. This means that the optimal molecular orbital space for the excited state can be very different from that of the ground state. This chapter presents the state of the art for local correlated excited state methods (ADC, CCLR, EOM-CC) for LMOs, NOs, PNOs, and combinations thereof. Atomic orbital approaches are discussed as well. 
 
 % Bau2017 CornFlex https://aip.scitation.org/doi/pdf/10.1063/1.4984820
 
@@ -219,15 +217,15 @@ r_{ia} &= C_{\mu i} F_{\mu\nu} C_{\mu a}
 
 \begin{figure}
 \centering
-\begin{subfigure}{0.3\linewidth}
+\begin{subfigure}{0.4\textwidth}
 \centering
-\includegraphics[scale=0.6]{Pics/CISDENSE}
+\includegraphics[width=\textwidth]{Pics/CISDENSE}
 \caption{}
 \end{subfigure}
 $\Longrightarrow$
-\begin{subfigure}{0.6\linewidth}
+\begin{subfigure}{0.5\textwidth}
 \centering
-\includegraphics[scale=0.6]{Pics/CIS}
+\includegraphics[width=\textwidth]{Pics/CIS}
 \caption{}
 \end{subfigure}
 \caption[Logarithm of the absolute values of the matrix elements in the transition densities in the MO and AO basis for the lowest excited state for the carboxylic acid C$_{79}$H$_{159}$COOH.]{Logarithm of the absolute values of the matrix elements in the transition densities in the MO (left) and AO basis (right) for the lowest excited state for the carboxylic acid C$_{79}$H$_{159}$COOH. The excitation domain is entirely localized on the carboxylic group. Using sparse matrix algebra, significant speed-ups can be obtained for CIS in the AO basis.}
@@ -254,8 +252,8 @@ $\Longrightarrow$
 %PURE AO FORMULATION THOULESS INTEGRAL
 %PROBLEM: MO ENERGIES ARE NEEDED. if a pure ao algorithm, most likely a whole other approach that tries to get "density metrix perturbation"
 
-\section{Molecular Orbital-free Approaches}
+%\section{Molecular Orbital-free Approaches}
 
-Maybe if I have time
+%Maybe if I have time
 %https://aip.scitation.org/doi/full/10.1063/1.2961039?casa_token=XyapU_j1S9YAAAAA%3A6MKC3CuVoVEGS1bR-G3uHzyMo_UMcvArZKA2EkxO8Pwzc1gJWI0qwUWF6GB1PL7XEjDQH2lwrDniBQ
 % https://aip.scitation.org/doi/10.1063/1.2965535

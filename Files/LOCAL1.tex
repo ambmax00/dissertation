@@ -323,7 +323,7 @@ Tr[\mathbf{I}_{exp}] = \sum_i e^{0.25 \ln w\pa + \eps_i t\pa} + \sum_a e^{0.25 \
 
 \subsubsection{Quadratic Scaling AO-MP2}
 
-Using the linked index rule, the complexity of the AO-MP2 method can easily be determined. The energy expression in Equation \ref{eq:AOMP2ENERGY} involves the dot product between two different tensors, the AO-ERIs $\cn{\mu\sigma}{\nu\lambda}$ and the pseudo-AO-ERIs $\cn{\ulgm\olgs}{\ulgn\olgl}\pa$. The scaling is thus determined by the sparsity of those two tensors. From the discussion in Chapter 3, it followed that the ERIs can be computed with $\ccpx{2}$ effort. The pseudo-AO ERIs are computed by transforming the ERIs with the pseudo-density matrices, whose indices $\mu,\nu$ are connected by a P junction. The diagrammatic expression for the pseudo-AO ERIs \ref{eq:PSEUDOAOINTS} is given by
+Using the linked index rule, the complexity of the AO-MP2 method can easily be determined. The energy expression in Equation \ref{eq:AOMP2ENERGY} involves the dot product between two different tensors, the AO-ERIs $\cn{\mu\sigma}{\nu\lambda}$ and the pseudo-AO-ERIs $\smash{\cn{\ulgm\olgs}{\ulgn\olgl}}\pa$. The scaling is thus determined by the sparsity of those two tensors. From the discussion in Chapter 3, it followed that the ERIs can be computed with $\ccpx{2}$ effort. The pseudo-AO ERIs are computed by transforming the ERIs with the pseudo-density matrices, whose indices $\mu,\nu$ are connected by a P junction. The diagrammatic expression for the pseudo-AO ERIs \ref{eq:PSEUDOAOINTS} is given by
 \begin{equation}
 \begin{split}
 \mu \xlr{P} \mu' \xlr{S} \sigma' \xlr{P} \sigma \\

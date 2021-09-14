@@ -15,7 +15,7 @@
 \contentsline {section}{\numberline {1.4}Hartree-Fock}{14}{}%
 \contentsline {subsection}{\numberline {1.4.1}The Hartree Fock Equations}{14}{}%
 \contentsline {subsection}{\numberline {1.4.2}The Basis Set Approximation}{16}{}%
-\contentsline {subsection}{\numberline {1.4.3}Working Equations for Restricted and Unrestricted Hartree-Fock}{16}{}%
+\contentsline {subsection}{\numberline {1.4.3}Working Equations for Restricted and Unrestricted Hartree\HyphOrDash /Fock}{16}{}%
 \contentsline {subsection}{\numberline {1.4.4}The Self-Consistent Field Method}{18}{}%
 \contentsline {subsubsection}{SCF Initial Guesses}{18}{}%
 \contentsline {subsubsection}{SCF convergence}{19}{}%
@@ -34,13 +34,13 @@
 \contentsline {subsection}{\numberline {1.8.1}Rayleigh-Schrödinger Perturbation Theory}{25}{}%
 \contentsline {subsection}{\numberline {1.8.2}M{\o }ller-Plesset Perturbation Theory}{27}{}%
 \contentsline {subsection}{\numberline {1.8.3}Convergence Behavior of the MP$n$ series}{28}{}%
-\contentsline {subsection}{\numberline {1.8.4}Spin-Component-Scaled M{\o }ller Plesset Perturbation Theory }{28}{}%
+\contentsline {subsection}{\numberline {1.8.4}M{\o }ller-Plesset Perturbation Theory with Spin-Component-Scaling }{28}{}%
 \contentsline {subsection}{\numberline {1.8.5}Hybrid Coupled Cluster Methods}{29}{}%
 \contentsline {section}{\numberline {1.9}Performance of Correlated Methods}{30}{}%
 \contentsline {chapter}{\numberline {2}Electronic Excited States}{32}{}%
 \contentsline {section}{\numberline {2.1}Nature of Excited States}{32}{}%
 \contentsline {section}{\numberline {2.2}Explicit Optimization of the Excited State Wave Function}{34}{}%
-\contentsline {section}{\numberline {2.3}The Algebraic Diagrammatic Construction Method}{35}{}%
+\contentsline {section}{\numberline {2.3}The Algebraic Diagrammatic Construction Scheme}{35}{}%
 \contentsline {subsection}{\numberline {2.3.1}Many-Body Green's Function}{35}{}%
 \contentsline {subsubsection}{One-electron Propagator}{36}{}%
 \contentsline {subsubsection}{Polarization Propagator}{37}{}%
@@ -120,16 +120,15 @@
 \contentsline {section}{\numberline {4.3}Coupled Cluster}{92}{}%
 \contentsline {chapter}{\numberline {5}Local Correlation Methods (III): Excited States}{93}{}%
 \contentsline {section}{\numberline {5.1}Low-Scaling Correlated Excited State Methods}{93}{}%
-\contentsline {subsection}{\numberline {5.1.1}Orbital Invariance of the Matrix Expressions}{94}{}%
+\contentsline {subsection}{\numberline {5.1.1}Orbital Invariance of the Matrix Expressions}{93}{}%
 \contentsline {subsection}{\numberline {5.1.2}Local Molecular Orbitals and Domains}{95}{}%
 \contentsline {subsection}{\numberline {5.1.3}Natural Orbitals}{96}{}%
-\contentsline {subsection}{\numberline {5.1.4}Pair Natural Orbitals}{98}{}%
+\contentsline {subsection}{\numberline {5.1.4}Pair Natural Orbitals}{97}{}%
 \contentsline {subsection}{\numberline {5.1.5}Natural Transition Orbitals}{98}{}%
 \contentsline {section}{\numberline {5.2}Atomic Orbital Configuration Interaction Singles}{99}{}%
-\contentsline {section}{\numberline {5.3}Molecular Orbital-free Approaches}{100}{}%
 \contentsline {chapter}{\numberline {6}The Spin-Opposite Scaled Algebraic Diagrammatic Construction Method in the Atomic Orbital Basis }{102}{}%
-\contentsline {section}{\numberline {6.1}Working Equations for Restricted ADC with Doubles-Folding}{102}{}%
-\contentsline {section}{\numberline {6.2}Working Equations for Restricted SOS-ADC(2) with Doubles-Folding}{106}{}%
+\contentsline {section}{\numberline {6.1}Restricted ADC with Doubles-Folding}{102}{}%
+\contentsline {section}{\numberline {6.2}Restricted SOS-ADC(2) with Doubles-Folding}{106}{}%
 \contentsline {section}{\numberline {6.3}Working Equations For Restricted AO-SOS-ADC(2)}{108}{}%
 \contentsline {subsection}{\numberline {6.3.1}First Order}{109}{}%
 \contentsline {subsection}{\numberline {6.3.2}Second Order: Part 2A and 2B}{109}{}%
@@ -137,7 +136,7 @@
 \contentsline {subsection}{\numberline {6.3.4}Second Order: Part 2D}{112}{}%
 \contentsline {subsection}{\numberline {6.3.5}Second Order: Part 2E}{113}{}%
 \contentsline {subsection}{\numberline {6.3.6}Summary}{115}{}%
-\contentsline {section}{\numberline {6.4}Working Equations for Restricted AO-DF-SOS-\\ ADC(2) with Doubles-Folding}{116}{}%
+\contentsline {section}{\numberline {6.4}Restricted DF-SOS-ADC(2) with Doubles-Folding in the AO Basis}{116}{}%
 \contentsline {chapter}{\numberline {7}Scaling and Accuracy of atomic-orbital based SOS-ADC(2) }{121}{}%
 \contentsline {section}{\numberline {7.1}Computational Details}{121}{}%
 \contentsline {section}{\numberline {7.2}Ground-state Prerequisites}{121}{}%

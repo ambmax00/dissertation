@@ -101,7 +101,7 @@ To compute $\mbf{M}$ in DFCM and DFCAM, a matrix inversion needs to computed, wh
 \begin{subfigure}{0.45\textwidth}
 \vspace{0pt}
 \centering
-\includegraphics[width=\textwidth]{../articles/art1/qrtime_alkan}
+\includegraphics[width=\textwidth]{Pics/qrtime_alkan}
 %\captionof{figure}[This Figure]{Figure}
 %\par
 \end{subfigure}
@@ -128,7 +128,7 @@ N$_{AO}$ & DFCM & QRDF \\ \hline
 \begin{subfigure}{\textwidth}
 \begin{subfigure}{0.45\textwidth}
 \centering
-\includegraphics[width=\textwidth]{../articles/art1/eri_nze_alkan}
+\includegraphics[width=\textwidth]{Pics/eri_nze_alkan}
 \end{subfigure}
 \hfill
 \begin{subtable}{0.45\textwidth}
@@ -153,7 +153,7 @@ N$_{AO}$ & DFCM & DFCAM & QRDF \\ \hline
 \begin{subfigure}{\textwidth}
 \begin{subfigure}{0.45\textwidth}
 \centering
-\includegraphics[width=\textwidth]{../articles/art1/eri_nze_fw}
+\includegraphics[width=\textwidth]{Pics/eri_nze_fw}
 %\captionof{figure}[This Figure]{Figure}
 \end{subfigure}
 \hfill
@@ -388,7 +388,7 @@ DYAP	 & 1.77	& 27.25	& 94.89	& 1.76 \\
 
 \subsection{Large Molecules: Challenges and Limitations}
 
-An attempt was made to apply CDD-DF-SOS-ADC(2) to chemically interesting molecules with 5000 basis functions or more, with limited success: even if the atomic orbital formulation can exploit sparsity to reduce the memory footprint and scaling, the need for diffuse basis functions  practically nullifies any advantages it provides. The block occupation with aug-cc-pVDZ or def2-SVPD is still above 50\% for non-linear molecules with $\approx$ 300 atoms, and the very large auxiliary basis sets often lead to OOM (out-of-memory) errors due to data duplication in the QRDF algorithm and other routines. For diffuse auxiliary functions, processes often need to hold the whole $\cn{X}{Y}$ matrix in memory while solving the linear least squares problem. For multiple ranks on a single node, this can quickly lead to memory problems. While memory duplication can be reduced by simply using fewer ranks per node, it should be noted that currently the DBCSR tensor library is only optimized for one MPI rank per CPU. Furthermore, each rank can only allocate approximately 2GB of memory at once, because only 4-byte integers (with maximum value 2,147,483,648) are used to specify the size of the memory window that is allocated. Moreover, the need to reorder the tensors before each contraction effectively doubles the space needed by each tensor (see also the discussion in section \ref{sec:tenstor}).
+An attempt was made to apply CDD-DF-SOS-ADC(2) to chemically interesting molecules with 5000 basis functions or more, with limited success: even if the atomic orbital formulation can exploit sparsity to reduce the memory footprint and scaling, the need for diffuse basis functions  practically nullifies any advantages it provides. The block occupation with aug-cc-pVDZ or def2-SVPD is still above 50\% for non-linear molecules containing around 300 atoms, and the very large auxiliary basis sets often lead to OOM (out-of-memory) errors due to data duplication in the QRDF algorithm and other routines. For diffuse auxiliary functions, processes often need to hold the whole $\cn{X}{Y}$ matrix in memory while solving the linear least squares problem. For multiple ranks on a single node, this can quickly lead to memory problems. While memory duplication can be reduced by simply using fewer ranks per node, it should be noted that currently the DBCSR tensor library is only optimized for one MPI rank per CPU. Furthermore, each rank can only allocate approximately 2GB of memory at once, because only 4-byte integers (with maximum value 2,147,483,648) are used to specify the size of the memory window that is allocated. Moreover, the need to reorder the tensors before each contraction effectively doubles the space needed by each tensor (see also the discussion in section \ref{sec:tenstor}).
 
 In ground state methods, OOM errors can often be solved by using \emph{direct} methods where tensors are recomputed on-the-fly. By increasing the number of batches, the memory footprint can be lowered quite considerably. A direct version of CD-DF-SOS-ADC(2) could also be considered, although the need to recompute tensors like $C_{X\mu\nu}$, $R_{X\uli\olgn}$ or $B_{X\uli\olgn}$ multiple times would lead to a much higher prefactor which further pushes the low-scaling regime to larger molecular sizes.
 

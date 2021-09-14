@@ -326,7 +326,7 @@ Up until this point, the electronic wave function was constructed from Slater de
 
 \noindent where N is a normalization constant, $Y_{l,m}$ are spherical harmonics, and $\{n,l,m\}$ are the principal, angular momentum and magnetic quantum number respectively. There are two major differences between STOs and GTOs. At r = 0, STOs have finite slope and GTOs have zero slope. For large r values, GTOs decay much more rapidly than STOs. From an electronic structure point of view, one would prefer to use STO, as they describe the qualitative features of molecular orbitals better than GTOs. Roughly three time as many GTOs are necessary to obtain the same accuracy as with STOs. Nonetheless, GTOs are preferred, as their drawbacks are outweighed by the relative ease with which their integrals can be evaluated compared to STOs.
 
-\subsection{Working Equations for Restricted and Unrestricted Hartree-Fock}
+\subsection{Working Equations for Restricted and Unrestricted Hartree\-/Fock}
 
 For reasons of efficient implementation, it is useful to separate out different electron spin components. The Fock matrix has four spin blocks: $F_{\alpha\alpha}$, $F_{\alpha\beta}$, $F_{\beta\alpha}$ and $F_{\beta\beta}$. The Fock matrix in the canonical basis is diagonal, and therefore only the diagonal blocks  $F_{\alpha\alpha}$ and $F_{\beta\beta}$ are important. Introducing the notation $\olI$ for MOs with spin $\sigma'$, and $I$ with opposite spin $\sigma$, the matrix elements of a spin block are given by
 \begin{equation}
@@ -469,7 +469,7 @@ In the Hartree-Fock method, the electron-electron interaction is replaced by an 
 
 Electron correlation arises from electrons trying to avoid each other due to coulombic repulsion (coulomb correlation) and the antisymmetry principle (Fermi correlation). This in turn leads to a region of space around each electron where the probability of finding another electron is reduced, typically known as the \emph{coulomb hole} for electrons of opposite spin, and \emph{Fermi hole} for electrons of the same spin. 
 
-Another distinction is often drawn between \emph{dynamic correlation} and \emph{static correlation}, although there exists no formal definition. Dynamic correlation generally describes the correlated movement of electrons due to their "instantaneous mutual repulsion" \cite{Jen2017}. For example, in the ground-state Helium atom, electron correlation is purely dynamical. Static (or non-dynamic) correlation on the other hand arises in the case of near-degeneracy, where multiple configurations of similar energy contribute to the ground-state wave function. To show the difference between these two two types of correlation, the dissociation of the H$_2$ molecule is often taken as an illustrative example. At equilibrium distance, correlation is mostly dynamic, and the ground-state can be well described as a singlet state. In the dissociation limit, electrons may be coupled to yield either a singlet \emph{or} a triplet, as the energy difference between those two states vanishes. The correlation in the system is then entirely static. There is no clear-cut line between dynamic and static correlation, but it offers a useful classification for correlation effects.
+Another distinction is often drawn between \emph{dynamic correlation} and \emph{static correlation}, although there exists no formal definition. Dynamic correlation generally describes the correlated movement of electrons due to their "instantaneous mutual repulsion" \cite{Jen2017}. For example, in the ground-state Helium atom, electron correlation is purely dynamical. Static (or non-dynamic) correlation on the other hand arises in the case of near\-/degeneracy, where multiple configurations of similar energy contribute to the ground-state wave function. To show the difference between these two two types of correlation, the dissociation of the H$_2$ molecule is often taken as an illustrative example. At equilibrium distance, correlation is mostly dynamic, and the ground-state can be well described as a singlet state. In the dissociation limit, electrons may be coupled to yield either a singlet \emph{or} a triplet, as the energy difference between those two states vanishes. The correlation in the system is then entirely static. There is no clear-cut line between dynamic and static correlation, but it offers a useful classification for correlation effects.
 
 To fully capture both dynamic and static correlation, it is crucial to add additional Slater determinants as mentioned previously. Methods which generate excited Slater determinants from a single reference SD recover mostly dynamical correlation: electrons are disturbed through their instantaneous repulsion and are excited to higher spin orbitals, hence the need of additional excited-type SDs. Methods generating SDs from multiple references recover mostly static correlation. At the theoretical limit (i.e. the full configuration space), both approaches eventually recover all correlation effects. It is therefore the responsibility of the computational chemist to choose the correct method that best fits the problem at hand.
 
@@ -687,7 +687,7 @@ E_0^{(3)} &= \sum_{nm} \frac{
 
 \subsection{M{\o}ller-Plesset Perturbation Theory}
 
-The success of RSPT is closely related to the choice of the zero-order Hamiltonian. The most popular variant of RSPT is M${\o}$ller-Plesset perturbation theory (MPPT), where $\hat{H_0}$ is taken as the Fock operator from HF theory
+The success of RSPT is closely related to the choice of the zero-order Hamiltonian. The most popular variant of RSPT is M{\o}ller-Plesset perturbation theory (MPPT), where $\hat{H_0}$ is taken as the Fock operator from HF theory
 \begin{equation}
 \hat{H}_0 = \hat{f} = \sum_P \eps_P a\pdg_P a_P
 \end{equation}
@@ -737,7 +737,7 @@ Ideally, the MP$n$ energy should converge monotonically towards the limit with i
 
 Due to the erratic convergence behavior of MPPT, higher order variations like MP3 or MP4 have fallen somewhat out of favor in recent years. Moreover, the requirement of the single-determinant HF wave function being a suitable starting guess makes MPPT ill-suited to describe static correlation effects.  
 
-\subsection{Spin-Component-Scaled M{\o}ller Plesset Perturbation Theory \label{sec:SCSMP2}}
+\subsection{M{\o}ller-Plesset Perturbation Theory with Spin-Component-Scaling \label{sec:SCSMP2}}
 
 With the rise of density functional theory (DFT), even the computationally inexpensive MP2 method fell out of use in favor of DFT which often shows better performance and accuracy for the same molecular systems.
 
