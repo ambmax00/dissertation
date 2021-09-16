@@ -1,6 +1,6 @@
-\babel@toc {american}{}
-\babel@toc {ngerman}{}
-\babel@toc {american}{}
+\babel@toc {american}{}\relax 
+\babel@toc {ngerman}{}\relax 
+\babel@toc {american}{}\relax 
 \contentsline {part}{I\hspace {1em}}{4}{}%
 \contentsline {chapter}{\numberline {1}Electronic Structure Methods for the Ground State}{6}{}%
 \contentsline {section}{\numberline {1.1}Describing Dynamics in a Molecular System}{6}{}%
@@ -116,7 +116,7 @@
 \contentsline {subsubsection}{Quadratic Scaling LMP2}{89}{}%
 \contentsline {subsubsection}{Linear Scaling LMP2}{90}{}%
 \contentsline {subsubsection}{Density Fitting for LMP2}{91}{}%
-\contentsline {subsection}{\numberline {4.2.3}Natural Orbitals}{91}{}%
+\contentsline {subsection}{\numberline {4.2.3}Natural Orbitals}{92}{}%
 \contentsline {section}{\numberline {4.3}Coupled Cluster}{92}{}%
 \contentsline {chapter}{\numberline {5}Local Correlation Methods (III): Excited States}{93}{}%
 \contentsline {section}{\numberline {5.1}Low-Scaling Correlated Excited State Methods}{93}{}%
@@ -137,7 +137,7 @@
 \contentsline {subsection}{\numberline {6.3.5}Second Order: Part 2E}{113}{}%
 \contentsline {subsection}{\numberline {6.3.6}Summary}{115}{}%
 \contentsline {section}{\numberline {6.4}Restricted DF-SOS-ADC(2) with Doubles-Folding in the AO Basis}{116}{}%
-\contentsline {chapter}{\numberline {7}Scaling and Accuracy of atomic-orbital based SOS-ADC(2) }{121}{}%
+\contentsline {chapter}{\numberline {7}Scaling and Accuracy of CDD-DF-SOS-ADC(2) }{121}{}%
 \contentsline {section}{\numberline {7.1}Computational Details}{121}{}%
 \contentsline {section}{\numberline {7.2}Ground-state Prerequisites}{121}{}%
 \contentsline {subsection}{\numberline {7.2.1}Molecular Test Systems}{121}{}%
@@ -162,7 +162,7 @@
 \contentsline {section}{\numberline {8.2}Benefits and Limits of Parallel Computing}{145}{}%
 \contentsline {section}{\numberline {8.3}Types of Parallelism and Memory Hierarchy}{146}{}%
 \contentsline {section}{\numberline {8.4}Vectorization}{148}{}%
-\contentsline {subsection}{\numberline {8.4.1}Parallel SAXPY using vectorization}{149}{}%
+\contentsline {subsection}{\numberline {8.4.1}Parallel SAXPY using Vectorization}{148}{}%
 \contentsline {section}{\numberline {8.5}Thread-based Parallelism}{152}{}%
 \contentsline {subsection}{\numberline {8.5.1}SAXPY using OpenMP}{152}{}%
 \contentsline {section}{\numberline {8.6}Process-based Parallelism}{154}{}%
@@ -195,13 +195,13 @@
 \contentsline {subsection}{\numberline {9.4.6}DBCSR}{172}{}%
 \contentsline {chapter}{\numberline {10}The {\texttt {MEGALOchem}}Program Package}{174}{}%
 \contentsline {section}{\numberline {10.1}Motivation}{174}{}%
-\contentsline {section}{\numberline {10.2}Software Architecture}{175}{}%
+\contentsline {section}{\numberline {10.2}Software Architecture}{174}{}%
 \contentsline {section}{\numberline {10.3}Parallel Runtime Environment}{176}{}%
 \contentsline {section}{\numberline {10.4}JSON Interface }{177}{}%
 \contentsline {section}{\numberline {10.5}Design Patterns}{178}{}%
-\contentsline {section}{\numberline {10.6}Libraries }{180}{}%
+\contentsline {section}{\numberline {10.6}Libraries }{179}{}%
 \contentsline {subsection}{\numberline {10.6.1}\texttt {dbcsrx}}{180}{}%
-\contentsline {subsection}{\numberline {10.6.2}\texttt {math}}{182}{}%
+\contentsline {subsection}{\numberline {10.6.2}\texttt {math}}{181}{}%
 \contentsline {subsection}{\numberline {10.6.3}\texttt {ints}}{182}{}%
 \contentsline {subsection}{\numberline {10.6.4}\texttt {fock}}{183}{}%
 \contentsline {subsection}{\numberline {10.6.5}\texttt {hf}}{184}{}%
@@ -212,7 +212,7 @@
 \contentsline {section}{\numberline {11.1}Direct Inversion of The Iterative Subspace }{185}{}%
 \contentsline {section}{\numberline {11.2}Davidson Diagonalization }{186}{}%
 \contentsline {subsection}{\numberline {11.2.1}Davidson-Liu Method}{187}{}%
-\contentsline {subsection}{\numberline {11.2.2}Modified Davidson Method for the Pseudo-Eigenvalue Problem}{188}{}%
+\contentsline {subsection}{\numberline {11.2.2}Modified Davidson Method}{188}{}%
 \contentsline {section}{\numberline {11.3}Incomplete Cholesky Decomposition }{188}{}%
 \contentsline {subsubsection}{Comments}{191}{}%
 \contentsline {section}{\numberline {11.4}Laplace Transformation }{192}{}%

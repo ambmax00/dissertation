@@ -448,7 +448,7 @@ E_{CDD-MP2} = - \sum_{\alpha}^n \sum_{\uli\ola\ulj\olb} \cn{\uli\ola}{\ulj\olb}\
 
 To reduce the prefactor associated with integral transformation, either from AOs to pseudo-AOs, or from AOs to pseudo-MOs, on can furthermore introduce density fitting \cite{Zie2009,Mau2014}. The transformed 3c2e integrals are given at each Laplace point $\alpha$ by
 \begin{equation}
-\cn{X}{\ulgm\olgn}\pa = \cn{X}{\mu'\nu'} \unl{P}\pa_{\mu\mu'} \ovl{P}\pa_{\nu\nu'}  
+\cn{X}{\ulgm\olgn}\pa = \cn{X}{\mu'\nu'} P\pa_{\mu\mu'} Q\pa_{\nu\nu'}  
 \end{equation}
 \noindent which are evaluated with $\ccpx{2}$ cost. Using local density fitting approximations, this step can be reduced to approximately $\mathcal{O}(N)$ \cite{Gla2020}.
 
@@ -578,8 +578,8 @@ Y_{\ola\olc}\pa = \sum_a U_{a\ola} |w\pa|^{1/4} e^{-\eps_a t\pa} U_{c\olc}
 \end{equation}
 \noindent Equation \ref{MP2LOCEN} is the general expression for the MP2 energy in a local molecular orbital basis, where both the occupied and virtual orbitals are \emph{orthogonal}. The situation changes slightly when using non-orthogonal, domain-specific PAOs $\olgm$, which are related to CMOs via
 \begin{align}
-\ket{\olgm} &= \bar{C}_{\mu i} \ket{i} \\
-\ket{i} &= \bar{C}_{\nu i} S_{\olgn\olgm}^{-1} \ket{\olgm} 
+\ket{\olgm} &= \bar{C}_{\mu a} \ket{a} \\
+\ket{a} &= \bar{C}_{\nu a} S_{\olgn\olgm}^{-1} \ket{\olgm} 
 \end{align}
 \noindent with $\mathbf{S}$ being the overlap matrix in the PAO basis, and $\mbf{\bar{C}} = \mbf{SC}$ are the orthogonalized MO coefficients. The inverse of $\mbf{S}$ is computed by canonical orthogonalization (Appendix \ref{app:LINDEP}). This approximate inverse will be given by the matrix $\mbf{V}$, which is also specific to a given pair $[ij]$. In general, only the virtual CMOs are transformed to the PAO base. The virtual Laplace matrix then takes the following form \cite{Kat2008}:
 \begin{equation}
@@ -601,7 +601,7 @@ E^{(2)} = min \left[ 2\bra{\Psi^{(1)}} \mathbf{H} - E_0  \ket{\Psi^{(0}} - \bra{
 \end{equation}
 \noindent In the case of MP2, the quantities in Equation \ref{eq:HYLMIN} take the form
 \begin{equation}
-\bra{\Psi^{(1)}} \mathbf{H} - E_0  \ket{\Psi^{(0}} = \frac{1}{4} \sum_{ijab} t_{ijab} \bra{ij}\ket{ab}
+\bra{\Psi^{(1)}} \mathbf{H} - E_0  \ket{\Psi^{(0)}} = \frac{1}{4} \sum_{ijab} t_{iajb} \sbra{ij}\sket{ab}
 \end{equation}
 \begin{equation}
 \bra{\Psi^{(1)}} \mathbf{H}_0 - E_0 \ket{\Psi^{(1)}} = \frac{1}{8} \sum_{ijabc} t_{iajb} f_{cb} t_{iajc} - \frac{1}{8} \sum_{ijkab} t_{iajb} f_{jk} t_{iakb}
@@ -676,7 +676,7 @@ The major bottle-neck in LMP2 is, as usual, the transformation of the 2 electron
 
 \subsubsection{Linear Scaling LMP2}
 
-It has been found \cite{Sae1987} early on that the quadratic scaling very distant electron pairs can safely ignored without major impact on the total correlation energy. Distant pairs may also be approximated either by a multipole expansion \cite{Het1998} or empirically \cite{Rau1995}. As a consequence, this establishes a sparsity relationship between $i$ and $j$, and the sparsity diagram for the MO integrals becomes fully connected
+It has been found \cite{Sae1987} early on that the quadratic scaling very distant electron pairs can be safely ignored without major impact on the total correlation energy. Distant pairs may also be approximated either by a multipole expansion \cite{Het1998} or empirically \cite{Rau1995}. As a consequence, this establishes a sparsity relationship between $i$ and $j$, and the sparsity diagram for the MO integrals becomes fully connected
 \begin{center}
 \begin{tikzpicture}
 
@@ -698,7 +698,7 @@ It has been found \cite{Sae1987} early on that the quadratic scaling very distan
 \draw[<->] (B) -- (LAM) node [midway, below] () {};
 \draw[<->] (I) -- (A) node [midway, below] () {};
 \draw[<->] (J) -- (B) node [midway, below] () {};
-\draw[<->] (I) |- (1,-1.5) node [below] {$1/R^6$} -| (J);
+\draw[<->] (I) |- (1,-2.0) node [below] {$1/R^6$} -| (J);
 
 \end{tikzpicture}
 \end{center}

@@ -123,9 +123,12 @@ def plot_classic(header, data):
     yarray = data[1:]
     
     fig, ax = plt.subplots()
+    linestyle = [
+        'solid', 'dotted', 'dashed', 'dashdot', (0, (1, 5)),
+        (0, (3, 1, 1, 1)), (0, (3, 5, 1, 5))] 
 
     for ii in range(0,len(ynames)):
-        ax.plot(x,yarray[ii],label = ynames[ii])
+        ax.plot(x,yarray[ii],linestyle=linestyle[ii],label = ynames[ii])
 
     return fig, ax
 
@@ -182,8 +185,8 @@ def save_table(fname, string):
     f.write(string)
     f.close()
 
-#desktop = init_pyoo()
-#doc = desktop.open_spreadsheet("../precision.ods")
+desktop = init_pyoo()
+doc = desktop.open_spreadsheet("../../precision.ods")
 plt.style.use('science')
 plt.rcParams.update({
     "font.size":10})          # specify font size here 
@@ -214,7 +217,7 @@ fig, ax = plt.subplots()
 im = ax.imshow(arrayLV)
 fig.savefig("choleskyV.pdf")
 
-exit(0)
+#exit(0)
 
 # =========================================================
 # ========== SPARSITY DEMONSTRATION =======================
@@ -241,8 +244,8 @@ fig.savefig("overlap_decay.pdf")
 # ======== ELECTRON REPULSION DECAY ======
 
 fig, ax = plt.subplots()
-ax.plot(x,data[2],label="$(\\mu\\nu\\mid\\mu\\nu)$")
-ax.plot(x,data[3],label="$(\\mu\\mu\\mid\\nu\\nu)$")
+ax.plot(x,data[2],linestyle='solid',label="$(\\mu\\nu\\mid\\mu\\nu)$")
+ax.plot(x,data[3],linestyle='dotted',label="$(\\mu\\mu\\mid\\nu\\nu)$")
 ax.legend()
 ax.set_xlabel("r$_{\\mu\\nu}$ [a$_{0}$]")
 
@@ -257,8 +260,8 @@ y1 = data2[0]
 y2 = data2[2]
 
 fig, ax = plt.subplots()
-ax.plot(x,y2,label="dense (N$^2$)")
-ax.plot(x,y1,label="sparse")
+ax.plot(x,y2,linestyle='solid',label="dense (N$^2$)")
+ax.plot(x,y1,linestyle='dotted',label="sparse")
 ax.legend()
 ax.set_xlabel("Number of H atoms")
 ax.set_ylabel("Number of elements")
@@ -271,8 +274,8 @@ y3=data2[1]
 y4=data2[3]
 
 fig, ax = plt.subplots()
-ax.plot(x,y4,label="dense (N$^4$)")
-ax.plot(x,y3,label="sparse")
+ax.plot(x,y4,linestyle='solid',label="dense (N$^4$)")
+ax.plot(x,y3,linestyle='dotted',label="sparse")
 ax.legend()
 ax.set_xlabel("Number of H atoms")
 ax.set_ylabel("Number of elements")
@@ -286,8 +289,8 @@ header, data = extract_data(cells)
 
 fig, ax = plt.subplots()
 
-ax.plot(data[0],data[3],label="H chain")
-ax.plot(data[0],data[4],label="He chain")
+ax.plot(data[0],data[3],linestyle='solid',label="H chain")
+ax.plot(data[0],data[4],linestyle='dotted',label="He chain")
 
 add_names(ax, "r$_{\\mu \\nu}$ [a$_{0}$]", "$log|P_{\\mu\\nu}|$", None, None)
 ax.legend(loc="best")
@@ -311,8 +314,8 @@ ax.legend(loc="best")
 fig.savefig("ldf.pdf")
 
 
-#doc.close()
-#exit(0)
+doc.close()
+exit(0)
 
 # =========== HARTREE FOCK ALKAN ==========================
 

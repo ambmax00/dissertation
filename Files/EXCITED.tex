@@ -185,7 +185,7 @@ t_2 \rightarrow t_2' = t'}} iR(t_1,t_2;t_1',t_2')
 \Pi(-\omega)_{+}\pdg = \Pi_{-}(\omega)
 \end{equation}
 
-Up to this point, the exact wave function was used in the expression for the propagators. To actually be able to compute the propagators, an approximate wave function is necessary. There are a couple of choices. Coupled cluster linear response (LRCC) theory inserts the CC ansatz for the wave function and explicitly evaluates expressions for the polarization propagator truncated to a given level of excitations (LRCCSD, LRCCSDT etc.). Alternatively, the polarization propagator may be approached using perturbation theory.
+Up to this point, the exact wave function was used in the expression for the propagators. To actually be able to compute the propagators, an approximate wave function is necessary. There are a couple of choices. Coupled cluster linear response (CCLR) theory inserts the CC ansatz for the wave function and explicitly evaluates expressions for the polarization propagator truncated to a given level of excitations (CCSDLR, CCSDTLR etc.). Alternatively, the polarization propagator may be evaluated using perturbation theory.
 
 \subsubsection{Diagrammatic Perturbation}
 
@@ -194,7 +194,7 @@ Similarly to the wave function in RSPT, the polarization propagator can be expan
 \Pi = \Pi^{(0)} + \Pi^{(1)} + \Pi^{(2)} + \ldots
 \label{eq:PERTPOLPROP}
 \end{equation}
-\noindent and the same partitioning of the Hamiltonian is used as in RSPT
+\noindent with the same partitioning of the Hamiltonian 
 \begin{equation}
 \hat{H} = \hat{H}_0 + \hat{U}
 \end{equation}
@@ -228,7 +228,7 @@ T(\omega) = D\pdg \boldsymbol{\Pi}_{+} D
 \end{equation}
 \noindent where $\hat{D}$ is an arbitrary operator. The quantity measured during experiments is the \emph{spectral function}, given by
 \begin{equation}
-f(\omega) = \frac{1}{\pi}Im\{T(\omega)\}
+f(\omega) = \frac{1}{\pi}\textrm{Im} \{T(\omega)\}
 \end{equation}
 In the algebraic diagrammatic construction method, the transition function is reformulated as
 \begin{equation}
@@ -265,12 +265,10 @@ T^{(2)}(\omega) &= \mathbf{F}^{(1)\dagger} \left[ \omega \mathbf{1} - \mathbf{K}
 
 At its core, ADC reduces to the eigenvalue problem
 \begin{equation}
-\mbf{M}\mbf{X} = \mbf{X}\boldsymbol{\Omega}
+\mbf{M}\mbf{X} = \mbf{X}\boldsymbol{\Omega} \qquad \mbf{X}\pdg \mbf{X} = \mbf{1}
 \label{eq:ADCEVAL}
 \end{equation}
-\noindent The solution gives the vertical excitation energies $\boldsymbol{\Omega}$ and the eigenvectors $\mbf{X}$. Figure \ref{fig:ADCMAT} shows the structure of the ADC matrix $\mbf{M}$ up to third order. Each second level $n$ adds an additional higher excitation manifold to the matrix. ADC(0) and ADC(1) include only singles, while ADC(2) and ADC(3) also include doubles.
-
-The ADC(0) matrix contains only the Hartree-Fock orbital energy differences:
+\noindent The solution gives the vertical excitation energies $\boldsymbol{\Omega}$ and the eigenvectors $\mbf{X}$. Figure \ref{fig:ADCMAT} shows the structure of the ADC matrix $\mbf{M}$ up to third order. Each second level $n$ adds an additional higher excitation manifold to the matrix. ADC(0) and ADC(1) include only singles, while ADC(2) and ADC(3) also include doubles. The ADC(0) matrix contains only the Hartree-Fock orbital energy differences:
 \begin{equation}
 M^{(0)}_{ia,jb} = K_{ia,jb} = \delta_{ij}\delta_{ab} (\eps_i - \eps_a) 
 \end{equation}
@@ -364,7 +362,7 @@ M_{IJ} = -\sbra{\tPsi_I} \hat{H} - E_0 \sket{\tPsi_J}
 \begin{equation}
 \{\hat{C}_I\} = \{ a_a\pdg a_i; a_b\pdg a_j c_a\pdg c_i; \ldots \}
 \end{equation}
-\noindent the intermediate states are obtained by a step-wise Gram-Schmidt orthogonalization of the CE states. The ground state $\sket{\Psi_0}$ is approximated by MPPT. Constructing the intermediate states from the MP$n$ ground state wave function and evaluating the matrix elements according to \ref{eq:ISMATELE} gives the $n$th order ADC matrix. For this reason, ADC is also known as "excited state method for M{\o}ller-Plesset". 
+\noindent the intermediate states are obtained by a step-wise Gram-Schmidt orthogonalization of the CE states. The ground state $\sket{\Psi_0}$ is approximated by MPPT. Constructing the intermediate states from the MP$n$ ground state wave function and evaluating the matrix elements according to \ref{eq:ISMATELE} gives the $n$th order ADC matrix. For this reason, ADC is also known as an "excited state method for M{\o}ller-Plesset". 
 
 \subsection{Spin-Opposite Scaled ADC \label{sec:SOSADC}}
 
@@ -448,7 +446,7 @@ e^{(-i\omega_1 + \eps)t} d\omega_1 \\
 &+ \frac{1}{2} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty}
 \underbrace{ \langle\langle \hat{A}; \hat{V}^{\omega_1},\hat{V}^{\omega_2} \rangle\rangle 
 }_{\text{quadratic reponse}}
-e^{-i(\omega_1+\omega_2) + 2\eps)t} d\omega_1 d\omega_2  + \ldots
+e^{(-i(\omega_1+\omega_2) + 2\eps)t} d\omega_1 d\omega_2  + \ldots
 \end{split}
 \label{eq:TIMEEXP}
 \end{equation}
@@ -562,7 +560,7 @@ For a molecular system in the presence of a static external perturbation, such a
 \frac{\partial E}{\partial \lambda_x} = \sbra{\Psi}\frac{\partial \hat{H}}{\partial \lambda_x} \sket{\Psi} = \sbra{\Psi}\hat{X} \sket{\Psi}
 \label{eq:HELLFEYN}
 \end{equation}
-\noindent By perturbation expansion of $\hat{X}$, the $n$th order property can then be related to the $n$th order derivative of the wave function energy, which is in most cases is more readily derived than the expectation value. For time-dependent perturbations, the theorem can be reformulated as 
+\noindent By perturbation expansion of $\hat{X}$, the $n$th order property can then be related to the $n$th order derivative of the wave function energy, which is in most cases is more readily evaluated than the expectation value. For time-dependent perturbations, the theorem can be reformulated as 
 \begin{equation}
 \frac{\partial \{Q\}_T}{\partial \lambda_x} = \sbra{\Psi(t)} \hat{X}(t) \sket{\Psi(t)} 
 \end{equation}
@@ -635,8 +633,8 @@ An alternative way for describing the molecular response to an external field us
 The (de-)excitation operators can be truncated similar to $\hat{T}$ to yield different approximations (EOM-CCS, EOM-CCSD...). The cluster amplitudes and the excitation energies are obtained 
 by solving the non-Hermitian eigenvalue problem 
 \begin{align}
-\sbra{\mu} \hat{\bar{H}} - E  \sket{\hat{R} HF} &= 0 \\
-\sbra{HF \hat{L}} \hat{\bar{H}} - E \sket{HF} &= 0
+\sbra{\mu} \hat{\bar{H}} - E  \sket{\hat{R} \HFWFN} &= 0 \\
+\sbra{\HFWFN \hat{L}} \hat{\bar{H}} - E \sket{\HFWFN} &= 0
 \end{align}
 The excitation energies obtained by solving the LR-CC and EOM-CC eigenvalue problems are identical for pure CC models (CCSD, CCSDT...), but they give different results for transition moments and excited-state properties.
 

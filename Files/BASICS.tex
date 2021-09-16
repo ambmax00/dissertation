@@ -1,6 +1,6 @@
 \chapter{Electronic Structure Methods for the Ground State}
 
-Over the last decades, quantum chemistry has emerged as a crucial tool for investigating a wide variety of problems in chemistry. This, in combination with the increasing performance and widespread use of computers, has spawned a whole new branch of chemistry known as \emph{computational chemistry}. The field of computational chemistry uses methods developed in \emph{theoretical chemistry} and incorporates them into efficient programs. Quantum chemical methods are routinely applied to assist in solving problems related to chemical structure, reactivity and spectroscopy. However, one of the main problems in computational chemistry is choosing a suitable level of theory for a given problem - the best choice is always a trade-off between speed and accuracy, and requires intricate knowledge of the methods' theoretical and computational limits. This chapter summarizes the core concepts of quantum chemistry and its most important methods for computing the ground state. It is by no means complete, and the reader is referred to the original text book resources on which this chapter is based on. \cite{Sza1996,Hel2000,Jen2017,Nor2018,Sch2018}.
+Over the last decades, quantum chemistry has emerged as a crucial tool for investigating a wide variety of problems in chemistry. This, in combination with the increasing performance and widespread use of computers, has spawned a whole new branch of chemistry known as \emph{computational chemistry}. The field of computational chemistry uses methods developed in \emph{theoretical chemistry} and incorporates them into efficient programs. Quantum chemical methods are routinely applied to assist in solving problems related to chemical structure, reactivity and spectroscopy. However, one of the main problems in computational chemistry is choosing a suitable level of theory for a given problem - the best choice is always a trade-off between speed and accuracy, and requires intricate knowledge of the methods' theoretical and computational limits. This chapter summarizes the core concepts of quantum chemistry and its most important methods for computing the ground state. It is by no means complete, and the reader is referred to the original text book resources on which this chapter is based on \cite{Sza1996,Hel2000,Jen2017,Nor2018,Sch2018}.
 
 \section{Describing Dynamics in a Molecular System}
 
@@ -139,7 +139,7 @@ However, the Hartree product does not take into account the \emph{indistinguisha
 \end{equation}
 \noindent Or, using the diagonal of the SD as a short-hand notation
 \begin{equation}
-\Psi_{SD}(\mbfx_1, \mbfx_2, \ldots, \mbfx_N) = \ket{\phi_I(\mbfx_1) , \phi_J(\mbfx_1), \ldots, \phi_K(\mbfx_1)}
+\Psi_{SD}(\mbfx_1, \mbfx_2, \ldots, \mbfx_N) = \ket{\phi_I(\mbfx_1) , \phi_J(\mbfx_2), \ldots, \phi_P(\mbfx_N)}
 \end{equation}
 
 \subsection{The Fock Space}
@@ -172,7 +172,7 @@ N = \sum_i^M k_i
 
 \subsection{Exact Solution and Standard Models}
 
-The simplest approach to solving the electronic SEQ is by approximating the exact wave function $\Psi$ using a single Slater determinant where the electrons occupy the lowest lying molecular orbitals. The Hartree-Fock method is an example of a \emph{single-determinant method} and finds \emph{the} single best Slater determinant for $\ket{\Psi}$. In Fock space, the best possible determinant is represented by the ON vector where the $N$ lowest lying orbitals are occupied. 
+The simplest approach to solving the electronic SEQ is by approximating the exact wave function $\ket{\Psi}$ using a single Slater determinant where the electrons occupy the lowest lying molecular orbitals. The Hartree-Fock method is an example of a \emph{single-determinant method} and finds \emph{the} single best Slater determinant for $\ket{\Psi}$. In Fock space, the best possible determinant is represented by the ON vector where the $N$ lowest lying orbitals are occupied. 
 
 As will be discussed in more detail later, a single-determinant treatment of the electronic wave function is insufficient to fully capture \emph{electron correlation}. The electron correlation energy is formerly defined as the difference between the Hartree-Fock energy and the \emph{exact} energy of $\ket{\Psi}$
 \begin{equation}
@@ -182,16 +182,16 @@ E_{correlation} = E_{HF} - E_{exact}
 
 In order to improve on the HF approximation, it is important to add additional Slater determinants. These SDs can be generated from the HF reference wave function by replacing the occupied MOs $\phi_I$ in a reference Slater determinant by one or multiple orbitals $\phi_A$ which were previously unoccupied. This effectively corresponds to exciting one or more electrons from their occupied molecular orbitals $I,J,..$ to unoccupied, or $virtual$ orbitals $A,B,..$. These excited Slater determinants can be classified by the number of electrons they excite and are often referred to as singles, doubles, triples and so on.
 \begin{alignat}{2}
-\ket{\Phi_0} &= \ket{HF} \quad & \text{Reference} \\
-\ket{\Phi_{I}^{A}} &= a\pdg_A a_I \ket{HF} \quad & \text{Singles}  \\
-\ket{\Phi_{IJ}^{AB}} &= a\pdg_A a_I a\pdg_B a_J \ket{HF} \quad & \text{Doubles} \\
-\ket{\Phi_{IJK}^{ABC}} &= a\pdg_A a_I a\pdg_B a_J a\pdg_C a_K \ket{HF} \quad & \text{Triples} \\
+\ket{\Phi_0} &= \ket{\HFWFN} \quad & \text{Reference} \\
+\ket{\Phi_{I}^{A}} &= a\pdg_A a_I \ket{\HFWFN} \quad & \text{Singles}  \\
+\ket{\Phi_{IJ}^{AB}} &= a\pdg_A a_I a\pdg_B a_J \ket{\HFWFN} \quad & \text{Doubles} \\
+\ket{\Phi_{IJK}^{ABC}} &= a\pdg_A a_I a\pdg_B a_J a\pdg_C a_K \ket{\HFWFN} \quad & \text{Triples} 
 \end{alignat}
 \noindent Alternatively, singles states are known as 1-particle-1-hole (1p-1h or simply p-h) states, doubles as 2-particle-2-hole (2p-2h) and so on, due to the excitation operators effectively creating \emph{holes} in the reference determinant and adding \emph{particles} in higher lying orbitals instead. 
 
 The exact solution to the electronic Schrödinger equation is then given by the sum of the Hartree-Fock wave function and all possible ON vectors in $F(M,N)$
 \begin{equation}
-\ket{\Psi} = c_0 \ket{HF} + \sum^{\binom{M}{N}-1}_{i=1} c_i  \ket{i} 
+\ket{\Psi} = c_0 \ket{\HFWFN} + \sum^{\binom{M}{N}-1}_{i=1} c_i  \ket{i} 
 \label{eq:EXACTWF}
 \end{equation}  
 \noindent Equation \ref{eq:EXACTWF} offers a systematic approach to improve on the Hartree Fock method, by increasing (1) the number of Slater determinants and (2) the basis set size $M$, and gives rise to a hierarchy of methods (Figure \ref{fig:STANDARDMODEL}). Correlated electronic structure methods mainly differ by how they determine the expansion coefficients $c$. For all but the smallest systems, the full $F(M,N)$ Fock space cannot be used in calculations due to the total number of ON vectors which increases binomially with $\smash{\binom{M}{N}}$, and hence the number of coefficients to be determined. In practice, the Fock space is \emph{truncated} to some degree.
@@ -263,15 +263,15 @@ Recall the structure of the electronic Hamiltonian
 \hat{H} = \hat{T}_e + \hat{V}_{ne} + \hat{V}_{ee} + \hat{V}_{nn}
 \end{equation}
 \noindent with
-\begin{align}
-\hat{T}_e &= -\sum_i^N \frac{1}{2} \nabla_i^2 \qquad \textrm{kinetic energy of electrons} \\
-\hat{V}_{ne} &= -\sum_a^{N_{nuc}} \sum_i^N \frac{Z_a}{\mid\mbf{R}_a - \mbf{r}_i\mid} \qquad \textrm{nuclei-electron repulsion} \\
-\hat{V}_{ee} &= \frac{1}{2} \sum^N_i \sum^N_{j \neq i} \frac{1}{\mid \mbf{r}_i - \mbf{r}_j\mid} \qquad \textrm{electron-electron repulsion} \\
-\hat{V}_{nn} &= \frac{1}{2}\sum_a^{N_{nuc}} \sum_{b \neq a}^{N_{nuc}} \frac{Z_a Z_b}{\mid \mbf{R}_a - \mbf{R}_b \mid} \qquad \textrm{nuclei-nuclei repulsion} 
-\end{align}
+\begin{alignat}{2}
+\hat{T}_e &= -\sum_i^N \frac{1}{2} \nabla_i^2 & \qquad \textrm{kinetic energy of electrons} \\
+\hat{V}_{ne} &= -\sum_a^{N_{nuc}} \sum_i^N \frac{Z_a}{\mid\mbf{R}_a - \mbf{r}_i\mid} & \qquad \textrm{nuclei-electron repulsion} \\
+\hat{V}_{ee} &= \frac{1}{2} \sum^N_i \sum^N_{j \neq i} \frac{1}{\mid \mbf{r}_i - \mbf{r}_j\mid} & \qquad \textrm{electron-electron repulsion} \\
+\hat{V}_{nn} &= \frac{1}{2}\sum_a^{N_{nuc}} \sum_{b \neq a}^{N_{nuc}} \frac{Z_a Z_b}{\mid \mbf{R}_a - \mbf{R}_b \mid} & \qquad \textrm{nuclei-nuclei repulsion} 
+\end{alignat}
 \noindent In Hartree-Fock theory, the electrons are treated as independent particles. One can therefore ignore the coupling between electrons in $\hat{V}_{ee}$ and express the Hamiltonian as a sum of an effective one-electron operator $\mbf{f}$, also known as the \emph{Fock} operator, of the form
 \begin{align}
-\hat{H} &= \sum_i \hat{f}_i =  \sum_i \mbf{h}_i + \frac{1}{2} \sum_i \sum_{j \neq i} \mbf{g}_{ij} \\
+\hat{H} &= \sum_i \hat{f}_i =  \sum_i \hat{h}_i + \frac{1}{2} \sum_i \sum_{j \neq i} \hat{g}_{ij} \\
 \hat{h}_i &= -\frac{1}{2}\nabla_i^2 - \sum_a^{N_{nuc}} \frac{Z_a}{\mid \mbf{R}_a - \mbf{r}_i |} \\
 \hat{g}_{ij} &= \frac{1}{\mid \mbf{r}_i - \mbf{r}_j \mid}
 \end{align}
@@ -285,7 +285,7 @@ Recall the structure of the electronic Hamiltonian
 h_{PQ} &= \bra{\phi_P} \mbf{h} \ket{\phi_Q} = \int \phi_P^*(\mbf{x}) h(\mbf{x}) \phi_Q(\mbf{x}) d\mbf{x} \\
 g_{PQRS} &= \bra{PQ}\ket{RS} = \int\int \phi_P^*(\mbf{x}_1) \phi^*_R(\mbf{x}_2) g(\mbf{x}_1,\mbf{x}_2) \phi_Q(\mbf{x}_1) \phi_S(\mbf{x}_2) d\mbf{x}_1 d\mbf{x}_2
 \end{align} 
-\noindent The elements $g_{PQRS}$ are known as the 2-electron repulsion integrals. Calculating the expectation values for the Fock operator in \ref{eq:FOCK2Q} using second quantization gives the matrix elements \cite{Hel2000}
+\noindent The elements $g_{PQRS}$ are known as the two-electron repulsion integrals. Calculating the expectation values for the Fock operator in \ref{eq:FOCK2Q} using second quantization gives the matrix elements \cite{Hel2000}
 \begin{equation}
 \begin{split}
 f_{PQ} &= \bra{\phi_P} \mbf{f} \ket{\phi_Q} \\
@@ -306,7 +306,7 @@ f_{PQ} = \delta_{PQ} \eps_P
 \end{equation} 
 \noindent are known as the \emph{canonical molecular spin orbitals}, and the eigenvalues are the \emph{molecular orbital energies}. Solving the \emph{canonical Hartree-Fock equation} \ref{eq:HFEQ} gives the MOs which form the basis of the Hartree-Fock wave function. It should be stressed that the total electronic Hartree-Fock energy is not the sum of the individual MO energies, but is given by the expectation value of the Hamiltonian 
 \begin{equation}
-E_{HF} = \bra{HF}\hat{H}\ket{HF} = \sum_{I}^{N} h_{II} + \frac{1}{2} \sum_{I}^{N} \left( J_{II} - K_{II} \right) 
+E_{HF} = \bra{\HFWFN}\hat{H}\ket{\HFWFN} = \sum_{I}^{N} h_{II} + \frac{1}{2} \sum_{I}^{N} \left( J_{II} - K_{II} \right) 
 \end{equation}
 \noindent which is equivalent to the \emph{trace} of the Hamiltonian matrix $\mbf{H}$. The index $I$ runs over all occupied spin molecular orbitals. For $N$ electrons distributed over $M$ MOs, there are $N$ occupied orbitals with $\eps_I < 0$ and $M-N$ virtual orbitals with $\eps_A > 0$. 
 
@@ -324,7 +324,7 @@ Up until this point, the electronic wave function was constructed from Slater de
 \chi_{\zeta, n, l, m}^{GTO} (r,\theta ,\phi ) &= N Y_{l,m} (\theta , \phi ) r^{2n - 2 - l} e^{-\zeta r^2}
 \end{align}
 
-\noindent where N is a normalization constant, $Y_{l,m}$ are spherical harmonics, and $\{n,l,m\}$ are the principal, angular momentum and magnetic quantum number respectively. There are two major differences between STOs and GTOs. At r = 0, STOs have finite slope and GTOs have zero slope. For large r values, GTOs decay much more rapidly than STOs. From an electronic structure point of view, one would prefer to use STO, as they describe the qualitative features of molecular orbitals better than GTOs. Roughly three time as many GTOs are necessary to obtain the same accuracy as with STOs. Nonetheless, GTOs are preferred, as their drawbacks are outweighed by the relative ease with which their integrals can be evaluated compared to STOs.
+\noindent where N is a normalization constant, $Y_{l,m}$ are spherical harmonics, and $\{n,l,m\}$ are the principal, angular momentum and magnetic quantum number respectively. There are two major differences between STOs and GTOs. At r = 0, STOs have finite slope and GTOs have zero slope. For large r values, GTOs decay much more rapidly than STOs. From an electronic structure point of view, one would prefer to use STOs, as they describe the qualitative features of molecular orbitals better than GTOs. Roughly three time as many GTOs are necessary to obtain the same accuracy as with STOs. Nonetheless, GTOs are preferred, as their drawbacks are outweighed by the relative ease with which their integrals can be evaluated compared to STOs.
 
 \subsection{Working Equations for Restricted and Unrestricted Hartree\-/Fock}
 
@@ -386,7 +386,7 @@ S_{\mu\nu} = \int \chi_{\mu}^*(\mbf{r}) \chi_{\nu}^*(\mbf{r}) d\mbf{r}
 \mbf{F} \mbf{C} = \mbf{SC} \mbf{E}
 \label{eq:RHALL}
 \end{equation}
-\noindent The equations in \ref{eq:RHALL} are known as the \emph{Roothan-Hall equations}. In the unrestricted case, they are called the \emph{Pople-Nesbet equations} which are given by
+\noindent The equations in \ref{eq:RHALL} are known as the \emph{Roothan-Hall equations} (RH). In the unrestricted case, they are called the \emph{Pople-Nesbet equations} (PN) which are given by
 \begin{align}
 \mbf{F}^{\alpha} \mbf{C}^{\alpha} &= \mbf{SC}^{\alpha} \mbf{E}^{\alpha} \\
 \mbf{F}^{\beta} \mbf{C}^{\beta} &= \mbf{SC}^{\beta} \mbf{E}^{\beta}
@@ -453,7 +453,7 @@ The Fock matrix can be divided into four distinct blocks: occupied-occupied, occ
 \end{equation}
 \noindent Where $\lambda$ are the Lagrange multipliers. For non-canonical MOs, the p-p and h-h are non-diagonal, with elements $\lambda_{IJ}$ and $\lambda_{AB}$ respectively. The off-diagonal elements are computed as
 \begin{equation}
-f_{IA} = \sbra{HF}\hat{f}\sket{a\pdg_A a_I HF} = 0
+f_{IA} = \sbra{\HFWFN}\hat{f}\sket{a\pdg_A a_I \HFWFN} = 0
 \end{equation}
 \noindent and are zero by virtue of \emph{Brillouin's theorem} for any valid HF wave function. This is also known as the \emph{variational condition}; it is an alternative formulation of the variational principle (see \cite{Hel2000}, section 10.3.5).
 
@@ -483,11 +483,11 @@ For the rest of this report, only single-reference methods are considered.
 
 Configuration interaction (CI) is the simplest and one of the oldest examples of a correlated electronic structure method. The CI wave function takes the general form
 \begin{equation}
-\ket{CI} = \sket{\Psi_0} + \sum_{IA} c_{I}^{A} \sket{\Phi_{IA}} + \sum_{\substack{I < J \\ A < B}} c_{IJ}^{AB} \sket{\Phi_{IJ}^{AB}} + \sum_{\substack{I < J < K \\ A < B < C}} c_{IJK}^{ABC} \sket{\Phi_{IJK}^{ABC}} + \dots
+\ket{\CIWFN} = \sket{\Psi_0} + \sum_{IA} c_{I}^{A} \sket{\Phi_{IA}} + \sum_{\substack{I < J \\ A < B}} c_{IJ}^{AB} \sket{\Phi_{IJ}^{AB}} + \sum_{\substack{I < J < K \\ A < B < C}} c_{IJK}^{ABC} \sket{\Phi_{IJK}^{ABC}} + \dots
 \end{equation}
 \noindent summing all SDs of all possible types (singles, doubles, triples...). $\Phi_0$ is the reference wave function, here taken as the HF ground state. Whereas the HF wave function was a linear combination of molecular orbitals, the CI wave function is a linear expansion of SDs. Similarly, the CI expansion coefficient matrix $\mbf{C}$ is determined variationally
 \begin{equation}
-\frac{\partial}{\partial C_i} \frac{\sbra{CI}\hat{H}\sket{CI}}{\sbraket{CI}{CI}} = 0
+\frac{\partial}{\partial C_i} \frac{\sbra{\CIWFN}\hat{H}\sket{\CIWFN}}{\sbraket{\CIWFN}{\CIWFN}} = 0
 \end{equation}
 \noindent which, as was shown before, reduces to the eigenvalue problem
 \begin{equation}
@@ -546,11 +546,11 @@ a\pdg_I a\pdg_J + \sum_{A > B} t_{IJ}^{AB} a\pdg_A a\pdg_B = \left( 1 + t_{IJ}^{
 In a first approximation, electron pairs may be treated independently in a molecular system, in what is known as the independent electron pair approximation (IEPA). The total correlation energy is then simply given as the sum of the individual \emph{pair correlation energies}
 \begin{align}
 E_{corr}^{IEPA} &= \sum_{I < J} e_{IJ}  \\
-\ket{IEPA} &= \sum_{I < J, A < B} \left(1 + t_{IJ}^{AB}\mbf{\tau}_{IJ}^{AB} \right) \ket{HF} 
+\ket{\textrm{IEPA}} &= \sum_{I < J, A < B} \left(1 + t_{IJ}^{AB}\hat{\tau}_{IJ}^{AB} \right) \ket{\HFWFN} 
 \end{align}
 \noindent A more complete picture of electron correlation is given by additionally letting electron clusters interact with each other by using the parametrization
 \begin{equation}
-\ket{CCD} = \left( \prod_{A > B,I > J} 1 + t_{IJ}^{AB}\hat{\tau}_{IJ}^{AB} \right) \ket{HF}
+\ket{\textrm{CCD}} = \left( \prod_{A > B,I > J} 1 + t_{IJ}^{AB}\hat{\tau}_{IJ}^{AB} \right) \ket{\HFWFN}
 \end{equation}
 \noindent The resulting wave function corresponds to the coupled cluster approximation including only doubles (CCD). As opposed to CID, CCD additionally includes \emph{products} of doubles cluster operators ($\tau_{IJ}^{AB} \tau_{KL}^{CD}$, or $\tau_{IJ}^{AB} \tau_{KL}^{CD} \tau_{MN}^{EF}$), in other words, doubles excitations are included up to infinite order. It is this property that makes CC size-extensive.
 
@@ -560,7 +560,7 @@ E_{corr}^{IEPA} &= \sum_{I < J} e_{IJ}  \\
 
 The CCD model can be generalized to let clusters of three and more electrons interact with each other, and electrons interact within these clusters. The general CC ansatz reads
 \begin{equation}
-\ket{CC} = \left( \prod_{\mu} 1 + t_{\mu}\hat{\tau}_{\mu} \right) \ket{HF} = exp(t_{\mu}\hat{\tau}_{\mu}) \ket{HF} = exp(\hat{T}_{\mu}) \ket{HF}
+\ket{\CCWFN} = \left( \prod_{\mu} 1 + t_{\mu}\hat{\tau}_{\mu} \right) \ket{\HFWFN} = exp(t_{\mu}\hat{\tau}_{\mu}) \ket{\HFWFN} = exp(\hat{T}_{\mu}) \ket{\HFWFN}
 \label{eq:CCANSATZ}
 \end{equation}
 \noindent where $\hat{T}_{\mu}$ is the \emph{cluster operator}, and $\mu$ are the excitation manifolds. The cluster operator may be partitioned into classes comprising all singles, doubles, ... excitations:
@@ -585,20 +585,20 @@ The cluster amplitudes are unknown and need to be solved for. Equations for the 
 \noindent gives the set of non-linear equations
 \begin{align}
 \begin{split}
-\bra{\mu_1}\hat{\bar{H}}\ket{HF} &= 0 \\
-\bra{\mu_2}\hat{\bar{H}}\ket{HF} &= 0 \\
-\bra{\mu_3}\hat{\bar{H}}\ket{HF} &= 0 \\
+\bra{\mu_1}\hat{\bar{H}}\ket{\HFWFN} &= 0 \\
+\bra{\mu_2}\hat{\bar{H}}\ket{\HFWFN} &= 0 \\
+\bra{\mu_3}\hat{\bar{H}}\ket{\HFWFN} &= 0 \\
 \vdots & 
 \end{split} 
 \label{eq:CCEQ}
 \end{align}
-\noindent where $\mu_n$ is $n$th order excitation manifold (singles, doubles ....). The exact expressions of the CC amplitude equations at different truncation levels may be evaluated using the 
+\noindent where $\mu_n$ is the $n$th order excitation manifold (singles, doubles ....). The exact expressions of the CC amplitude equations at different truncation levels may be evaluated using the 
 Baker–Campbell–Hausdorff (BCH) formula, but will not be discussed in detail here. As an example of the exact form of the working equations, consider the CCSD model truncated at doubles excitation. Equation \ref{eq:CCEQ} then reduces to
 \begin{align}
-\sbra{\mu_1} \hat{\bar{H}} + \left[\hat{\bar{H}},\hat{T}_2\right] \sket{HF} = 0 
+\sbra{\mu_1} \hat{\bar{H}} + \left[\hat{\bar{H}},\hat{T}_2\right] \sket{\HFWFN} = 0 
 \label{eq:CCSDEQSINGLES}
 \\
-\sbra{\mu_2} \hat{\bar{H}} + \left[\hat{\bar{H}},\hat{T}_2\right] + \frac{1}{2} \left[ \left[ \hat{\bar{H}},\hat{T}_2\right],\hat{T}_2\right] \sket{HF} = 0
+\sbra{\mu_2} \hat{\bar{H}} + \left[\hat{\bar{H}},\hat{T}_2\right] + \frac{1}{2} \left[ \left[ \hat{\bar{H}},\hat{T}_2\right],\hat{T}_2\right] \sket{\HFWFN} = 0
 \label{eq:CCSDEQDOUBLES}
 \end{align}
 The system of equations \ref{eq:CCEQ} depends on its own solution, and therefore needs to be solved iteratively. They are most commonly solved using a modified Newton method with DIIS acceleration. 
@@ -691,7 +691,7 @@ The success of RSPT is closely related to the choice of the zero-order Hamiltoni
 \begin{equation}
 \hat{H}_0 = \hat{f} = \sum_P \eps_P a\pdg_P a_P
 \end{equation}
-\noindent The zero-order wave function $\sket{\Psi_0^{(0)}}$ corresponds to the Hartree Fock wave function $\sket{HF}$. The perturbation operator takes the form
+\noindent The zero-order wave function $\sket{\Psi_0^{(0)}}$ corresponds to the Hartree Fock wave function $\sket{\HFWFN}$. The perturbation operator takes the form
 \begin{equation}
 \hat{U} = \hat{H} - \hat{f} = \sum_{PQRS} \hat{g}_{PQRS} a\pdg_P a\pdg_R a_S a_Q - \hat{V}^{HF} 
 \end{equation}
@@ -703,7 +703,7 @@ E_0^{(0)} = \sum_I \eps_I
 \begin{equation}
 \begin{split}
 E_0^{(1)} &= \sbra{\Psi_0^{(0)}} \hat{U} \sket{\Psi_0^{(0)}} \\
-&= \sbra{HF}\hat{U}\sket{HF} \\
+&= \sbra{\HFWFN}\hat{U}\sket{\HFWFN} \\
 &= -\frac{1}{2} \sum_{IJ} ( \sbraket{IJ}{IJ} - \sbraket{IJ}{JI} ) \\
 &= -\frac{1}{2} \sum_{IJ} \sbra{IJ}\sket{IJ} 
 \end{split}
@@ -711,7 +711,7 @@ E_0^{(1)} &= \sbra{\Psi_0^{(0)}} \hat{U} \sket{\Psi_0^{(0)}} \\
 \noindent where $\sbra{IJ}\sket{IJ}$ are the antisymmetrized two-electron integrals in the MO basis. The energy sum $E_0^{(0)} + E_0^{(1)}$ corresponds to the Hartree-Fock energy. Therefore, the first correction to the Hartree-Fock energy occurs at the second order of MPPT. Using the notation MP$n$ to refer to MPPT including perturbations up to the $n$th order, the second order energy reads
 \begin{equation}
 \begin{split}
-E_0^{(2)} = E_{MP2} = \frac{1}{4} \sum_{IJAB} \frac{\mid \sbra{IJ}\sket{AB}\mid^2}{\eps_I + \eps_J - \eps_A - \eps_B}
+E_0^{(2)} = E_{MP2} = \frac{1}{4} \sum_{IJAB} \frac{\abs{ \sbra{IJ}\sket{AB}}^2}{\eps_I + \eps_J - \eps_A - \eps_B}
 \end{split} 
 \label{eq:UMP2}
 \end{equation}
@@ -783,7 +783,7 @@ Consider again the CCSD equations for the coupled cluster singles \ref{eq:CCSDEQ
 \end{equation}
 \noindent where $\hat{U}$ is also known as the \emph{fluctuation potential}, the coupled cluster singles doubles method by Christiansen et al. \cite{Chr1995} approximates the doubles amplitudes to first order only. The doubles equation \ref{eq:CCSDEQDOUBLES} thus becomes
 \begin{equation}
-\sbra{\mu_2} \left[ \hat{F}, \hat{T}_2\right] + \hat{\ovl{H}} \sket{HF} = 0
+\sbra{\mu_2} \left[ \hat{F}, \hat{T}_2\right] + \hat{\ovl{H}} \sket{\HFWFN} = 0
 \label{eq:CC2EQDOUBLES}
 \end{equation}
 \noindent Equations \ref{eq:CCSDEQSINGLES} and \ref{eq:CC2EQDOUBLES} define the so-called \emph{CC2} model. The doubles equations give an MP2-like closed expressions, and only the singles amplitudes need to be determined variationally.

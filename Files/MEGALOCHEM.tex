@@ -1,4 +1,4 @@
-\chapter[The \mchem Program Package]{The \protect\includegraphics[height=34pt]{Pics/MEGALOCHEM.pdf} Program Package}
+\chapter[The \mchem Program Package]{The \protect\includegraphics[height=30pt]{Pics/MEGALOCHEM.pdf} Program Package}
 
 %\begin{figure*}[h]
 %\centering
@@ -17,7 +17,7 @@ Nowadays, quantum chemists have access to a healthy ecosystem of open-source qua
 
 \mchem{} takes two inputs: a \texttt{.json} file which contains the requested jobs, and an optional \texttt{.hdf5} file which contains information of the wave function from previous calculations. HDF5 (hierarchical data format) is a high-performance library and file format for storing and managing data. Data sets are organized into a filesystem-like format, called \emph{groups}, and can be accessed with a similar syntax \texttt{/path/to/dataset}. The  HDF5 library is written in C, but has bindings for C++, Fortran, Python and Java, among others. HDF5 files can also be opened and edited using external programs like HDFview or Vitables. The support for multiple languages and the simple user interface allows to easily extract information from the output file without the need to write complex bash scripts, especially for matrices like the HF coefficients, or the ADC transition matrices.  
 
-The JSON format was chosen as the data format for the job control input, because it is a well known file format that is easy to read and edit, with multiple open-source parser libraries already available. \mchem{} has an object-oriented approach for setting up jobs, and examples of input files will be shown in section \ref{sec:JSON}.
+The JSON format was chosen as the data format for the job control input, because it is a well known file format that is easy to read and edit, with multiple open-source parser libraries already available. \mchem{} has an object-oriented approach for setting up jobs, and examples of input files will be shown in Section \ref{sec:JSON}.
 
 After parsing the JSON input file and optionally loading data from previous calculations, the main driver sets up the jobs in a queue. The queue can contain multiple jobs of the same type, e.g. Hartree-Fock, with different systems and options. After initializing the parallel runtime environment, the queue is worked off and the job information is passed to the different subdrivers. \mchem{} currently has four different job types it can handle: Hartree Fock and MP2 ground state calculations, excited state calculations (CIS and ADC(2)), as well as orbital localization, analysis and plotting. Subdrivers like MP2 or ADC can read information from previous calculations, meaning that the HF wave function does not need to be recomputed each time. Output is written to \texttt{stdout} and a new HDF5 file. 
 
@@ -25,7 +25,7 @@ The subdrivers depend on other modules for handling evaluation of electron integ
 
 Integrals are computed using the \texttt{libcint} library \cite{Sun2015}, which is also used in PySCF. Alternatively another branch of libcint called \texttt{qcint} may be used, that is optimized against AVX, AVX2 and AVX512. It provides the same API as libcint and no modifications to \mchem{} are necessary. However, other integral libraries can be easily swapped in. \mchem{} has its own data structures for molecules, basis sets and a general interface for requesting and handling electron integrals. Only two files need to be modified to accommodate other libraries. 
 
-Linear algebra, such as eigenvalue decomposition, singular value decomposition and other dense matrix operations are mainly handled by the ScaLAPACK library. ScaLAPACK is written in Fortran, but \mchem{} provides C and C++ bindings for it. For node-local matrix operations, the Eigen library is used as well. 
+Linear algebra, such as eigenvalue decomposition, singular value decomposition and other dense matrix operations are mainly handled by the ScaLAPACK Fortran library. C and C++ bindings for ScaLAPACK are provided by \mchem{}. For node-local matrix operations, the Eigen library is used as well. 
 
 The most crucial part of \mchem{} are the \emph{kernels}, which construct the coulomb, exchange and $Z$ matrices (encountered in AO-SOS-MP2), and compute the CIS and ADC(2) matrix vector products. Sparse matrix multiplication in the kernels is managed by the DBCSR library. \mchem{} provides an extended C++ interface (DBCSRX) with additional capabilities for ease of use. 
 
@@ -105,7 +105,7 @@ Job control is specified by an input file in the JSON format. It is inspired by 
 
 \item \texttt{adcwfn}: Job control for computing CIS and ADC(2) excitation energies
 
-\item \texttt{moprint}: Job control for localizing and plotting orbitals (CMOs, LMOs, NTOs) from different calculations
+\item \texttt{moprint}: Job control for localizing and plotting orbitals (CMOs, LMOs, NTOs) from different calculations.
 
 \end{itemize} 
 
@@ -115,7 +115,7 @@ This object-oriented approach will also facilitate a potential implementation of
 
 \section{Design Patterns}
 
-One of the major challenges in designing a modular quantum chemistry software is deciding how arguments are passed from one module to another. Implementations of electronic structure methods often accept dozens of different keywords, leading to complex function and constructor signatures, and grouping keywords into logical structures is non-trivial. A popular solution to this problem is the use of a \texttt{options} class which group parameters into an overarching \emph{context}, such as \texttt{psi4::options} in Psi4 or \texttt{libctx::context} in Q-Chem. The advantage is that keywords are easily accessed by requesting it by name. Existence of the keys can also be checked by using member functions. However, this is at the same time the greatest downside of context classes. For a complex hierarchy of interacting modules and functions, which can all insert or delete keywords, it is often impossible to know what  objects are or are not present within the context at a given level. 
+One of the major challenges in designing a modular quantum chemistry software is deciding how arguments are passed from one module to another. Implementations of electronic structure methods often accept dozens of different keywords, leading to complex function and constructor signatures, and grouping keywords into logical structures is non-trivial. A popular solution to this problem is the use of a \texttt{options} class which group parameters into an overarching \emph{context}. Examples include \texttt{psi4::options} in Psi4 or \texttt{libctx::context} in Q-Chem. The advantage is that keywords are easily accessed by requesting it by name. Existence of the keys can also be checked by using member functions. However, this is at the same time the greatest downside of context classes. For a complex hierarchy of interacting modules and functions, which can all insert or delete keywords, it is often impossible to know what  objects are or are not present within the context at a given level. 
 
 Contexts are therefore not used in \mchem{}. This leads to more verbose code, as each class needs to explicitly define all its parameters, but it is less error-prone. Optional parameters are handled using a modified \texttt{std::optional} class.
 

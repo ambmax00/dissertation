@@ -1,5 +1,23 @@
 \begin{thebibliography}{100}
 
+\bibitem{Fri2016}
+M.~J. Frisch, G.~W. Trucks, H.~B. Schlegel, G.~E. Scuseria, M.~A. Robb, J.~R.
+  Cheeseman, G.~Scalmani, V.~Barone, G.~A. Petersson, H.~Nakatsuji, X.~Li,
+  M.~Caricato, A.~V. Marenich, J.~Bloino, B.~G. Janesko, R.~Gomperts,
+  B.~Mennucci, H.~P. Hratchian, J.~V. Ortiz, A.~F. Izmaylov, J.~L. Sonnenberg,
+  D.~Williams-Young, F.~Ding, F.~Lipparini, F.~Egidi, J.~Goings, B.~Peng,
+  A.~Petrone, T.~Henderson, D.~Ranasinghe, V.~G. Zakrzewski, J.~Gao, N.~Rega,
+  G.~Zheng, W.~Liang, M.~Hada, M.~Ehara, K.~Toyota, R.~Fukuda, J.~Hasegawa,
+  M.~Ishida, T.~Nakajima, Y.~Honda, O.~Kitao, H.~Nakai, T.~Vreven,
+  K.~Throssell, J.~A. Montgomery, {Jr.}, J.~E. Peralta, F.~Ogliaro, M.~J.
+  Bearpark, J.~J. Heyd, E.~N. Brothers, K.~N. Kudin, V.~N. Staroverov, T.~A.
+  Keith, R.~Kobayashi, J.~Normand, K.~Raghavachari, A.~P. Rendell, J.~C.
+  Burant, S.~S. Iyengar, J.~Tomasi, M.~Cossi, J.~M. Millam, M.~Klene, C.~Adamo,
+  R.~Cammi, J.~W. Ochterski, R.~L. Martin, K.~Morokuma, O.~Farkas, J.~B.
+  Foresman, and D.~J. Fox.
+\newblock Gaussian˜16 {R}evision {C}.01, 2016.
+\newblock Gaussian Inc. Wallingford CT.
+
 \bibitem{Sza1996}
 Attila Szabo and Neil~S. Ostlund.
 \newblock {\em {Modern Quantum Chemistry: Introduction to Advanced Electronic
@@ -671,6 +689,11 @@ S.~F. Boys.
   Invariant for Changes from One Molecule to Another}.
 \newblock {\em Rev. Mod. Phys.}, 32(2):296--299, Apr 1960.
 
+\bibitem{Edm1963}
+Clyde Edmiston and Klaus Ruedenberg.
+\newblock {Localized Atomic and Molecular Orbitals}.
+\newblock {\em Rev. Mod. Phys.}, 35(3):457--464, Jul 1963.
+
 \bibitem{Pip1989}
 J{\ifmmode\acute{a}\else\'{a}\fi}nos Pipek and Paul~G. Mezey.
 \newblock {A fast intrinsic localization procedure applicable for ab initio and
@@ -841,6 +864,12 @@ Ricardo~A. Mata, Hans-Joachim Werner, Stephan Thiel, and Walter Thiel.
   on p-hydroxybenzoate hydroxylase}.
 \newblock {\em J. Chem. Phys.}, 128(2):025104, Jan 2008.
 
+\bibitem{Rip2013}
+Christoph Riplinger and Frank Neese.
+\newblock {An efficient and near linear scaling pair natural orbital based
+  local coupled cluster method}.
+\newblock {\em J. Chem. Phys.}, 138(3):034106, Jan 2013.
+
 \bibitem{Nee2009a}
 Frank Neese, Andreas Hansen, and Dimitrios~G. Liakos.
 \newblock {Efficient and accurate approximations to the local coupled cluster
@@ -858,12 +887,6 @@ Andreas Hansen, Dimitrios~G. Liakos, and Frank Neese.
 \newblock {Efficient and accurate local single reference correlation methods
   for high-spin open-shell molecules using pair natural orbitals}.
 \newblock {\em J. Chem. Phys.}, 135(21):214102., Dec 2011.
-
-\bibitem{Rip2013}
-Christoph Riplinger and Frank Neese.
-\newblock {An efficient and near linear scaling pair natural orbital based
-  local coupled cluster method}.
-\newblock {\em J. Chem. Phys.}, 138(3):034106, Jan 2013.
 
 \bibitem{Yan2011}
 Jun Yang, Yuki Kurashige, Frederick~R. Manby, and Garnet K.~L. Chan.

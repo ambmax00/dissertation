@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="977.15545"
-     inkscape:cy="320.78736"
+     inkscape:zoom="0.7"
+     inkscape:cx="705.21554"
+     inkscape:cy="311.94553"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -57,7 +57,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -589,7 +589,7 @@
        id="path19784"
        inkscape:connector-curvature="0" />
     <rect
-       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#ff0202;stroke-width:1;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
+       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#afafaf;stroke-width:1.6;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
        id="rect20271"
        width="21.166666"
        height="21.166666"
@@ -1870,11 +1870,11 @@
        style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.80000001;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
        inkscape:spray-origin="#path16711" />
     <circle
-       r="0.66817379"
-       cy="910.8454"
-       cx="-90.536057"
+       r="1.9790305"
+       cy="910.83331"
+       cx="-89.958336"
        id="circle18620"
-       style="fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.80000001;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
+       style="fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2.36947989;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
        inkscape:spray-origin="#path16711" />
     <circle
        r="0.66817379"

@@ -57,7 +57,7 @@ c_m \\
 The DIIS method is straight-forward to implement. Algorithm \ref{algo:DIIS} gives a summary for the method as it is used in the SCF procedure. 
 The exact form of the error vector (or \emph{residual}) depends on the nature of the problem. In the general case, one can use the quantity
 \begin{equation}
-\mbf{e}_i = \mbf{e}_i - \mbf{e}_{i-1}
+\mbf{e}_i = \mbf{F}_i - \mbf{F}_{i-1}
 \end{equation}
 \noindent In the case of the SCF method, the commutator relationship may be used instead:
 \begin{equation}
@@ -152,7 +152,7 @@ The final eigenvalues are equal to the eigenvalues of the last subspace matrix. 
 \label{algo:DAVIDSON}
 \end{algorithm}
 
-\subsection{Modified Davidson Method for the Pseudo-Eigenvalue Problem}
+\subsection{Modified Davidson Method}
 
 When using doubles-folding in the context of the ADC(2) or CC2 method (section \ref{sec:ADC_DAV}), the effective matrix $\mbf{A}_{eff}$ becomes dependent on its own eigenvalues:
 \begin{equation}
@@ -312,7 +312,7 @@ The Laplace transformation is  a crucial step for formulating an orbital invaria
 \noindent with the scaled Laplace parameters $\bar{\omega} = \omega x_{min}$, $\bar{t} = t x_{min}$  in the new interval $[1,R]$ where $R = x_{max}/x_{min}$. The scaled Laplace coefficients in the minimax approximation are obtained by repeating the following two steps until self-consistency is reached:
 \begin{enumerate}
 \item Determine the $2k-1$ extremum points $x_i$ of the error distribution function \\ 
-$\eta_k (x,\bar{\omega}\pa,\bar{t}\pa)$ with the current set of $\{\bar{\omega}\}$ and $\{\bar{t}\pa\}$
+$\eta_k (x,\bar{\omega}\pa,\bar{t}\pa)$ with the current set of $\{\bar{\omega}\pa\}$ and $\{\bar{t}\pa\}$
 \item Optimize the $2k+1$ parameters $\{\bar{\omega}\pa\}$ and $\{\bar{t}\pa\}$ by solving the $2k+1$ non-linear equations
 \begin{equation}
 \eta_k (x_i,\bar{\omega}\pa,\bar{t}\pa) = (-1)^i \delta_{k[1,R]}(\bar{\omega}\pa,\bar{t}\pa)
@@ -330,7 +330,7 @@ The Cuthill-McKee (CM) algorithm finds a permutation $P$ of a sparse, symmetric 
 \end{equation}
 \noindent The CM algorithm reduces the bandwidth of a matrix by reordering the nodes of the corresponding adjacency or connectivity matrix $\mbf{C}$ (Algorithm \ref{algo:CM}). For a $N$-by-$N$ matrix, there are $N$ nodes. Node $i$ and $j$ are connected if the entry $(i,j)$ of the connectivity matrix is 1, and not connected if the entry is 0. Here, the \emph{degree} of a node is defined by the total number of connections, i.e. the row or column sum
 \begin{equation}
-degree(i) = \sum_j^N C(i,j)
+\textrm{degree}(i) = \sum_j^N C(i,j)
 \end{equation}
 In the context of quantum chemistry, the nodes correspond to atoms in a molecule, and the connections to bonds. Reordering the indexing of the atoms based on the connectivity matrix of a molecule allows to significantly reduce the number of blocks needed to store quantities like the overlap matrix, density matrix or 2-electron repulsion integrals when using block-sparse matrix algebra by grouping close atoms together. Figure \ref{fig:RCM} shows how the connectivity matrix is reordered for the FW144 system using the reverse CM algorithm. Two atoms are "connected", if their are within 5 $a_0$ of each other.
 

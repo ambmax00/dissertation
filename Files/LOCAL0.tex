@@ -10,13 +10,13 @@ This chapter introduces the most important tools used in local correlation metho
 
 \section{Sparsity in Electronic Structure Theory}
 
-Sparsity is a core concept in electronic structure theory. Many of the most commonly encountered matrices and tensors exhibit some form of sparsity, for example, the 2-electron repulsion integrals in the AO basis. This section analyses the different possible types of sparsity in detail.
+Sparsity is a core concept in electronic structure theory. Many of the most commonly encountered matrices and tensors exhibit some form of sparsity, for example, the two-electron repulsion integrals in the AO basis. This section analyses the different possible types of sparsity in detail.
 
 \FloatBarrier
 
 \subsection{Element-Wise Sparsity of Electron Integrals}
 
-Consider a model system consisting of $n$ hydrogen atoms arranged in a line, with a distance of 1 $a_0$ between one another, and a primitive 1s Gaussian function attached to each atom. Figure \ref{fig:HCHAIN_ERINZE} shows the scaling behavior of the overlap and electron repulsion integrals for this toy system. A blue line is used to show the number of total elements, while the green line represents the number of significant integrals with an absolute value below 1e-10. From observing both graphs, it becomes apparent that for an increasing number of atoms, many of the electron integrals can be ignored. Therefore, one only needs to store integrals above a certain threshold. This is known as \emph{element-wise sparsity}.
+Consider a model system consisting of $n$ hydrogen atoms arranged in a line, with a distance of 1 $a_0$ between one another, and a primitive 1s Gaussian function attached to each atom. Figure \ref{fig:HCHAIN_ERINZE} shows the scaling behavior of the overlap and electron repulsion integrals for this toy system. A blue/full line is used to show the number of total elements, while the green/dotted line represents the number of significant integrals with an absolute value below 1e-10. From observing both graphs, it becomes apparent that for an increasing number of atoms, many of the electron integrals can be ignored. Therefore, one only needs to store integrals above a certain threshold. This is known as \emph{element-wise sparsity}.
 
 \begin{figure}[h]
 \centering
@@ -28,7 +28,7 @@ Consider a model system consisting of $n$ hydrogen atoms arranged in a line, wit
 \includegraphics[scale=0.8]{Pics/eri_nze}
 \caption{}
 \end{subfigure}%
-\caption[Sparsity of overlap and electron repulsion integrals]{(a) Number of significant entries (green line) in the overlap matrix for a hydrogen atom chain, with a threshold of 1e-10. The blue line shows the total number of elements for the dense matrix, which scale as $N^2$. (b) Number of significant entries (green line) in the electron repulsion integral tensor for a hydrogen atom chain, with a threshold of 1e-10. The blue line shows the total number of elements for the dense tensor, which scale as $N^4$.}
+\caption[Sparsity of overlap and electron repulsion integrals]{(a) Number of significant entries (green/dotted line) in the overlap matrix for a hydrogen atom chain, with a threshold of 1e-10. The blue/full line shows the total number of elements for the dense matrix, which scale as $N^2$. (b) Number of significant entries (green/dotted line) in the electron repulsion integral tensor for a hydrogen atom chain, with a threshold of 1e-10. The blue/full line shows the total number of elements for the dense tensor, which scale as $N^4$.}
 \label{fig:HCHAIN_ERINZE}
 \end{figure}
 
@@ -297,7 +297,7 @@ The number of non-zero elements therefore scales as $\ccpx{2}$, just like for th
 \begin{equation}
 \left\lvert \cn{\mu\nu}{P} \right\rvert \leq \left\lvert \cn{\mu\nu}{\mu\nu} \right\rvert^{1/2} \left\lvert \cn{P}{P} \right\rvert^{1/2}
 \end{equation}
-\noindent As mentioned above, Schwarz screening does not take into account increasing bra-ket distance. The long-range decay is too slow to be of any advantage in the case of the 4c2e integrals. However, it was found \cite{Hol2015} that for an auxiliary density $\chi_P(\mathbf{r}$ with angular momentum $l_P$, the 3c2e integrals actually decay as $1/R^{-1 - l_P}$ with increasing bra-ket distance, establishing a weak but not insignificant sparsity relationship between $\cbra{\mu\nu}$ and $\cket{P}$ 
+\noindent As mentioned above, Schwarz screening does not take into account increasing bra-ket distance. The long-range decay is too slow to be of any advantage in the case of the 4c2e integrals. However, it was found \cite{Hol2015} that for an auxiliary density $\chi_P(\mathbf{r})$ with angular momentum $l_P$, the 3c2e integrals actually decay as $1/R^{-1 - l_P}$ with increasing bra-ket distance, establishing a weak but not insignificant sparsity relationship between $\cbra{\mu\nu}$ and $\cket{P}$ 
 \begin{center}
 \begin{tikzpicture}
 \snode{MU}{0,0}{\mu};
@@ -347,11 +347,11 @@ M_{PQ} = \int\int \bfun{P}{1} g(\mbf{r_1},\mbf{r_2}) \bfun{Q}{2} d\mbf{r_1} d\mb
 C^P_{\mu\nu} = S_{PQ}^{-1} (\mu\nu Q)
 \label{eq:OVLPMET}
 \end{equation}
-\noindent where $S_{PQ}$ is the overlap matrix of the auxiliary basis, and $(\mu\nu Q)$ are the 3-center-\textbf{1-electron} overlap integrals. While the overlap metric has the most rapid decay and the quantities in Equation \ref{eq:OVLPMET} can be evaluated in $\mathcal{O}(N)$ time, it has the worst accuracy of all metrics. One solution to this problem is to introduce a metric which is intermediate between overlap and coulomb fitting. Examples include the Yukawa, Coulomb- and Gaussian-attenuated metrics. These intermediate metrics introduce a damping factor $\omega$ to control the sparsity and accuracy of the density fit. In the limit where $\omega \rightarrow 0$, and $\omega \rightarrow \infty$, one recovers the coulomb and overlap metric, respectively. Figure \ref{fig:DFMETRICS} shows the decay behavior of the Coulomb-attenuated metric, for $\omega$ = 0.01, 0.1 and 1.0, compared to the overlap and the Coulomb metric. 
+\noindent where $S_{PQ}$ is the overlap matrix of the auxiliary basis, and $(\mu\nu Q)$ are the 3-center-\emph{1-electron} overlap integrals. While the overlap metric has the most rapid decay and the quantities in Equation \ref{eq:OVLPMET} can be evaluated in $\mathcal{O}(N)$ time, it has the worst accuracy of all metrics. One solution to this problem is to introduce a metric which is intermediate between overlap and coulomb fitting. Examples include the Yukawa, Coulomb- and Gaussian-attenuated metrics. These intermediate metrics introduce a damping factor $\omega$ to control the sparsity and accuracy of the density fit. In the limit where $\omega \rightarrow 0$, and $\omega \rightarrow \infty$, one recovers the coulomb and overlap metric, respectively. Figure \ref{fig:DFMETRICS} shows the decay behavior of the Coulomb-attenuated metric, for $\omega$ = 0.01, 0.1 and 1.0, compared to the overlap and the Coulomb metric. 
 
 \begin{table}
 \centering
-\begin{tabular}{cc}
+\begin{tabular}{ll}
 \hline
 Metric & $g(r_{12})$ \\ \hline
 \multirow{2}{*}{Overlap \cite{Bae1973}} & \multirow{2}{*}{1} \\ & \\
@@ -602,7 +602,7 @@ In contrast to canonical molecular orbitals, which are generally delocalized ove
 % (4) J. E. Subotnik, Y. Shao, W. Z. Liang, and M. Head-Gordon, J. Chem. Phys. https://doi.org/10.1063/1.1790971 121, 9220 (2004).
 % (5) https://aip.scitation.org/doi/10.1063/1.2033687
 
-One of the most popular methods for finding LMOs consists in maximizing a localization function $\eta(\phi)$ by successive rotation of the orbital space. The most prominent examples are Foster-Boys (FB) \cite{Boy1960}, Edmiston-Ruedenberg (ER) \emph{Edm1963} and Pipek-Mezey (PM) \cite{Pip1989}. Their functionals can be written as
+One of the most popular methods for finding LMOs consists in maximizing a localization function $\eta(\phi)$ by successive rotation of the orbital space. The most prominent examples are Foster-Boys (FB) \cite{Boy1960}, Edmiston-Ruedenberg (ER) \cite{Edm1963} and Pipek-Mezey (PM) \cite{Pip1989}. Their functionals can be written as
 
 \begin{eqnarray}
 \zeta_{FB}(\chi) = \sum_i \bra{\chi_i} \mathbf{r} \ket{\chi i}^2 \\
@@ -799,7 +799,7 @@ Natural transition orbitals (NTOs) were introduced to facilitate the qualitative
 \ket{\overline{\Psi}^{vir}_k} = V_{ka} \ket{\Psi^{vir}_a}
 \end{equation}
 
-\noindent The singular value $s_k$ show the contribution of an NTO pair $k$ to the excited state. In most cases, the number of significant NTO pairs is significantly lower than $n_{occ}n_{vir}$ and at most equal to $n_{occ}$. NTOs are not limited to CIS, but can also be obtained by SVD decomposition of the singles-singles block of excited state densities from higher order methods such as ADC or CCLR. 
+\noindent The singular values $s_k$ show the contribution of an NTO pair $k$ to the excited state. In most cases, the number of significant NTO pairs is significantly lower than $n_{occ}n_{vir}$ and at most equal to $n_{occ}$. NTOs are not limited to CIS, but can also be obtained by SVD decomposition of the singles-singles block of excited state densities from higher order methods such as ADC or CCLR. 
 
 Natural transition orbitals have also found use in local excited  state correlation methods \cite{Bau2017,Hof2017}, where CIS NTOs are combined with MP2 NOs to obtain a compact orbital representation for ground and excited state coupled cluster calculations.
 
@@ -875,7 +875,7 @@ t_{ij}^{ab} = \frac{\cn{ia}{jb}}{\eps_a + \eps_b - f_{ii} - f_{jj}}
 
 \noindent where $f_{ii}$ are the diagonal entries of the Fock matrix in the LMO basis. The pair domains $[ij]$ are chosen by keeping the PNOs with an occupation number larger than a threshold $\tau_{PAO}$. Therefore, accuracy is controlled by a single, distance-independent parameter, which is an advantage over other methods like DSVOs. 
 
-However, computing the PNOs requires a full MP2 calculation, and with density fitting scales with $\ccpx{5}$. Moreover, even if the PNO basis is compact, the fact that each LMO pair has its own virtual orbital basis may lead to a prohibitively large number of PNOs for large molecules. The concept of PNOs can be combined with the domain-based approach of LMO+PAO, in what is known as local pair-natural orbitals (LPNOs) \cite{Rip2013}. 
+However, computing the PNOs requires a full MP2 calculation which scales as $\ccpx{5}$. Moreover, even if the PNO basis is compact, the fact that each LMO pair has its own virtual orbital basis may lead to a prohibitively large number of PNOs for large molecules. The concept of PNOs can be combined with the domain-based approach of LMO+PAO, in what is known as local pair-natural orbitals (LPNOs) \cite{Rip2013}. 
 
 % CA F. Neese, F. Wennmohs and A. Hansen, J. Chem. Phys., 2009, 130, 114108 CrossRef .
 % CB F. Neese, A. Hansen and D. G. Liakos, J. Chem. Phys., 2009, 131, 064103 CrossRef .
