@@ -193,7 +193,7 @@
 \contentsline {subsection}{\numberline {9.4.4}PBLAS}{172}{}%
 \contentsline {subsection}{\numberline {9.4.5}ScaLAPACK}{172}{}%
 \contentsline {subsection}{\numberline {9.4.6}DBCSR}{172}{}%
-\contentsline {chapter}{\numberline {10}The {\texttt {MEGALOchem}}Program Package}{174}{}%
+\contentsline {chapter}{\numberline {10}The {\texttt {MEGALOchem}}{} Program Package}{174}{}%
 \contentsline {section}{\numberline {10.1}Motivation}{174}{}%
 \contentsline {section}{\numberline {10.2}Software Architecture}{174}{}%
 \contentsline {section}{\numberline {10.3}Parallel Runtime Environment}{176}{}%
